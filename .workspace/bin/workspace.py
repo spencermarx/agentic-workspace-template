@@ -1862,16 +1862,27 @@ def run_obsidian_setup(dry_run: bool = False) -> int:
         wrote.append(rel(target))
 
     # Create any destination a plugin config points at, so first sync does not
-    # fail on a missing directory.
+    # fail on a missing directory. The plugin nests its config, so the key is
+    # settings.icloudBasePath; reading the top level found nothing and skipped
+    # the mkdir without saying so, which is invisible here and shows up later as
+    # the failure this step exists to prevent, a sync that reports success and
+    # moves nothing. A missing key is now said out loud rather than assumed away.
     icloud = plugins_dir / "icloud-sync" / "data.json"
     if icloud.exists() and not dry_run:
         try:
-            base = json.loads(read_text(icloud)).get("icloudBasePath")
+            data = json.loads(read_text(icloud))
         except json.JSONDecodeError:
-            base = None
-        if base and not Path(base).exists():
+            data = {}
+        settings = data.get("settings")
+        base = (settings if isinstance(settings, dict) else {}).get("icloudBasePath")
+        if not base:
+            print("  warning      %s has no settings.icloudBasePath, so no sync "
+                  "destination was created" % rel(icloud), file=sys.stderr)
+        elif not Path(base).exists():
             Path(base).mkdir(parents=True, exist_ok=True)
             print("  created      %s" % base)
+        else:
+            print("  kept         %s (destination exists)" % base)
 
     for path in skipped:
         print("  kept         %s (already configured)" % path)
