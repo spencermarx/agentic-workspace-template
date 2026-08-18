@@ -23,6 +23,13 @@ license.
 They are two clicks each from Obsidian's plugin browser, so not vendoring them
 costs a few minutes once. Vendoring them would cost a license violation.
 
+Installing one puts it in a directory git would otherwise offer to stage, so
+`.gitignore` ignores each store plugin by id, and `.obsidian/themes/` with them.
+Without that, "not vendored" would last exactly until the first `git add -A`.
+The ignore is by id rather than a blanket rule over `plugins/`, because the two
+vendored plugins in the table above have to stay tracked. `./workspace validate`
+asserts both halves.
+
 `community-plugins.json` still lists every plugin, vendored or not, so the
 **enable list travels with the clone**. That was one of the two reproducibility
 gaps in the vault this template came from: a clone got the plugin code and
@@ -38,6 +45,11 @@ ships a `data.json.example` and a `SETUP.md`, and its `data.json` is
 git-ignored. `./workspace obsidian-setup` writes the real file from the example.
 
 This applies to `icloud-sync`, whose `data.json` holds an absolute path, and to
-Excalidraw, whose `data.json` is more than half personal stencil library and is
-rewritten every session. Committing that one guarantees conflicts on a
-single-line 171 KB blob that git cannot merge and a human cannot resolve.
+`agentic-copilot`, whose `editApprovalMode` decides whether an agent's edits land
+without a prompt. That is a choice each machine should make rather than inherit
+from a clone.
+
+Excalidraw would belong here too, its `data.json` being more than half personal
+stencil library and rewritten every session, a single-line 171 KB blob that git
+cannot merge and a human cannot resolve. It needs no entry only because the whole
+plugin is store-installed and therefore already ignored.

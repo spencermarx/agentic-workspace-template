@@ -971,9 +971,19 @@ def check_gitignore(report: Report) -> None:
         (".credentials/github/tokens.env.example", False),
         (".credentials/github/tokens.env", True),
         (".obsidian/plugins/icloud-sync/data.json", True),
+        (".obsidian/plugins/agentic-copilot/data.json", True),
         (".obsidian/workspace.json", True),
         (".obsidian/community-plugins.json", False),
         (".obsidian/appearance.json", False),
+        # A store plugin is a GPL or AGPL download. Once installed it sits in a
+        # directory git would otherwise offer to stage, so the licensing
+        # decision only holds if the ignore holds. The vendored pair beside it
+        # must stay tracked, which is what rules out a blanket plugins ignore.
+        (".obsidian/plugins/templater-obsidian/main.js", True),
+        (".obsidian/plugins/obsidian-excalidraw-plugin/main.js", True),
+        (".obsidian/themes/Things.css", True),
+        (".obsidian/plugins/agentic-copilot/main.js", False),
+        (".obsidian/plugins/icloud-sync/main.js", False),
     ]
     for candidate, should_be_ignored in expectations:
         proc = subprocess.run(["git", "check-ignore", "-q", candidate],
