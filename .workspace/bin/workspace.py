@@ -848,6 +848,13 @@ def check_links(report: Report) -> None:
             resolved = (path.parent / unquote(target_path)).resolve()
             if not resolved.exists():
                 report.fail("link-dead", r, "link target does not resolve: %s" % target)
+            elif resolved.name not in os.listdir(resolved.parent):
+                # macOS is case-insensitive, so a link whose case is wrong
+                # resolves here and dangles on every Linux machine. The author
+                # cannot see this class of bug without a check for it.
+                report.fail("link-case", r,
+                            "link resolves only on a case-insensitive filesystem: %s" % target,
+                            "Match the file's real case. This dangles on Linux.")
         for match in WIKILINK_RE.finditer(strip_code_fences(text)):
             note = match.group(1).strip()
             if note and Path(note).stem not in note_stems:
