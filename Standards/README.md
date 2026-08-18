@@ -34,7 +34,6 @@ without a row or a row without a rule.
 | [claude-md-contract](./claude-md-contract.md) | The three tiers, budgets, the reusable boilerplate |
 | [document-patterns](./document-patterns.md) | Two buckets, summaries, dated bundles, the three registers |
 | [canonical-and-mirrors](./canonical-and-mirrors.md) | Canonical, mirror, and summary documents |
-| [external-paths](./external-paths.md) | The link-out registry and how the boundary is enforced |
 | [harness-standards](./harness-standards.md) | Skills, rules, budgets, vendoring, settings |
 
 ## The registry
@@ -66,5 +65,4 @@ humans and by the skills that name them, not routed automatically.
 
 - [claude-md-contract § Assigning a tier](./claude-md-contract.md#assigning-a-tier) and its neighbours: consumed by the `bootstrap` and `new-area` skills at generation time.
 - [document-patterns](./document-patterns.md): shapes rather than file-type rules. The relevant skills cite them directly.
-- [external-paths](./external-paths.md): enforced by `.gitignore`, not by a rule.
 - [harness-standards § Settings split](./harness-standards.md#settings-split) and [§ Plugins versus vendoring](./harness-standards.md#plugins-versus-vendoring): configuration decisions, checked by `./workspace validate` rather than routed.
