@@ -31,10 +31,10 @@ Adapted from Simon Severino's [Seven Critics framework](https://github.com/Simon
 
 ## When NOT to Use
 
-- To write copy from scratch — this is a review tool, not a writing tool
-- On copy that is already converting — do not fix what is not broken
-- For pre-launch strategic review of an entire campaign brief — use `campaign-brief` instead
-- For visual or design review of marketing assets — use `brand-review` instead
+- To write copy from scratch - this is a review tool, not a writing tool
+- On copy that is already converting - do not fix what is not broken
+- For pre-launch strategic review of an entire campaign brief - use `campaign-brief` instead
+- For visual or design review of marketing assets - use `brand-review` instead
 - For one-off internal messages with no audience consequence
 
 ## Agents
@@ -45,12 +45,12 @@ Adapted from Simon Severino's [Seven Critics framework](https://github.com/Simon
 
 ## Procedure
 
-### Step 1 — Gather Context
+### Step 1 - Gather Context
 
 Before running the critics, collect:
 
 1. **The draft copy** (full text, exactly as it would be sent)
-2. **The target audience** (specific persona, role, situation — not "marketers" or "operators")
+2. **The target audience** (specific persona, role, situation - not "marketers" or "operators")
 3. **The channel and format** (cold email, LinkedIn post, landing page hero, blog intro, etc.)
 4. **The desired action** (reply, click, book a call, share, subscribe)
 
@@ -69,23 +69,23 @@ Run every check. A critic that finds nothing is a finding in itself, and
 skipping one because the copy "obviously passes" is how the failure this
 skill exists to catch survives review.
 
-### Step 3 — Compile the Failure Report
+### Step 3 - Compile the Failure Report
 
 Categorize every failure surfaced in Step 2 by severity. Use this exact format:
 
 ```markdown
 ## FAILURE REPORT
 
-### CRITICAL — [n] failures
+### CRITICAL - [n] failures
 (blocks the desired action; copy cannot ship as-is)
 - [Critic #] [Layer]: [one-line description]
 - ...
 
-### HIGH PRIORITY — [n] failures
+### HIGH PRIORITY - [n] failures
 (meaningfully weakens the copy; should be fixed before publishing)
 - ...
 
-### LOW — [n] failures
+### LOW - [n] failures
 (minor polish; address if cheap, otherwise note and move on)
 - ...
 ```
@@ -101,7 +101,7 @@ Categorize every failure surfaced in Step 2 by severity. Use this exact format:
 
 ---
 
-### Step 4 — Rebuild
+### Step 4 - Rebuild
 
 Rewrite the draft addressing every CRITICAL and HIGH PRIORITY failure. The
 rebuild standard is **tighter, not bigger. Sharper, not different.**
@@ -120,38 +120,37 @@ Output the full rebuilt copy in a fenced block, ready to copy-paste.
 
 ---
 
-### Step 5 — Validation Pass
+### Step 5 - Validation Pass
 
 Before declaring done, mentally walk all 7 critics through the rebuilt version
 one more time. For each critic, write a single line:
 
 ```markdown
 ## VALIDATION PASS
-1. Time-Crushed: PASS / FAIL — [one-line reason]
-2. Self-Conscious: PASS / FAIL — [one-line reason]
-3. Burned Skeptic: PASS / FAIL — [one-line reason]
-4. AI-Allergic: PASS / FAIL — [one-line reason]
-5. Lurker: PASS / FAIL — [one-line reason]
-6. Visual Reader: PASS / FAIL — [one-line reason]
-7. Inspiration Seeker: PASS / FAIL — [one-line reason]
-8. Operator-Voice Detector: PASS / FAIL — [one-line reason]
+1. Time-Crushed: PASS / FAIL - [one-line reason]
+2. Self-Conscious: PASS / FAIL - [one-line reason]
+3. Burned Skeptic: PASS / FAIL - [one-line reason]
+4. AI-Allergic: PASS / FAIL - [one-line reason]
+5. Lurker: PASS / FAIL - [one-line reason]
+6. Visual Reader: PASS / FAIL - [one-line reason]
+7. Inspiration Seeker: PASS / FAIL - [one-line reason]
+8. Operator-Voice Detector: PASS / FAIL - [one-line reason]
 ```
 
 If any critic still fails, return to Step 4 and rebuild again. **Do not ship
-copy with any remaining CRITICAL failure.** A maximum of 2 rebuild rounds —
-if the third pass still fails, the underlying message itself is wrong and
+copy with any remaining CRITICAL failure.** A maximum of 2 rebuild rounds - if the third pass still fails, the underlying message itself is wrong and
 the copy needs to be rethought from the audience or offer angle, not rewritten.
 
 ---
 
-### Step 6 — Changelog
+### Step 6 - Changelog
 
 End the review with a "What Changed" section explaining each meaningful edit
 and which critic's failure it addressed:
 
 ```markdown
 ## WHAT CHANGED
-- [Original phrase] → [new phrase] — fixes Critic [#] [Layer]
+- [Original phrase] → [new phrase] - fixes Critic [#] [Layer]
 - ...
 ```
 

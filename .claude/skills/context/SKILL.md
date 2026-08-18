@@ -13,20 +13,19 @@ argument-hint: '[the context name, e.g. "Ordering"]'
 
 # Context
 
-A `CONTEXT.md` is the glossary of a bounded context's **ubiquitous language** —
-the canonical term for each domain concept and the words to avoid. It is a
+A `CONTEXT.md` is the glossary of a bounded context's **ubiquitous language** - the canonical term for each domain concept and the words to avoid. It is a
 glossary and **nothing else**: keep it totally devoid of implementation detail.
-It is not a spec, a scratch pad, or a home for decisions — decisions are ADRs
+It is not a spec, a scratch pad, or a home for decisions - decisions are ADRs
 (the [`adr` skill](../decision-record/SKILL.md)).
 
 This skill owns the **format** and the **generator**. It does not decide _which_
-terms are worth pinning down, or when the language is wrong — that active
+terms are worth pinning down, or when the language is wrong - that active
 discipline is the [`domain-modeling` skill](../domain-modeling/SKILL.md), which
 calls this one to write the glossary down.
 
 ## Generate the file
 
-Run the generator — don't hand-create the file. It scaffolds a `CONTEXT.md` at
+Run the generator - don't hand-create the file. It scaffolds a `CONTEXT.md` at
 the repo root (the single-context default) and never clobbers an existing one
 (if the target already exists it skips and says so, so you edit it in place):
 
@@ -42,7 +41,7 @@ For a context that lives in a subtree, pass `--directory`:
 ```
 
 For a multi-context repo, scaffold the root index with `--map` (the map is always
-a repo-root index — don't combine it with `--directory`):
+a repo-root index - don't combine it with `--directory`):
 
 ```bash
 # The multi-context index: CONTEXT-MAP.md at the vault root
@@ -50,7 +49,7 @@ a repo-root index — don't combine it with `--directory`):
 
 ## Format
 
-### CONTEXT.md — the glossary
+### CONTEXT.md - the glossary
 
 ```md
 # {Context name}
@@ -81,19 +80,19 @@ Rules:
 - **Group terms under subheadings** when natural clusters emerge; a flat list is
   fine when they all belong to one cohesive area.
 
-### CONTEXT-MAP.md — the multi-context index
+### CONTEXT-MAP.md - the multi-context index
 
 A single context (most repos) is one `CONTEXT.md` at the root. When a repo has
 multiple bounded contexts, a root `CONTEXT-MAP.md` lists them, where each lives,
 and how they relate:
 
 ```md
-# Platform — Context Map
+# Platform - Context Map
 
 ## Contexts
 
-- [Ordering](./src/ordering/CONTEXT.md) — receives and tracks customer orders
-- [Billing](./src/billing/CONTEXT.md) — generates invoices and processes payments
+- [Ordering](./src/ordering/CONTEXT.md) - receives and tracks customer orders
+- [Billing](./src/billing/CONTEXT.md) - generates invoices and processes payments
 
 ## Relationships
 

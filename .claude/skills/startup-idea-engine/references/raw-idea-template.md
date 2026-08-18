@@ -7,14 +7,14 @@ This template matches the canonical pattern used in the retreat's Raw Ideas fold
 ## Filename convention
 
 ```
-{Candidate Short Name} — Problem and Solution Space.md
+{Candidate Short Name} - Problem and Solution Space.md
 ```
 
 Examples that exist in the corpus:
-- `Fluid Websites — Problem and Solution Space.md`
-- `Mesh Substrate — Biological Frame.md`
-- `Cooperative Substrate for Professionals Navigating AI Displacement — Problem and Solution Space.md`
-- `Agentic SaaS Operations Substrate — Problem and Solution Space.md`
+- `Fluid Websites - Problem and Solution Space.md`
+- `Mesh Substrate - Biological Frame.md`
+- `Cooperative Substrate for Professionals Navigating AI Displacement - Problem and Solution Space.md`
+- `Agentic SaaS Operations Substrate - Problem and Solution Space.md`
 
 Use a multi-word descriptive short name. Don't use a vague single word ("Substrate," "Engine"). The short name should let a future reader recognize the candidate from filename alone.
 
@@ -27,9 +27,9 @@ Use a multi-word descriptive short name. Don't use a vague single word ("Substra
 date: {YYYY-MM-DD}
 type: raw-idea
 status: raw, contestable, unrefined, ready to be questioned and reworked
-audience: {primary audience — typically "the operator and the cabin"}
+audience: {primary audience - typically "the operator and the cabin"}
 related:
-  - "[[../02 Heretical Theses Pool#T{N} — {thesis name}]]"
+  - "[[../02 Heretical Theses Pool#T{N} - {thesis name}]]"
   - "[[../01 the operator's Cabin Operating Frame]]"
   - "[[{relevant adjacent Raw Idea filename without extension}]]"
   - "[[../Retreat Raw Notes]]"
@@ -47,13 +47,13 @@ tags:
 
 ```markdown
 > [!warning] Raw idea, ready to be questioned, ripped apart, reworked, refined, redesigned, redirected
-> This document captures an exploration in progress, not a recommendation. Surfaced through {brief provenance — "a working session on YYYY-MM-DD between the operator and the cabin co-pilot, building on {key insight or trigger}"}. Treat every claim as a hypothesis. The cabin will stress-test, sharpen, kill, or evolve any of this Tuesday through Saturday.
+> This document captures an exploration in progress, not a recommendation. Surfaced through {brief provenance - "a working session on YYYY-MM-DD between the operator and the cabin co-pilot, building on {key insight or trigger}"}. Treat every claim as a hypothesis. The cabin will stress-test, sharpen, kill, or evolve any of this Tuesday through Saturday.
 
 # What this is
 
-This is the problem and solution space underneath {T{N} — Thesis Name} in the [[../02 Heretical Theses Pool|Heretical Theses Pool]]. {Short paragraph describing the candidate's central claim.}
+This is the problem and solution space underneath {T{N} - Thesis Name} in the [[../02 Heretical Theses Pool|Heretical Theses Pool]]. {Short paragraph describing the candidate's central claim.}
 
-{If applicable: a horizon table — wedge / midterm / long-arc — like the one in Agentic SaaS Operations Substrate. This grounds the candidate as a three-horizon stack.}
+{If applicable: a horizon table - wedge / midterm / long-arc - like the one in Agentic SaaS Operations Substrate. This grounds the candidate as a three-horizon stack.}
 
 | Horizon | Shape |
 |---|---|
@@ -65,7 +65,7 @@ Each layer ladders to the next without architectural rewrites. Each layer respec
 
 # The problem, stated specifically
 
-{4–7 numbered sub-points. Each one names a structural failure mode in the world today. Each one is grounded in evidence — research, customer-call signal, prior-project lineage, or documented pattern. Avoid speculation; if a claim is speculative, mark it so.}
+{4–7 numbered sub-points. Each one names a structural failure mode in the world today. Each one is grounded in evidence - research, customer-call signal, prior-project lineage, or documented pattern. Avoid speculation; if a claim is speculative, mark it so.}
 
 **1. {First failure mode.}** {Specific evidence + implication.}
 
@@ -73,7 +73,7 @@ Each layer ladders to the next without architectural rewrites. Each layer respec
 
 ...
 
-The cumulative effect is {synthesis sentence — the meta-pain that makes this candidate worth pursuing}.
+The cumulative effect is {synthesis sentence - the meta-pain that makes this candidate worth pursuing}.
 
 # The solution: {candidate name}
 
@@ -91,7 +91,7 @@ The cumulative effect is {synthesis sentence — the meta-pain that makes this c
 
 **Bret Victor principle.** {Inherited assumption being violated.}
 
-**{Other relevant lens — Ted Chiang on agents, Marc Levinson on primitives, Ben Thompson aggregation theory inversion, etc.}**
+**{Other relevant lens - Ted Chiang on agents, Marc Levinson on primitives, Ben Thompson aggregation theory inversion, etc.}**
 
 **{Specific 2026 wave + why it matters now.}**
 
@@ -105,7 +105,7 @@ The cumulative effect is {synthesis sentence — the meta-pain that makes this c
 
 # Concrete first wedges
 
-{For each candidate wedge shape — typically 3–5:}
+{For each candidate wedge shape - typically 3–5:}
 
 **{Wedge name.}** {1-3 sentences on shape.}
 
@@ -127,7 +127,7 @@ The cumulative effect is {synthesis sentence — the meta-pain that makes this c
 2. **{Shape 2.}** {Description + principle assessment.}
 ...
 
-The candidate must NOT {explicit principle violation to avoid — typically "take a cut on operator-to-customer transactions" for the operator's principles}.
+The candidate must NOT {explicit principle violation to avoid - typically "take a cut on operator-to-customer transactions" for the operator's principles}.
 
 # Strategic questions this exposes
 
@@ -152,7 +152,7 @@ The candidate must NOT {explicit principle violation to avoid — typically "tak
 
 {If the candidate produced a new thesis in the pool, restate the thesis here for inline reference. Format:}
 
-> **T{N} — {Thesis Name}**
+> **T{N} - {Thesis Name}**
 >
 > **Claim.** {Two sentences.}
 >
@@ -178,7 +178,7 @@ If this raw idea survives, evolve it in place. If it does not, archive it but ke
 
 **Surfaced.** {YYYY-MM-DD} via `startup-idea-engine` skill, session {session-doc-filename}. Procedure: {A/B/C/D/E/F per noticing taxonomy}. Anchor: {the specific lived-experience or leading-edge position that produced it}.
 
-**Framework tests.** {N PASS / N PARTIAL / N FAIL — link to session doc for full matrix.}
+**Framework tests.** {N PASS / N PARTIAL / N FAIL - link to session doc for full matrix.}
 
 **Research validation.** {One-line summary of what survived vs. what degraded. Link to session doc.}
 
@@ -196,7 +196,7 @@ Match the existing corpus exactly:
 - No filler ("interesting," "comprehensive," "robust").
 - Specificity over generality. Named segments. Named pains. Named numbers.
 - Wikilinks `[[...]]` for cross-references to other Raw Ideas, the operating frame, and theses.
-- Voice: direct, declarative, willing to take a position. Where the candidate has a weak point, name it — don't bury.
+- Voice: direct, declarative, willing to take a position. Where the candidate has a weak point, name it - don't bury.
 - Length: existing Raw Ideas range 200-500 lines. Aim for the upper end if the candidate is the recommended one; lower if the candidate is a parking-lot direction.
 
 ---

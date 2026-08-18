@@ -2,7 +2,7 @@
 
 **Parent skill:** `startup-idea-engine`
 
-For every candidate that survived Phase 4 (Research Validation), spawn parallel hostile critics. Surface the strongest objection from each. Refine candidates against the objections. Up to 2 refinement rounds. Candidates that cannot survive critics after 2 rounds are killed. Critic dissent that cannot be resolved is **never buried** — it is surfaced in the final output.
+For every candidate that survived Phase 4 (Research Validation), spawn parallel hostile critics. Surface the strongest objection from each. Refine candidates against the objections. Up to 2 refinement rounds. Candidates that cannot survive critics after 2 rounds are killed. Critic dissent that cannot be resolved is **never buried** - it is surfaced in the final output.
 
 **Before starting this sub-skill**, the surviving candidates from Phase 4 are in the session document with their updated test matrices and research findings.
 
@@ -12,14 +12,14 @@ For every candidate that survived Phase 4 (Research Validation), spawn parallel 
 
 ## The Four Critics
 
-Each critic is a separate `general-purpose` sub-agent dispatch with a focused brief. Critics run in parallel — one message, four tool calls. Each critic returns a ≤300-word verdict.
+Each critic is a separate `general-purpose` sub-agent dispatch with a focused brief. Critics run in parallel - one message, four tool calls. Each critic returns a ≤300-word verdict.
 
-### Critic 1 — The Hostile Investor
+### Critic 1 - The Hostile Investor
 
 **Brief:**
 > You are a senior partner at a Tier-1 venture firm (Sequoia / Benchmark / a16z shape). A founder pitches you the candidate below in a 5-minute coffee chat. You are skeptical by default, busy, pattern-matched against years of failed bets in adjacent spaces.
 >
-> Your job: surface the *strongest single objection* a hostile investor would raise. Not all objections — the one that would most immediately collapse the pitch.
+> Your job: surface the *strongest single objection* a hostile investor would raise. Not all objections - the one that would most immediately collapse the pitch.
 >
 > Specifically test:
 > - Is the market large enough to matter at venture scale? (Note: the founder may be explicitly *not* venture-shaped; if so, the test is whether the business is large enough to matter at the founder's chosen scale.)
@@ -34,10 +34,10 @@ Each critic is a separate `general-purpose` sub-agent dispatch with a focused br
 >
 > Under 300 words. Direct. No hedging.
 
-### Critic 2 — The Hostile Incumbent
+### Critic 2 - The Hostile Incumbent
 
 **Brief:**
-> You are the head of strategy or product at the most obvious incumbent in this candidate's space — name them explicitly based on the candidate's market. (For the operator's candidates: this is often the incumbent vendor, Workato, BetterCloud, Mindbody, or whichever incumbent is the named threat.)
+> You are the head of strategy or product at the most obvious incumbent in this candidate's space - name them explicitly based on the candidate's market. (For the operator's candidates: this is often the incumbent vendor, Workato, BetterCloud, Mindbody, or whichever incumbent is the named threat.)
 >
 > Your job: predict your company's 90-day response to this candidate launching, and assess whether your response would crush the candidate.
 >
@@ -45,7 +45,7 @@ Each critic is a separate `general-purpose` sub-agent dispatch with a focused br
 > - Could you ship a competing feature in your existing product in 6 months?
 > - Could you acquire the leader in this category for $20–50M and absorb the threat?
 > - Could you cut off the candidate's distribution channel (e.g., API access, marketplace listing)?
-> - Could you simply outwait them — let them prove the category, then enter with scale?
+> - Could you simply outwait them - let them prove the category, then enter with scale?
 >
 > Return:
 > 1. Your most likely 90-day response (specific tactical move)
@@ -54,12 +54,12 @@ Each critic is a separate `general-purpose` sub-agent dispatch with a focused br
 >
 > Under 300 words. Speak as the incumbent's voice. Specific, ruthless, no flattery.
 
-### Critic 3 — The Principles Auditor
+### Critic 3 - The Principles Auditor
 
 **Brief:**
 > You are an external auditor whose only job is to ensure the candidate survives the founder's stated principles AND founder shape, under sustained scale pressure. The founder's principles are loaded into the session document; read them before assessing.
 >
-> Your job: audit the candidate against the principles and founder-shape constraints, focusing on *gradient drift* — what does the candidate become at $10M ARR, at $100M ARR, under acquisition pressure, under VC pressure?
+> Your job: audit the candidate against the principles and founder-shape constraints, focusing on *gradient drift* - what does the candidate become at $10M ARR, at $100M ARR, under acquisition pressure, under VC pressure?
 >
 > Specifically test (for the operator):
 > - **Anti-Exploitation:** Does the candidate remain anti-extractive at scale, or does the gradient lead toward a take-rate / dark-pattern / data-extraction model?
@@ -76,7 +76,7 @@ Each critic is a separate `general-purpose` sub-agent dispatch with a focused br
 >
 > Under 300 words. Specific. Cite which principle clause is at risk.
 
-### Critic 4 — The Tarpit Auditor
+### Critic 4 - The Tarpit Auditor
 
 **Brief:**
 > You are Dalton Caldwell or Michael Seibel reviewing the candidate against the tarpit-ideas catalog. Tarpit ideas are patterns that first-time founders cluster on, that look attractive, and that a generation of failed attempts has established do not work for structural reasons.
@@ -144,16 +144,16 @@ After all four critics return, for each candidate:
 
 ## Output to Session Document
 
-Append the full critic verdicts and refinement rounds to the session document under "Phase 5 — Adversarial Review." For each candidate:
+Append the full critic verdicts and refinement rounds to the session document under "Phase 5 - Adversarial Review." For each candidate:
 
 ```markdown
 ### Candidate: {name}
 
-**Round 1 — Critics:**
-- Hostile Investor: {verdict} — {one-line objection}
-- Hostile Incumbent: {verdict} — {one-line objection}
-- Principles Auditor: {verdict} — {one-line objection}
-- Tarpit Auditor: {verdict} — {one-line objection}
+**Round 1 - Critics:**
+- Hostile Investor: {verdict} - {one-line objection}
+- Hostile Incumbent: {verdict} - {one-line objection}
+- Principles Auditor: {verdict} - {one-line objection}
+- Tarpit Auditor: {verdict} - {one-line objection}
 
 **Refinement: {what changed}**
 

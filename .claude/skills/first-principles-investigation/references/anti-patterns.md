@@ -1,4 +1,4 @@
-# Anti-patterns — the ways a careful investigation still fails
+# Anti-patterns - the ways a careful investigation still fails
 
 A first-principles investigation doesn't fail because you were lazy. It fails
 because a plausible story felt _true_ one level too early, and you stopped. Each
@@ -19,7 +19,7 @@ by bumping the timeout." You're pattern-matching to a prior case instead of
 deriving from _this_ system's evidence.
 
 **Why it bites:** the analogy fails silently exactly when the two cases differ in
-the dimension that matters — and you won't notice, because analogy doesn't surface
+the dimension that matters - and you won't notice, because analogy doesn't surface
 its own assumptions.
 
 **Guard:** treat the prior case as a _hypothesis to test_, not a conclusion to
@@ -33,13 +33,13 @@ that observation before acting.
 **Tell:** every test you ran "confirmed" your favored cause. You never designed the
 experiment that could have proven it _wrong._
 
-**Why it bites:** confirmatory evidence is nearly free — almost anything is
+**Why it bites:** confirmatory evidence is nearly free - almost anything is
 consistent with a vague enough hypothesis. Only disconfirming tests carry
 information.
 
 **Guard:** for your leading hypothesis, write its falsifier explicitly and go try
 to _trip_ it. If you can't think of an observation that would kill the hypothesis,
-the hypothesis is too vague to be useful — sharpen it until it's falsifiable.
+the hypothesis is too vague to be useful - sharpen it until it's falsifiable.
 
 ---
 
@@ -53,7 +53,7 @@ weighed.
 and each rationalization deepens the commitment.
 
 **Guard:** hold **at least two** live hypotheses at all times (SKILL.md phase 4).
-When evidence contradicts the anchor, don't explain it away — let it _move
+When evidence contradicts the anchor, don't explain it away - let it _move
 probability_ to a competitor. If you're down to one hypothesis by minute two,
 you're anchored, not converged.
 
@@ -78,7 +78,7 @@ someone else's wrong input. That's the root.
 ### Accepting an assumption as fact (ASSUME/KNOW collapse)
 
 **Tell:** a step in your reasoning rests on "the docs say," "it should," "someone
-mentioned," or "obviously" — and you never checked it.
+mentioned," or "obviously" - and you never checked it.
 
 **Why it bites:** the load-bearing assumption everyone treats as known is the
 single most common hiding place for the actual bug.
@@ -92,7 +92,7 @@ delete it. Never act on ASSUME.
 ### Authority over evidence (HiPPO)
 
 **Tell:** you're steering toward the cause the senior engineer suggested, or the
-one the user asserted as fact, or the one the docs imply — because of _who/what_
+one the user asserted as fact, or the one the docs imply - because of _who/what_
 said it, not because you verified it.
 
 **Why it bites:** authority is a heuristic, and heuristics are wrong sometimes;
@@ -101,7 +101,7 @@ evidence that would have caught it. For an agent, the user's confident assertion
 is the most seductive version of this.
 
 **Guard:** evidence outranks authority, always. A claim from a trusted source is
-still a claim — put it in the ASSUME column and verify it independently when it's
+still a claim - put it in the ASSUME column and verify it independently when it's
 load-bearing. You can be respectful and still check.
 
 ---
@@ -109,7 +109,7 @@ load-bearing. You can be respectful and still check.
 ### Theorizing before looking
 
 **Tell:** you've built an elaborate explanation (and maybe started coding a fix)
-before you've actually observed the mechanism — you reasoned about what the code
+before you've actually observed the mechanism - you reasoned about what the code
 _probably_ does instead of reading it or instrumenting it.
 
 **Why it bites:** "it is a capital mistake to theorize before one has data"
@@ -117,15 +117,14 @@ _probably_ does instead of reading it or instrumenting it.
 debugging your mental model instead of the system.
 
 **Guard:** get data first. Read the actual source on the path; add the log line;
-run the repro and watch. Use a guess only to decide _where to look_ — never as a
+run the repro and watch. Use a guess only to decide _where to look_ - never as a
 substitute for looking.
 
 ---
 
 ### Premature convergence
 
-**Tell:** you committed to one cause before the space of causes was explored —
-often because the first hypothesis was in a familiar category and you never
+**Tell:** you committed to one cause before the space of causes was explored - often because the first hypothesis was in a familiar category and you never
 glanced at the others.
 
 **Why it bites:** you can't rule out what you never enumerated. A cause in a
@@ -133,7 +132,7 @@ category you didn't consider will masquerade as "unexplained residue" or get
 misattributed to your favored cause.
 
 **Guard:** breadth before depth. Glance across the cause categories (Code, Config,
-Data, Dependencies, Environment, Deploy, Human — method.md) before drilling, so
+Data, Dependencies, Environment, Deploy, Human - method.md) before drilling, so
 your live hypotheses aren't all clustered by habit. Converge only when one
 hypothesis _uniquely_ survives and _predicts_ new observations.
 
@@ -141,14 +140,13 @@ hypothesis _uniquely_ survives and _predicts_ new observations.
 
 ### Correlation mistaken for causation
 
-**Tell:** "the errors started right after the deploy, so the deploy caused it" —
-stated as proof rather than as a lead.
+**Tell:** "the errors started right after the deploy, so the deploy caused it" - stated as proof rather than as a lead.
 
 **Why it bites:** co-occurrence has many explanations (a third common cause, a
 coincidence, reverse causation). Time-alignment is a strong hint, not a
 mechanism.
 
-**Guard:** confirm by intervention — toggle the suspected cause and watch the
+**Guard:** confirm by intervention - toggle the suspected cause and watch the
 effect appear and disappear with it. If you can't intervene, find the natural
 experiment that would break the claim (a time the cause was present without the
 effect).
@@ -158,7 +156,7 @@ effect).
 ### The unproven fix
 
 **Tell:** "I changed X and the error went away." But you changed X _and_ rebuilt
-_and_ the flaky condition happened not to recur — so you don't actually know X did
+_and_ the flaky condition happened not to recur - so you don't actually know X did
 it.
 
 **Why it bites:** "if you didn't fix it, it ain't fixed" (Agans rule 9). Post hoc
@@ -166,7 +164,7 @@ disappearance is not proof of causation, especially for intermittent failures.
 
 **Guard:** prove the fix by toggling. Revert X → failure returns. Re-apply X →
 failure gone. If you genuinely can't reproduce reliably enough to toggle, say so
-explicitly in the report — an unfalsifiable "fix" is a hypothesis, not a
+explicitly in the report - an unfalsifiable "fix" is a hypothesis, not a
 conclusion.
 
 ---
@@ -174,8 +172,7 @@ conclusion.
 ### One more, specific to agents: bending the harness
 
 **Tell:** the investigation is hard, and the tempting move is to make the _symptom_
-go away — delete the failing assertion, loosen the check, remove the capability —
-rather than find why it fails.
+go away - delete the failing assertion, loosen the check, remove the capability - rather than find why it fails.
 
 **Why it bites:** it converts an unsolved investigation into a hidden one. The
 defect is still there; you've only removed the thing that was telling you about

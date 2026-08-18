@@ -5,7 +5,7 @@ description: >
   (chat completions), creating embeddings, transcribing audio, generating
   images, or making any other adhoc OpenAI API call. For image generation
   specifically, load sub-skills/image-generation.md for the full procedure.
-  Uses the OpenAI REST API via curl — no SDK required.
+  Uses the OpenAI REST API via curl - no SDK required.
 ---
 <!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/openai/SKILL.md @ 496d37273aca); adapted for this repo (no changes beyond this marker; the skill carried no brand references). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
 
@@ -14,7 +14,7 @@ description: >
 
 Call the OpenAI API for text generation, embeddings, image creation, audio
 transcription, and other capabilities. All operations use `curl` against the
-REST API — no extra dependencies beyond what macOS ships with.
+REST API - no extra dependencies beyond what macOS ships with.
 
 ## Authentication
 
@@ -28,7 +28,7 @@ source .credentials/openai/tokens.env
 ### Auth priority order
 
 1. `OPENAI_API_KEY` env var (if already set in shell)
-2. `.credentials/openai/tokens.env` — source this file if env var is not set
+2. `.credentials/openai/tokens.env` - source this file if env var is not set
 
 ### Setting up credentials (first time)
 
@@ -44,7 +44,7 @@ source .credentials/openai/tokens.env
 source .credentials/openai/tokens.env
 curl -s https://api.openai.com/v1/models \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
-  | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK —', len(d['data']), 'models')"
+  | python3 -c "import json,sys; d=json.load(sys.stdin); print('OK  - ', len(d['data']), 'models')"
 ```
 
 ### When credentials are missing
@@ -122,7 +122,7 @@ curl -s https://api.openai.com/v1/chat/completions \
 | `gpt-4o` | Complex reasoning, multi-step tasks, vision |
 | `gpt-4o-mini` | Fast, cost-effective tasks |
 | `o1` | Advanced reasoning with chain-of-thought |
-| `o3-mini` | Coding, math, science — fast reasoning |
+| `o3-mini` | Coding, math, science - fast reasoning |
 
 ---
 
@@ -147,8 +147,8 @@ print(f'Vector length: {len(emb)}, first 5 values: {emb[:5]}')
 ```
 
 **Model options:**
-- `text-embedding-3-large` — highest quality (3072 dims, reducible)
-- `text-embedding-3-small` — fast and cost-effective (1536 dims)
+- `text-embedding-3-large` - highest quality (3072 dims, reducible)
+- `text-embedding-3-small` - fast and cost-effective (1536 dims)
 
 ---
 

@@ -12,16 +12,16 @@ parent apply throughout.
 
 ---
 
-## Phase A — Parallel Context Build
+## Phase A - Parallel Context Build
 
 Launch **3 `Explore` sub-agents in parallel** in a single message. Do not read any files
-serially before this step — the agents do the reading. After they return, read only the
+serially before this step - the agents do the reading. After they return, read only the
 *critical* files they identify.
 
 Each agent brief should be self-contained (the agent has no conversation history) and
 should ask for a ≤400-word report.
 
-### Agent 1 — Strategic Context
+### Agent 1 - Strategic Context
 
 Brief:
 > Read these files and report back the top 3 active company bets, the bar for a
@@ -44,7 +44,7 @@ Brief:
 >
 > Under 400 words. Cite file paths.
 
-### Agent 2 — User's Stated Priorities & Carryover Pattern
+### Agent 2 - User's Stated Priorities & Carryover Pattern
 
 Brief:
 > Read the last 5 Daily Notes under `Operators/{current-operator}/Daily Notes/{year}/{MM}/` (resolve `{current-operator}` per the root `CLAUDE.md` rule)
@@ -62,7 +62,7 @@ Brief:
 >
 > Under 400 words. Cite specific daily note dates.
 
-### Agent 3 — Active Initiatives (what's actually moving)
+### Agent 3 - Active Initiatives (what's actually moving)
 
 Brief:
 > Report on what is actually moving in the repo right now. Run `git log --oneline -30`
@@ -78,12 +78,12 @@ Brief:
 > Under 400 words. Cite commits and file paths.
 
 After the 3 agents return, the coach reads only the 2–3 *critical* files each agent
-flagged — not all of them. Synthesize the 3 reports into a single context summary that
+flagged - not all of them. Synthesize the 3 reports into a single context summary that
 will become the "Context" section of the output doc.
 
 ---
 
-## Phase B — Optional Landscape Research
+## Phase B - Optional Landscape Research
 
 Skip this phase for purely internal-tactical TACTICAL mode sessions. For STRATEGIC or
 STRETCH mode, or when the role bar is unclear, run **one** targeted `WebSearch` query to
@@ -97,7 +97,7 @@ rabbit-hole.
 
 ---
 
-## Phase C — Apply Frameworks
+## Phase C - Apply Frameworks
 
 Run the user's stated priorities (or, if none are stated, the coach's proposed top 3)
 through each of these seven gates. Each gate produces a short judgment that will feed
@@ -117,22 +117,22 @@ Phase D.
 6. **Sequencing.** Are dependencies in the right order? Anything blocked by something
    not on the list? Anything on the list that should wait until something else lands?
 7. **Carryover pattern check.** From Agent 2: is this priority something that's been
-   carrying over for N days? If yes, the real coaching question is *why* — scoping,
+   carrying over for N days? If yes, the real coaching question is *why* - scoping,
    focus, will, or blockage. Name which.
 
 Each gate output is ≤2 sentences, work-anchored (cite the specific priority line).
 
 ---
 
-## Phase D — Draft Verdict
+## Phase D - Draft Verdict
 
 For each stated priority, issue exactly one verdict:
 
-- **KEEP** — advances a top bet, specific, sequenced correctly
-- **RESHAPE** — right intent, wrong shape (provide the rewrite)
-- **DROP** — drift / nice-to-have / wrong sequence
-- **PROMOTE** — was buried elsewhere in the day, should be top-3
-- **ADD** — missing from the list and should be on it
+- **KEEP** - advances a top bet, specific, sequenced correctly
+- **RESHAPE** - right intent, wrong shape (provide the rewrite)
+- **DROP** - drift / nice-to-have / wrong sequence
+- **PROMOTE** - was buried elsewhere in the day, should be top-3
+- **ADD** - missing from the list and should be on it
 
 If the user did not state priorities, propose a top 3 with rationale anchored to the
 strategic context from Phase A.
@@ -142,13 +142,13 @@ in Phase E first. Do not write to the output doc in this phase.
 
 ---
 
-## Phase E — Adversarial Review + Refine Loop
+## Phase E - Adversarial Review + Refine Loop
 
 This is the rigor step. Without it, the coach is one voice. With it, the coach is
 accountable to three hostile readers before anything reaches the user. This phase is
-mandatory — do not skip it, even if the draft feels strong.
+mandatory - do not skip it, even if the draft feels strong.
 
-### E.1 — Launch 3 Parallel Critics
+### E.1 - Launch 3 Parallel Critics
 
 Launch **3 `general-purpose` sub-agents in parallel** in a single message. Each critic
 gets:
@@ -159,7 +159,7 @@ gets:
 | Critic | Lens | Must answer |
 |---|---|---|
 | **The Skeptic** | "This coaching is generic / could apply to anyone / isn't grounded in the user's real context." | Name the 3 weakest specificity failures in the draft. For each, quote the exact line and cite what evidence from the Phase A context is missing. |
-| **The Bet-Fitter** | "None of these priorities actually move a top-3 company bet — the coach is rationalizing drift." | For each KEEP verdict, trace the causal chain: priority → concrete business outcome → one of the top-3 bets from Agent 1. If any link is broken or hand-waved, flag it. |
+| **The Bet-Fitter** | "None of these priorities actually move a top-3 company bet - the coach is rationalizing drift." | For each KEEP verdict, trace the causal chain: priority → concrete business outcome → one of the top-3 bets from Agent 1. If any link is broken or hand-waved, flag it. |
 | **The Role-Bar Auditor** | "A world-class {role} wouldn't spend a day on any of this. The coach is grading on a curve." | For each priority, propose what a world-class {role} would do *instead*, and explain where the draft let the user off easy. Cite the Phase B landscape research if it was run. |
 
 Each critic returns:
@@ -167,34 +167,34 @@ Each critic returns:
 2. Specific failures found (quoted lines, specific gaps)
 3. A concrete rewrite suggestion for each failure
 
-### E.2 — Refine the Draft
+### E.2 - Refine the Draft
 
 For every critic that returned FAIL with a legitimate failure, rewrite the affected
 section of the draft verdict. Document what changed and which critic triggered each
-refinement — this feeds the "Adversarial review" section of the output doc.
+refinement - this feeds the "Adversarial review" section of the output doc.
 
 If a critic returned FAIL but the coach disagrees with the critique (e.g., the critic
 misread the context), record the disagreement and the reasoning. Do not silently ignore
 critic feedback.
 
-### E.3 — Re-run if Needed
+### E.3 - Re-run if Needed
 
 If **≥2 critics returned FAIL** on the first pass, re-run the same 3 critics on the
 refined draft. This is the review-refine *loop*.
 
 **Hard cap: 2 refinement iterations total.** If critics still disagree after 2
 iterations, the coach picks the position they're most confident defending and flags the
-unresolved dissent in the output doc. Do not iterate indefinitely — polishing has
+unresolved dissent in the output doc. Do not iterate indefinitely - polishing has
 diminishing returns after 2 passes.
 
-### E.4 — Surface, Don't Bury
+### E.4 - Surface, Don't Bury
 
 If any critic dissent is unresolved after the loop, surface it explicitly in the output
 doc. Never bury it. The user must see exactly where the coach's confidence is limited.
 
 ---
 
-## Phase F — One Forcing Question
+## Phase F - One Forcing Question
 
 Ask exactly **one** forcing question via `AskUserQuestion`. Never batch. One decision
 per turn.
@@ -202,11 +202,11 @@ per turn.
 The question should target the highest-leverage uncertainty exposed by the session. In
 order of preference:
 
-1. **Unresolved critic dissent from Phase E** — if the adversarial loop flagged something
+1. **Unresolved critic dissent from Phase E** - if the adversarial loop flagged something
    and the user's answer would resolve it, that's the question.
-2. **The least-confident KEEP verdict** — the priority the coach kept with the most
+2. **The least-confident KEEP verdict** - the priority the coach kept with the most
    hedging.
-3. **A missing constraint** — something the coach would need to know (a deadline, a
+3. **A missing constraint** - something the coach would need to know (a deadline, a
    stakeholder commitment, a hidden dependency) to lock down the recommendation.
 
 The question must be concrete and answerable in one sentence. Vague questions
@@ -214,7 +214,7 @@ The question must be concrete and answerable in one sentence. Vague questions
 
 ---
 
-## Phase G — Write Output Doc
+## Phase G - Write Output Doc
 
 Write to `Operators/{current-operator}/Coaching/YYYY-MM-DD-priority-check.md`.
 Create the `Coaching/` folder if it doesn't exist.
@@ -229,9 +229,9 @@ mode: {TACTICAL|STRATEGIC|STRETCH|UNBLOCK}
 scenario: priority-check
 ---
 
-# Priority Coaching — {Role}, {Date}
+# Priority Coaching - {Role}, {Date}
 
-**Mode:** {mode} — {one-line rationale for why this mode}
+**Mode:** {mode} - {one-line rationale for why this mode}
 
 ## Context (from scouting agents)
 - Top 3 active company bets: …
@@ -241,7 +241,7 @@ scenario: priority-check
 - Active commitments / deadlines: …
 
 ## Verdict per priority (post-adversarial-review)
-1. **[KEEP|RESHAPE|DROP|PROMOTE|ADD]** — {priority} — {2–3 sentence rationale, work-anchored}
+1. **[KEEP|RESHAPE|DROP|PROMOTE|ADD]** - {priority} - {2–3 sentence rationale, work-anchored}
 2. …
 3. …
 
@@ -251,23 +251,23 @@ scenario: priority-check
 3. …
 
 ## Adversarial review
-- **Skeptic:** {PASS/FAIL} — {failures found → refinements made}
-- **Bet-Fitter:** {PASS/FAIL} — {failures found → refinements made}
-- **Role-Bar Auditor:** {PASS/FAIL} — {failures found → refinements made}
+- **Skeptic:** {PASS/FAIL} - {failures found → refinements made}
+- **Bet-Fitter:** {PASS/FAIL} - {failures found → refinements made}
+- **Role-Bar Auditor:** {PASS/FAIL} - {failures found → refinements made}
 - **Iterations:** {1 or 2}
-- **Unresolved dissent (if any):** {explicit note — never buried}
+- **Unresolved dissent (if any):** {explicit note - never buried}
 
 ## Forcing question
 {the one question asked via AskUserQuestion}
 
 ## Signal observations
 {1–3 bullets of what the coach noticed about the user's pattern this session. Examples:
-"Same a comparable vendor architecture task carried over 3 days — scoping issue, not will issue."
+"Same a comparable vendor architecture task carried over 3 days - scoping issue, not will issue."
 "User's stated priorities have drifted away from GTM top-bet #2 for 4 days in a row."
 "First time the user has stated a priority with a concrete definition-of-done."
 These accumulate across sessions and let future sessions detect arcs.}
 ```
 
 After writing the doc, tell the user where it was saved and surface the top 1–2
-findings in the chat. Do not paste the whole doc back into chat — the user will open the
+findings in the chat. Do not paste the whole doc back into chat - the user will open the
 file. Then ask the Phase F forcing question.

@@ -5,10 +5,10 @@ it; the caller owns the subject and the words.
 
 ## The scaffold
 
-You write page content only, in `content.html` — no `<!doctype>`, `<html>`, `<head>` or `<body>`.
-The `assemble-report.sh` script — `SKILL.md` gives the invocation — takes that file, an output
+You write page content only, in `content.html` - no `<!doctype>`, `<html>`, `<head>` or `<body>`.
+The `assemble-report.sh` script - `SKILL.md` gives the invocation - takes that file, an output
 directory, and an optional `--title`, and emits both targets from it: `report.page.html` (the
-publish source — title, the inlined base stylesheet, your content) and `report.html` (a standalone
+publish source - title, the inlined base stylesheet, your content) and `report.html` (a standalone
 local document with the same content, plus a mermaid loader for local viewing).
 
 ```html
@@ -34,17 +34,16 @@ local document with the same content, plus a mermaid loader for local viewing).
 
 Give every section heading and every entry an `id` so links resolve, point each section's
 `aria-labelledby` at its heading, keep one `<h1>` (the header title) with headings in order below
-it, and open with a `.r-toc` when the page has enough sections to be navigated rather than read —
-`components.md` has the markup and the threshold.
+it, and open with a `.r-toc` when the page has enough sections to be navigated rather than read - `components.md` has the markup and the threshold.
 
 Everything the page needs lives inside the document: the stylesheet is inlined by the script,
 diagrams are drawn as inline SVG or mermaid, and a raster image arrives as a `data:` URI. **No
-external host — no CDN script, no web font, no remote image, no `fetch`.** The artifact platform
+external host - no CDN script, no web font, no remote image, no `fetch`.** The artifact platform
 blocks them all, and a blocked request renders as an empty frame that says nothing about why.
 
 ## Header
 
-Title, one line on what the report covers, the date, and — when the diagrams use one — a compact
+Title, one line on what the report covers, the date, and - when the diagrams use one - a compact
 legend. Then straight into the content.
 
 ```html
@@ -81,7 +80,7 @@ report exists to point at.
 
 ## The entry
 
-`.r-entry` is the repeating unit — one per thing the report records. Title, badge row, a few
+`.r-entry` is the repeating unit - one per thing the report records. Title, badge row, a few
 fields, the diagram, tight points, and the trace back to the record.
 
 ```html
@@ -121,7 +120,7 @@ Badge tones name weight, not meaning: `--accent`, `--warn`, `--quiet`. The calle
 weight means in its subject and says so once in the header legend.
 
 For short attributes that genuinely enumerate, `.r-meta` renders a definition list and `.r-table` a
-table — wrap either in `.r-scroll-x` when it is wide, so the page body never scrolls sideways. Use
+table - wrap either in `.r-scroll-x` when it is wide, so the page body never scrolls sideways. Use
 `.r-grid` when a set of equal, small cards belongs side by side.
 
 ## Diagram patterns
@@ -129,16 +128,16 @@ table — wrap either in `.r-scroll-x` when it is wide, so the page body never s
 Pick the pattern the relation actually has, and mix them across the report. A page where every
 diagram is the same flowchart reads as generated; variety is how it reads as drawn.
 
-Inline SVG is the default editorial mode — it themes with the page tokens, needs nothing external,
+Inline SVG is the default editorial mode - it themes with the page tokens, needs nothing external,
 and you place every part yourself. Mermaid is the workhorse when the relation is genuinely
 graph-shaped (dependency, call flow, sequence, state) and hand-placing nodes would be a waste.
 
 Inside a diagram, name parts with `.r-label`; `.r-caps` gives the same schematic treatment
-elsewhere. Give an SVG a `<title>` that says in words what the drawing says — a diagram is
+elsewhere. Give an SVG a `<title>` that says in words what the drawing says - a diagram is
 decorative only when the record already states the same thing. The snippets below show a frame's
 interior; wrap each in a `<figure class="r-figure">` with its `.r-figure__caption`.
 
-### Comparison pair — two states of one thing
+### Comparison pair - two states of one thing
 
 The centrepiece pattern. Two frames side by side in `.r-pair`, which stacks under ~48rem.
 
@@ -160,7 +159,7 @@ The centrepiece pattern. Two frames side by side in `.r-pair`, which stacks unde
 
 Draw both sides on the same scale, so the difference in the drawing is the difference in the fact.
 
-### Boxes and arrows — named parts pointing at each other
+### Boxes and arrows - named parts pointing at each other
 
 Inline SVG, when you want exact weight and placement.
 
@@ -197,7 +196,7 @@ Inline SVG, when you want exact weight and placement.
 </div>
 ```
 
-Each schematic class paints twice — border and background in HTML, `fill` and `stroke` here — so
+Each schematic class paints twice - border and background in HTML, `fill` and `stroke` here - so
 `.r-node` on a `<g>` colors every rect inside it and the drawing follows the theme; a token variable
 resolves in a presentation attribute too, for the part that has no class. The arrowhead takes its
 color from the line it ends, so one marker serves every edge; the page is one document, so give that
@@ -207,7 +206,7 @@ Edges carry `--dashed` for an indirect link, `--warn` for caution, and `--alert`
 relation the diagram exists to point at; `.r-node--alert` marks a part the same way. Reserve red
 for that one relation or part, and let slate, amber, and the accent carry everything else.
 
-### Layered cross-section — how many layers a thing passes through
+### Layered cross-section - how many layers a thing passes through
 
 Horizontal bands in a `.r-stack`, which levels every band to the width of the widest. On one side
 the count is the message, so let the quiet bands stay thin; on the other, a single filled
@@ -234,12 +233,12 @@ the count is the message, so let the quiet bands stay thin; on the other, a sing
 </div>
 ```
 
-### Proportion — relative size is the point
+### Proportion - relative size is the point
 
 Bars whose explicit heights carry the ratio. Keep both columns on one scale so the eye compares them
 directly.
 
-A node is `inline-flex`, so bars that should sit one above another go inside a column — `.r-stack`
+A node is `inline-flex`, so bars that should sit one above another go inside a column - `.r-stack`
 with a tightened gap does it without a new class.
 
 ```html
@@ -259,7 +258,7 @@ with a tightened gap does it without a new class.
 </div>
 ```
 
-### Collapse — several things become one, and their internals go quiet
+### Collapse - several things become one, and their internals go quiet
 
 Nesting says "these are now inside" more plainly than an arrow does. The filled outer node turns its
 own axis to a column so its label sits above what it now contains, and the quiet boxes read as pale
@@ -281,7 +280,7 @@ internals held inside that dark fill.
 </div>
 ```
 
-### Mermaid graph — the relation is a graph
+### Mermaid graph - the relation is a graph
 
 `flowchart` and `graph` for dependency and call flow, `sequenceDiagram` for "six round trips became
 one", `stateDiagram-v2` for lifecycles. The `--mermaid` frame modifier is what keeps it legible; see
@@ -305,7 +304,7 @@ flowchart LR
 
 Mermaid draws with its own palette, so style it with `classDef` and literal colors, and take the
 light values the frame is locked to: `#dc2626` for the relation the diagram points at, `#b45309` for
-caution. Keep it to one emphasized class — that emphasis is the reason the diagram is here.
+caution. Keep it to one emphasized class - that emphasis is the reason the diagram is here.
 
 ## The closing section
 
@@ -324,7 +323,7 @@ One larger card. What the reader should take away, and an anchor link to the ent
 The script absorbs the difference between the local file and the published page, so write for
 neither in particular. One thing leaks through: mermaid frames stay on a light surface in both
 themes, because the artifact platform initializes mermaid itself with a light palette that we do not
-control. `.r-figure__frame--mermaid` carries that surface — put it on every mermaid frame, and
+control. `.r-figure__frame--mermaid` carries that surface - put it on every mermaid frame, and
 nowhere else.
 
 The other is the trace link: an anchor into `record.md` resolves locally and not once published.
@@ -341,7 +340,7 @@ The other is the trace link: an anchor into `record.md` resolves locally and not
 - Keep a diagram near 320px (20rem) tall, so a before/after `.r-pair` sits side by side without
   scrolling.
 - Schematic labels run at `--r-step--2` (0.75rem, uppercase, tracked): `.r-label` inside diagrams,
-  `.r-caps` outside them — engineering drawing, not UI chrome. `--r-step--1` (0.875rem) is
+  `.r-caps` outside them - engineering drawing, not UI chrome. `--r-step--1` (0.875rem) is
   body-small, the size a monospaced `.r-files` list and a figure caption take.
 - `.r-mono` for identifiers, `.r-muted` and `.r-small` for the aside that earns its place, `.r-vh`
   for text that exists only for a screen reader.

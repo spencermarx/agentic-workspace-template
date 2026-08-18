@@ -9,7 +9,7 @@ top-down by someone deciding whether to ship.
 The full skill output should follow this structure exactly:
 
 ```markdown
-# Seven Critics Review — [draft title or first 6 words]
+# Seven Critics Review - [draft title or first 6 words]
 
 **Audience:** [target persona]
 **Channel:** [format]

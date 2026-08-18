@@ -1,12 +1,12 @@
 # Diagram types
 
-Conventions, shape semantics, layout, and a review checklist for each common type. All of these are expressed with the same four primitives (`nodes`, `edges`, `texts`, `regions`) — only the conventions differ. Each type has a ready starter in [`examples/`](examples/).
+Conventions, shape semantics, layout, and a review checklist for each common type. All of these are expressed with the same four primitives (`nodes`, `edges`, `texts`, `regions`) - only the conventions differ. Each type has a ready starter in [`examples/`](examples/).
 
-Shape semantics are shared across types: **rectangle** = step / entity / component; **diamond** = decision; **ellipse** = start/end terminal or data store. Honor these — a diamond that isn't a decision, or an ellipse that isn't a terminal/store, misleads the reader.
+Shape semantics are shared across types: **rectangle** = step / entity / component; **diamond** = decision; **ellipse** = start/end terminal or data store. Honor these - a diamond that isn't a decision, or an ellipse that isn't a terminal/store, misleads the reader.
 
 ---
 
-## Flowchart / decision tree — `examples/flowchart.json`
+## Flowchart / decision tree - `examples/flowchart.json`
 
 Process flows with sequential steps and conditional branches.
 
@@ -20,7 +20,7 @@ Checklist: every diamond has ≥2 labeled outbound edges; every path terminates;
 
 ---
 
-## Sequence diagram — `examples/sequence.json`
+## Sequence diagram - `examples/sequence.json`
 
 Interactions between participants over time. Time flows top to bottom.
 
@@ -28,26 +28,26 @@ Interactions between participants over time. Time flows top to bottom.
 - **Lifelines** are long thin vertical `regions` (e.g. `w: 2`, tall) dropping from each participant, or a dashed thin rectangle. Keep them light gray.
 - **Activation bars** are narrow rectangles (`w: ~14`) sitting on a lifeline for the span an actor is active.
 - **Messages** are horizontal edges between activation bars (or between the small message-anchor nodes you place on each lifeline at each time step). Label every message with the call. Solid arrow = synchronous call; dashed (`style: "dashed"`) = async or return.
-- Because edges bind to nodes, model each message endpoint as a small node on the lifeline at the right y (time) — see the example. Order messages by increasing y.
+- Because edges bind to nodes, model each message endpoint as a small node on the lifeline at the right y (time) - see the example. Order messages by increasing y.
 
 Checklist: participants across the top; time increases downward; each message labeled; sync vs async/return distinguished by arrow style; returns drawn after their triggering call.
 
 ---
 
-## Swimlane (cross-functional flow) — `examples/swimlane.json`
+## Swimlane (cross-functional flow) - `examples/swimlane.json`
 
 A process where steps belong to different actors/roles.
 
 - One full-width `region` per lane (actor), stacked vertically, each ~150–180px tall, with the actor name as the lane label.
 - Place each step `node` inside its lane's y-band. Handoffs are edges that cross between lanes.
 - Keep the left-to-right order of steps consistent with time; cross-lane edges show responsibility handoff.
-- For this vault's Example Co work: remember the architectural invariant that Example Co never messages customers — a swimlane must not show a Example Co→customer arrow.
+- For this vault's Example Co work: remember the architectural invariant that Example Co never messages customers - a swimlane must not show a Example Co→customer arrow.
 
 Checklist: every step sits fully inside one lane; lanes are labeled; handoffs cross lanes explicitly; step order reads as time; no step straddles two lanes ambiguously.
 
 ---
 
-## ERD (entity-relationship) — `examples/erd.json`
+## ERD (entity-relationship) - `examples/erd.json`
 
 Database entities and their relationships.
 
@@ -61,7 +61,7 @@ Checklist: every entity has a name + attributes with a divider; PKs and FKs mark
 
 ---
 
-## UML class diagram — `examples/class.json`
+## UML class diagram - `examples/class.json`
 
 Object-oriented structure.
 
@@ -77,7 +77,7 @@ Checklist: each class shows name/attributes/methods with visibility markers; rel
 
 ---
 
-## System architecture — `examples/architecture.json`
+## System architecture - `examples/architecture.json`
 
 Components and their dependencies.
 
@@ -90,7 +90,7 @@ Checklist: dependency arrows point caller→callee; protocols labeled where they
 
 ---
 
-## Data flow / pipeline — `examples/dataflow.json`
+## Data flow / pipeline - `examples/dataflow.json`
 
 How data moves and transforms: source → transform → sink. Left-to-right.
 
@@ -103,7 +103,7 @@ Checklist: consistent source→sink direction; every transform edge labeled with
 
 ---
 
-## Mindmap / concept map — `examples/mindmap.json`
+## Mindmap / concept map - `examples/mindmap.json`
 
 A central concept radiating into related ideas.
 

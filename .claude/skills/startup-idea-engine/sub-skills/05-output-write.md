@@ -2,18 +2,18 @@
 
 **Parent skill:** `startup-idea-engine`
 
-For every candidate that survived Phase 5 (Adversarial Review) — including SHIP-WITH-DISSENT candidates — write a Raw Idea document to the user-specified destination using the canonical template. If the destination is an active retreat folder and the user opted in during Phase 0, append a new thesis to the Heretical Theses Pool. Then write the session synthesis with the recommended candidate and forcing question.
+For every candidate that survived Phase 5 (Adversarial Review) - including SHIP-WITH-DISSENT candidates - write a Raw Idea document to the user-specified destination using the canonical template. If the destination is an active retreat folder and the user opted in during Phase 0, append a new thesis to the Heretical Theses Pool. Then write the session synthesis with the recommended candidate and forcing question.
 
 **Before starting this sub-skill**, the surviving candidates from Phase 5 are in the session document with full provenance: noticing procedure, framework test matrix, research findings, critic verdicts, refinements, and any unresolved dissent.
 
 ---
 
-## Step 1 — Write Raw Idea Doc Per Surviving Candidate
+## Step 1 - Write Raw Idea Doc Per Surviving Candidate
 
 For each candidate, write a file named:
 
 ```
-{output-destination}/{Candidate Name} — Problem and Solution Space.md
+{output-destination}/{Candidate Name} - Problem and Solution Space.md
 ```
 
 Use the template at `references/raw-idea-template.md` exactly. The template matches the existing retreat Raw Ideas pattern (Fluid Websites, Mesh Substrate, Cooperative Substrate, Agentic SaaS Operations Substrate, etc.) so new docs are structurally and visually consistent with the corpus.
@@ -31,7 +31,7 @@ Use the template at `references/raw-idea-template.md` exactly. The template matc
 - `# Strategic questions this exposes`
 - `# Open questions for the cabin`
 - `# What this idea conflicts with or pressures`
-- `# Heretical thesis pool entry` (if applicable — TXX claim + implication, drafted from candidate)
+- `# Heretical thesis pool entry` (if applicable - TXX claim + implication, drafted from candidate)
 - `# How to use this doc`
 - Provenance footer: which session generated this, which procedure surfaced it, which critics signed off, what dissent (if any) survived
 
@@ -44,7 +44,7 @@ Use the template at `references/raw-idea-template.md` exactly. The template matc
 
 ---
 
-## Step 2 — Update Heretical Theses Pool (if opted in)
+## Step 2 - Update Heretical Theses Pool (if opted in)
 
 If the user opted in during Phase 0 AND the destination is an active retreat folder:
 
@@ -54,7 +54,7 @@ If the user opted in during Phase 0 AND the destination is an active retreat fol
 4. Format strictly per the existing pattern in the pool:
 
 ```markdown
-### T{N} — {Thesis Name}
+### T{N} - {Thesis Name}
 
 **Claim.** {Two sentences: specific year, specific claim, specific implication setup.}
 
@@ -69,7 +69,7 @@ If the user opted in during Phase 0 AND the destination is an active retreat fol
 
 ---
 
-## Step 3 — Session Synthesis
+## Step 3 - Session Synthesis
 
 Append the final synthesis to the session document at:
 
@@ -80,7 +80,7 @@ Append the final synthesis to the session document at:
 Required sections:
 
 ```markdown
-## Phase 6 — Synthesis
+## Phase 6 - Synthesis
 
 ### Surviving Candidates
 
@@ -90,7 +90,7 @@ Required sections:
 | 2 | ... | ... | ... | ... |
 
 ### Raw Idea Documents Written
-- `{path/to/Candidate Name — Problem and Solution Space.md}`
+- `{path/to/Candidate Name - Problem and Solution Space.md}`
 - ... (one per surviving candidate)
 
 ### Heretical Theses Pool Updated (if applicable)
@@ -110,7 +110,7 @@ Required sections:
 1. {Risk 1, with mitigation if any}
 2. {Risk 2, with mitigation if any}
 
-**Next concrete step:** {Specific action the user can take this week — e.g., "probe candidate X with named buyer Y by Friday"}
+**Next concrete step:** {Specific action the user can take this week - e.g., "probe candidate X with named buyer Y by Friday"}
 
 ### Open Questions
 - {Question 1: what would resolve it}
@@ -122,7 +122,7 @@ Required sections:
 
 ---
 
-## Step 4 — The Forcing Question
+## Step 4 - The Forcing Question
 
 End the session with exactly one forcing question, written to the session document and presented to the user. The question must:
 - Be answerable by the user (no research required)
@@ -147,7 +147,7 @@ Pick the question whose answer most disambiguates the user's next move. Write it
 
 | Mode | Behavior |
 |---|---|
-| AUTOPILOT | Write all Raw Idea docs. Update Theses Pool if opted in. Write session synthesis. Present synthesis to user with the forcing question. **The skill always pauses here regardless of mode** — silent shipping of the final output without user awareness is forbidden. |
+| AUTOPILOT | Write all Raw Idea docs. Update Theses Pool if opted in. Write session synthesis. Present synthesis to user with the forcing question. **The skill always pauses here regardless of mode** - silent shipping of the final output without user awareness is forbidden. |
 | COLLABORATE | Same as AUTOPILOT but additionally pause before each Raw Idea doc is written: "Approve writing {Candidate} as Raw Idea doc? Edits before write?" Allows user to refine the doc content. |
 | STEP-BY-STEP | Walk through each Raw Idea doc section by section. The user reviews each section before the next is written. Slow but precise. |
 
@@ -167,4 +167,4 @@ Pick the question whose answer most disambiguates the user's next move. Write it
 
 After the session document is complete and the user has seen the forcing question, the session ends. Do not loop back into ideation in the same session unless the user explicitly requests it (e.g., "kill all candidates and start over"). The next ideation cycle is a new session.
 
-If the user requests an immediate next-step action (e.g., "draft the outreach to the named buyer"), that is a different skill's job (e.g., `loom-prep`, `slack`, etc.) — hand off, do not extend.
+If the user requests an immediate next-step action (e.g., "draft the outreach to the named buyer"), that is a different skill's job (e.g., `loom-prep`, `slack`, etc.) - hand off, do not extend.

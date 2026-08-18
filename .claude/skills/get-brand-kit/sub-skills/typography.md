@@ -11,7 +11,7 @@ The single source of truth for the workspace typography choices.
 | **Headlines / hero numbers** | Heavy bold sans-serif. Reference faces: Inter Black, Söhne Heavy, Söhne Breit Halbfett. Final selection TBD. |
 | **Body / subheads** | Medium-weight sans-serif. Reference: Inter, Söhne Buch, or system-ui as fallback. |
 | **Captions / metadata** | Same family as body, smaller size, desaturated color from `color-palette.md` (`brand-blue-light`). |
-| **Overlay text on social images** | Heavy bold sans-serif loaded via Google Fonts in the overlay rendering script. Currently the overlay script uses an Inter-class face — verify the actual loaded font in `tools/scripts/sh/image-overlay/`. |
+| **Overlay text on social images** | Heavy bold sans-serif loaded via Google Fonts in the overlay rendering script. Currently the overlay script uses an Inter-class face - verify the actual loaded font in `tools/scripts/sh/image-overlay/`. |
 
 ## Hard rules
 

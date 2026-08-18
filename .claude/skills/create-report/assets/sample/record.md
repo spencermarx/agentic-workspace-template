@@ -34,7 +34,7 @@ carries almost half the volume at more than twice the dwell.
 ## The depot
 
 Ardoz Depot is the regional sorting hub on the northern corridor. It has three unload
-docks — trunk, local and returns — one induction arch, one cross-belt sorter, and 24
+docks - trunk, local and returns - one induction arch, one cross-belt sorter, and 24
 chutes discharging to the outbound bays.
 
 Between the dock and the truck a parcel is handled five times: it waits in the yard queue,
@@ -126,7 +126,7 @@ place would have.
 ## Route C: rebuild the exception loop
 
 A parcel whose label does not read at the arch leaves the line for the exception desk, is
-re-labelled, and rejoins at the head of the arch queue — so every exception costs the arch
+re-labelled, and rejoins at the head of the arch queue - so every exception costs the arch
 a second pass. Rebuild the loop so a re-labelled parcel rejoins downstream of the arch, at
 the chute spur.
 

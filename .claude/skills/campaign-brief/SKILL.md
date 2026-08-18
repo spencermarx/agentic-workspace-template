@@ -17,7 +17,7 @@ any execution begins. Based on the adversarial spec reviewer pattern from Garry 
 [gstack `/office-hours`](https://github.com/garrytan/gstack), adapted for marketing.
 
 **Core insight from gstack:** The default failure mode in marketing is shipping campaigns
-that are technically complete but strategically weak — vague audience, mechanism-first
+that are technically complete but strategically weak - vague audience, mechanism-first
 messaging, no success threshold. The adversarial reviewer catches these before launch,
 not after.
 
@@ -30,9 +30,9 @@ not after.
 
 ## When NOT to Use
 
-- For single social posts or one-off tactical content — use `brand-review` for design QA
-- For strategic planning upstream of campaigns — use `strategic-brief` or `ceo-review`
-- After launch — this is a pre-commitment tool, not a post-mortem
+- For single social posts or one-off tactical content - use `brand-review` for design QA
+- For strategic planning upstream of campaigns - use `strategic-brief` or `ceo-review`
+- After launch - this is a pre-commitment tool, not a post-mortem
 
 ## Agents
 
@@ -42,7 +42,7 @@ not after.
 
 ## Procedure
 
-### Step 1 — Read the Campaign Brief
+### Step 1 - Read the Campaign Brief
 
 Obtain or write out the current campaign brief. A minimal brief must include:
 - Target audience
@@ -56,7 +56,7 @@ assumptions before proceeding. Assumptions must be labeled clearly.
 
 ---
 
-### Step 2 — Adversarial Challenge Across 6 Dimensions
+### Step 2 - Adversarial Challenge Across 6 Dimensions
 
 For each dimension, write a challenge in this format:
 > "**Claim:** [what the brief says or implies] / **Challenge:** [why this is weak] /
@@ -131,7 +131,7 @@ Check that the framing matches the audience's actual day-to-day stakes.
 
 ---
 
-### Step 3 — Revised Brief
+### Step 3 - Revised Brief
 
 After identifying weaknesses, rewrite the campaign brief incorporating required fixes.
 Produce:
@@ -145,7 +145,7 @@ Produce:
 
 ---
 
-### Step 4 — Go/No-Go Recommendation
+### Step 4 - Go/No-Go Recommendation
 
 ```markdown
 ## Go/No-Go Recommendation
@@ -162,7 +162,7 @@ Produce:
 A **GO** means all 6 dimensions pass or near-pass and the revised brief is ready to execute.
 A **NO-GO** means demand evidence is missing or audience specificity is fatally weak.
 A **CONDITIONAL GO** means proceed with the revised brief, but treat as a test with
-tight feedback loops — don't commit full budget until early signals confirm.
+tight feedback loops - don't commit full budget until early signals confirm.
 
 ---
 
@@ -170,5 +170,5 @@ tight feedback loops — don't commit full budget until early signals confirm.
 
 From the gstack adversarial reviewer pattern: the same product delivers different personal
 wins to different roles. The campaign brief must specify not just what the product does,
-but what winning looks like from this specific person's perspective in their job — and
+but what winning looks like from this specific person's perspective in their job - and
 that framing must appear explicitly in the copy.

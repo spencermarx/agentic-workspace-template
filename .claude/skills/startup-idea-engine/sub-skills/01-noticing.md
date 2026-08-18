@@ -14,7 +14,7 @@ The generation phase. Implements Paul Graham's six structured noticing procedure
 
 Each procedure surfaces candidates from a different angle of the user's lived experience and leading-edge positions. Run procedures in order; each pass produces 1–3 candidates. Total expected candidates after all six: 5–10. Cull to the strongest before Phase 3.
 
-### Procedure A — Start with Your Own Needs
+### Procedure A - Start with Your Own Needs
 
 **The PG question:** "What do you find yourself saying 'why doesn't someone make X?' about? People don't make such complaints about impossible things."
 
@@ -26,15 +26,15 @@ Each procedure surfaces candidates from a different angle of the user's lived ex
 **Example signals (the operator-specific):**
 - "Reeis stalled because Cindy could not self-serve past the first booking flow" → candidate: SMB-tier no-code FSM-aware experience-composition tool.
 - "a collaborator's gate fired; founder-led sales doesn't scale" → candidate: AI-augmented founder-replacement sales motion for principle-aligned founders.
-- The Intent Architecture RFC itself is a "this should exist but doesn't" signal — candidates in that adjacent space are procedure-A.
+- The Intent Architecture RFC itself is a "this should exist but doesn't" signal - candidates in that adjacent space are procedure-A.
 
 **Anti-pattern:** Friction points that the user *has not personally felt* are NOT procedure-A. If the user is gesturing at a third-party's pain ("trades shops have AR problems"), that's procedure-B or procedure-D, not procedure-A.
 
 ---
 
-### Procedure B — Live in the Future and Build What's Missing
+### Procedure B - Live in the Future and Build What's Missing
 
-**The PG question:** "Get yourself to the leading edge of a field that's changing fast — either as a practitioner pushing forward, or as an early adopter living with emerging technology. Then look around and notice what's missing."
+**The PG question:** "Get yourself to the leading edge of a field that's changing fast - either as a practitioner pushing forward, or as an early adopter living with emerging technology. Then look around and notice what's missing."
 
 **Operational steps:**
 1. Enumerate the user's leading-edge positions (loaded by Agent 2 in Phase 1). For the operator, current canonical leading edges include:
@@ -46,13 +46,13 @@ Each procedure surfaces candidates from a different angle of the user's lived ex
 2. For each leading-edge position, ask: "What is missing from this future that would be obvious to anyone living here?"
 3. Flag candidates as `procedure-B`. Each candidate must name the leading-edge position it came from.
 
-**Anti-pattern:** "Leading edge" must be real — the user actually lives in this future, has scar tissue, has shipped in this space. Reading about a space ≠ living in it. AI agent tooling at the level of "I read about Operator" is not a leading edge for the user.
+**Anti-pattern:** "Leading edge" must be real - the user actually lives in this future, has scar tissue, has shipped in this space. Reading about a space ≠ living in it. AI agent tooling at the level of "I read about Operator" is not a leading edge for the user.
 
 ---
 
-### Procedure C — Cross Domains
+### Procedure C - Cross Domains
 
-**The PG question:** "Apply expertise from one field to another. New domain experts don't take the status quo for granted — that ignorance is advantageous."
+**The PG question:** "Apply expertise from one field to another. New domain experts don't take the status quo for granted - that ignorance is advantageous."
 
 **Operational steps:**
 1. Take each leading-edge position from procedure B and pair it with each adjacent domain the user has touched (from prior projects, lineage docs, current customer conversations).
@@ -68,13 +68,13 @@ Each procedure surfaces candidates from a different angle of the user's lived ex
 
 ---
 
-### Procedure D — Become a Consultant to a Single User
+### Procedure D - Become a Consultant to a Single User
 
 **The PG question:** "When you find unmet needs in others, act like you were retained to solve them. Build for one user; most becomes reusable."
 
 **Operational steps:**
 1. From Agent 4's "recent reality" report, list the named real humans the user is currently in conversation with (e.g., Andrew Bontz, the marketing-agency woman, Quo contacts, recently-churned customers).
-2. For each, surface the most acute pain they've named in real conversations — not what the user assumes they want, but what they have actually said.
+2. For each, surface the most acute pain they've named in real conversations - not what the user assumes they want, but what they have actually said.
 3. Ask: "If you were retained as a consultant to solve this person's most acute pain, what would you build?"
 4. Candidate tagged `procedure-D` with the named human attached.
 
@@ -83,11 +83,11 @@ Each procedure surfaces candidates from a different angle of the user's lived ex
 - Andrew Bontz × his men's-health agency clients × pre-booking patient confidence → procedure-D.
 - The marketing-agency woman × her stated the incumbent vendor setup chaos → procedure-D (this is what generated T12).
 
-**Anti-pattern:** "If I were a consultant to a hypothetical user…" — this is procedure-A (own needs) wearing procedure-D's clothes. Procedure-D requires a *named* human you can call this week.
+**Anti-pattern:** "If I were a consultant to a hypothetical user…" - this is procedure-A (own needs) wearing procedure-D's clothes. Procedure-D requires a *named* human you can call this week.
 
 ---
 
-### Procedure E — Schlep-Heavy Problems
+### Procedure E - Schlep-Heavy Problems
 
 **The PG question:** "Move toward messy, tedious, annoying problems. Programming space is stripped pretty clean of convenient ideas. The valuable ones are sitting there in plain sight; founders flinch from the work, and that's why they stay open."
 
@@ -105,11 +105,11 @@ Each procedure surfaces candidates from a different angle of the user's lived ex
 - Schlep-disabled on multi-tenant arch → portfolio ops for PE rollups, white-label substrate for agencies.
 - Schlep-disabled on spec-driven codegen → enterprise governance for AI-assisted dev (the IA RFC commercialized).
 
-**Anti-pattern:** "We could disable our schlep filter" — too aspirational. The schlep must already be done; the candidate exploits *existing* schlep-disabled positions, not future ones.
+**Anti-pattern:** "We could disable our schlep filter" - too aspirational. The schlep must already be done; the candidate exploits *existing* schlep-disabled positions, not future ones.
 
 ---
 
-### Procedure F — Ride Waves
+### Procedure F - Ride Waves
 
 **The PG question:** "Look for technological declines (Moore's law for gene sequencing, 3D printing, etc.). What becomes possible in 3–5 years that we currently rule out? What companies might profit from the decline of incumbents?"
 
@@ -119,11 +119,11 @@ Each procedure surfaces candidates from a different angle of the user's lived ex
 3. Candidates tagged `procedure-F` with the wave name attached.
 
 **Current 2026 waves to consider (verify with WebSearch on YC RFS if older than 90 days):**
-- Agentic-web maturity (Computer Use, Operator, MCP) — agents operating on operators' behalf
+- Agentic-web maturity (Computer Use, Operator, MCP) - agents operating on operators' behalf
 - AI-receptionist deployment crisis at SMB (knowledge-base hallucination)
 - PE-rolled vertical SaaS consolidation (every SMB-dense vertical now has a PE platform)
 - AI-native hedge funds, AI-powered agencies (per Spring 2026 RFS)
-- Hard-tech pivot (per Summer 2026 RFS — agriculture robotics, counter-drone, lunar manufacturing — most of these are NOT founder-shape compatible for the operator)
+- Hard-tech pivot (per Summer 2026 RFS - agriculture robotics, counter-drone, lunar manufacturing - most of these are NOT founder-shape compatible for the operator)
 - Cognitive-sovereignty backlash (privacy-first, attention-respecting tooling)
 - GLP-1 / elective-medical operational boom
 
@@ -141,9 +141,9 @@ Aggregate all candidates surfaced. Each candidate is now a one-paragraph descrip
 
 This list goes into the session document under "Phase 2 Noticing Output" before advancing to Phase 3 (Framework Tests).
 
-**Cull rule:** If two candidates are essentially the same idea surfaced from two procedures, merge them and keep the strongest provenance. If a candidate fails to articulate a specific pain ("would help small businesses do X better"), kill it before it enters Phase 3 — that candidate is sitcom-shaped already.
+**Cull rule:** If two candidates are essentially the same idea surfaced from two procedures, merge them and keep the strongest provenance. If a candidate fails to articulate a specific pain ("would help small businesses do X better"), kill it before it enters Phase 3 - that candidate is sitcom-shaped already.
 
-**Expected output count:** 5–10 candidates after culling, depending on how many procedures yielded results. If fewer than 3 candidates survive, the leading-edge positions or named-human pool is too thin — flag this in the session doc and prompt the user (in COLLABORATE / STEP-BY-STEP modes) for additional inputs.
+**Expected output count:** 5–10 candidates after culling, depending on how many procedures yielded results. If fewer than 3 candidates survive, the leading-edge positions or named-human pool is too thin - flag this in the session doc and prompt the user (in COLLABORATE / STEP-BY-STEP modes) for additional inputs.
 
 ---
 
@@ -160,7 +160,7 @@ This list goes into the session document under "Phase 2 Noticing Output" before 
 ## Output to Session Document
 
 ```markdown
-## Phase 2 — Noticing Output
+## Phase 2 - Noticing Output
 
 | Candidate | Procedure | Anchor | One-line Pain | One-line Mechanism |
 |---|---|---|---|---|
@@ -170,7 +170,7 @@ This list goes into the session document under "Phase 2 Noticing Output" before 
 **Procedures that yielded:** A {count}, B {count}, C {count}, D {count}, E {count}, F {count}
 
 **Culled (and why):**
-- {candidate} — {reason: sitcom-shaped, duplicate, no named pain, etc.}
+- {candidate} - {reason: sitcom-shaped, duplicate, no named pain, etc.}
 ```
 
 Advance to Phase 3 (Framework Tests).

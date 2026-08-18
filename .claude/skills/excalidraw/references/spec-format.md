@@ -6,7 +6,7 @@ The input to `scripts/build.mjs`. A single JSON object with four optional arrays
 
 | Field | Type | Default | Notes |
 |---|---|---|---|
-| `title` | string | — | Only used to seed deterministic ids. Put the visible title in `texts`. |
+| `title` | string | - | Only used to seed deterministic ids. Put the visible title in `texts`. |
 | `font` | `"hand"` \| `"normal"` \| `"code"` | `"hand"` | Excalidraw fontFamily: hand=Excalifont (5), normal=Helvetica (2), code=Cascadia (3). |
 | `background` | hex string | `"#ffffff"` | Canvas background color. |
 | `nodes` | array | `[]` | Boxes that edges can bind to. |
@@ -24,7 +24,7 @@ A shape with an optional bound label. Edges reference nodes by `id`.
 | `shape` | `"rectangle"` \| `"ellipse"` \| `"diamond"` | `"rectangle"` | |
 | `x`, `y` | number | **required** | Top-left corner. |
 | `w`, `h` | number | **required** | Width and height. |
-| `label` | string | — | Bound, centered by default. Use `\n` for line breaks. |
+| `label` | string | - | Bound, centered by default. Use `\n` for line breaks. |
 | `align` | `"left"` \| `"center"` \| `"right"` | `"center"` | Label horizontal align (use `left` for ERD/class attribute lists). |
 | `valign` | `"top"` \| `"middle"` \| `"bottom"` | `"middle"` | Label vertical align (use `top` for attribute lists). |
 | `fontSize` | number | `16` | |
@@ -34,7 +34,7 @@ A shape with an optional bound label. Edges reference nodes by `id`.
 | `strokeStyle` | `"solid"` \| `"dashed"` \| `"dotted"` | `"solid"` | Dashed = external/optional by convention. |
 | `fillStyle` | `"solid"` \| `"hachure"` \| `"cross-hatch"` | `"solid"` | |
 | `roughness` | `0` \| `1` \| `2` | `1` | 0 = clean lines, 2 = very sketchy. |
-| `group` | string | — | Shared groupId; elements move/select together in the editor. |
+| `group` | string | - | Shared groupId; elements move/select together in the editor. |
 
 ## `edges[]`
 
@@ -43,7 +43,7 @@ Becomes a real Excalidraw arrow bound to both endpoints (drag-follows in the edi
 | Field | Type | Default | Notes |
 |---|---|---|---|
 | `from`, `to` | node id | **required** | Must exist in `nodes`. |
-| `label` | string | — | Bound to the arrow at its midpoint (white background for legibility). |
+| `label` | string | - | Bound to the arrow at its midpoint (white background for legibility). |
 | `style` | `"solid"` \| `"dashed"` \| `"dotted"` | `"solid"` | |
 | `end` | arrowhead \| `null` | `"arrow"` | `"arrow"`, `"triangle"`, `"dot"`, `"bar"`, or `null` for none (ERD relationship lines). |
 | `start` | arrowhead \| `null` | `null` | Set for bidirectional edges. |
@@ -66,12 +66,12 @@ Free-floating text. Use for titles, notes, and annotations that are not bound to
 
 ## `regions[]`
 
-A background rectangle with an optional corner label. Drawn first (behind nodes). Use for swimlanes, architecture tiers, or grouping zones. Regions are decorative — edges cannot bind to them, so put the flow in `nodes` on top.
+A background rectangle with an optional corner label. Drawn first (behind nodes). Use for swimlanes, architecture tiers, or grouping zones. Regions are decorative - edges cannot bind to them, so put the flow in `nodes` on top.
 
 | Field | Type | Default | Notes |
 |---|---|---|---|
 | `x`, `y`, `w`, `h` | number | **required** | |
-| `label` | string | — | Zone name. |
+| `label` | string | - | Zone name. |
 | `labelAlign` | `"top-left"` \| `"top-center"` | `"top-left"` | |
 | `bg` | hex | `"#f1f3f5"` | Keep light; nodes sit on top. |
 | `stroke` | hex | `"#adb5bd"` | |

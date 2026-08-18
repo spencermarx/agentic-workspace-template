@@ -1,8 +1,8 @@
 # Reference: Dalton & Michael Tarpit Ideas Catalog
 
-**Source:** [Dalton & Michael — Where do great startup ideas come from?](https://www.ycombinator.com/library/DU-dalton-michael-where-do-great-startup-ideas-come-from) and the YC podcast series, particularly "Avoid These Tempting Startup Ideas."
+**Source:** [Dalton & Michael - Where do great startup ideas come from?](https://www.ycombinator.com/library/DU-dalton-michael-where-do-great-startup-ideas-come-from) and the YC podcast series, particularly "Avoid These Tempting Startup Ideas."
 
-**What is a tarpit idea?** A pattern that first-time founders cluster on. The idea sounds attractive on first inspection. A generation of failed attempts has established that it does not work for *structural* reasons — not for execution reasons. The next founder to try this idea fails for the same reasons.
+**What is a tarpit idea?** A pattern that first-time founders cluster on. The idea sounds attractive on first inspection. A generation of failed attempts has established that it does not work for *structural* reasons - not for execution reasons. The next founder to try this idea fails for the same reasons.
 
 **The fatal property of tarpit ideas:** They are easy to talk about, easy to imagine succeeding, easy to get friends excited about. They look like opportunities. They are not.
 
@@ -12,15 +12,15 @@ This file catalogs the documented tarpit shapes plus founder-specific tarpit his
 
 ## Canonical Tarpit Patterns
 
-### TP-01 — "Better X" where X is a category leader
+### TP-01 - "Better X" where X is a category leader
 
 **Examples:** Better email client. Better project management. Better calendar. Better CRM. Better Slack. Better Notion.
 
 **Why it's a tarpit:** Switching costs in entrenched horizontal categories are huge. Users tolerate awful incumbents because the cost of switching across a team is enormous. "10x better" is rarely 10x enough to overcome network effects + integration debt.
 
-**Escape conditions:** A wedge that doesn't require horizontal switching — vertical specialization, AI-native rebuild that creates a new category, or a structural change in the underlying technology that makes the incumbent's architecture obsolete.
+**Escape conditions:** A wedge that doesn't require horizontal switching - vertical specialization, AI-native rebuild that creates a new category, or a structural change in the underlying technology that makes the incumbent's architecture obsolete.
 
-### TP-02 — "Marketplace for X" with no captive side
+### TP-02 - "Marketplace for X" with no captive side
 
 **Examples:** Marketplace for handymen. Marketplace for tutors. Marketplace for designers.
 
@@ -28,7 +28,7 @@ This file catalogs the documented tarpit shapes plus founder-specific tarpit his
 
 **Escape conditions:** One side structurally captive (e.g., regulated supply, scarce supply, network-effect supply). Embedded payments + escrow that make off-platform transactions painful. Or a different business model entirely (subscription, lead-fee with single-side captive).
 
-### TP-03 — "Social network for X profession"
+### TP-03 - "Social network for X profession"
 
 **Examples:** Social network for doctors. Social network for lawyers. Social network for engineers (besides the existing entrenched ones).
 
@@ -36,7 +36,7 @@ This file catalogs the documented tarpit shapes plus founder-specific tarpit his
 
 **Escape conditions:** A wedge that isn't actually social-networking (e.g., professional tooling that has incidental social features). Or a profession in genuine acute crisis where existing networks are structurally inadequate (T11's cooperative substrate for AI-displaced professionals partially fits this exception).
 
-### TP-04 — "AI-powered X" where X is generic vertical software
+### TP-04 - "AI-powered X" where X is generic vertical software
 
 **Examples:** AI-powered scheduling. AI-powered CRM. AI-powered project management. AI-powered SMB operations.
 
@@ -44,7 +44,7 @@ This file catalogs the documented tarpit shapes plus founder-specific tarpit his
 
 **Escape conditions:** A specific structural insight that the AI capability enables (e.g., "Computer Use makes cross-platform agentic operations affordable for SMB for the first time"). Vertical depth + agent-native architecture that incumbents can't retrofit.
 
-### TP-05 — Attention-economy / engagement-maximization tooling
+### TP-05 - Attention-economy / engagement-maximization tooling
 
 **Examples:** Anything optimized for time-on-app. Newsletter / content platforms with feed mechanics. Notification-driven anything.
 
@@ -52,7 +52,7 @@ This file catalogs the documented tarpit shapes plus founder-specific tarpit his
 
 **Escape conditions:** None for principle-aligned founders. Categorically foreclosed by the operator's Principle 4.
 
-### TP-06 — "Tools for creators" without distribution edge
+### TP-06 - "Tools for creators" without distribution edge
 
 **Examples:** Yet-another newsletter platform. Yet-another podcast hosting. Yet-another video editing AI.
 
@@ -60,7 +60,7 @@ This file catalogs the documented tarpit shapes plus founder-specific tarpit his
 
 **Escape conditions:** Distribution-bundled tools (Substack, Beehiiv pattern). Or genuinely novel modality (AI video at the moment Runway / Sora / Pika defined the category).
 
-### TP-07 — "Consumer crypto" without payments use case
+### TP-07 - "Consumer crypto" without payments use case
 
 **Examples:** NFT-driven anything that isn't a real payment. Web3 social. Tokenized X.
 
@@ -68,23 +68,23 @@ This file catalogs the documented tarpit shapes plus founder-specific tarpit his
 
 **Escape conditions:** Stablecoin / payments-anchored use cases. Skip otherwise.
 
-### TP-08 — "X for nonprofits" / "X for restaurants" / "X for SMB" with no structural reason
+### TP-08 - "X for nonprofits" / "X for restaurants" / "X for SMB" with no structural reason
 
 **Examples:** AI for nonprofits. CRM for restaurants. Software for SMB owners.
 
-**Why it's a tarpit:** Hard-to-sell-to verticals are hard-to-sell-to for structural reasons (low budget, no procurement, founder-led tiny IT, tight margins). Choosing them as wedges multiplies sales-cycle pain. Many founders pick these because they sound noble or because they're "underserved" — but underserved often means unbuyable.
+**Why it's a tarpit:** Hard-to-sell-to verticals are hard-to-sell-to for structural reasons (low budget, no procurement, founder-led tiny IT, tight margins). Choosing them as wedges multiplies sales-cycle pain. Many founders pick these because they sound noble or because they're "underserved" - but underserved often means unbuyable.
 
 **Escape conditions:** A structural reason this vertical can suddenly buy (e.g., PE consolidation creating budget at the platform level; a regulatory forcing function; a wave that creates urgency the vertical didn't have before).
 
-### TP-09 — "Email assistant" / "AI scheduling assistant" / generic AI agent for personal productivity
+### TP-09 - "Email assistant" / "AI scheduling assistant" / generic AI agent for personal productivity
 
 **Examples:** Yet-another AI inbox. Yet-another AI calendar. Yet-another AI executive assistant.
 
 **Why it's a tarpit:** Massive cohort of failed attempts (Astro, Mailbox, Sunrise, x.ai, Clara Labs, several rounds since). Personal productivity AI has graveyards. Big-tech is also building this natively.
 
-**Escape conditions:** Vertical-specific (e.g., "AI inbox for litigators" with deep workflow integration) — even then, demonstrate structural reason this generation of attempts succeeds where the prior generations failed.
+**Escape conditions:** Vertical-specific (e.g., "AI inbox for litigators" with deep workflow integration) - even then, demonstrate structural reason this generation of attempts succeeds where the prior generations failed.
 
-### TP-10 — "Vertical AI receptionist / chatbot" without distribution edge
+### TP-10 - "Vertical AI receptionist / chatbot" without distribution edge
 
 **Examples:** AI receptionist for HVAC. AI booking agent for med-spa. AI customer-service for restaurants.
 
@@ -98,7 +98,7 @@ This file catalogs the documented tarpit shapes plus founder-specific tarpit his
 
 These shapes have *already failed* in the operator's hands. Treat any candidate that re-runs these shapes as tarpit-shaped repetition unless a structural difference is named.
 
-### TPS-01 — Cold outbound to SMB owners (any pitch)
+### TPS-01 - Cold outbound to SMB owners (any pitch)
 
 **The Q1 data:** 12 meetings booked, 3 real ICP demos, 1 conversion (Reeis, since churned). 0/15 HCP discovery conversations attempted. 0/15 law firm conversations attempted. Loom videos without personalized messages: 0 replies.
 
@@ -106,29 +106,29 @@ These shapes have *already failed* in the operator's hands. Treat any candidate 
 
 **Escape conditions:** Owner-to-owner referral motion (requires existing community the operator doesn't yet have); vendor-bundled distribution (requires partnership the operator doesn't yet have); buyer-moment-triggered outreach (acute pain, fresh hire, post-acquisition, not generic).
 
-### TPS-02 — "Your funnel is leaking" / conversion-optimization-for-trades pitch
+### TPS-02 - "Your funnel is leaking" / conversion-optimization-for-trades pitch
 
 **The Q1 data:** Reeis converted on this pitch and churned. Beantown is on free tier with no engagement. Mother dormant. The 13x conversion lift was real but did not produce a sustainable retention model.
 
-**Why it's a tarpit (for the operator):** The pitch is too plausible (Test 7 — plausibility trap). Trades owners hear it from every agency and every vendor. The proof point (13x lift) is real but the buyer's procurement reality (price sensitivity, slow cycle, low-budget marketing function) does not support the implied price-to-value math.
+**Why it's a tarpit (for the operator):** The pitch is too plausible (Test 7 - plausibility trap). Trades owners hear it from every agency and every vendor. The proof point (13x lift) is real but the buyer's procurement reality (price sensitivity, slow cycle, low-budget marketing function) does not support the implied price-to-value math.
 
 **Escape conditions:** Reframing from "we improve your conversion" to a different value layer entirely (operational / financial / regulatory). Or selling to a different buyer (PE rollup ops VP, not single-shop owner).
 
-### TPS-03 — Trades-agency referral channel (white-label / resale)
+### TPS-03 - Trades-agency referral channel (white-label / resale)
 
 **The Q1 data:** 7-8 agencies expressed interest, 0 conversions to active referral. Confirmed long cycle (months to quarters) regardless of pitch shape.
 
 **Why it's a tarpit:** Agencies that haven't built proprietary tooling don't suddenly become product distributors. Their incentive is billable hours, not platform partnership. Profit-share-on-referral is the structurally weakest deal shape because it provides no reason for the agency to push.
 
-**Escape conditions:** Foundational-partner deal with up-front commitment ($X + N-client minimum) that filters serious agencies on day one. OR selling INTO the agency for their own ops (not for resale to clients) — which is a different sale, different buyer.
+**Escape conditions:** Foundational-partner deal with up-front commitment ($X + N-client minimum) that filters serious agencies on day one. OR selling INTO the agency for their own ops (not for resale to clients) - which is a different sale, different buyer.
 
-### TPS-04 — Selling against the incumbent vendor's owned territory
+### TPS-04 - Selling against the incumbent vendor's owned territory
 
-**The Q1 data:** the workspace scheduler is structurally adjacent to the incumbent vendor's built-in scheduler. the incumbent vendor announced "CRM: Residential automates follow-ups" generally available summer 2026 — direct competitive collision.
+**The Q1 data:** the workspace scheduler is structurally adjacent to the incumbent vendor's built-in scheduler. the incumbent vendor announced "CRM: Residential automates follow-ups" generally available summer 2026 - direct competitive collision.
 
 **Why it's a tarpit:** the incumbent vendor owns the customer relationship, the data, the routing, and the buying process. Selling a competitive feature to their customers triggers their roadmap response.
 
-**Escape conditions:** Architecture decisions that make the workspace a non-competitor and/or platform-portable (read/write split, customer-owned portable spec, multi-platform from Day 90). Or specifically picking a domain the incumbent vendor won't ship in 12 months (e.g., cross-vertical operations substrate that bridges ST and HCP and Jobber — ST won't build this).
+**Escape conditions:** Architecture decisions that make the workspace a non-competitor and/or platform-portable (read/write split, customer-owned portable spec, multi-platform from Day 90). Or specifically picking a domain the incumbent vendor won't ship in 12 months (e.g., cross-vertical operations substrate that bridges ST and HCP and Jobber - ST won't build this).
 
 ---
 
@@ -142,8 +142,8 @@ These shapes have *already failed* in the operator's hands. Treat any candidate 
 
 ## A Note on the Tarpit Mindset
 
-A candidate is not automatically tarpit-shaped just because incumbents exist. PG explicitly says crowded markets are a positive signal — they confirm demand. The tarpit test is more specific:
+A candidate is not automatically tarpit-shaped just because incumbents exist. PG explicitly says crowded markets are a positive signal - they confirm demand. The tarpit test is more specific:
 
 > A tarpit idea is one where (a) many founders before you tried it, (b) most of them failed, (c) the failures were for structural reasons (not execution), and (d) your version does not have a documented structural difference.
 
-If the candidate has a structural difference — *and that difference is documented in the Raw Idea doc, with reasoning* — it can survive the tarpit test even within an established tarpit shape. The structural difference must be specific. "We're better" is not structural. "Our distribution channel is owner-to-owner referral, which existing players don't have" is structural.
+If the candidate has a structural difference - *and that difference is documented in the Raw Idea doc, with reasoning* - it can survive the tarpit test even within an established tarpit shape. The structural difference must be specific. "We're better" is not structural. "Our distribution channel is owner-to-owner referral, which existing players don't have" is structural.

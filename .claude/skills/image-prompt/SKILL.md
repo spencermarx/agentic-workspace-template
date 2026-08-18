@@ -21,7 +21,7 @@ This skill does NOT call any image generation API. It produces a finalized promp
 - **Before any image generation API call** for marketing content (social posts, blog posts, ad creatives, landing page assets)
 - When a draft prompt exists but hasn't been critically reviewed
 - When iterating on a concept that has failed previous generations and needs structured critique
-- When a workflow says "draft a prompt, then generate" — insert this skill between the two steps
+- When a workflow says "draft a prompt, then generate" - insert this skill between the two steps
 
 ## When NOT to Use
 
@@ -35,9 +35,9 @@ The build + review loop is the same shape across scenarios, but the critic empha
 
 | Scenario | Sub-Skill | When to load |
 |---|---|---|
-| Organic social post (LinkedIn, Facebook) — editorial photography that will be overlaid with text + the workspace logo | [`sub-skills/social.md`](sub-skills/social.md) | Producing an image for an Unfair Advantages, Builder's Journal, or Product Announcement social post |
-| Blog post image (hero or inline) — editorial photography that will be image-cleaned (no overlay) | [`sub-skills/blog.md`](sub-skills/blog.md) | Producing a blog hero or any inline blog image |
-| Infographic / data visualization — typographic chart or framework that will get a logo-only stamp (no text bridge) | [`sub-skills/infographic.md`](sub-skills/infographic.md) | Producing an image for a Proof Post, stat-first hook, or any infographic-style visual |
+| Organic social post (LinkedIn, Facebook) - editorial photography that will be overlaid with text + the workspace logo | [`sub-skills/social.md`](sub-skills/social.md) | Producing an image for an Unfair Advantages, Builder's Journal, or Product Announcement social post |
+| Blog post image (hero or inline) - editorial photography that will be image-cleaned (no overlay) | [`sub-skills/blog.md`](sub-skills/blog.md) | Producing a blog hero or any inline blog image |
+| Infographic / data visualization - typographic chart or framework that will get a logo-only stamp (no text bridge) | [`sub-skills/infographic.md`](sub-skills/infographic.md) | Producing an image for a Proof Post, stat-first hook, or any infographic-style visual |
 
 Each sub-skill is self-contained: it includes the full 5-step loop, the three critic mandates scoped to its scenario, and the input/output contract for that scenario. You only need to load one sub-skill per image you're prompting.
 
@@ -64,7 +64,7 @@ A prompt that fails the same critic three times is not a writing problem. It's a
 | `gemini` (image-generation sub-skill) | The generator the caller invokes after this skill returns a validated prompt (infographic path) |
 | `image-overlay` | Used after the generated image is produced (social), to add text + the workspace logo |
 | `image-clean` | Used after the generated image is produced (blog), to strip metadata |
-| `content-sprint` | A primary caller — invokes this skill during Phase 2 (social drafting) and Phase 3 (blog drafting) for every image |
+| `content-sprint` | A primary caller - invokes this skill during Phase 2 (social drafting) and Phase 3 (blog drafting) for every image |
 
 ## Reference
 

@@ -4,7 +4,7 @@ Read this while writing `content.html`, to copy the markup for a component inste
 from the stylesheet. Every class here is styled by `assets/report-base.css`; the snippets carry
 placeholder content, so swap the words and keep the structure.
 
-## Page shell — `.r-page`
+## Page shell - `.r-page`
 
 The outer wrapper for the whole page. Write page content only: the assemble script supplies the
 document around it, so the file starts at `.r-page`.
@@ -28,7 +28,7 @@ document around it, so the file starts at `.r-page`.
 `.r-stack` gives its children the page's vertical rhythm; reach for it anywhere a column of blocks
 needs even spacing.
 
-## Header — `.r-header`
+## Header - `.r-header`
 
 Opens the page: what the report is, what it covers, when it was made, and the legend for the marks
 used in its diagrams. The page carries exactly one `<h1>`.
@@ -69,7 +69,7 @@ used in its diagrams. The page carries exactly one `<h1>`.
 The legend swatches are `aria-hidden` because the text beside each one already says what the mark
 means.
 
-## Table of contents — `.r-toc`
+## Table of contents - `.r-toc`
 
 Worth adding once the page runs past two sections, or whenever a reader is likely to arrive
 looking for one entry rather than reading start to finish. Each link targets a section heading
@@ -88,7 +88,7 @@ looking for one entry rather than reading start to finish. Each link targets a s
 The class sits on the list rather than the `<nav>`, because the stylesheet rules the rows as its
 direct children.
 
-## Section — `.r-section`
+## Section - `.r-section`
 
 One top-level division of the page. Give the heading an `id` and point the section's
 `aria-labelledby` at it, so both the table of contents and any `.r-trace` link resolve.
@@ -106,7 +106,7 @@ One top-level division of the page. Give the heading an `id` and point the secti
 </section>
 ```
 
-## Entry — `.r-entry`
+## Entry - `.r-entry`
 
 The repeating unit: one record, one entry. Head carries the title and its marks; body carries the
 fields, the points, and the trace link back to the record.
@@ -144,7 +144,7 @@ fields, the points, and the trace link back to the record.
 
 Entry titles are `<h3>` under a section's `<h2>`, which keeps the heading order unbroken.
 
-## Badges — `.r-badge`
+## Badges - `.r-badge`
 
 A short mark on an entry, in one of three weights. The tone names weight, not meaning: pick which
 of your own labels each weight carries, and use the same mapping across the whole report.
@@ -155,7 +155,7 @@ of your own labels each weight carries, and use the same mapping across the whol
 <span class="r-badge r-badge--quiet">Neutral</span>
 ```
 
-## Tags — `.r-tag`
+## Tags - `.r-tag`
 
 A flat, uncolored label for categorising an entry, sitting beside the badges.
 
@@ -163,9 +163,9 @@ A flat, uncolored label for categorising an entry, sitting beside the badges.
 <span class="r-tag">tag-one</span>
 ```
 
-## Callouts — `.r-callout`
+## Callouts - `.r-callout`
 
-One line that needs to stand out of the flow — a note the reader acts on, or a condition attached
+One line that needs to stand out of the flow - a note the reader acts on, or a condition attached
 to what the entry just said.
 
 ```html
@@ -177,7 +177,7 @@ to what the entry just said.
 </p>
 ```
 
-## Meta list — `.r-meta`
+## Meta list - `.r-meta`
 
 Paired labels and values: the parameters a section or entry was produced under. The terms and
 descriptions are direct children, which is what lets the stylesheet hold every label in one column
@@ -194,7 +194,7 @@ and every value in the next.
 </dl>
 ```
 
-## File list — `.r-files`
+## File list - `.r-files`
 
 Paths and other literal strings, set in mono so they stay scannable.
 
@@ -205,7 +205,7 @@ Paths and other literal strings, set in mono so they stay scannable.
 </ul>
 ```
 
-## Figure — `.r-figure`
+## Figure - `.r-figure`
 
 Every diagram is a `<figure>` with a `<figcaption>`: the frame holds the drawing, the caption
 states what it shows. The caption is what a reader gets when the drawing does not render.
@@ -248,7 +248,7 @@ states what it shows. The caption is what a reader gets when the drawing does no
     </svg>
   </div>
   <figcaption class="r-figure__caption">
-    Figure 1 — three parts in sequence, the middle one emphasized.
+    Figure 1 - three parts in sequence, the middle one emphasized.
   </figcaption>
 </figure>
 ```
@@ -257,7 +257,7 @@ An SVG that says something carries `role="img"` plus a `<title>` and `<desc>` re
 `aria-labelledby`, which is how a screen reader receives what the drawing says. An SVG that only
 decorates a statement already made in words takes `aria-hidden="true"` instead.
 
-### Mermaid frame — `.r-figure__frame--mermaid`
+### Mermaid frame - `.r-figure__frame--mermaid`
 
 For graph-shaped diagrams. The mermaid frame keeps a light ground in both themes, because mermaid
 renders with its own light palette on the artifact platform.
@@ -272,7 +272,7 @@ flowchart LR
     </pre>
   </div>
   <figcaption class="r-figure__caption">
-    Figure 2 — node A reaches node C only through node B.
+    Figure 2 - node A reaches node C only through node B.
   </figcaption>
 </figure>
 ```
@@ -296,7 +296,7 @@ the two forms and still read as one drawing.
     </div>
   </div>
   <figcaption class="r-figure__caption">
-    Figure 3 — the same three parts, drawn as a stack.
+    Figure 3 - the same three parts, drawn as a stack.
   </figcaption>
 </figure>
 ```
@@ -321,29 +321,28 @@ a page reading as a dashboard. Badges and callouts carry the accent and caution 
 <line class="r-edge r-edge--alert" x1="96" y1="60" x2="120" y2="60" />
 ```
 
-## Comparison pair — `.r-pair`
+## Comparison pair - `.r-pair`
 
-Two blocks read side by side, stacking to one column under 48rem. The usual pair is two figures —
-one state and the state it moves to.
+Two blocks read side by side, stacking to one column under 48rem. The usual pair is two figures - one state and the state it moves to.
 
 ```html
 <div class="r-pair">
   <figure class="r-figure">
     <div class="r-figure__frame">…</div>
     <figcaption class="r-figure__caption">
-      Figure 4a — first arrangement.
+      Figure 4a - first arrangement.
     </figcaption>
   </figure>
   <figure class="r-figure">
     <div class="r-figure__frame">…</div>
     <figcaption class="r-figure__caption">
-      Figure 4b — second arrangement.
+      Figure 4b - second arrangement.
     </figcaption>
   </figure>
 </div>
 ```
 
-## Grid — `.r-grid`
+## Grid - `.r-grid`
 
 Three or more equal blocks that the reader scans rather than reads in order.
 
@@ -355,7 +354,7 @@ Three or more equal blocks that the reader scans rather than reads in order.
 </div>
 ```
 
-## Table — `.r-table` inside `.r-scroll-x`
+## Table - `.r-table` inside `.r-scroll-x`
 
 Wide content scrolls inside its own container, which keeps the page body from scrolling sideways.
 The wrapper is a labelled, focusable region so it can be scrolled from the keyboard.
@@ -364,7 +363,7 @@ The wrapper is a labelled, focusable region so it can be scrolled from the keybo
 <div class="r-scroll-x" role="region" aria-labelledby="tbl-one" tabindex="0">
   <table class="r-table">
     <caption id="tbl-one">
-      Table 1 — placeholder values by column.
+      Table 1 - placeholder values by column.
     </caption>
     <thead>
       <tr>
@@ -389,9 +388,9 @@ The wrapper is a labelled, focusable region so it can be scrolled from the keybo
 </div>
 ```
 
-Any wide block takes the same wrapper — a broad schematic or a long code line as well as a table.
+Any wide block takes the same wrapper - a broad schematic or a long code line as well as a table.
 
-## Closing card — `.r-closing`
+## Closing card - `.r-closing`
 
 One larger card at the end: what the report comes down to, and a link to the entry that carries it.
 
@@ -403,7 +402,7 @@ One larger card at the end: what the report comes down to, and a link to the ent
 </section>
 ```
 
-## Trace link — `.r-trace`
+## Trace link - `.r-trace`
 
 Carries a claim on the page back to the record it came from, so a reader can check it. Point it at
 a heading anchor in `record.md`, or at another entry on the page.
@@ -420,7 +419,7 @@ instead, which resolves at both destinations.
 The class sits on the link itself, which is what carries its quiet mono treatment and the turned
 arrow before it.
 
-## Footer — `.r-footer`
+## Footer - `.r-footer`
 
 Closes the page with how it was produced.
 
@@ -443,7 +442,7 @@ Single-purpose classes for a local adjustment inside another component.
 <span class="r-vh">Text only assistive technology receives.</span>
 ```
 
-`.r-vh` is how a control or region gets a name without adding visible copy — a heading a sighted
+`.r-vh` is how a control or region gets a name without adding visible copy - a heading a sighted
 reader does not need, or the expansion of a mark.
 
 ## Extending the foundation
@@ -455,7 +454,7 @@ conform. The tokens easiest to miss when you do: `--r-ink-inverse` for text on a
 thing a diagram points at, `--r-step--2` for a schematic or caps label, and `--r-step--1` for small
 body text.
 
-A worked example — a rail of ordered steps, one of them current:
+A worked example - a rail of ordered steps, one of them current:
 
 ```css
 .r-rail {

@@ -4,7 +4,7 @@ Loaded on demand by the [`seven-copy-critics`](../SKILL.md) skill at step 2.
 Twenty-one checks: seven hostile reader personas, each applied at the hook,
 body, and close.
 
-### Step 2 — Run All 7 Critics Across All 3 Failure Layers
+### Step 2 - Run All 7 Critics Across All 3 Failure Layers
 
 Each critic evaluates the draft at three layers. Write the verdict for each
 layer in this format:
@@ -14,11 +14,11 @@ layer in this format:
 > **Action:** "Even if I read everything, I would not act because ___"
 
 If a layer genuinely passes for that critic, write "PASS" with a one-sentence
-reason. No false credit — a marginal pass is a failure.
+reason. No false credit - a marginal pass is a failure.
 
 ---
 
-#### Critic 1 — The Time-Crushed
+#### Critic 1 - The Time-Crushed
 
 **Profile:** A CEO with 43 unread emails. Scans the first line and the subject.
 Has 2 seconds to decide if this is worth opening, and another 3 seconds to
@@ -30,7 +30,7 @@ opener buries the value in throat-clearing ("I hope this finds you well",
 
 ---
 
-#### Critic 2 — The Self-Conscious
+#### Critic 2 - The Self-Conscious
 
 **Profile:** Reads every email wondering "is this actually about me, or is this
 a mass blast with my name pasted in?" Allergic to anything that could have
@@ -43,7 +43,7 @@ or vague situational references all fail this critic.
 
 ---
 
-#### Critic 3 — The Burned Skeptic
+#### Critic 3 - The Burned Skeptic
 
 **Profile:** Has bought 14 "game-changing frameworks" in the past 3 years.
 Most disappointed them. Now treats every claim as guilty until proven.
@@ -55,12 +55,12 @@ true claims fail here if they are not anchored to specific evidence.
 
 ---
 
-#### Critic 4 — The AI-Allergic
+#### Critic 4 - The AI-Allergic
 
 **Profile:** Has read so many ChatGPT-drafted emails they can spot the patterns
 in milliseconds. Em dashes, "I hope this message finds you well", "I wanted to
 reach out because", tricolon sentences with rising rhythm, and "It's not just
-X — it's Y" constructions all set off the alarm.
+X - it's Y" constructions all set off the alarm.
 
 **Kills the copy when:** the sentences sound like a polished corporate template
 or follow recognizable LLM rhythm. Too smooth, too symmetrical, too "writerly."
@@ -70,7 +70,7 @@ appear in 1000 other brand emails.
 
 ---
 
-#### Critic 5 — The Lurker
+#### Critic 5 - The Lurker
 
 **Profile:** Has been on the list for 3 months and never clicked. Reads
 occasionally. Is not unsubscribing, but is not engaging either. Needs a
@@ -84,7 +84,7 @@ a particular moment.
 
 ---
 
-#### Critic 6 — The Visual Reader
+#### Critic 6 - The Visual Reader
 
 **Profile:** Thinks in scenes, moments, and pictures. Glazes over abstract
 concepts. Needs to see a thing happening to a person in a place.
@@ -96,9 +96,9 @@ reader to picture.
 
 ---
 
-#### Critic 7 — The Inspiration Seeker
+#### Critic 7 - The Inspiration Seeker
 
-**Profile:** Does not just want information — wants to feel capable of acting
+**Profile:** Does not just want information - wants to feel capable of acting
 on it. Reads to be moved, not just informed. Will accept logic, but will not
 move without motivation.
 
@@ -109,7 +109,7 @@ the thing.
 
 ---
 
-#### Critic 8 — The Operator-Voice Detector
+#### Critic 8 - The Operator-Voice Detector
 
 **Profile:** Has followed enough operators on LinkedIn to know the difference
 between a operator who writes their own posts and a operator whose marketing

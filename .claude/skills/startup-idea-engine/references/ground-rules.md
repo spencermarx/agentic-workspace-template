@@ -8,7 +8,7 @@ at the start of a session; they apply throughout.
 These are non-negotiable. They are the anti-sycophancy and anti-hallucination spine of this skill. Adapted from `player-coach`'s ground rules and the gstack office-hours posture.
 
 1. **Never say** "interesting", "great question", "you're on the right track", "that's a good point", or any variant. Filler signals nothing and teaches nothing.
-2. **Always take a position with conviction.** If you don't know, say "I don't know yet — here's what I'd need to see to decide." Never hedge.
+2. **Always take a position with conviction.** If you don't know, say "I don't know yet - here's what I'd need to see to decide." Never hedge.
 3. **One forcing question per `AskUserQuestion` call.** Never batch. Every paused phase ends with exactly one question, targeting the highest-leverage uncertainty.
 4. **Specificity gate.** Reject any candidate or buyer description that contains a vague noun ("growth," "engagement," "small businesses," "decision makers") until concrete (named segment with title + situation, named metric, named deliverable, named pain).
 5. **Status quo is the real competitor.** Apply PG's "if not doing this costs nothing by Friday, it isn't a wedge" test to every candidate.
@@ -17,7 +17,7 @@ These are non-negotiable. They are the anti-sycophancy and anti-hallucination sp
 8. **Adversarial review is mandatory.** No candidate ships without surviving the four-critic parallel review (`sub-skills/04-adversarial-review.md`). The user never sees raw draft conclusions.
 9. **Tarpit catalog must be checked.** Every candidate is checked against the documented tarpit patterns (`references/dalton-michael-tarpits.md`) and the operator-specific tarpit history (Q1 failures). Tarpit-shaped candidates are flagged and either refactored or killed.
 10. **Honest provenance.** Every candidate documents which PG procedure surfaced it (own needs / leading edge / cross domains / single-user consultant / schlep-heavy / wave). Candidates surfaced by abstract category-search are flagged as suspect.
-11. **No fabricated evidence.** When research would otherwise be "I think" or "it seems" — don't write that. Run the search. If the search isn't possible, name the gap as an open question, not as evidence.
+11. **No fabricated evidence.** When research would otherwise be "I think" or "it seems" - don't write that. Run the search. If the search isn't possible, name the gap as an open question, not as evidence.
 
 ---
 

@@ -109,10 +109,10 @@ print('Revised prompt:', r['data'][0].get('revised_prompt', '(none)'))
 
 | Quality | Description |
 |---|---|
-| `standard` | Default — faster, lower cost |
+| `standard` | Default - faster, lower cost |
 | `hd` | Higher detail and consistency |
 
-`gpt-image-1.5` does not use a `quality` parameter — it always renders at maximum quality.
+`gpt-image-1.5` does not use a `quality` parameter - it always renders at maximum quality.
 
 ---
 
@@ -142,7 +142,7 @@ for i, img in enumerate(r['data']):
 
 ---
 
-## Edit an Existing Image (Inpainting) — dall-e-2
+## Edit an Existing Image (Inpainting) - dall-e-2
 
 Replace a masked region of an image with AI-generated content.
 Both `image` and `mask` must be square PNG files of identical size (max 4 MB each).
@@ -168,7 +168,7 @@ print(r['data'][0]['url'])
 
 ---
 
-## Create a Variation — dall-e-2
+## Create a Variation - dall-e-2
 
 Generate variations of an existing image without a prompt:
 
@@ -209,7 +209,7 @@ echo "Saved to output.png"
 - For logos/icons: "flat design", "vector style", "white background", "minimal"
 - For photos: "photorealistic", specific lighting ("golden hour", "studio lighting"), camera details
 - For illustrations: name the art style ("watercolor", "line art", "cel-shaded")
-- dall-e-3 rewrites your prompt internally — check `revised_prompt` to see what it used.
+- dall-e-3 rewrites your prompt internally - check `revised_prompt` to see what it used.
 - gpt-image-1.5 follows your prompt more literally; use precise language.
 
 ---

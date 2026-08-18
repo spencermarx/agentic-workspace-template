@@ -19,7 +19,7 @@ Based on Garry Tan's [gstack `/design-review` + `/plan-design-review`](https://g
 **Core insight from gstack:** The common failure mode in design review is mixing
 "this button is the wrong color" (mechanical fix) with "I'm not sure about the overall
 aesthetic" (judgment call). Conflating these produces confused feedback that's hard to act on.
-This skill separates them explicitly — mechanical fixes are non-negotiable; judgment calls
+This skill separates them explicitly - mechanical fixes are non-negotiable; judgment calls
 require discussion.
 
 ## When to Use
@@ -31,9 +31,9 @@ require discussion.
 
 ## When NOT to Use
 
-- For copy/messaging review — use `campaign-brief` for campaign messaging QA
-- For strategic brand direction decisions — use `ceo-review`
-- For rough drafts that aren't yet ready for critique — flag as draft and review when ready
+- For copy/messaging review - use `campaign-brief` for campaign messaging QA
+- For strategic brand direction decisions - use `ceo-review`
+- For rough drafts that aren't yet ready for critique - flag as draft and review when ready
 
 ## Agents
 
@@ -43,7 +43,7 @@ require discussion.
 
 ## Procedure
 
-### Step 1 — Identify the Asset
+### Step 1 - Identify the Asset
 
 Describe the asset being reviewed:
 - Asset type (social graphic, landing page, email, ad, etc.)
@@ -56,10 +56,9 @@ individually on the scorecard, then add a set-level coherence note.
 
 ---
 
-### Step 2 — Score Across 7 Dimensions (0–10)
+### Step 2 - Score Across 7 Dimensions (0–10)
 
-Rate each dimension with a score and a 2–4 sentence rationale. Be honest —
-a 7 is not a gift; a 4 is not a punishment. The score must reflect the actual quality.
+Rate each dimension with a score and a 2–4 sentence rationale. Be honest - a 7 is not a gift; a 4 is not a punishment. The score must reflect the actual quality.
 
 **Scoring guide:**
 - 9–10: Exceptional. Would use as a reference example.
@@ -99,7 +98,7 @@ Questions to answer:
 Can you extract the core value proposition in under 5 seconds?
 
 Questions to answer:
-- Cover the logo — can you still tell what this is for?
+- Cover the logo - can you still tell what this is for?
 - What does a first-time viewer take away in 5 seconds?
 - Is the benefit stated explicitly, or does the viewer have to infer it?
 
@@ -107,7 +106,7 @@ Questions to answer:
 
 **Dimension 4: Emotional Resonance (0–10)**
 
-Does the asset evoke the right emotion — professional, trustworthy, bold, warm — whichever
+Does the asset evoke the right emotion - professional, trustworthy, bold, warm - whichever
 is appropriate for this context?
 
 Questions to answer:
@@ -124,7 +123,7 @@ Is the CTA specific, visible, and compelling?
 Questions to answer:
 - Is there a clear CTA? (If not, score is 1–2 automatically.)
 - Is the CTA specific ("Book a 20-min demo" vs. "Learn more")?
-- Is it visually prominent — can a viewer identify it without searching?
+- Is it visually prominent - can a viewer identify it without searching?
 - Does the CTA match the asset's goal (awareness vs. conversion vs. nurture)?
 
 ---
@@ -152,10 +151,10 @@ Questions to answer:
 
 ---
 
-### Step 3 — Separate Mechanical Fixes from Judgment Calls
+### Step 3 - Separate Mechanical Fixes from Judgment Calls
 
 **Mechanical fixes** are objectively incorrect and must be resolved before publishing.
-No discussion needed — fix them.
+No discussion needed - fix them.
 
 Examples:
 - Wrong brand color used (#FF0000 instead of #CC2200)
@@ -168,15 +167,15 @@ Examples:
 context. These require discussion before changing.
 
 Examples:
-- Layout feels dense vs. airy — is this intentional?
-- Image choice feels bold — is that aligned with the tone goal for this campaign?
-- Headline is unconventional — is this a calculated risk or an oversight?
+- Layout feels dense vs. airy - is this intentional?
+- Image choice feels bold - is that aligned with the tone goal for this campaign?
+- Headline is unconventional - is this a calculated risk or an oversight?
 
 List each category separately with specific items.
 
 ---
 
-### Step 4 — Scorecard and Fix List
+### Step 4 - Scorecard and Fix List
 
 Produce a clean summary:
 

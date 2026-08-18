@@ -8,7 +8,7 @@ Every session writes:
 
 ```
 {user-specified-destination}/{YYYY-MM-DD}-startup-idea-engine-session.md
-{user-specified-destination}/{candidate-name} — Problem and Solution Space.md  (one per surviving candidate)
+{user-specified-destination}/{candidate-name} - Problem and Solution Space.md  (one per surviving candidate)
 ```
 
 If the user opted in during Phase 0 and the destination is a retreat folder:
@@ -24,7 +24,7 @@ Session document required sections:
 - Phase 2 noticing output (per-procedure candidates)
 - Phase 3 framework test matrix
 - Phase 4 research findings
-- Phase 5 adversarial review record (which critics ran, what failed, what was refined, any unresolved dissent — never buried)
+- Phase 5 adversarial review record (which critics ran, what failed, what was refined, any unresolved dissent - never buried)
 - Phase 6 ranked candidates + recommendation
 - Phase 7 forcing question
 

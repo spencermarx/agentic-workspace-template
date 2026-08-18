@@ -5,8 +5,7 @@ when it writes up a conclusion.
 
 ## Output format
 
-Report the investigation so a reader can retrace and challenge your reasoning —
-the value is in the traceable chain, not just the answer. Adapt length to the
+Report the investigation so a reader can retrace and challenge your reasoning - the value is in the traceable chain, not just the answer. Adapt length to the
 problem, but keep this spine:
 
 ```markdown
@@ -14,7 +13,7 @@ problem, but keep this spine:
 
 ### Observed
 
-[Verbatim facts — error text, actual vs. expected, conditions. Evidence only.]
+[Verbatim facts - error text, actual vs. expected, conditions. Evidence only.]
 
 ### Reproduction
 
@@ -24,13 +23,12 @@ problem, but keep this spine:
 
 | #   | Hypothesis | Falsifier (what would disprove it) | Verdict + evidence    |
 | --- | ---------- | ---------------------------------- | --------------------- |
-| 1   | …          | …                                  | Ruled out — [obs]     |
-| 2   | …          | …                                  | **Confirmed** — [obs] |
+| 1   | …          | …                                  | Ruled out - [obs]     |
+| 2   | …          | …                                  | **Confirmed** - [obs] |
 
 ### Root cause
 
-[The true defect at the origin of the chain — defect → infection → failure —
-distinguished from the symptoms it produced downstream.]
+[The true defect at the origin of the chain - defect → infection → failure - distinguished from the symptoms it produced downstream.]
 
 ### Fix & proof
 

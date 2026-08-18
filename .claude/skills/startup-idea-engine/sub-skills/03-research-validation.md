@@ -12,24 +12,24 @@ For every candidate that survived Phase 3 (Framework Tests), run targeted resear
 
 ## The Five Research Queries (per candidate)
 
-Run all five queries per candidate. Each query has an explicit "kill criterion" — what answer would degrade a test verdict.
+Run all five queries per candidate. Each query has an explicit "kill criterion" - what answer would degrade a test verdict.
 
-### Query 1 — Documented Pain Evidence
+### Query 1 - Documented Pain Evidence
 
 **Goal:** Verify the pain claimed by the candidate is documented in real third-party sources, not just in the user's intuition.
 
 **Search shape:** `WebSearch` for industry reports, recent research, customer-survey data, professional publications, or recent posts on the specific pain point.
 
-**Kill criterion:** If the pain is *only* documented in vendor marketing pages (i.e., only by people selling solutions), it may be manufactured. PARTIAL becomes acceptable; absence of independent documentation is FAIL on Test 1 (PG Three-Pillar — "few realize" becomes "many vendors realize and are selling against it").
+**Kill criterion:** If the pain is *only* documented in vendor marketing pages (i.e., only by people selling solutions), it may be manufactured. PARTIAL becomes acceptable; absence of independent documentation is FAIL on Test 1 (PG Three-Pillar - "few realize" becomes "many vendors realize and are selling against it").
 
 **Operational template:**
 ```
 WebSearch query: "{specific pain} {target buyer} 2025 2026 statistics" or "{specific pain} {industry} survey report"
-WebSearch query: "{target buyer} biggest challenges 2026" — to surface what they actually complain about, not what vendors think they should
-WebSearch (forum-shape): "site:reddit.com OR site:hackernews {target buyer} {pain area}" — to find direct buyer voice
+WebSearch query: "{target buyer} biggest challenges 2026" - to surface what they actually complain about, not what vendors think they should
+WebSearch (forum-shape): "site:reddit.com OR site:hackernews {target buyer} {pain area}" - to find direct buyer voice
 ```
 
-### Query 2 — Incumbent Landscape and Reviews
+### Query 2 - Incumbent Landscape and Reviews
 
 **Goal:** Map the existing competitive landscape. Crowded ≠ bad. Tarpit + saturated = bad. The check is whether incumbents are weak in the specific dimension the candidate exploits.
 
@@ -42,13 +42,13 @@ WebSearch (forum-shape): "site:reddit.com OR site:hackernews {target buyer} {pai
 
 **Operational template:**
 ```
-WebSearch: "best {category} software 2026" — surface incumbents
-WebSearch: "{category leader} reviews complaints 2026" — find weakness
-WebSearch: "{category leader} roadmap 2026" — find collision risk
+WebSearch: "best {category} software 2026" - surface incumbents
+WebSearch: "{category leader} reviews complaints 2026" - find weakness
+WebSearch: "{category leader} roadmap 2026" - find collision risk
 WebFetch on review sites: "What are users complaining about? What do they say is missing?"
 ```
 
-### Query 3 — Buyer Process and Sales Cycle
+### Query 3 - Buyer Process and Sales Cycle
 
 **Goal:** Verify the buyer described in Test 2 (Demand-Shape) is actually buyable on the timeline the candidate assumes. A 90-day wedge cannot survive a 9-month sales cycle.
 
@@ -56,16 +56,16 @@ WebFetch on review sites: "What are users complaining about? What do they say is
 
 **Kill criterion:**
 - If the buyer's documented procurement cycle exceeds the candidate's wedge timeline by 2x, FAIL on Test 2 unless the wedge is structurally reframed for a faster path.
-- If the buyer described doesn't have purchasing authority for this category (e.g., marketing director cannot buy AR software — that's a finance buyer), FAIL on founder-market fit because the user's network does not reach the actual buyer.
+- If the buyer described doesn't have purchasing authority for this category (e.g., marketing director cannot buy AR software - that's a finance buyer), FAIL on founder-market fit because the user's network does not reach the actual buyer.
 
 **Operational template:**
 ```
-WebSearch: "{buyer title} purchasing authority {category}" — surface who actually signs
+WebSearch: "{buyer title} purchasing authority {category}" - surface who actually signs
 WebSearch: "{buyer title} {company shape} how do they buy software"
 WebSearch: "average sales cycle {category} {company size}"
 ```
 
-### Query 4 — Wave Verification
+### Query 4 - Wave Verification
 
 **Goal:** Verify the wave the candidate rides (Test 5) is real, dated, and not already saturated. Confirm the timing.
 
@@ -78,12 +78,12 @@ WebSearch: "average sales cycle {category} {company size}"
 
 **Operational template:**
 ```
-WebSearch: "{wave keyword} startups 2026" — surface recent activity
-WebSearch: "{wave keyword} funding 2025 2026" — surface capital intensity
-WebFetch YC RFS: "https://www.ycombinator.com/rfs" — verify YC's current wave bets
+WebSearch: "{wave keyword} startups 2026" - surface recent activity
+WebSearch: "{wave keyword} funding 2025 2026" - surface capital intensity
+WebFetch YC RFS: "https://www.ycombinator.com/rfs" - verify YC's current wave bets
 ```
 
-### Query 5 — Tarpit History
+### Query 5 - Tarpit History
 
 **Goal:** Check whether prior generations of founders have already tried this candidate shape and failed. If they have, find out why; refactor or kill.
 
@@ -97,7 +97,7 @@ WebFetch YC RFS: "https://www.ycombinator.com/rfs" — verify YC's current wave 
 ```
 WebSearch: "{candidate category} startup failed post-mortem"
 WebSearch: "why {category} startups die"
-WebSearch: "site:news.ycombinator.com {category}" — Hacker News commentary often surfaces tarpit recognition
+WebSearch: "site:news.ycombinator.com {category}" - Hacker News commentary often surfaces tarpit recognition
 ```
 
 ---
@@ -108,23 +108,23 @@ For each candidate, after all five queries:
 
 1. **Re-run the affected Test verdicts** with the research findings. Most commonly:
    - Query 1 affects Test 1 ("few realize" pillar) and Test 2 (demand reality)
-   - Query 2 affects Test 6 (tarpit) and Test 4 (schlep — if incumbents are deep, schlep moat may be illusory)
-   - Query 3 affects Test 2 (demand-shape — buyer reachability)
+   - Query 2 affects Test 6 (tarpit) and Test 4 (schlep - if incumbents are deep, schlep moat may be illusory)
+   - Query 3 affects Test 2 (demand-shape - buyer reachability)
    - Query 4 affects Test 5 (wave alignment)
    - Query 5 affects Test 6 (tarpit) hard
 
 2. **Promote or demote the candidate's verdict.** ADVANCE candidates whose Test verdicts degrade may become REFACTOR or KILL. KILL is binding once both Phase 3 and Phase 4 have run; the user can override only in COLLABORATE / STEP-BY-STEP modes with an explicit reason logged in the session document.
 
-3. **Document research findings** in the session document under "Phase 4 — Research Findings." Each candidate gets a short subsection:
+3. **Document research findings** in the session document under "Phase 4 - Research Findings." Each candidate gets a short subsection:
 
 ```markdown
 ### Candidate: {name}
 
-**Q1 — Pain evidence:** {1-2 lines, with sources}
-**Q2 — Incumbents:** {1-2 lines, top 3 named, weakness or strength}
-**Q3 — Buyer process:** {1-2 lines, cycle length, authority, friction}
-**Q4 — Wave:** {1-2 lines, dated and verified or demoted}
-**Q5 — Tarpit history:** {1-2 lines, failed attempts found or not}
+**Q1 - Pain evidence:** {1-2 lines, with sources}
+**Q2 - Incumbents:** {1-2 lines, top 3 named, weakness or strength}
+**Q3 - Buyer process:** {1-2 lines, cycle length, authority, friction}
+**Q4 - Wave:** {1-2 lines, dated and verified or demoted}
+**Q5 - Tarpit history:** {1-2 lines, failed attempts found or not}
 
 **Test matrix updates:**
 - Test {N}: {OLD} → {NEW}, reason: {one line}
@@ -155,7 +155,7 @@ For each candidate, after all five queries:
 
 ## Output to Session Document
 
-Append the full Phase 4 findings under "Phase 4 — Research Validation." Update the Phase 3 test matrix in place (do not delete the old verdicts; show the updates as `OLD → NEW`).
+Append the full Phase 4 findings under "Phase 4 - Research Validation." Update the Phase 3 test matrix in place (do not delete the old verdicts; show the updates as `OLD → NEW`).
 
 Append a one-paragraph synthesis: which candidates survived research, which were killed by which queries, and the strongest objections that surfaced across all candidates (these will inform Phase 5 adversarial review).
 

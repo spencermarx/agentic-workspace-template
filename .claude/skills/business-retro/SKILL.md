@@ -1,8 +1,8 @@
 ---
 name: business-retro
 description: >
-  Weekly business health synthesis pulled from real work output — the task
-  history — rather than manual summaries. Computes delivery rate, blocker patterns,
+  Weekly business health synthesis pulled from real work output - the task
+  history - rather than manual summaries. Computes delivery rate, blocker patterns,
   agent-specific highlights anchored to specific tasks, slip analysis, and a focus
   score. Produces a formatted weekly review document written to
   the workspace/the operator Personal Workspace/Weekly Reviews/. Run every Friday. Based on
@@ -13,7 +13,7 @@ description: >
 
 # Business Retro
 
-A weekly retrospective synthesized from real task data — not a manual summary.
+A weekly retrospective synthesized from real task data - not a manual summary.
 Based on Garry Tan's [gstack `/retro`](https://github.com/garrytan/gstack), adapted from
 git-commit history to task history as the source of truth.
 
@@ -29,9 +29,9 @@ everyone." Work recognition must be anchored to actual work artifacts.
 
 ## When NOT to Use
 
-- Mid-week — this is a weekly synthesis, not a daily standup
-- For individual task post-mortems — handle those at the issue level
-- As a planning tool — this is backward-looking; use `ceo-review` for forward planning
+- Mid-week - this is a weekly synthesis, not a daily standup
+- For individual task post-mortems - handle those at the issue level
+- As a planning tool - this is backward-looking; use `ceo-review` for forward planning
 
 ## Agents
 
@@ -60,7 +60,7 @@ blocked tasks) the blocker reason from the most recent comment.
 
 ---
 
-### Step 2 — Compute Metrics
+### Step 2 - Compute Metrics
 
 **Delivery Rate:**
 `Tasks completed this week / Tasks created this week × 100`
@@ -82,29 +82,29 @@ one-off.
 `Tasks on high/critical priority / Total tasks worked × 100`
 
 A score above 70% means the team spent most of their capacity on priority work.
-Below 50% means low-priority tasks absorbed disproportionate attention — investigate why.
+Below 50% means low-priority tasks absorbed disproportionate attention - investigate why.
 
 ---
 
-### Step 3 — Agent-Specific Highlights
+### Step 3 - Agent-Specific Highlights
 
 For each agent that completed work this week, write **one specific, work-anchored highlight.**
-The highlight must reference a specific task by name or identifier — not a generic summary.
+The highlight must reference a specific task by name or identifier - not a generic summary.
 
 Format:
-> "[Agent name] — [specific accomplishment tied to a named task or deliverable]. [Impact if measurable.]"
+> "[Agent name] - [specific accomplishment tied to a named task or deliverable]. [Impact if measurable.]"
 
 Examples of the right specificity level:
-- "CMO — Launched the 3-post LinkedIn attribution series (WRK-44, WRK-45, WRK-46); the March 18 post drove 4 inbound connection requests in 48 hours."
-- "Founding Engineer — Shipped the Slack skill (WRK-38) and the Google Sheets integration (WRK-39); both are now available to all agents."
-- "CEO — Completed the gstack integration proposal (WRK-56) and green-lit 5 new skills for engineering."
+- "CMO - Launched the 3-post LinkedIn attribution series (WRK-44, WRK-45, WRK-46); the March 18 post drove 4 inbound connection requests in 48 hours."
+- "Founding Engineer - Shipped the Slack skill (WRK-38) and the Google Sheets integration (WRK-39); both are now available to all agents."
+- "CEO - Completed the gstack integration proposal (WRK-56) and green-lit 5 new skills for engineering."
 
 Do not write generic highlights ("had a productive week," "made good progress").
-If an agent completed no tasks, note that explicitly — don't omit them.
+If an agent completed no tasks, note that explicitly - don't omit them.
 
 ---
 
-### Step 4 — Slip Analysis
+### Step 4 - Slip Analysis
 
 For each slipped task (in_progress or todo for >5 days), diagnose the root cause:
 
@@ -112,15 +112,15 @@ For each slipped task (in_progress or todo for >5 days), diagnose the root cause
 |---|---|
 | **Scope creep** | Task grew beyond original spec mid-execution |
 | **Dependency** | Blocked on another task, agent, or external input |
-| **Execution** | Task was picked up but not completed — agent capacity or priority issue |
-| **Stale** | Task was created but never started — backlog hygiene issue |
+| **Execution** | Task was picked up but not completed - agent capacity or priority issue |
+| **Stale** | Task was created but never started - backlog hygiene issue |
 
 For each slipped task, write one sentence: what it is, how long it's been open, and the
 diagnosed root cause. Flag tasks open >10 days for explicit board attention.
 
 ---
 
-### Step 5 — Write the Weekly Review Document
+### Step 5 - Write the Weekly Review Document
 
 Write the output to:
 `the workspace/the operator Personal Workspace/Weekly Reviews/[YYYY-MM-DD]-weekly-review.md`
@@ -128,7 +128,7 @@ Write the output to:
 Use this format:
 
 ```markdown
-# Weekly Business Review — [Week ending YYYY-MM-DD]
+# Weekly Business Review - [Week ending YYYY-MM-DD]
 
 **Generated:** [date]
 **Data window:** [start date] → [end date]
@@ -187,13 +187,13 @@ If focus score is low, identify what pulled attention away.]
 ## Open Question for Next Week
 
 [Single most important unresolved question heading into the following week.
-Not a laundry list — the one question that most determines whether next week
+Not a laundry list - the one question that most determines whether next week
 is a good week or not.]
 ```
 
 ---
 
-### Step 6 — Notify
+### Step 6 - Notify
 
 After writing the document:
 - Post a Slack message to the team channel (or DM the operator) with the at-a-glance table

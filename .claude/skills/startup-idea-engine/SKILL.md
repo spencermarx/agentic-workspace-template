@@ -12,11 +12,11 @@ description: >-
 
 # Startup Idea Engine
 
-A structured ideation engine that applies Paul Graham's canonical "How to Get Startup Ideas" framework — augmented by Dalton Caldwell + Michael Seibel's tarpit-ideas warning lens — to generate, test, research-validate, and document startup ideas. Inspired by Garry Tan's [gstack `/office-hours`](https://github.com/garrytan/gstack/blob/main/office-hours/SKILL.md) skill (the multi-phase diagnostic with adversarial review pattern).
+A structured ideation engine that applies Paul Graham's canonical "How to Get Startup Ideas" framework - augmented by Dalton Caldwell + Michael Seibel's tarpit-ideas warning lens - to generate, test, research-validate, and document startup ideas. Inspired by Garry Tan's [gstack `/office-hours`](https://github.com/garrytan/gstack/blob/main/office-hours/SKILL.md) skill (the multi-phase diagnostic with adversarial review pattern).
 
-**Core insight from PG's framework:** good startup ideas are *noticed* from the leading edge, not *thought up* in the abstract. Plausible-sounding ideas are statistically more likely to fail than implausible-sounding ones. The most dangerous failure mode is the "sitcom idea" — invented through abstract category-search, validated by friends saying "maybe I'd use that," failing in real adoption.
+**Core insight from PG's framework:** good startup ideas are *noticed* from the leading edge, not *thought up* in the abstract. Plausible-sounding ideas are statistically more likely to fail than implausible-sounding ones. The most dangerous failure mode is the "sitcom idea" - invented through abstract category-search, validated by friends saying "maybe I'd use that," failing in real adoption.
 
-**Core insight from Dalton/Michael:** first-time founders cluster on tarpit ideas — patterns that look attractive and that a generation of failed attempts has already established do not work. The framework must explicitly catch these.
+**Core insight from Dalton/Michael:** first-time founders cluster on tarpit ideas - patterns that look attractive and that a generation of failed attempts has already established do not work. The framework must explicitly catch these.
 
 This skill is designed against those failure modes specifically.
 
@@ -79,7 +79,7 @@ To add a new sub-skill or specialized scenario:
 
 1. Create `sub-skills/{NN-scenario}.md` following the same phase structure: Inputs → Procedure → Outputs → Mode Behavior.
 2. Update the SKILL.md procedure to reference it from the appropriate phase.
-3. The adversarial review phase is **required** — do not bypass it for shortcut scenarios.
+3. The adversarial review phase is **required** - do not bypass it for shortcut scenarios.
 4. New tarpit patterns observed in production go into `references/dalton-michael-tarpits.md` with date and observed-failure context.
 5. New procedures for noticing (e.g., a domain-specific generation lens) go into `sub-skills/01-noticing.md` as additional procedures, not as separate sub-skills.
 
@@ -87,8 +87,8 @@ To add a new sub-skill or specialized scenario:
 
 ## Sources
 
-- Paul Graham, "How to Get Startup Ideas" (2012) — `https://www.paulgraham.com/startupideas.html`
-- Y Combinator Startup Library entry — `https://www.ycombinator.com/library/8z-how-to-get-startup-ideas`
-- Dalton Caldwell + Michael Seibel, "Where do great startup ideas come from?" — `https://www.ycombinator.com/library/DU-dalton-michael-where-do-great-startup-ideas-come-from`
-- Garry Tan, gstack `/office-hours` SKILL.md — `https://github.com/garrytan/gstack/blob/main/office-hours/SKILL.md`
-- Y Combinator Requests for Startups (current) — `https://www.ycombinator.com/rfs`
+- Paul Graham, "How to Get Startup Ideas" (2012) - `https://www.paulgraham.com/startupideas.html`
+- Y Combinator Startup Library entry - `https://www.ycombinator.com/library/8z-how-to-get-startup-ideas`
+- Dalton Caldwell + Michael Seibel, "Where do great startup ideas come from?" - `https://www.ycombinator.com/library/DU-dalton-michael-where-do-great-startup-ideas-come-from`
+- Garry Tan, gstack `/office-hours` SKILL.md - `https://github.com/garrytan/gstack/blob/main/office-hours/SKILL.md`
+- Y Combinator Requests for Startups (current) - `https://www.ycombinator.com/rfs`
