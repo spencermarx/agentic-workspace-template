@@ -11,7 +11,7 @@ argument-hint: '[what the next session will focus on]'
 disable-model-invocation: true
 ---
 
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/handoff/SKILL.md @ 8bd0dc9); adapted for this repo (artifact types re-keyed from Issues/OpenSpec/nx to vault artifacts: decision records, area CLAUDE.md registers, parking lots, activities, external paths; the document template moved to references/ to fit the skill-body budget; build-gate done-bar replaced with the validation gate). Upstream lineage: https://github.com/mattpocock/skills (skills/productivity/handoff/SKILL.md). Its core ideas are preserved: compact rather than copy, reference artifacts by path, redact secrets, suggest skills, save outside the tracked workspace. See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/handoff/SKILL.md @ ce32987bb267); adapted for this repo (artifact types re-keyed from Issues/OpenSpec/nx to vault artifacts: decision records, area CLAUDE.md registers, parking lots, activities, external paths; the document template moved to references/ to fit the skill-body budget; build-gate done-bar replaced with the validation gate). Upstream lineage: https://github.com/mattpocock/skills (skills/productivity/handoff/SKILL.md). Its core ideas are preserved: compact rather than copy, reference artifacts by path, redact secrets, suggest skills, save outside the tracked workspace. See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
 
 A session is about to end and the work is not done. What you were doing, the
 three things you already ruled out, the exact file you stopped in, the gotcha

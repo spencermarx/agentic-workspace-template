@@ -1006,6 +1006,198 @@ def check_house_style(report: Report) -> None:
 
 
 # --------------------------------------------------------------------------
+# doctor and upgrade
+# --------------------------------------------------------------------------
+
+TEMPLATE_OWNED_PREFIXES = (".workspace", ".claude", "Obsidian/Templates", ".obsidian")
+
+
+def template_owned_files() -> List[Path]:
+    out = []
+    for prefix in TEMPLATE_OWNED_PREFIXES:
+        root = REPO_ROOT / prefix
+        if not root.is_dir():
+            continue
+        for f in sorted(root.rglob("*")):
+            if f.is_file() and ".git" not in f.parts and f.name != ".DS_Store":
+                out.append(f)
+    return out
+
+
+def load_manifest() -> Dict[str, str]:
+    path = REPO_ROOT / ".workspace" / "manifest.lock.json"
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(read_text(path)).get("files", {})
+    except json.JSONDecodeError:
+        return {}
+
+
+def sha256_of(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def run_doctor(upstream: bool = False, vendored: bool = False) -> int:
+    config = load_config()
+    tmpl = config.get("template") or {}
+    repo = tmpl.get("repo", "unknown")
+    ref = tmpl.get("ref", "unknown")
+    print("template  %s @ %s" % (repo, ref))
+    if tmpl.get("bootstrappedAt"):
+        print("          bootstrapped %s" % tmpl["bootstrappedAt"])
+    print("")
+
+    # Local divergence from the template. A file that differs will not receive
+    # upgrades, which is the thing people are surprised by later.
+    manifest = load_manifest()
+    if not manifest:
+        print("No manifest.lock.json, so local harness changes cannot be detected.")
+        print("It is written at bootstrap and at every upgrade.")
+    else:
+        drifted, added, removed = [], [], []
+        on_disk = {rel(f): f for f in template_owned_files()}
+        for path, digest in sorted(manifest.items()):
+            f = on_disk.get(path)
+            if f is None:
+                removed.append(path)
+            elif sha256_of(f) != digest:
+                drifted.append(path)
+        for path in sorted(on_disk):
+            if path not in manifest:
+                added.append(path)
+        if drifted:
+            print("harness   %d template-owned file(s) diverge from %s:" % (len(drifted), ref))
+            for path in drifted[:20]:
+                print("            %s" % path)
+            if len(drifted) > 20:
+                print("            ... and %d more" % (len(drifted) - 20))
+            print("          These will not receive upgrades. Port them upstream:")
+            print("            gh repo clone %s" % repo)
+        if added:
+            print("local     %d file(s) added locally under template-owned paths" % len(added))
+        if removed:
+            print("missing   %d template-owned file(s) deleted locally" % len(removed))
+        if not (drifted or added or removed):
+            print("harness   clean, no divergence from the template")
+    print("")
+
+    if upstream:
+        proc = subprocess.run(["gh", "release", "list", "--repo", repo, "--limit", "5"],
+                              capture_output=True, text=True)
+        if proc.returncode == 0 and proc.stdout.strip():
+            print("upstream releases:")
+            for line in proc.stdout.strip().split("\n"):
+                print("  %s" % line)
+            print("")
+            print("  ./workspace upgrade --to <ref> --dry-run")
+        else:
+            print("upstream  could not list releases (is `gh` authenticated?)")
+        print("")
+
+    if vendored:
+        print("vendored skills:")
+        skills = REPO_ROOT / ".claude" / "skills"
+        for d in sorted(skills.iterdir()) if skills.is_dir() else []:
+            md = d / "SKILL.md"
+            if not md.is_dir() and md.exists():
+                text = read_text(md)
+                m = VENDORED_ANY_RE.search(text)
+                if not m:
+                    continue
+                sha = VENDORED_SHA_RE.search(text)
+                url = m.group(1).rstrip(")").rstrip(",")
+                verbatim = VENDORED_VERBATIM_MARKER in text
+                print("  %-32s %-9s %s" % (d.name, "verbatim" if verbatim else "adapted",
+                                           sha.group(1) if sha else "NO PIN"))
+        print("")
+        print("  A pin is what makes the manual diff against upstream tractable.")
+    return 0
+
+
+def run_upgrade(to_ref: str, dry_run: bool) -> int:
+    """Replacement, not merge.
+
+    A template repo shares no git history with the workspaces made from it, so
+    there is nothing to merge. Replacement works only because template-owned
+    paths hold no workspace content: that boundary is what this whole command
+    rests on.
+    """
+    config = load_config()
+    repo = (config.get("template") or {}).get("repo")
+    if not repo:
+        print("No template repo recorded in workspace.json.", file=sys.stderr)
+        return 1
+
+    manifest = load_manifest()
+    if not manifest:
+        print("No manifest.lock.json, so an unmodified file cannot be told from a", file=sys.stderr)
+        print("modified one. Refusing to overwrite anything.", file=sys.stderr)
+        return 1
+
+    tmp = Path(os.environ.get("TMPDIR", "/tmp")) / ("awt-%s" % to_ref.replace("/", "-"))
+    if tmp.exists():
+        subprocess.run(["rm", "-rf", str(tmp)], check=False)
+    print("fetching %s @ %s" % (repo, to_ref))
+    proc = subprocess.run(["git", "clone", "--depth", "1", "--branch", to_ref,
+                           "https://github.com/%s.git" % repo, str(tmp)],
+                          capture_output=True, text=True)
+    if proc.returncode != 0:
+        print(proc.stderr.strip(), file=sys.stderr)
+        return 1
+
+    replace, conflict, added, gone = [], [], [], []
+    for prefix in TEMPLATE_OWNED_PREFIXES:
+        up_root = tmp / prefix
+        if not up_root.is_dir():
+            continue
+        for up in sorted(up_root.rglob("*")):
+            if not up.is_file() or ".git" in up.parts:
+                continue
+            r = str(up.relative_to(tmp))
+            local = REPO_ROOT / r
+            if not local.exists():
+                added.append(r)
+            elif r not in manifest:
+                conflict.append(r)
+            elif sha256_of(local) == manifest[r]:
+                if sha256_of(up) != sha256_of(local):
+                    replace.append(r)
+            else:
+                conflict.append(r)
+    for r in manifest:
+        if not (tmp / r).exists():
+            gone.append(r)
+
+    print("")
+    for r in replace:
+        print("  replace  %s" % r)
+    for r in added:
+        print("  add      %s" % r)
+    for r in conflict:
+        print("  keep     %s   (locally modified; diff against %s/%s)" % (r, tmp, r))
+    for r in gone:
+        print("  orphan   %s   (removed upstream; not deleted here)" % r)
+    print("")
+    print("  %d replace, %d add, %d kept as local, %d orphaned"
+          % (len(replace), len(added), len(conflict), len(gone)))
+
+    if dry_run:
+        print("  next     ./workspace upgrade --to %s" % to_ref)
+        return 0
+
+    for r in replace + added:
+        dst = REPO_ROOT / r
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        dst.write_bytes((tmp / r).read_bytes())
+    config.setdefault("template", {})["ref"] = to_ref
+    CONFIG_PATH.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
+    write_manifest_lock(False)
+    print("")
+    print("  Upgraded. Run ./workspace validate, then review the kept files above.")
+    return 0
+
+# --------------------------------------------------------------------------
 # validate
 # --------------------------------------------------------------------------
 
@@ -1731,6 +1923,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     p_upgrade.add_argument("--dry-run", action="store_true")
 
     args = parser.parse_args(argv)
+    if args.command == "doctor":
+        return run_doctor(upstream=args.upstream, vendored=args.vendored)
+    if args.command == "upgrade":
+        return run_upgrade(args.to, args.dry_run)
     if args.command == "bootstrap":
         return run_bootstrap(args.plan, args.dry_run, args.force, args.overwrite_authored)
     if args.command == "add":
