@@ -5,5 +5,13 @@
 # Vendored plugin builds are not our source.
 .obsidian/plugins/**  linguist-vendored=true -diff
 
+# The prose and declarations under it are. The rule above is aimed at minified
+# main.js, but the glob also caught the README, the SETUP.md files, and
+# store-plugins.json, which is the one file a reviewer has to read as a diff to
+# see a plugin being added. Last match wins, so this puts them back.
+.obsidian/plugins/**/*.md         -linguist-vendored diff
+.obsidian/plugins/**/*.example    -linguist-vendored diff
+.obsidian/plugins/*.json          -linguist-vendored diff
+
 # The launcher must stay executable across clones.
 workspace  text eol=lf
