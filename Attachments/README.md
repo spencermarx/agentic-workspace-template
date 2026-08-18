@@ -3,5 +3,5 @@
 Only images the notes themselves produce: diagram exports, screenshots, pasted
 images.
 
-Documents another system owns stay in that system and are referenced by path.
-See [external-paths](../Standards/external-paths.md).
+Anything else a note needs may live here too, or outside the vault and be
+linked to. Neither is prescribed.

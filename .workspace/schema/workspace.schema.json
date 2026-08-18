@@ -32,11 +32,6 @@
         }
       }
     },
-    "externalRoots": {
-      "type": "object",
-      "description": "Named anchors to material the vault references but never absorbs. Paths are relative to the vault root so the whole tree stays movable.",
-      "additionalProperties": { "type": "string" }
-    },
     "conventions": { "type": "object" },
     "budgets": { "type": "object" },
     "sync": { "type": "object" },

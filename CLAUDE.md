@@ -57,10 +57,7 @@ read.
    The thinking stays useful even when the conclusion does not.
 5. **Credentials never enter a note**, and client material never leaves the
    vault without a human deciding to send it.
-6. **The vault is a knowledge layer.** Code, binaries, and legal originals live
-   outside it and are referenced by relative path. See
-   `Standards/external-paths.md`.
-7. **Never fix the harness here.** `.workspace/`, `.claude/skills/`, and
+6. **Never fix the harness here.** `.workspace/`, `.claude/skills/`, and
    `Obsidian/Templates/` are owned by the template this workspace came from. Fix
    them upstream and run `./workspace upgrade`. `./workspace doctor` reports
    drift.

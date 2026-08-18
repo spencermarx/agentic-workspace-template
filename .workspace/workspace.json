@@ -7,7 +7,6 @@
   "domain": "{{WORKSPACE_DOMAIN}}",
   "primaryEmail": "{{PRIMARY_EMAIL}}",
   "people": [],
-  "externalRoots": {},
   "conventions": {
     "folderCase": "kebab",
     "noteCase": "title",

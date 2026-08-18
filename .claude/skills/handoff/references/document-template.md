@@ -74,7 +74,6 @@ instead. A load-bearing unknown has a durable home; a handoff is swept.>
 - Area context: <the relevant CLAUDE.md files>
 - Meetings or activities: <path>
 - Parking lot items: <the area's parking lot, and which row>
-- External material: <see Standards/external-paths.md>
 - Key anchors: <the two or three files the next agent will actually touch>
 
 ## Suggested skills

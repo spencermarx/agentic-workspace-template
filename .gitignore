@@ -53,21 +53,6 @@
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 
-# ── Vault boundary ──────────────────────────────────────────────────────────
-# This vault is a knowledge layer. Binaries and legal originals live in their
-# own folders outside it and are referenced by relative path, never absorbed.
-# See Standards/external-paths.md. Attachments/ holds only images the notes
-# themselves produce (Excalidraw exports, screenshots).
-#
-# This is what makes the boundary a build failure rather than a norm: copying a
-# signed PDF in does not produce a quiet 2 MB commit, it produces a file git
-# refuses to stage.
-**/*.pdf
-**/*.docx
-**/*.xlsx
-**/*.pptx
-**/*.sketch
-
 # ── Credentials ─────────────────────────────────────────────────────────────
 # Commit only the scaffold: folder structure, .example templates, READMEs. A
 # fresh clone gets a ready-to-fill skeleton and never a secret.

@@ -182,5 +182,5 @@ belong there.
 ## Attachments and binaries
 
 `Attachments/` holds only images the notes themselves produce: diagram exports,
-screenshots, pasted images. Documents that another system owns stay in that
-system and are referenced by path. See `external-paths.md`.
+screenshots, pasted images. Documents another system owns may live here or
+stay in that system and be linked to. Neither is prescribed.
