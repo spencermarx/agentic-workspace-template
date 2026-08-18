@@ -12,7 +12,6 @@ views:
     order:
       - file.name
       - orgs
-      - role
       - updated
     sort:
       - property: updated
