@@ -878,7 +878,9 @@ def check_placeholders(report: Report, template_mode: bool) -> None:
                         "The authoring pass replaces the slot and deletes the comment.")
 
 
-def check_identity(report: Report) -> None:
+def check_identity(report: Report, template_mode: bool) -> None:
+    if not template_mode:
+        return  # a workspace is supposed to carry its own identity
     for path in walk_mutate_surface():
         r = rel(path)
         if r.startswith(IDENTITY_EXEMPT_PREFIXES):
@@ -1221,7 +1223,7 @@ def run_validate(structure_only: bool = False, as_json: bool = False) -> int:
     check_links(report)
     if not structure_only:
         check_placeholders(report, template_mode)
-    check_identity(report)
+    check_identity(report, template_mode)
     check_template_purity(report, config)
     check_obsidian(report)
     check_gitignore(report)

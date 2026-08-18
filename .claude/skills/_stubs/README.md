@@ -1,3 +1,4 @@
+<!-- workspace:no-mutate -->
 # Stubs
 
 Skills that are shipped but not wired. Each points at a service this workspace

@@ -8,6 +8,8 @@ tags:
   - status/active
 ---
 
+<!-- workspace:no-mutate -->
+
 # {{SCOPE_NAME}} - Parking Lot
 
 Capture inbox for anything surfaced during work on {{SCOPE_NAME}} that is out of scope right now and must not be lost. Both operators and both Claude harnesses read and write this file; git keeps it in sync. Managed by the `parking-lot` skill.

@@ -8,6 +8,8 @@ description: >-
   pending") or a load-bearing unknown ("Open questions").
 ---
 
+<!-- workspace:no-mutate -->
+
 # Parking Lot
 
 One repeatable job: keep a scope's deferred items in a single canonical Markdown file that both operators and both Claude harnesses read and write, so nothing surfaced mid-work is lost and everything is triaged the same way. Git is the sync layer. This skill enforces the file location, ID scheme, status vocabulary, and graduation routing so concurrent edits rarely collide and a sweep is uniform no matter who runs it.
