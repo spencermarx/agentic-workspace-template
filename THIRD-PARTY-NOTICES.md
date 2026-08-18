@@ -51,6 +51,26 @@ SOFTWARE.
 
 ---
 
+## spencermarx/wrkbelt-agent-team
+
+Pinned at: `496d37273aca`. A private repository by the same author, and the
+ancestor of this lineage.
+
+Recovered from it: `get-brand-kit`, `image-overlay` (with `overlay.sh`),
+`image-prompt`, `image-clean`, `startup-idea-engine`, `campaign-brief`,
+`business-retro`, `openai`, and the four Google stubs.
+
+`get-brand-kit` and `image-overlay` are the two dependencies that
+`create-html-slides` had been referencing without them existing anywhere in its
+own repository. Recovering them is what repaired that skill.
+
+Every one of these was de-branded on the way in: the palette is now a neutral
+placeholder, the logo assets are generated wordmarks, and the per-variant
+luminance constants are computed from the SVGs rather than hardcoded to one
+brand's hexes.
+
+---
+
 ## Skills adapted from the author's own earlier work
 
 `scratchpad`, `handoff`, `conveying-clearly`, `context`, `domain-modeling`,
