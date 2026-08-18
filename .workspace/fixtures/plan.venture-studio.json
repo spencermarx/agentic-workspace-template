@@ -1,0 +1,22 @@
+{
+  "$schema": "../schema/plan.schema.json",
+  "planVersion": 1,
+  "shape": { "primaryMultiplicity": "ventures", "kind": "venture-studio" },
+  "nodes": [
+    { "path": "Core", "role": "leaf", "title": "Core", "template": "leaf",
+      "scaffold": ["Activities", "Documents"], "children": ["decisions"],
+      "files": [{ "name": "Core - Parking Lot.md", "template": "parking-lot" }] },
+    { "path": "Ventures", "role": "router", "title": "Ventures", "template": "router",
+      "instanceTemplate": "leaf", "instanceRole": "leaf", "instanceNaming": "kebab",
+      "children": ["_candidates", "_archive"] },
+    { "path": "Products", "role": "router", "title": "Products", "template": "router",
+      "instanceTemplate": "leaf", "instanceRole": "leaf", "instanceNaming": "kebab" },
+    { "path": "Operators", "role": "router", "title": "Operators", "template": "router",
+      "instanceTemplate": "leaf", "instanceRole": "leaf" },
+    { "path": "Operators/operator", "role": "leaf", "title": "Operator", "template": "leaf",
+      "scaffold": ["Daily Notes", "Weekly Reviews", "Weekly Goals", "Inbox"] },
+    { "path": "Meetings", "role": "plain", "title": "Meetings", "gitkeep": true },
+    { "path": "People", "role": "plain", "title": "People", "gitkeep": true },
+    { "path": "Attachments", "role": "plain", "title": "Attachments", "gitkeep": true }
+  ]
+}

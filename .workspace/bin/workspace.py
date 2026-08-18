@@ -502,24 +502,54 @@ def check_rules(report: Report, budgets: Dict[str, int], template_mode: bool) ->
             report.fail("rule-paths", r, "paths is empty or not a list")
             continue
 
+        # The positive control, applied per RULE rather than per glob. A rule
+        # listing several globs is not dead because one target folder is empty
+        # or absent from this workspace's shape.
+        live, dormant = [], []
         for pattern in paths:
             if not glob_is_supported(pattern):
                 report.fail("rule-glob-syntax", r, "unsupported glob syntax: %s" % pattern,
                             "Supported: ** * ? [abc]. No braces, no negation, no extglob.")
                 continue
             rx = glob_to_regex(pattern)
-            matched = any(rx.match(c) for c in content_rels)
-            if not matched:
-                # The positive control. This is what proves a folder rename
-                # rewrote its globs; without it a rule silently stops routing
-                # and the system reads as healthy.
-                msg = "glob matches no file in the repo: %s" % pattern
-                hint = "Either the folder was renamed without rewriting this glob, or the rule is dead."
-                if template_mode:
-                    report.warn("rule-glob-dead", r, msg,
-                                "Expected before bootstrap: most target folders do not exist yet.")
-                else:
-                    report.fail("rule-glob-dead", r, msg, hint)
+            if any(rx.match(c) for c in content_rels):
+                live.append(pattern)
+            else:
+                dormant.append(pattern)
+        # Does any directory a dormant glob targets actually exist? A folder
+        # that exists and is empty will start routing as soon as content lands.
+        existing_dirs = {str(d.relative_to(REPO_ROOT)) for d in REPO_ROOT.rglob("*")
+                         if d.is_dir() and ".git" not in d.parts}
+        target_exists = False
+        for pattern in dormant:
+            for seg in pattern.split("/"):
+                if seg and "*" not in seg and "?" not in seg and "[" not in seg:
+                    if any(d == seg or d.endswith("/" + seg) for d in existing_dirs):
+                        target_exists = True
+                        break
+            if target_exists:
+                break
+
+        if not live and dormant and target_exists and not template_mode:
+            report.warn("rule-glob-dormant", r,
+                        "target folders exist but hold no matching file yet: %s"
+                        % ", ".join(dormant),
+                        "Normal in a young workspace. The rule starts routing when "
+                        "content lands.")
+        elif not live and dormant:
+            msg = "no glob in this rule matches any file: %s" % ", ".join(dormant)
+            if template_mode:
+                report.warn("rule-glob-dead", r, msg,
+                            "Expected before bootstrap: the target folders do not exist yet.")
+            else:
+                report.fail("rule-glob-dead", r, msg,
+                            "The rule is unreachable. Either a folder was renamed without "
+                            "rewriting these globs, or the rule no longer applies here and "
+                            "should be removed along with its registry row.")
+        elif dormant and not template_mode:
+            report.warn("rule-glob-dormant", r,
+                        "dormant globs (folder absent or empty): %s" % ", ".join(dormant),
+                        "Fine while the area is unused. They start routing when content lands.")
 
         body = text[frontmatter_body_offset(text):]
         for label, target in links_of(body):
@@ -701,14 +731,36 @@ def claude_md_files() -> List[Path]:
                   if p.is_file() and not any(part in MUTATE_IGNORE_DIRS for part in p.parts))
 
 
+_PLAN_ROLES: Optional[Dict[str, str]] = None
+
+
+def plan_roles() -> Dict[str, str]:
+    """Declared role per node path, when a plan exists."""
+    global _PLAN_ROLES
+    if _PLAN_ROLES is None:
+        _PLAN_ROLES = {}
+        if PLAN_PATH.exists():
+            try:
+                for n in json.loads(read_text(PLAN_PATH)).get("nodes", []):
+                    _PLAN_ROLES[n.get("path", "")] = n.get("role", "")
+            except (json.JSONDecodeError, AttributeError):
+                pass
+    return _PLAN_ROLES
+
+
 def tier_of(path: Path, all_paths: Sequence[Path]) -> str:
     """Root, router, or leaf.
 
-    A folder whose subtree contains another CLAUDE.md is a router: its only job
-    is to point down. Everything else that carries one is a leaf.
+    The plan is authoritative where it has an opinion: a router whose children
+    are scaffold folders without their own CLAUDE.md is still a router, and
+    judging it by structure alone reads it as a leaf and then demands leaf
+    sections it should never have. Structure is the fallback.
     """
     if path.parent == REPO_ROOT:
         return "root"
+    declared = plan_roles().get(rel(path.parent))
+    if declared in ("router", "leaf"):
+        return declared
     here = path.parent
     for other in all_paths:
         if other == path:
@@ -730,8 +782,9 @@ def check_claude_md(report: Report, budgets: Dict[str, int], template_mode: bool
 
     for path in paths:
         r = rel(path)
-        # .claude/CLAUDE.md documents the harness and is not part of the vault tier system.
-        if r == ".claude/CLAUDE.md":
+        # These document the harness and the vault mechanics. Neither is an area,
+        # so neither has a tier or the section skeleton that goes with one.
+        if r in (".claude/CLAUDE.md", "Obsidian/CLAUDE.md"):
             continue
         text = read_text(path)
         size = len(text.encode("utf-8"))
@@ -1008,6 +1061,513 @@ def run_validate(structure_only: bool = False, as_json: bool = False) -> int:
 
 
 # --------------------------------------------------------------------------
+# Rendering: managed blocks, tokens, and the tree
+# --------------------------------------------------------------------------
+
+TEMPLATE_VERSION = "1"
+TEMPLATES = REPO_ROOT / ".workspace" / "templates"
+
+BLOCK_RE_TMPL = r"(<!--\s*workspace:%s:start\s*-->)(.*?)(<!--\s*workspace:%s:end\s*-->)"
+
+
+def replace_managed_block(text: str, name: str, body: str) -> str:
+    """Replace only what is between the fences, byte-preserving everything else.
+
+    This is what makes a re-run a merge rather than a clobber, and it is why the
+    folder map cannot drift: no human and no agent ever writes it.
+    """
+    pattern = re.compile(BLOCK_RE_TMPL % (name, name), re.DOTALL)
+    if not pattern.search(text):
+        return text
+    return pattern.sub(lambda m: m.group(1) + "\n" + body.rstrip() + "\n" + m.group(3), text)
+
+
+def load_plan(path: Optional[Path] = None) -> Dict[str, object]:
+    target = path or PLAN_PATH
+    if not target.exists():
+        raise SystemExit("No plan at %s. Run `./workspace bootstrap` to create one." % target)
+    return json.loads(read_text(target))
+
+
+def rel_depth(node_path: str) -> str:
+    """`..` repeated once per path segment, or `.` at the root.
+
+    Computed rather than authored: a leaf four levels deep needs four levels of
+    `..`, and an agent writing that from context gets it wrong often enough that
+    every one of them becomes a dangling link that reads as correct.
+    """
+    depth = len([p for p in node_path.split("/") if p])
+    return "/".join([".."] * depth) if depth else "."
+
+
+def node_by_path(plan: Dict[str, object], path: str) -> Optional[Dict[str, object]]:
+    for n in plan.get("nodes", []):
+        if n.get("path") == path:
+            return n
+    return None
+
+
+def parent_of(plan: Dict[str, object], node: Dict[str, object]) -> Optional[Dict[str, object]]:
+    parts = node["path"].split("/")
+    while len(parts) > 1:
+        parts = parts[:-1]
+        found = node_by_path(plan, "/".join(parts))
+        if found:
+            return found
+    return None
+
+
+def substitute(text: str, tokens: Dict[str, str]) -> str:
+    for key, value in tokens.items():
+        text = text.replace("{{%s}}" % key, value)
+    return text
+
+
+def identity_tokens(config: Dict[str, object], today: str) -> Dict[str, str]:
+    people = config.get("people") or []
+    primary = next((p for p in people if p.get("default")), people[0] if people else {})
+    return {
+        "WORKSPACE_NAME": str(config.get("workspaceName") or ""),
+        "WORKSPACE_SLUG": str(config.get("slug") or ""),
+        "WORKSPACE_DOMAIN": str(config.get("domain") or ""),
+        "PRIMARY_EMAIL": str(config.get("primaryEmail") or ""),
+        "SUPPORT_EMAIL": str(config.get("primaryEmail") or ""),
+        "PRIMARY_OPERATOR": str(primary.get("display") or ""),
+        "PRIMARY_OPERATOR_KEY": str(primary.get("key") or ""),
+        "DAILY_NOTES_FOLDER": "Operators/%s/Daily Notes" % primary.get("key", "operator"),
+        "TEMPLATE_VERSION": TEMPLATE_VERSION,
+        "TODAY": today,
+    }
+
+
+
+def glob_target_segments(pattern: str) -> List[str]:
+    """The literal directory names a glob targets, ignoring wildcards."""
+    return [seg for seg in pattern.split("/")
+            if seg and "*" not in seg and "?" not in seg and "[" not in seg
+            and not seg.endswith(".md")]
+
+
+def prune_unreachable_rules(dry_run: bool, actions) -> List[str]:
+    """Drop rules this workspace's shape can never reach, and their registry rows.
+
+    A rule targeting Clients/ in a vault that has no clients is not drift, it is
+    a rule for a shape you did not choose. Leaving it shipped would mean the
+    registry claims coverage that does not exist, and the registry is the whole
+    reason the rules layer can be trusted.
+
+    Only rules whose target folders are absent ENTIRELY are pruned. A folder that
+    exists and is merely empty keeps its rule: it starts routing when content
+    lands.
+    """
+    existing = {d.name for d in REPO_ROOT.rglob("*") if d.is_dir() and ".git" not in d.parts}
+    pruned = []
+    for path in rule_files():
+        fm, _ = parse_frontmatter(read_text(path))
+        if not fm:
+            continue
+        patterns = fm.get("paths") or []
+        reachable = False
+        for pattern in patterns:
+            segments = glob_target_segments(pattern)
+            if not segments or any(seg in existing for seg in segments):
+                reachable = True
+                break
+        if reachable:
+            continue
+        pruned.append(rel(path))
+        actions.append(("prune", rel(path), "no target folder in this shape"))
+        if not dry_run:
+            path.unlink()
+
+    if pruned and not dry_run and REGISTRY_PATH.exists():
+        lines = read_text(REGISTRY_PATH).split("\n")
+        kept, moved = [], []
+        for line in lines:
+            hit = next((r for r in pruned if "`%s`" % r in line), None)
+            if hit and line.lstrip().startswith("|"):
+                cells = [c.strip() for c in line.strip().strip("|").split("|")]
+                moved.append("- %s: %s" % (cells[0], cells[1]) if len(cells) > 1 else "- %s" % cells[0])
+                continue
+            kept.append(line)
+        text = "\n".join(kept)
+        if moved:
+            text = text.replace("## Intentionally unrouted",
+                                "## Not applicable to this workspace\n\n"
+                                "Pruned at bootstrap: this workspace's shape has no folder these\n"
+                                "standards govern. The standard still stands; nothing routes it here.\n\n"
+                                + "\n".join(moved) + "\n\n## Intentionally unrouted")
+        REGISTRY_PATH.write_text(text, encoding="utf-8")
+    return pruned
+
+
+def render_node_claude_md(plan, node, config, today, dry_run, actions):
+    role = node.get("role")
+    if role not in ("router", "leaf"):
+        return
+    target = REPO_ROOT / node["path"] / "CLAUDE.md"
+    template = TEMPLATES / ("router.md" if role == "router" else "leaf.md")
+    parent = parent_of(plan, node)
+    tokens = identity_tokens(config, today)
+    tokens.update({
+        "NODE_PATH": node["path"],
+        "NODE_TITLE": node.get("title", node["path"].split("/")[-1]),
+        "NODE_PURPOSE": node.get("slots", {}).get("purpose", "__REPLACE_ME__"),
+        "PARENT_TITLE": (parent or {}).get("title", "the workspace root"),
+        "REL_TO_ROOT": rel_depth(node["path"]),
+        "REL_TO_PARENT": rel_depth(node["path"].split("/")[-1]) if parent else rel_depth(node["path"]),
+        "SCOPE": node["path"].lower(),
+    })
+    if target.exists():
+        # Re-render managed blocks only; everything a human or an agent authored
+        # outside the fences survives untouched.
+        body = read_text(target)
+        actions.append(("update", rel(target), "managed blocks"))
+    else:
+        body = substitute(read_text(template), tokens)
+        actions.append(("create", rel(target), "%s  %d B" % (role, len(body.encode()))))
+    if role == "router":
+        body = replace_managed_block(body, "inventory", render_inventory(plan, node))
+    if not dry_run:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(body, encoding="utf-8")
+
+
+def render_inventory(plan: Dict[str, object], node: Dict[str, object]) -> str:
+    """A router's child list. Generated, so it cannot drift out of date."""
+    prefix = node["path"] + "/"
+    children = [n for n in plan.get("nodes", [])
+                if n.get("path", "").startswith(prefix)
+                and "/" not in n["path"][len(prefix):]]
+    if not children:
+        instance = node.get("instanceTemplate") or node.get("instanceRole")
+        if instance:
+            return "- Nothing here yet. Add one with `./workspace add --parent %s --name \"<name>\"`." % node["path"]
+        return "- Nothing here yet."
+    lines = []
+    for child in children:
+        name = child["path"].split("/")[-1]
+        if child.get("role") in ("router", "leaf"):
+            lines.append("- `%s/`: %s. Start at [`%s/CLAUDE.md`](%s/CLAUDE.md)."
+                         % (name, child.get("title", name), name, name))
+        else:
+            lines.append("- `%s/`: %s." % (name, child.get("title", name)))
+    return "\n".join(lines)
+
+
+def render_root_map(plan: Dict[str, object]) -> str:
+    top = [n for n in plan.get("nodes", []) if "/" not in n.get("path", "")]
+    lines = ["| Folder | What it holds | Start here |", "|---|---|---|",
+             "| `Standards/` | Every convention, stated once. Business-agnostic. | [`Standards/README.md`](Standards/README.md) |"]
+    for n in top:
+        path, title = n["path"], n.get("title", n["path"])
+        if n.get("role") in ("router", "leaf"):
+            start = "[`%s/CLAUDE.md`](%s/CLAUDE.md)" % (path, path)
+        else:
+            start = "[`%s/README.md`](%s/README.md)" % (path, path)
+        lines.append("| `%s/` | %s | %s |" % (path, title, start))
+    lines.append("| `Obsidian/` | Vault mechanics: guides and templates. Not content. | [`Obsidian/CLAUDE.md`](Obsidian/CLAUDE.md) |")
+    lines.append("| `.claude/` | The agentic harness: rules, skills, agents, commands. | [`.claude/CLAUDE.md`](.claude/CLAUDE.md) |")
+    return "\n".join(lines)
+
+
+def render_home_nav(plan: Dict[str, object]) -> str:
+    top = [n for n in plan.get("nodes", []) if "/" not in n.get("path", "")]
+    out = ["## Conventions", "",
+           "- [Standards](<Standards/README.md>) -- every convention, and the registry",
+           "- [Context](<CONTEXT.md>) -- the ubiquitous language",
+           "- [Decisions](<Decisions/README.md>) -- the decision register", ""]
+    areas = [n for n in top if n.get("role") in ("router", "leaf")]
+    if areas:
+        out += ["## Areas", ""]
+        out += ["- [%s](<%s/CLAUDE.md>)" % (n.get("title", n["path"]), n["path"]) for n in areas]
+        out += [""]
+    plain = [n for n in top if n.get("role") == "plain"]
+    if plain:
+        out += ["## Shared", ""]
+        out += ["- [%s](<%s/README.md>)" % (n.get("title", n["path"]), n["path"]) for n in plain]
+        out += [""]
+    out += ["## How the vault works", "",
+            "- [Obsidian guide](<Obsidian/Guide/00-obsidian-guide-index.md>)"]
+    return "\n".join(out)
+
+
+def scaffold_node(node, config, today, dry_run, actions):
+    base = REPO_ROOT / node["path"]
+    for sub in node.get("scaffold", []) + node.get("children", []):
+        d = base / sub
+        actions.append(("create", rel(d) + "/", "scaffold"))
+        if not dry_run:
+            d.mkdir(parents=True, exist_ok=True)
+            (d / ".gitkeep").touch()
+    if node.get("gitkeep") and not dry_run:
+        base.mkdir(parents=True, exist_ok=True)
+        (base / ".gitkeep").touch()
+    tokens = identity_tokens(config, today)
+    tokens.update({"NODE_TITLE": node.get("title", ""), "SCOPE": node["path"].lower(),
+                   "TITLE": node.get("title", ""),
+                   "REL_TO_ROOT": rel_depth(node["path"])})
+    for spec in node.get("files", []):
+        target = base / spec["name"]
+        if target.exists():
+            continue
+        tpl = TEMPLATES / (spec["template"] + ".md")
+        if not tpl.exists():
+            continue
+        actions.append(("create", rel(target), spec["template"]))
+        if not dry_run:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(substitute(read_text(tpl), tokens), encoding="utf-8")
+
+
+def apply_identity_tokens(config, today, dry_run, actions):
+    tokens = identity_tokens(config, today)
+    for path in walk_mutate_surface():
+        body = read_text(path)
+        new = substitute(body, tokens)
+        if new != body:
+            actions.append(("update", rel(path), "identity"))
+            if not dry_run:
+                path.write_text(new, encoding="utf-8")
+
+
+def write_manifest_lock(dry_run: bool) -> None:
+    """SHA-256 of every template-owned file, so `upgrade` can tell an untouched
+    file from a locally-modified one and replace only the former."""
+    if dry_run:
+        return
+    owned = []
+    for prefix in (".workspace", ".claude", "Obsidian/Templates", ".obsidian"):
+        root = REPO_ROOT / prefix
+        if not root.is_dir():
+            continue
+        for f in sorted(root.rglob("*")):
+            if f.is_file() and ".git" not in f.parts:
+                owned.append(f)
+    manifest = {}
+    for f in owned:
+        try:
+            manifest[rel(f)] = hashlib.sha256(f.read_bytes()).hexdigest()
+        except OSError:
+            continue
+    (REPO_ROOT / ".workspace" / "manifest.lock.json").write_text(
+        json.dumps({"files": manifest}, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def print_actions(actions, plan, dry_run, next_cmd):
+    verbs = {}
+    for verb, path, note in actions:
+        verbs[verb] = verbs.get(verb, 0) + 1
+        print("  %-7s %-52s %s" % (verb, path, note))
+    print("")
+    budgets = budgets_from(load_config())
+    sizes = {"root": [], "router": [], "leaf": []}
+    paths = claude_md_files()
+    for p in paths:
+        if rel(p) == ".claude/CLAUDE.md":
+            continue
+        sizes[tier_of(p, paths)].append(len(read_text(p).encode()))
+    print("  budgets  root %d/%d B   routers max %d/%d B   leaves max %d/%d B" % (
+        max(sizes["root"] or [0]), budgets["rootMaxBytes"],
+        max(sizes["router"] or [0]), budgets["routerMaxBytes"],
+        max(sizes["leaf"] or [0]), budgets["leafMaxBytes"]))
+    left = 0
+    for p in walk_mutate_surface():
+        t = read_text(p)
+        left += t.count(SENTINEL) + len(AGENT_COMMENT_RE.findall(t))
+    print("  authoring %d slots left for the authoring pass" % left)
+    if dry_run:
+        print("  next     %s" % next_cmd)
+
+
+def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored=False) -> int:
+    config = load_config()
+    if config.get("bootstrapped") and not force:
+        print("This workspace is already bootstrapped.", file=sys.stderr)
+        print("Re-run with --force to reconcile, or use `./workspace add` for one area.",
+              file=sys.stderr)
+        return 1
+
+    if plan_path is None and not PLAN_PATH.exists():
+        print("No plan yet. `./workspace bootstrap` with no --plan is the conversational")
+        print("entry point: it hands off to Claude Code, which interviews you and writes")
+        print(".workspace/plan.json. Run it from a terminal, or pass --plan directly.")
+        return launch_conversation()
+
+    plan = load_plan(Path(plan_path) if plan_path else None)
+    today = os.environ.get("WORKSPACE_TODAY") or subprocess.run(
+        ["date", "+%Y-%m-%d"], capture_output=True, text=True).stdout.strip()
+
+    actions: List[Tuple[str, str, str]] = []
+    for node in plan.get("nodes", []):
+        if not dry_run:
+            (REPO_ROOT / node["path"]).mkdir(parents=True, exist_ok=True)
+        scaffold_node(node, config, today, dry_run, actions)
+        render_node_claude_md(plan, node, config, today, dry_run, actions)
+        if node.get("role") == "plain":
+            readme = REPO_ROOT / node["path"] / "README.md"
+            if not readme.exists():
+                actions.append(("create", rel(readme), "plain"))
+                if not dry_run:
+                    readme.write_text("# %s\n\n%s\n" % (node.get("title", node["path"]),
+                                                        node.get("slots", {}).get("purpose", "__REPLACE_ME__")),
+                                      encoding="utf-8")
+
+    # Managed blocks in the two files the engine owns outright.
+    for target, block, body in ((REPO_ROOT / "CLAUDE.md", "map", render_root_map(plan)),
+                                (REPO_ROOT / "Home.md", "nav", render_home_nav(plan))):
+        if target.exists():
+            text = read_text(target)
+            new = replace_managed_block(text, block, body)
+            if new != text:
+                actions.append(("update", rel(target), "[%s block]" % block))
+                if not dry_run:
+                    target.write_text(new, encoding="utf-8")
+
+    pruned = prune_unreachable_rules(dry_run, actions)
+    apply_identity_tokens(config, today, dry_run, actions)
+
+    if not dry_run:
+        config["bootstrapped"] = True
+        config.setdefault("template", {})["bootstrappedAt"] = today
+        CONFIG_PATH.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
+        if plan_path:
+            PLAN_PATH.write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
+        write_manifest_lock(dry_run)
+        subprocess.run(["git", "config", "core.hooksPath", ".githooks"],
+                       cwd=str(REPO_ROOT), capture_output=True)
+
+    header = "[dry-run] " if dry_run else ""
+    print("%splan %s -- %d nodes" % (header, plan_path or rel(PLAN_PATH), len(plan.get("nodes", []))))
+    print("")
+    cmd = "./workspace bootstrap --plan %s" % (plan_path or rel(PLAN_PATH))
+    print_actions(actions, plan, dry_run, cmd)
+    if pruned:
+        print("")
+        print("  %d rule(s) pruned: this shape has no folder they govern. Their standards" % len(pruned))
+        print("  are listed under 'Not applicable' in Standards/README.md, so the registry")
+        print("  stays true about what is actually routed here.")
+    if not dry_run:
+        print("")
+        print("  Next: fill every __REPLACE_ME__ and act on every <!-- AGENT: --> comment,")
+        print("  then run ./workspace validate. Do not commit until it passes.")
+    return 0
+
+
+def launch_conversation() -> int:
+    """Bootstrapping this template is a conversation, not a form."""
+    try:
+        os.execvp("claude", ["claude", "/bootstrap"])
+    except OSError:
+        print("`claude` is not on PATH.", file=sys.stderr)
+        print("Install Claude Code, or write .workspace/plan.json by hand from one of",
+              file=sys.stderr)
+        print("the fixtures in .workspace/fixtures/ and run:", file=sys.stderr)
+        print("  ./workspace bootstrap --plan .workspace/plan.json", file=sys.stderr)
+        return 1
+    return 0
+
+
+def run_add(parent: str, name: str, role: str, template: Optional[str], dry_run: bool) -> int:
+    config = load_config()
+    if not config.get("bootstrapped"):
+        print("Bootstrap this workspace first; there is no plan to append to.", file=sys.stderr)
+        return 1
+    plan = load_plan()
+    parent_node = node_by_path(plan, parent)
+    if parent_node is None:
+        print("No node at '%s'. Known top-level nodes: %s" % (
+            parent, ", ".join(n["path"] for n in plan["nodes"] if "/" not in n["path"])),
+            file=sys.stderr)
+        return 1
+
+    slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+    path = "%s/%s" % (parent, slug)
+    if node_by_path(plan, path):
+        print("'%s' already exists." % path, file=sys.stderr)
+        return 1
+
+    role = parent_node.get("instanceRole") or role
+    template = template or parent_node.get("instanceTemplate") or ("leaf" if role == "leaf" else "router")
+    node = {"path": path, "role": role, "title": name, "template": template}
+    if role == "leaf":
+        node["scaffold"] = ["Activities", "Documents"]
+        node["files"] = [{"name": "%s - Parking Lot.md" % name, "template": "parking-lot"}]
+        node["folderNote"] = "%s.md" % name
+
+    today = subprocess.run(["date", "+%Y-%m-%d"], capture_output=True, text=True).stdout.strip()
+    actions: List[Tuple[str, str, str]] = []
+    if not dry_run:
+        (REPO_ROOT / path).mkdir(parents=True, exist_ok=True)
+        plan["nodes"].append(node)
+    else:
+        plan = json.loads(json.dumps(plan))
+        plan["nodes"].append(node)
+
+    scaffold_node(node, config, today, dry_run, actions)
+    render_node_claude_md(plan, node, config, today, dry_run, actions)
+    # The parent's inventory and the root map are regenerated, which is why they
+    # cannot drift: nobody writes them by hand.
+    render_node_claude_md(plan, parent_node, config, today, dry_run, actions)
+    root = REPO_ROOT / "CLAUDE.md"
+    if root.exists():
+        text = read_text(root)
+        new = replace_managed_block(text, "map", render_root_map(plan))
+        if new != text:
+            actions.append(("update", "CLAUDE.md", "[map block]"))
+            if not dry_run:
+                root.write_text(new, encoding="utf-8")
+
+    if not dry_run:
+        PLAN_PATH.write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
+
+    print("%sadd %s under %s" % ("[dry-run] " if dry_run else "", name, parent))
+    print("")
+    print_actions(actions, plan, dry_run,
+                  './workspace add --parent %s --name "%s"' % (parent, name))
+    return 0
+
+
+def run_render(only: Optional[str], dry_run: bool) -> int:
+    config = load_config()
+    plan = load_plan()
+    today = subprocess.run(["date", "+%Y-%m-%d"], capture_output=True, text=True).stdout.strip()
+    actions: List[Tuple[str, str, str]] = []
+    for node in plan.get("nodes", []):
+        if only and node["path"] != only:
+            continue
+        render_node_claude_md(plan, node, config, today, dry_run, actions)
+    for target, block, body in ((REPO_ROOT / "CLAUDE.md", "map", render_root_map(plan)),
+                                (REPO_ROOT / "Home.md", "nav", render_home_nav(plan))):
+        if target.exists():
+            text = read_text(target)
+            new = replace_managed_block(text, block, body)
+            if new != text:
+                actions.append(("update", rel(target), "[%s block]" % block))
+                if not dry_run:
+                    target.write_text(new, encoding="utf-8")
+    # operators.js is generated from workspace.json, which is what keeps every
+    # template free of a person's name.
+    ops_target = REPO_ROOT / "Obsidian" / "Templates" / "scripts" / "operators.js"
+    if ops_target.exists():
+        people = config.get("people") or []
+        entries = ",\n    ".join(
+            '{ key: "%s", display: "%s", default: %s }'
+            % (p.get("key"), p.get("display"), "true" if p.get("default") else "false")
+            for p in people)
+        text = read_text(ops_target)
+        new = re.sub(r"list: \(\) => \[\n.*?\n  \],", "list: () => [\n    %s\n  ]," % entries,
+                     text, flags=re.DOTALL)
+        if new != text:
+            actions.append(("update", rel(ops_target), "operators"))
+            if not dry_run:
+                ops_target.write_text(new, encoding="utf-8")
+    print("%srender" % ("[dry-run] " if dry_run else ""))
+    print("")
+    print_actions(actions, plan, dry_run, "./workspace render")
+    return 0
+
+# --------------------------------------------------------------------------
 # obsidian-setup
 # --------------------------------------------------------------------------
 
@@ -1171,6 +1731,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     p_upgrade.add_argument("--dry-run", action="store_true")
 
     args = parser.parse_args(argv)
+    if args.command == "bootstrap":
+        return run_bootstrap(args.plan, args.dry_run, args.force, args.overwrite_authored)
+    if args.command == "add":
+        return run_add(args.parent, args.name, args.role, args.template, args.dry_run)
+    if args.command == "render":
+        return run_render(args.only, args.dry_run)
     if args.command == "obsidian-setup":
         return run_obsidian_setup(dry_run=args.dry_run)
     if args.command == "validate":
