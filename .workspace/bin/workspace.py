@@ -847,7 +847,15 @@ def check_links(report: Report) -> None:
                 continue
             resolved = (path.parent / unquote(target_path)).resolve()
             if not resolved.exists():
-                report.fail("link-dead", r, "link target does not resolve: %s" % target)
+                # A target outside the repository is not the repository's to
+                # verify. It may be absent on this machine and present on the
+                # next, so failing would block commits for a reason unrelated to
+                # what changed. Inside the repo, a dead link is a real defect.
+                if REPO_ROOT in resolved.parents:
+                    report.fail("link-dead", r, "link target does not resolve: %s" % target)
+                else:
+                    report.warn("link-outside-repo", r,
+                                "link target is outside the repository and absent here: %s" % target)
             elif resolved.name not in os.listdir(resolved.parent):
                 # macOS is case-insensitive, so a link whose case is wrong
                 # resolves here and dangles on every Linux machine. The author
