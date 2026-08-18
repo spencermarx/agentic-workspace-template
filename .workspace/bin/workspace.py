@@ -822,7 +822,12 @@ def check_identity(report: Report) -> None:
         r = rel(path)
         if r.startswith(IDENTITY_EXEMPT_PREFIXES):
             continue
-        lowered = read_text(path).lower()
+        text = read_text(path)
+        # A provenance comment must name where it came from; that is the whole
+        # point of it. Exempt the marker line itself rather than the whole file,
+        # so identity leaking into the body is still caught.
+        text = re.sub(r"<!--[^>]*?Vendored[^>]*?-->", "", text, flags=re.DOTALL)
+        lowered = text.lower()
         for term in IDENTITY_TERMS:
             if term in lowered:
                 report.fail("identity-leak", r,
