@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "workspace.json",
+  "description": "Workspace identity and conventions. Changes rarely. Structure lives in plan.json, which changes weekly.",
+  "type": "object",
+  "required": ["bootstrapped", "workspaceName", "slug"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "bootstrapped": {
+      "type": "boolean",
+      "description": "The strictness switch. False keeps the template committable with sentinels in place; true makes the gate strict, makes bootstrap refuse to re-run without --force, and lets new-area run."
+    },
+    "workspaceName": { "type": "string" },
+    "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "oneLiner": { "type": "string" },
+    "domain": { "type": "string" },
+    "primaryEmail": { "type": "string" },
+    "people": {
+      "type": "array",
+      "description": "Multi-person capable, single-person default. Every consumer resolves the operator at runtime from here, so no skill or template ever hardcodes a name.",
+      "items": {
+        "type": "object",
+        "required": ["key", "display"],
+        "additionalProperties": false,
+        "properties": {
+          "key": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "display": { "type": "string" },
+          "emails": { "type": "array", "items": { "type": "string" } },
+          "role": { "type": "string" },
+          "default": { "type": "boolean" }
+        }
+      }
+    },
+    "externalRoots": {
+      "type": "object",
+      "description": "Named anchors to material the vault references but never absorbs. Paths are relative to the vault root so the whole tree stays movable.",
+      "additionalProperties": { "type": "string" }
+    },
+    "conventions": { "type": "object" },
+    "budgets": { "type": "object" },
+    "sync": { "type": "object" },
+    "tracking": { "type": "object" },
+    "template": { "type": "object" }
+  }
+}

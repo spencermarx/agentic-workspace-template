@@ -1,0 +1,6 @@
+#!/bin/zsh
+# The one entry point. Everything lives in .workspace/bin/workspace.py.
+#
+# Extensionless so Obsidian's file explorer never shows it. ${0:A:h} is zsh for
+# "absolute directory of this script", so it works from any working directory.
+exec /usr/bin/env python3 "${0:A:h}/.workspace/bin/workspace.py" "$@"

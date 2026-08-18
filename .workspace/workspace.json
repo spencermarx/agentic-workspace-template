@@ -1,0 +1,40 @@
+{
+  "$schema": "./schema/workspace.schema.json",
+  "bootstrapped": false,
+  "workspaceName": "{{WORKSPACE_NAME}}",
+  "slug": "{{WORKSPACE_SLUG}}",
+  "oneLiner": "__REPLACE_ME__",
+  "domain": "{{WORKSPACE_DOMAIN}}",
+  "primaryEmail": "{{PRIMARY_EMAIL}}",
+  "people": [],
+  "externalRoots": {},
+  "conventions": {
+    "folderCase": "kebab",
+    "noteCase": "title",
+    "dateFormat": "YYYY-MM-DD",
+    "emDashes": false,
+    "emojis": false,
+    "folderNotes": true
+  },
+  "budgets": {
+    "rootMaxBytes": 8000,
+    "rootWarnBytes": 5000,
+    "routerMaxBytes": 3500,
+    "leafMaxBytes": 20000,
+    "leafWarnBytes": 14000
+  },
+  "sync": {
+    "provider": "none",
+    "marker": "Home.md",
+    "exclude": [".git/", ".claude/", ".obsidian/", ".credentials/", ".workspace/", ".trash/", "Attachments/"]
+  },
+  "tracking": {
+    "mode": "in-vault",
+    "note": "Three registers: 'What's pending' in each leaf CLAUDE.md, the area Parking Lot, and 'Open questions'."
+  },
+  "template": {
+    "repo": "spencermarx/agentic-workspace-template",
+    "ref": "unbootstrapped",
+    "bootstrappedAt": null
+  }
+}

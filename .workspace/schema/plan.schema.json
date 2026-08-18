@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "plan.json",
+  "description": "The desired folder structure as a flat, ordered node list. Flat because a diff must be readable and because `add` is a single append: that is what makes bootstrap and new-area the same code.",
+  "type": "object",
+  "required": ["planVersion", "nodes"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "planVersion": { "type": "integer", "const": 1 },
+    "shape": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primaryMultiplicity": {
+          "type": "string",
+          "description": "What the workspace has many of, where each accumulates its own context. This one answer determines the shape of the tree; it is why the template ships no domain profiles."
+        },
+        "kind": { "type": "string" }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "role", "title"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string" },
+          "role": {
+            "enum": ["router", "leaf", "plain"],
+            "description": "router: has children with their own CLAUDE.md, points down only. leaf: fat context, full section skeleton. plain: ambient folder, no CLAUDE.md."
+          },
+          "title": { "type": "string" },
+          "template": { "type": "string" },
+          "instanceTemplate": {
+            "type": "string",
+            "description": "The template each child instance gets. Its presence is how `add` infers a parent from a name without asking."
+          },
+          "instanceRole": { "enum": ["router", "leaf", "note"] },
+          "instanceNaming": { "enum": ["kebab", "title", "date"] },
+          "folderNote": { "type": ["string", "boolean"] },
+          "scaffold": { "type": "array", "items": { "type": "string" } },
+          "children": { "type": "array", "items": { "type": "string" } },
+          "files": { "type": "array", "items": { "type": "object" } },
+          "templateOwned": { "type": "boolean" },
+          "gitkeep": { "type": "boolean" },
+          "person": { "type": "string" },
+          "slots": { "type": "object" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+name: validate
+
+# A public template repo whose own harness is red is not usable. Ubuntu runners
+# ship python3, so there is no setup step at all.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  gate:
+    name: gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: validate the template itself
+        run: ./workspace validate
+
+  fixture-render:
+    name: render ${{ matrix.fixture }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        fixture: [consultancy, venture-studio, solo-operator]
+    steps:
+      - uses: actions/checkout@v4
+      # This is the check that proves the template has actually been executed
+      # since the last change, rather than merely looking fine.
+      - name: bootstrap a fixture workspace into a scratch copy
+        run: |
+          cp -R . "$RUNNER_TEMP/fx"
+          cd "$RUNNER_TEMP/fx"
+          ./workspace bootstrap --plan ".workspace/fixtures/plan.${{ matrix.fixture }}.json"
+      - name: validate the rendered structure
+        run: |
+          cd "$RUNNER_TEMP/fx"
+          # CI cannot run the agent authoring pass, so the placeholder grammars
+          # are skipped. Everything else is checked: tree, managed blocks, links,
+          # budgets, Obsidian wiring.
+          ./workspace validate --structure-only

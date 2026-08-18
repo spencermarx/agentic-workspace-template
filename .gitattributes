@@ -1,0 +1,9 @@
+# Excalidraw drawings are generated payloads on one line. Treating them as
+# mergeable text produces conflicts nobody can resolve by hand.
+*.excalidraw.md   linguist-generated=true -diff
+
+# Vendored plugin builds are not our source.
+.obsidian/plugins/**  linguist-vendored=true -diff
+
+# The launcher must stay executable across clones.
+workspace  text eol=lf

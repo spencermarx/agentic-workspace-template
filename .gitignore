@@ -1,0 +1,68 @@
+.DS_Store
+
+# ── Obsidian ────────────────────────────────────────────────────────────────
+# Ignore vault config by default, then un-ignore the files that make a fresh
+# clone reproducible. community-plugins.json and appearance.json are here
+# deliberately: without them a clone gets every plugin's code and Obsidian
+# enables none of it, and the theme selection is lost. That was the single
+# biggest reproducibility gap in the workspace this template came from.
+**/.obsidian/*
+!**/.obsidian/plugins/
+!**/.obsidian/themes/
+!**/.obsidian/bases/
+!**/.obsidian/snippets/
+!**/.obsidian/app.json
+!**/.obsidian/appearance.json
+!**/.obsidian/community-plugins.json
+!**/.obsidian/core-plugins.json
+!**/.obsidian/graph.json
+!**/.obsidian/hotkeys.json
+!**/.obsidian/templates.json
+!**/.obsidian/daily-notes.json
+
+# Per-machine plugin state. Each machine writes its own from the .example file
+# beside it, via `./workspace obsidian-setup`. See each plugin's SETUP.md.
+#   icloud-sync  data.json holds an absolute icloudBasePath.
+#   excalidraw   data.json is ~57% personal stencil library and pen presets,
+#                rewritten every session. Committing it guarantees conflicts on
+#                a single-line 171 KB JSON blob that git cannot merge.
+.obsidian/plugins/icloud-sync/data.json
+.obsidian/plugins/obsidian-excalidraw-plugin/data.json
+
+# Per-machine pane layout. Also leaks the working set via lastOpenFiles.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# ── Vault boundary ──────────────────────────────────────────────────────────
+# This vault is a knowledge layer. Binaries and legal originals live in their
+# own folders outside it and are referenced by relative path, never absorbed.
+# See Standards/external-paths.md. Attachments/ holds only images the notes
+# themselves produce (Excalidraw exports, screenshots).
+#
+# This is what makes the boundary a build failure rather than a norm: copying a
+# signed PDF in does not produce a quiet 2 MB commit, it produces a file git
+# refuses to stage.
+**/*.pdf
+**/*.docx
+**/*.xlsx
+**/*.pptx
+**/*.sketch
+
+# ── Credentials ─────────────────────────────────────────────────────────────
+# Commit only the scaffold: folder structure, .example templates, READMEs. A
+# fresh clone gets a ready-to-fill skeleton and never a secret.
+.credentials/**
+!.credentials/**/
+!.credentials/README.md
+!.credentials/**/*.example
+!.credentials/**/README.md
+!.credentials/**/.gitkeep
+
+# ── Harness runtime ─────────────────────────────────────────────────────────
+.scratchpad/
+.claude/settings.local.json
+.claude/worktrees
+node_modules/
+**/__pycache__/
+**/.venv-*/
+**/renderer/dist/
