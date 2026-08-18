@@ -1347,7 +1347,7 @@ def glob_target_segments(pattern: str) -> List[str]:
             and not seg.endswith(".md")]
 
 
-def prune_unreachable_rules(dry_run: bool, actions) -> List[str]:
+def prune_unreachable_rules(plan: Dict[str, object], dry_run: bool, actions) -> List[str]:
     """Drop rules this workspace's shape can never reach, and their registry rows.
 
     A rule targeting Clients/ in a vault that has no clients is not drift, it is
@@ -1359,7 +1359,17 @@ def prune_unreachable_rules(dry_run: bool, actions) -> List[str]:
     exists and is merely empty keeps its rule: it starts routing when content
     lands.
     """
+    # Union of what is on disk and what the plan will create. Reading disk alone
+    # made a dry run disagree with the apply that follows it, which is worse than
+    # being wrong in one direction: the whole protocol is "review the dry run,
+    # then run the identical command".
     existing = {d.name for d in REPO_ROOT.rglob("*") if d.is_dir() and ".git" not in d.parts}
+    for node in plan.get("nodes", []):
+        for seg in node.get("path", "").split("/"):
+            if seg:
+                existing.add(seg)
+        for seg in node.get("scaffold", []) + node.get("children", []):
+            existing.add(seg)
     pruned = []
     for path in rule_files():
         fm, _ = parse_frontmatter(read_text(path))
@@ -1623,7 +1633,7 @@ def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored
                 if not dry_run:
                     target.write_text(new, encoding="utf-8")
 
-    pruned = prune_unreachable_rules(dry_run, actions)
+    pruned = prune_unreachable_rules(plan, dry_run, actions)
     apply_identity_tokens(config, today, dry_run, actions)
 
     if not dry_run:
