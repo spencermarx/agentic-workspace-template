@@ -1,0 +1,25 @@
+{
+  "title": "Customer Review Handoff",
+  "font": "hand",
+  "texts": [
+    { "x": 80, "y": 60, "text": "Customer Review Handoff", "fontSize": 28, "align": "left" }
+  ],
+  "regions": [
+    { "x": 80, "y": 120, "w": 1120, "h": 170, "label": "Provider", "bg": "#e7f5ff" },
+    { "x": 80, "y": 300, "w": 1120, "h": 170, "label": "Customer", "bg": "#fff9db" },
+    { "x": 80, "y": 480, "w": 1120, "h": 170, "label": "Example Co",   "bg": "#f3f0ff" }
+  ],
+  "nodes": [
+    { "id": "share",  "shape": "rectangle", "x": 240,  "y": 165, "w": 210, "h": 80, "label": "Share review link\n(WhatsApp / QR)", "bg": "#d0ebff" },
+    { "id": "open",   "shape": "rectangle", "x": 540,  "y": 345, "w": 200, "h": 80, "label": "Open link, rate", "bg": "#ffec99" },
+    { "id": "route",  "shape": "diamond",   "x": 800,  "y": 320, "w": 200, "h": 130, "label": "5 stars?", "bg": "#ffd43b" },
+    { "id": "google", "shape": "rectangle", "x": 800,  "y": 165, "w": 200, "h": 80, "label": "Prompt Google\nreview", "bg": "#b2f2bb" },
+    { "id": "notify", "shape": "rectangle", "x": 800,  "y": 525, "w": 200, "h": 80, "label": "Notify provider\nfor triage", "bg": "#d0bfff" }
+  ],
+  "edges": [
+    { "from": "share",  "to": "open" },
+    { "from": "open",   "to": "route" },
+    { "from": "route",  "to": "google", "label": "Yes" },
+    { "from": "route",  "to": "notify", "label": "No" }
+  ]
+}

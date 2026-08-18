@@ -1,0 +1,19 @@
+{
+  "title": "Class Diagram",
+  "font": "code",
+  "texts": [
+    { "x": 120, "y": 40, "text": "Class Diagram", "fontSize": 26, "align": "left" }
+  ],
+  "nodes": [
+    { "id": "animal", "shape": "rectangle", "x": 440, "y": 100, "w": 260, "h": 180, "bg": "#e9ecef", "align": "left", "valign": "top", "fontSize": 15,
+      "label": "Animal\n──────────────\n# name: string\n# age: int\n──────────────\n+ speak(): void" },
+    { "id": "dog", "shape": "rectangle", "x": 440, "y": 380, "w": 260, "h": 190, "bg": "#a5d8ff", "align": "left", "valign": "top", "fontSize": 15,
+      "label": "Dog\n──────────────\n- breed: string\n──────────────\n+ speak(): void\n+ fetch(): void" },
+    { "id": "owner", "shape": "rectangle", "x": 100, "y": 380, "w": 260, "h": 160, "bg": "#b2f2bb", "align": "left", "valign": "top", "fontSize": 15,
+      "label": "Owner\n──────────────\n- name: string\n──────────────\n+ adopt(d: Dog): void" }
+  ],
+  "edges": [
+    { "from": "dog",   "to": "animal", "label": "extends", "end": "triangle" },
+    { "from": "owner", "to": "dog",    "label": "owns  1..*" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Event Pipeline",
+  "font": "hand",
+  "texts": [
+    { "x": 120, "y": 60, "text": "Event Pipeline", "fontSize": 28, "align": "left" }
+  ],
+  "nodes": [
+    { "id": "src",   "shape": "ellipse",   "x": 120,  "y": 260, "w": 180, "h": 100, "label": "App Events", "bg": "#ffd8a8" },
+    { "id": "queue", "shape": "ellipse",   "x": 380,  "y": 260, "w": 180, "h": 100, "label": "Kafka",      "bg": "#ffd8a8" },
+    { "id": "etl",   "shape": "rectangle", "x": 640,  "y": 265, "w": 180, "h": 90,  "label": "Spark ETL",  "bg": "#a5d8ff" },
+    { "id": "wh",    "shape": "ellipse",   "x": 900,  "y": 260, "w": 180, "h": 100, "label": "Snowflake",  "bg": "#ffd8a8" },
+    { "id": "bi",    "shape": "rectangle", "x": 1160, "y": 265, "w": 180, "h": 90,  "label": "Looker",     "bg": "#b2f2bb" }
+  ],
+  "edges": [
+    { "from": "src",   "to": "queue", "label": "produce" },
+    { "from": "queue", "to": "etl",   "label": "consume" },
+    { "from": "etl",   "to": "wh",    "label": "load" },
+    { "from": "wh",    "to": "bi",    "label": "query" }
+  ]
+}

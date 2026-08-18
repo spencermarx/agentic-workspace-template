@@ -1,0 +1,32 @@
+{
+  "title": "Login Sequence",
+  "font": "normal",
+  "texts": [
+    { "x": 120, "y": 40, "text": "Login Sequence", "fontSize": 26, "align": "left" }
+  ],
+  "regions": [
+    { "x": 199, "y": 170, "w": 2, "h": 380, "bg": "#ced4da" },
+    { "x": 539, "y": 170, "w": 2, "h": 380, "bg": "#ced4da" },
+    { "x": 879, "y": 170, "w": 2, "h": 380, "bg": "#ced4da" }
+  ],
+  "nodes": [
+    { "id": "user", "shape": "rectangle", "x": 120, "y": 100, "w": 160, "h": 60, "label": "User",     "bg": "#a5d8ff" },
+    { "id": "api",  "shape": "rectangle", "x": 460, "y": 100, "w": 160, "h": 60, "label": "API",      "bg": "#a5d8ff" },
+    { "id": "db",   "shape": "rectangle", "x": 800, "y": 100, "w": 160, "h": 60, "label": "Postgres", "bg": "#a5d8ff" },
+
+    { "id": "u1", "shape": "rectangle", "x": 194, "y": 190, "w": 12, "h": 28, "bg": "#d0ebff" },
+    { "id": "a1", "shape": "rectangle", "x": 534, "y": 190, "w": 12, "h": 28, "bg": "#d0ebff" },
+    { "id": "a2", "shape": "rectangle", "x": 534, "y": 270, "w": 12, "h": 28, "bg": "#d0ebff" },
+    { "id": "d1", "shape": "rectangle", "x": 874, "y": 270, "w": 12, "h": 28, "bg": "#d0ebff" },
+    { "id": "d2", "shape": "rectangle", "x": 874, "y": 350, "w": 12, "h": 28, "bg": "#d0ebff" },
+    { "id": "a3", "shape": "rectangle", "x": 534, "y": 350, "w": 12, "h": 28, "bg": "#d0ebff" },
+    { "id": "a4", "shape": "rectangle", "x": 534, "y": 430, "w": 12, "h": 28, "bg": "#d0ebff" },
+    { "id": "u2", "shape": "rectangle", "x": 194, "y": 430, "w": 12, "h": 28, "bg": "#d0ebff" }
+  ],
+  "edges": [
+    { "from": "u1", "to": "a1", "label": "POST /login" },
+    { "from": "a2", "to": "d1", "label": "SELECT user" },
+    { "from": "d2", "to": "a3", "label": "row", "style": "dashed" },
+    { "from": "a4", "to": "u2", "label": "200 OK", "style": "dashed" }
+  ]
+}

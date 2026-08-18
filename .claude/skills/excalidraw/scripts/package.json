@@ -1,0 +1,10 @@
+{
+  "name": "excalidraw-skill",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Dependency-free compiler: declarative diagram spec -> Obsidian .excalidraw.md. No install step, no browser.",
+  "type": "module",
+  "bin": {
+    "excalidraw-build": "./build.mjs"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Onboarding Flow",
+  "font": "hand",
+  "texts": [
+    { "x": 470, "y": 40, "text": "Onboarding Flow", "fontSize": 28, "align": "center", "w": 300 }
+  ],
+  "nodes": [
+    { "id": "start",   "shape": "ellipse",   "x": 500, "y": 120, "w": 200, "h": 80,  "label": "Visitor" },
+    { "id": "signup",  "shape": "rectangle", "x": 500, "y": 260, "w": 200, "h": 90,  "label": "Sign Up", "bg": "#a5d8ff" },
+    { "id": "verify",  "shape": "diamond",   "x": 480, "y": 410, "w": 240, "h": 140, "label": "Email\nVerified?", "bg": "#ffd43b" },
+    { "id": "onboard", "shape": "rectangle", "x": 820, "y": 435, "w": 200, "h": 90,  "label": "Onboarding", "bg": "#b2f2bb" },
+    { "id": "remind",  "shape": "rectangle", "x": 180, "y": 435, "w": 200, "h": 90,  "label": "Reminder Email", "bg": "#ffc9c9" },
+    { "id": "done",    "shape": "ellipse",   "x": 820, "y": 610, "w": 200, "h": 80,  "label": "Active User", "bg": "#b2f2bb" }
+  ],
+  "edges": [
+    { "from": "start",   "to": "signup" },
+    { "from": "signup",  "to": "verify" },
+    { "from": "verify",  "to": "onboard", "label": "Yes" },
+    { "from": "verify",  "to": "remind",  "label": "No" },
+    { "from": "remind",  "to": "signup",  "style": "dashed", "label": "retry" },
+    { "from": "onboard", "to": "done" }
+  ]
+}

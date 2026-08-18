@@ -2,7 +2,7 @@
 name: domain-modeling
 description: Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record a significant architectural decision, or when another skill needs to maintain the domain model.
 ---
-<!-- Vendored from https://github.com/spencermarx/bizkit (.claude/skills/domain-modeling/SKILL.md @ ce32987bb267); adapted for this repo (ADR handoff re-pointed at the decision-record skill). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/domain-modeling/SKILL.md @ ce32987bb267); adapted for this repo (ADR handoff re-pointed at the decision-record skill). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
 
 
 <!-- Vendored from https://github.com/mattpocock/skills (skills/engineering/domain-modeling/SKILL.md); adapted for this repo (ADR/CONTEXT handling rewired to the `adr` and `context` skills; the glossary challenge extended to the agent's own coined terms via the conveying-clearly skill). See [ADR: Vendor third-party skills as plain files under .claude with inline provenance and no lock manifest](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->

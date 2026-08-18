@@ -1,0 +1,19 @@
+{
+  "title": "Reviews ERD",
+  "font": "normal",
+  "texts": [
+    { "x": 120, "y": 60, "text": "Reviews ERD", "fontSize": 28, "align": "left" }
+  ],
+  "nodes": [
+    { "id": "customer", "shape": "rectangle", "x": 120, "y": 160, "w": 240, "h": 160, "bg": "#a5d8ff", "align": "left", "valign": "top", "fontSize": 16,
+      "label": "Customer\n──────────────\nid  (PK)\nname\nphone" },
+    { "id": "review", "shape": "rectangle", "x": 520, "y": 160, "w": 260, "h": 190, "bg": "#b2f2bb", "align": "left", "valign": "top", "fontSize": 16,
+      "label": "Review\n──────────────\nid  (PK)\ncustomer_id  (FK)\nprovider_id  (FK)\nrating\nbody" },
+    { "id": "provider", "shape": "rectangle", "x": 520, "y": 440, "w": 260, "h": 160, "bg": "#ffd8a8", "align": "left", "valign": "top", "fontSize": 16,
+      "label": "Provider\n──────────────\nid  (PK)\nname\ngmb_location" }
+  ],
+  "edges": [
+    { "from": "customer", "to": "review", "label": "1 : N", "end": null },
+    { "from": "provider", "to": "review", "label": "1 : N", "end": null }
+  ]
+}

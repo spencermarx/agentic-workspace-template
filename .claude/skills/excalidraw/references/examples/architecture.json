@@ -1,0 +1,28 @@
+{
+  "title": "Web Architecture",
+  "font": "hand",
+  "texts": [
+    { "x": 80, "y": 50, "text": "Web Architecture", "fontSize": 28, "align": "left" }
+  ],
+  "regions": [
+    { "x": 80, "y": 120, "w": 1000, "h": 160, "label": "Client",  "bg": "#e7f5ff" },
+    { "x": 80, "y": 320, "w": 1000, "h": 160, "label": "Backend", "bg": "#f3f0ff" },
+    { "x": 80, "y": 520, "w": 1000, "h": 160, "label": "Data",    "bg": "#fff9db" }
+  ],
+  "nodes": [
+    { "id": "web",    "shape": "rectangle", "x": 200, "y": 165, "w": 180, "h": 80, "label": "Web SPA",     "bg": "#a5d8ff" },
+    { "id": "mobile", "shape": "rectangle", "x": 640, "y": 165, "w": 180, "h": 80, "label": "Mobile App",  "bg": "#a5d8ff" },
+    { "id": "api",    "shape": "rectangle", "x": 200, "y": 365, "w": 180, "h": 80, "label": "API",         "bg": "#d0bfff" },
+    { "id": "worker", "shape": "rectangle", "x": 640, "y": 365, "w": 180, "h": 80, "label": "Worker",      "bg": "#d0bfff" },
+    { "id": "pg",     "shape": "ellipse",   "x": 200, "y": 555, "w": 180, "h": 90, "label": "Postgres",    "bg": "#ffd8a8" },
+    { "id": "redis",  "shape": "ellipse",   "x": 640, "y": 555, "w": 180, "h": 90, "label": "Redis Queue", "bg": "#ffd8a8" }
+  ],
+  "edges": [
+    { "from": "web",    "to": "api",   "label": "REST" },
+    { "from": "mobile", "to": "api",   "label": "REST" },
+    { "from": "api",    "to": "pg",    "label": "SQL" },
+    { "from": "api",    "to": "redis", "label": "enqueue" },
+    { "from": "worker", "to": "redis", "label": "consume" },
+    { "from": "worker", "to": "pg",    "label": "SQL" }
+  ]
+}

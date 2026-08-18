@@ -10,7 +10,7 @@ description: >-
 argument-hint: '[new|list|clean|root] <domain> [slug]'
 ---
 
-<!-- Vendored from https://github.com/spencermarx/bizkit (.claude/skills/scratchpad/SKILL.md @ 8bd0dc9); adapted for this repo (worktree rationale compressed, since a knowledge vault rarely uses linked worktrees; examples re-keyed to vault domains; the script itself is byte-identical because it is already repo-agnostic). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/scratchpad/SKILL.md @ 8bd0dc9); adapted for this repo (worktree rationale compressed, since a knowledge vault rarely uses linked worktrees; examples re-keyed to vault domains; the script itself is byte-identical because it is already repo-agnostic). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
 
 # scratchpad
 

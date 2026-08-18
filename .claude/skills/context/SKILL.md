@@ -8,7 +8,7 @@ description: >-
   a decision (use `decision-record`).
 argument-hint: '[the context name, e.g. "Ordering"]'
 ---
-<!-- Vendored from https://github.com/spencermarx/bizkit (.claude/skills/context/SKILL.md @ ce32987bb267); adapted for this repo (the monorepo generator invocation replaced with a plain file write). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/context/SKILL.md @ ce32987bb267); adapted for this repo (the monorepo generator invocation replaced with a plain file write). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
 
 
 # Context

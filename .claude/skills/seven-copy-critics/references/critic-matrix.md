@@ -37,7 +37,7 @@ a mass blast with my name pasted in?" Allergic to anything that could have
 been sent to 500 other people.
 
 **Kills the copy when:** the message could be search-and-replaced with anyone
-else's name and still make sense. Generic role references ("as a founder...",
+else's name and still make sense. Generic role references ("as a operator...",
 "as a marketer..."), boilerplate compliments ("loved your recent post"),
 or vague situational references all fail this critic.
 
@@ -109,11 +109,11 @@ the thing.
 
 ---
 
-#### Critic 8 — The Founder-Voice Detector
+#### Critic 8 — The Operator-Voice Detector
 
-**Profile:** Has followed enough founders on LinkedIn to know the difference
-between a founder who writes their own posts and a founder whose marketing
-team is writing for them. The real founder's posts make you feel like you're
+**Profile:** Has followed enough operators on LinkedIn to know the difference
+between a operator who writes their own posts and a operator whose marketing
+team is writing for them. The real operator's posts make you feel like you're
 in the room with someone who cares. The marketing team's posts make you feel
 like you're reading a brochure.
 

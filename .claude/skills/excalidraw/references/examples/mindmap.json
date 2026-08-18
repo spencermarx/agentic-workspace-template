@@ -1,0 +1,19 @@
+{
+  "title": "Example Co Kit",
+  "font": "hand",
+  "nodes": [
+    { "id": "root",     "shape": "ellipse",   "x": 470, "y": 300, "w": 240, "h": 120, "label": "Example Co Kit", "bg": "#d0bfff", "fontSize": 22 },
+    { "id": "reviews",  "shape": "rectangle", "x": 500, "y": 80,  "w": 180, "h": 80,  "label": "Reviews",   "bg": "#a5d8ff" },
+    { "id": "booking",  "shape": "rectangle", "x": 860, "y": 220, "w": 180, "h": 80,  "label": "Booking",   "bg": "#a5d8ff" },
+    { "id": "payments", "shape": "rectangle", "x": 820, "y": 480, "w": 180, "h": 80,  "label": "Payments",  "bg": "#a5d8ff" },
+    { "id": "website",  "shape": "rectangle", "x": 260, "y": 480, "w": 180, "h": 80,  "label": "Website",   "bg": "#a5d8ff" },
+    { "id": "messaging","shape": "rectangle", "x": 140, "y": 220, "w": 180, "h": 80,  "label": "Messaging", "bg": "#a5d8ff" }
+  ],
+  "edges": [
+    { "from": "root", "to": "reviews",   "end": null },
+    { "from": "root", "to": "booking",   "end": null },
+    { "from": "root", "to": "payments",  "end": null },
+    { "from": "root", "to": "website",   "end": null },
+    { "from": "root", "to": "messaging", "end": null }
+  ]
+}

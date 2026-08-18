@@ -50,7 +50,7 @@ Adapted from Simon Severino's [Seven Critics framework](https://github.com/Simon
 Before running the critics, collect:
 
 1. **The draft copy** (full text, exactly as it would be sent)
-2. **The target audience** (specific persona, role, situation — not "marketers" or "founders")
+2. **The target audience** (specific persona, role, situation — not "marketers" or "operators")
 3. **The channel and format** (cold email, LinkedIn post, landing page hero, blog intro, etc.)
 4. **The desired action** (reply, click, book a call, share, subscribe)
 
@@ -134,7 +134,7 @@ one more time. For each critic, write a single line:
 5. Lurker: PASS / FAIL — [one-line reason]
 6. Visual Reader: PASS / FAIL — [one-line reason]
 7. Inspiration Seeker: PASS / FAIL — [one-line reason]
-8. Founder-Voice Detector: PASS / FAIL — [one-line reason]
+8. Operator-Voice Detector: PASS / FAIL — [one-line reason]
 ```
 
 If any critic still fails, return to Step 4 and rebuild again. **Do not ship
