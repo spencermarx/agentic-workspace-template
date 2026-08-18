@@ -22,12 +22,32 @@
 
 # Per-machine plugin state. Each machine writes its own from the .example file
 # beside it, via `./workspace obsidian-setup`. See each plugin's SETUP.md.
-#   icloud-sync  data.json holds an absolute icloudBasePath.
-#   excalidraw   data.json is ~57% personal stencil library and pen presets,
-#                rewritten every session. Committing it guarantees conflicts on
-#                a single-line 171 KB JSON blob that git cannot merge.
+#   icloud-sync      data.json holds an absolute icloudBasePath.
+#   agentic-copilot  data.json is a local preference file, and editApprovalMode
+#                    is a security choice that should not arrive from a clone.
+# Excalidraw needs no line here. It is store-installed, so the whole plugin is
+# ignored below. It would have needed one otherwise: its data.json is ~57%
+# personal stencil library and pen presets, rewritten every session, and a
+# single-line 171 KB JSON blob that git cannot merge.
 .obsidian/plugins/icloud-sync/data.json
-.obsidian/plugins/obsidian-excalidraw-plugin/data.json
+.obsidian/plugins/agentic-copilot/data.json
+
+# Store-installed plugins, listed by id to match .obsidian/plugins/store-plugins.json.
+# Four of the five are GPL-3.0 or AGPL-3.0, so a `git add -A` after installing
+# them from Obsidian's browser would commit copyleft binaries into an MIT tree,
+# which is the exact thing not vendoring them exists to prevent. Ids rather than
+# a blanket rule, so the two vendored plugins stay tracked and the
+# obsidian-plugin-missing gate can still tell "expected from the store" apart
+# from "enables a plugin that is nowhere".
+.obsidian/plugins/templater-obsidian/
+.obsidian/plugins/notebook-navigator/
+.obsidian/plugins/table-editor-obsidian/
+.obsidian/plugins/obsidian-excalidraw-plugin/
+.obsidian/plugins/tag-wrangler/
+
+# Themes are store-installed too. appearance.json carries the selection, which
+# is the part that has to travel; the CSS itself is a two-click download.
+.obsidian/themes/
 
 # Per-machine pane layout. Also leaks the working set via lastOpenFiles.
 .obsidian/workspace.json
