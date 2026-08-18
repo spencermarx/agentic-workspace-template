@@ -23,6 +23,7 @@ import subprocess
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
+from urllib.parse import unquote
 from typing import Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 # --------------------------------------------------------------------------
@@ -150,7 +151,7 @@ TEMPLATE_CONTENT_WHITELIST = {
 }
 TEMPLATE_CONTENT_WHITELIST_DIRS = (
     "Standards/", "Decisions/", "Obsidian/", "instructions/", ".claude/",
-    ".workspace/", ".credentials/",
+    ".workspace/", ".credentials/", ".obsidian/",
 )
 
 
@@ -525,7 +526,7 @@ def check_rules(report: Report, budgets: Dict[str, int], template_mode: bool) ->
             if target.startswith(("http://", "https://", "mailto:")):
                 continue
             target_path, _, anchor = target.partition("#")
-            resolved = (path.parent / target_path).resolve() if target_path else path
+            resolved = (path.parent / unquote(target_path)).resolve() if target_path else path
             if not resolved.exists():
                 report.fail("rule-link-dead", r, "link target does not resolve: %s" % target)
                 continue
@@ -791,7 +792,7 @@ def check_links(report: Report) -> None:
             target_path = target.partition("#")[0]
             if not target_path:
                 continue
-            resolved = (path.parent / target_path).resolve()
+            resolved = (path.parent / unquote(target_path)).resolve()
             if not resolved.exists():
                 report.fail("link-dead", r, "link target does not resolve: %s" % target)
         for match in WIKILINK_RE.finditer(strip_code_fences(text)):
@@ -866,12 +867,26 @@ def check_obsidian(report: Report) -> None:
         except json.JSONDecodeError:
             report.fail("obsidian-json", rel(enabled_path), "is not valid JSON")
             enabled = []
+        # Plugins we deliberately do not vendor, because their license forbids it.
+        # They are declared so the gate can tell "expected from the store" apart
+        # from "someone enabled a plugin that is nowhere".
+        store_ids = set()
+        store_path = plugins_dir / "store-plugins.json"
+        if store_path.exists():
+            try:
+                store_ids = {p["id"] for p in json.loads(read_text(store_path)).get("plugins", [])}
+            except (json.JSONDecodeError, KeyError, TypeError):
+                report.fail("obsidian-json", rel(store_path), "is not valid JSON")
         for plugin_id in enabled if isinstance(enabled, list) else []:
             pdir = plugins_dir / plugin_id
             if not pdir.is_dir():
+                if plugin_id in store_ids:
+                    continue  # installed from the store by `./workspace obsidian-setup`
                 report.fail("obsidian-plugin-missing", rel(enabled_path),
-                            "enables '%s' but .obsidian/plugins/%s does not exist" % (plugin_id, plugin_id),
-                            "A fresh clone would show a broken plugin. Vendor its built files.")
+                            "enables '%s' but it is neither vendored nor declared in store-plugins.json"
+                            % plugin_id,
+                            "Either vendor its built files, or declare it in "
+                            ".obsidian/plugins/store-plugins.json with its license.")
                 continue
             for required in ("main.js", "manifest.json"):
                 if not (pdir / required).exists():
@@ -993,6 +1008,123 @@ def run_validate(structure_only: bool = False, as_json: bool = False) -> int:
 
 
 # --------------------------------------------------------------------------
+# obsidian-setup
+# --------------------------------------------------------------------------
+
+def obsidian_is_running() -> bool:
+    """Obsidian rewrites plugin data.json from memory on quit.
+
+    Editing those files while it is open means your edit is silently discarded
+    the next time it saves, which is the single most confusing failure in this
+    whole setup.
+    """
+    try:
+        out = subprocess.run(["pgrep", "-f", "Obsidian.app/Contents/MacOS/Obsidian"],
+                             capture_output=True, text=True)
+        return out.returncode == 0 and out.stdout.strip() != ""
+    except OSError:
+        return False
+
+
+def machine_tokens(config: Dict[str, object]) -> Dict[str, str]:
+    home = str(Path.home())
+    name = str(config.get("workspaceName") or REPO_ROOT.name)
+    return {
+        "{{HOME}}": home,
+        "{{VAULT_NAME}}": name,
+        "{{VAULT_PATH}}": str(REPO_ROOT),
+        "{{ICLOUD_DOCS}}": os.path.join(
+            home, "Library", "Mobile Documents", "iCloud~md~obsidian", "Documents"),
+    }
+
+
+def run_obsidian_setup(dry_run: bool = False) -> int:
+    config = load_config()
+    obsidian = REPO_ROOT / ".obsidian"
+    if not obsidian.is_dir():
+        print("No .obsidian directory. Nothing to set up.")
+        return 0
+
+    if obsidian_is_running() and not dry_run:
+        print("Obsidian is running. Quit it first, then re-run this.", file=sys.stderr)
+        print("It writes plugin config from memory on quit, so edits made now are lost.",
+              file=sys.stderr)
+        return 1
+
+    tokens = machine_tokens(config)
+    plugins_dir = obsidian / "plugins"
+    wrote, skipped = [], []
+
+    for example in sorted(plugins_dir.glob("*/data.json.example")):
+        target = example.parent / "data.json"
+        if target.exists():
+            skipped.append(rel(target))
+            continue
+        body = read_text(example)
+        for token, value in tokens.items():
+            body = body.replace(token, value)
+        # A path pasted from a shell carries backslash-escaped spaces, which get
+        # stored verbatim and sync into a directory that does not exist. The
+        # symptom is a sync that reports success and moves nothing.
+        for line in body.split("\n"):
+            if "\\ " in line:
+                print("Refusing to write %s: a value contains an escaped space." % rel(target),
+                      file=sys.stderr)
+                print("  %s" % line.strip(), file=sys.stderr)
+                print("Use the literal path, not one copied from a shell prompt.", file=sys.stderr)
+                return 1
+        if dry_run:
+            print("  would write  %s" % rel(target))
+        else:
+            target.write_text(body, encoding="utf-8")
+            print("  wrote        %s" % rel(target))
+        wrote.append(rel(target))
+
+    # Create any destination a plugin config points at, so first sync does not
+    # fail on a missing directory.
+    icloud = plugins_dir / "icloud-sync" / "data.json"
+    if icloud.exists() and not dry_run:
+        try:
+            base = json.loads(read_text(icloud)).get("icloudBasePath")
+        except json.JSONDecodeError:
+            base = None
+        if base and not Path(base).exists():
+            Path(base).mkdir(parents=True, exist_ok=True)
+            print("  created      %s" % base)
+
+    for path in skipped:
+        print("  kept         %s (already configured)" % path)
+
+    # Report what still has to happen in Obsidian itself.
+    store_path = plugins_dir / "store-plugins.json"
+    if store_path.exists():
+        try:
+            declared = json.loads(read_text(store_path))
+        except json.JSONDecodeError:
+            declared = {}
+        missing = [p for p in declared.get("plugins", [])
+                   if not (plugins_dir / p["id"]).is_dir()]
+        themes = [t for t in declared.get("themes", [])
+                  if not (obsidian / "themes" / t["name"]).is_dir()]
+        if missing or themes:
+            print("")
+            print("Install these from Obsidian, Settings then Community plugins:")
+            for p in missing:
+                print("  %-26s %s  (%s)" % (p["name"], p["repo"], p["license"]))
+            for t in themes:
+                print("  %-26s %s  (theme)" % (t["name"], t["repo"]))
+            print("")
+            print("They are not committed because four of them are GPL or AGPL, and")
+            print("redistributing copyleft binaries inside an MIT template is a license")
+            print("violation. The enable-list already travels, so they switch on as soon")
+            print("as they are installed.")
+
+    print("")
+    print("Then: open this folder in Obsidian as a vault and trust the plugins when asked.")
+    print("A fresh clone with plugins disabled looks broken, so do not skip the prompt.")
+    return 0
+
+# --------------------------------------------------------------------------
 # CLI
 # --------------------------------------------------------------------------
 
@@ -1027,7 +1159,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     p_render.add_argument("--only")
     p_render.add_argument("--dry-run", action="store_true")
 
-    sub.add_parser("obsidian-setup", help="write per-machine plugin config from .example files")
+    p_obs = sub.add_parser("obsidian-setup", help="write per-machine plugin config from .example files")
+    p_obs.add_argument("--dry-run", action="store_true")
 
     p_doctor = sub.add_parser("doctor", help="report template drift")
     p_doctor.add_argument("--upstream", action="store_true")
@@ -1038,6 +1171,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     p_upgrade.add_argument("--dry-run", action="store_true")
 
     args = parser.parse_args(argv)
+    if args.command == "obsidian-setup":
+        return run_obsidian_setup(dry_run=args.dry_run)
     if args.command == "validate":
         return run_validate(structure_only=args.structure_only, as_json=args.as_json)
     if args.command is None:

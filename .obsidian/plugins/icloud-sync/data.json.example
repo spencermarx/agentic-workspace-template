@@ -1,0 +1,19 @@
+{
+  "settings": {
+    "icloudBasePath": "{{ICLOUD_DOCS}}/{{VAULT_NAME}}",
+    "syncIntervalSeconds": 30,
+    "conflictStrategy": "keep-both",
+    "deleteStrategy": "trash-on-delete",
+    "folderNoteNames": [
+      "{folder}.md",
+      "index.md"
+    ],
+    "showStatusBar": true,
+    "enableNotifications": true,
+    "debugMode": false
+  },
+  "syncState": {
+    "files": {},
+    "lastFullSync": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "_comment": [
+    "Plugins this workspace expects, but deliberately does NOT vendor.",
+    "",
+    "Four of these are GPL-3.0 or AGPL-3.0. Committing their built main.js into a",
+    "public MIT-licensed template would redistribute copyleft binaries under an",
+    "incompatible license. They are two clicks each from Obsidian's own plugin",
+    "browser, so the cost of not vendoring them is small and the cost of vendoring",
+    "them is a license violation.",
+    "",
+    "community-plugins.json still lists them, so the enable-list travels with the",
+    "clone. `./workspace obsidian-setup` reports which are missing."
+  ],
+  "plugins": [
+    { "id": "templater-obsidian",         "name": "Templater",        "license": "AGPL-3.0", "repo": "SilentVoid13/Templater" },
+    { "id": "notebook-navigator",         "name": "Notebook Navigator","license": "GPL-3.0",  "repo": "johansan/notebook-navigator" },
+    { "id": "table-editor-obsidian",      "name": "Advanced Tables",  "license": "GPL-3.0",  "repo": "tgrosinger/advanced-tables-obsidian" },
+    { "id": "obsidian-excalidraw-plugin", "name": "Excalidraw",       "license": "AGPL-3.0", "repo": "zsviczian/obsidian-excalidraw-plugin" },
+    { "id": "tag-wrangler",               "name": "Tag Wrangler",     "license": "ISC",      "repo": "pjeby/tag-wrangler" }
+  ],
+  "themes": [
+    { "name": "Things", "license": "MIT", "repo": "colineckert/obsidian-things" }
+  ]
+}

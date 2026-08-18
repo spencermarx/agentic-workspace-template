@@ -1,0 +1,16 @@
+# What is actually live, across every area.
+filters:
+  and:
+    - 'status == "active" || status == "blocked"'
+views:
+  - type: table
+    name: In flight
+    groupBy: scope
+    order:
+      - file.name
+      - type
+      - status
+      - updated
+    sort:
+      - property: updated
+        direction: DESC

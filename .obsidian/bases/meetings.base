@@ -1,0 +1,30 @@
+# Replaces a manual Recent/ and Archive/ split.
+#
+# That split is a chore nobody performs: in the vault this template came from,
+# July notes were still sitting in Recent/ in mid-August. Sorting by date is a
+# question a view answers.
+filters:
+  and:
+    - 'type.startsWith("meeting")'
+views:
+  - type: table
+    name: All meetings
+    order:
+      - date
+      - file.name
+      - scope
+      - people
+      - status
+    sort:
+      - property: date
+        direction: DESC
+  - type: table
+    name: By area
+    groupBy: scope
+    order:
+      - date
+      - file.name
+      - people
+    sort:
+      - property: date
+        direction: DESC

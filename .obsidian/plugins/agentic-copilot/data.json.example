@@ -1,0 +1,11 @@
+{
+  "selectedAgent": "claude-code",
+  "customBinaryPath": "",
+  "customArgs": "",
+  "workingDirectory": "vault",
+  "includeActiveFile": true,
+  "includeSelection": true,
+  "maxSessions": 5,
+  "editApprovalMode": "auto-accept",
+  "autoApplyEdits": false
+}

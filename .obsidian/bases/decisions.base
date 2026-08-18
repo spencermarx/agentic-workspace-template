@@ -1,0 +1,28 @@
+# The decision register.
+#
+# This is why frontmatter is mandatory on a decision record: without it the
+# record exists but is invisible to every query, which defeats having a register.
+filters:
+  and:
+    - 'type == "decision"'
+views:
+  - type: table
+    name: All decisions
+    order:
+      - date
+      - file.name
+      - status
+      - scope
+      - supersedes
+    sort:
+      - property: date
+        direction: DESC
+  - type: table
+    name: Superseded
+    filters:
+      and:
+        - 'status == "superseded"'
+    order:
+      - date
+      - file.name
+      - scope

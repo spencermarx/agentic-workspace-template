@@ -92,3 +92,32 @@ vendored code:
 - `ceo-review`, `strategic-brief`, and `brand-review` adapt patterns from gstack.
 - `rice-prioritization` implements the RICE model originated by Sean McBride at
   Intercom.
+
+---
+
+## Obsidian plugins
+
+Two are vendored, because they cannot be installed any other way:
+
+| Plugin | License | Source |
+|---|---|---|
+| `agentic-copilot` | MIT | <https://github.com/spencermarx/obsidian-ai> |
+| `icloud-sync` | custom, bundled with permission | vendored from the author's own vault |
+
+Five more are **declared but deliberately not vendored**, in
+`.obsidian/plugins/store-plugins.json`:
+
+| Plugin | License |
+|---|---|
+| Templater | AGPL-3.0 |
+| Excalidraw | AGPL-3.0 |
+| Notebook Navigator | GPL-3.0 |
+| Advanced Tables | GPL-3.0 |
+| Tag Wrangler | ISC |
+| Things (theme) | MIT |
+
+Four of those are copyleft. Committing their built `main.js` into this
+MIT-licensed template would redistribute GPL and AGPL binaries under an
+incompatible license, so they are installed from Obsidian's own plugin browser
+instead. `community-plugins.json` still lists them, so the enable-list travels
+with a clone and they switch on the moment they are installed.

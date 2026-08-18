@@ -1,0 +1,25 @@
+.icloud-sync-status {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.icloud-sync-status .sync-icon {
+	font-size: 14px;
+}
+
+.icloud-sync-status.syncing .sync-icon {
+	animation: icloud-sync-spin 1s linear infinite;
+}
+
+@keyframes icloud-sync-spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+.icloud-sync-settings .setting-item-description code {
+	font-size: 0.85em;
+	background: var(--background-secondary);
+	padding: 2px 4px;
+	border-radius: 3px;
+}

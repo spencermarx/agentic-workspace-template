@@ -1,0 +1,19 @@
+# Sorted by staleness, ascending, on purpose.
+#
+# A person directory sorted by name is a list. Sorted by how long since you last
+# touched the note, it is a reconnect queue: the top row is who you have gone
+# longest without speaking to.
+filters:
+  and:
+    - 'type == "person"'
+views:
+  - type: table
+    name: Reconnect queue
+    order:
+      - file.name
+      - orgs
+      - role
+      - updated
+    sort:
+      - property: updated
+        direction: ASC

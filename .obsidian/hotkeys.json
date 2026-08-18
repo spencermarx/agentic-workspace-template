@@ -1,0 +1,5 @@
+{
+  "templater-obsidian:insert-templater": [{ "modifiers": ["Mod"], "key": "T" }],
+  "workspace:open-in-new-tab": [],
+  "global-search:open": [{ "modifiers": ["Mod", "Shift"], "key": "F" }]
+}
