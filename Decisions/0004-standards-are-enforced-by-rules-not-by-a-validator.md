@@ -90,12 +90,18 @@ on Linux. With CI already removed, there is no automated pass at all. The
 `vault-critic` agent is the remaining check and it is a reviewer, not a gate.
 
 Two losses are worth naming because they were not standards enforcement and went
-anyway. `check_identity` stopped a consumer's name shipping in a public
-template, and `check_template_purity` kept client material out of it. Within an
-hour of removal, an example row reading `| 001 | 2026-08-18 | spencer |` was
-found in `.workspace/templates/parking-lot.md`, which is precisely what
-`check_identity` existed to catch. Both are restorable from git history if the
-trade proves wrong.
+anyway. `check_identity` was meant to stop a consumer's name shipping in a public
+template, and `check_template_purity` to keep client material out of it. Both are
+restorable from git history if the trade proves wrong.
+
+How well `check_identity` did that job is worth recording, because it argues
+against rebuilding it the same way. Its term list was five hardcoded strings:
+`spencermarx`, `aclarify`, `bizkit`, `wrkbelt`, `donostia`. Removing it exposed an
+example row in `.workspace/templates/parking-lot.md` reading
+`| 001 | 2026-08-18 | spencer | pricing |`, which had been there since the file
+was written. That path was scanned and passed, because `spencer` is not
+`spencermarx`. A denylist reports success on everything it was not told about,
+and the confidence it buys is worth less than it appears.
 
 **Explicitly deferred:** whether anything replaces the mechanical pass. A
 link-checker run on demand rather than as a gate would recover most of the value
