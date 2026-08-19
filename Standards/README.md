@@ -1,15 +1,7 @@
 # Standards
 
-Every convention in this workspace, stated exactly once.
-
-## How a standard works
-
-Two artifacts, always. Full contract in
-[harness-standards § The three-artifact invariant](./harness-standards.md#the-three-artifact-invariant).
-
-1. **Statement.** One `##` section in a document below. The single source of truth.
-2. **Router.** One `.claude/rules/<domain>/<slug>.md` file: a `paths:` glob plus
-   a deep link back to that section. It never restates the rule.
+Every convention in this workspace, stated exactly once. Full contract in
+[harness-standards § The two-artifact invariant](./harness-standards.md#the-two-artifact-invariant).
 
 A rule loads on demand, when the main agent or a subagent reads a file matching
 its glob. That is why standards live here rather than in a `CLAUDE.md`: a
@@ -20,14 +12,11 @@ lives, and a rule reaches subagents.
 
 | Document | Covers |
 |---|---|
-| [writing-standards](./writing-standards.md) | House voice, plain language, AI tells, completion criteria |
-| [vault-standards](./vault-standards.md) | Note types, frontmatter, vocabularies, tags, naming, links |
-| [meeting-standards](./meeting-standards.md) | Meeting note format, action items, attendees as entities |
-| [decision-standards](./decision-standards.md) | The recording threshold, record format, superseding |
-| [confidentiality-standards](./confidentiality-standards.md) | What never leaves the vault, credentials, PII |
+| [writing-standards](./writing-standards.md) | House voice |
+| [vault-standards](./vault-standards.md) | Note types, frontmatter, vocabularies, naming, links |
+| [confidentiality-standards](./confidentiality-standards.md) | What never leaves the vault, credentials |
 | [claude-md-contract](./claude-md-contract.md) | The three tiers, budgets, the reusable boilerplate |
-| [document-patterns](./document-patterns.md) | Two buckets, summaries, dated bundles, the three registers |
-| [canonical-and-mirrors](./canonical-and-mirrors.md) | Canonical, mirror, and summary documents |
+| [document-patterns](./document-patterns.md) | Two buckets, dated bundles, the three registers |
 | [harness-standards](./harness-standards.md) | Skills, rules, budgets, vendoring, settings |
 
 ## Intentionally unrouted

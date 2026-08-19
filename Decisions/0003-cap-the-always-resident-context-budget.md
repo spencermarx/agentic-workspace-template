@@ -1,13 +1,13 @@
 ---
 type: decision
-status: active
+status: superseded
 created: 2026-08-18
 date: 2026-08-18
 scope: none
 authors: []
 tags:
   - type/decision
-  - status/active
+  - status/superseded
   - scope/none
 ---
 
