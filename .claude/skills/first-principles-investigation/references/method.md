@@ -18,7 +18,7 @@ it at once.
   - [Fermi / constraint checks](#fermi--constraint-checks)
   - [Correlation vs. causation](#correlation-vs-causation)
   - [Socratic questioning](#socratic-questioning)
-  - [The 5 Whys - and why it fails alone](#the-5-whys--and-why-it-fails-alone)
+  - [The 5 Whys - and why it fails alone](#the-5-whys---and-why-it-fails-alone)
 
 ---
 
