@@ -678,7 +678,11 @@ def scaffold_node(node, config, today, dry_run, actions):
     base = REPO_ROOT / node["path"]
     for sub in node.get("scaffold", []) + node.get("children", []):
         d = base / sub
-        actions.append(("create", rel(d) + "/", "scaffold"))
+        # Only report what is genuinely new. mkdir is idempotent either way, but
+        # a repeat `apply` that lists twelve folders as "create" trains people to
+        # stop reading the report, which is the only thing making it reviewable.
+        if not d.is_dir():
+            actions.append(("create", rel(d) + "/", "scaffold"))
         if not dry_run:
             d.mkdir(parents=True, exist_ok=True)
             (d / ".gitkeep").touch()
@@ -747,22 +751,20 @@ def print_actions(actions, plan, dry_run, next_cmd):
         print("  next     %s" % next_cmd)
 
 
-def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored=False) -> int:
+def reconcile(plan_path=None, dry_run=False, verb="apply") -> int:
+    """Bring the tree on disk in line with the plan, and report every action.
+
+    Idempotent by construction: every write is a mkdir that tolerates an
+    existing directory, a managed-block replacement, or a file creation guarded
+    by `exists()`. That is what lets first-run `bootstrap` and a year-three
+    `apply` share one code path. Expanding a workspace is the same operation as
+    creating it, and spelling the second one `bootstrap --force` implied
+    otherwise -- so people avoided it, hand-edited the tree, and drifted.
+
+    `verb` only names the command in the printed next step, so a dry run tells
+    you the exact line to re-run.
+    """
     config = load_config()
-    if config.get("bootstrapped") and not force:
-        print("This workspace is already bootstrapped.", file=sys.stderr)
-        print("Re-run with --force to reconcile, or use `./hq add` for one area.",
-              file=sys.stderr)
-        return 1
-
-    if plan_path is None and not PLAN_PATH.exists():
-        print("No plan yet. `./hq bootstrap` with no --plan is the conversational")
-        print("entry point: it hands off to Claude Code, which talks it through with you,")
-        print("reads what you point it at, plays back what it found for your sign-off, and")
-        print("only then writes .workspace/plan.json. Run it from a terminal, or pass")
-        print("--plan directly.")
-        return launch_conversation()
-
     plan = load_plan(Path(plan_path) if plan_path else None)
     today = os.environ.get("WORKSPACE_TODAY") or subprocess.run(
         ["date", "+%Y-%m-%d"], capture_output=True, text=True).stdout.strip()
@@ -798,7 +800,13 @@ def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored
 
     if not dry_run:
         config["bootstrapped"] = True
-        config.setdefault("template", {})["bootstrappedAt"] = today
+        # Stamped once, not on every apply: the date a workspace came into being
+        # does not change because its plan was applied again three years later.
+        # The shipped config carries the key with a null value, so the test is
+        # emptiness rather than absence.
+        template = config.setdefault("template", {})
+        if not template.get("bootstrappedAt"):
+            template["bootstrappedAt"] = today
         CONFIG_PATH.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
         if plan_path:
             PLAN_PATH.write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
@@ -807,7 +815,9 @@ def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored
     header = "[dry-run] " if dry_run else ""
     print("%splan %s -- %d nodes" % (header, plan_path or rel(PLAN_PATH), len(plan.get("nodes", []))))
     print("")
-    cmd = "./hq bootstrap --plan %s" % (plan_path or rel(PLAN_PATH))
+    cmd = "./hq %s" % verb
+    if plan_path:
+        cmd += " --plan %s" % plan_path
     print_actions(actions, plan, dry_run, cmd)
     if pruned:
         print("")
@@ -818,6 +828,31 @@ def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored
         print("  Next: fill every __REPLACE_ME__ and act on every <!-- AGENT: --> comment")
         print("  before you commit.")
     return 0
+
+
+def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored=False) -> int:
+    """First run only: the guard, the conversational entry point, then reconcile.
+
+    Everything that actually touches the tree lives in reconcile(), so there is
+    exactly one implementation of "make the disk match the plan".
+    """
+    config = load_config()
+    if config.get("bootstrapped") and not force:
+        print("This workspace is already bootstrapped.", file=sys.stderr)
+        print("Use `./hq apply` to reconcile the tree with .workspace/plan.json,",
+              file=sys.stderr)
+        print("or `./hq add` for one area.", file=sys.stderr)
+        return 1
+
+    if plan_path is None and not PLAN_PATH.exists():
+        print("No plan yet. `./hq bootstrap` with no --plan is the conversational")
+        print("entry point: it hands off to Claude Code, which talks it through with you,")
+        print("reads what you point it at, plays back what it found for your sign-off, and")
+        print("only then writes .workspace/plan.json. Run it from a terminal, or pass")
+        print("--plan directly.")
+        return launch_conversation()
+
+    return reconcile(plan_path, dry_run, "bootstrap")
 
 
 def launch_conversation() -> int:
@@ -1048,14 +1083,22 @@ def run_obsidian_setup(dry_run: bool = False) -> int:
 # --------------------------------------------------------------------------
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
-    parser = argparse.ArgumentParser(prog="workspace", description=__doc__.split("\n")[0])
+    # Matches the entry point people actually type. Usage lines get copied, so a
+    # prog of "workspace" would hand them a command that no longer exists.
+    parser = argparse.ArgumentParser(prog="./hq", description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(dest="command")
 
-    p_bootstrap = sub.add_parser("bootstrap", help="turn this template into a workspace")
+    p_bootstrap = sub.add_parser("bootstrap", help="turn this template into a workspace (first run)")
     p_bootstrap.add_argument("--plan")
     p_bootstrap.add_argument("--dry-run", action="store_true")
-    p_bootstrap.add_argument("--force", action="store_true")
+    p_bootstrap.add_argument("--force", action="store_true",
+                             help="run the first-run path again on an already-bootstrapped "
+                                  "workspace; prefer `apply`")
     p_bootstrap.add_argument("--overwrite-authored", action="store_true")
+
+    p_apply = sub.add_parser("apply", help="reconcile the tree with plan.json (idempotent, any time)")
+    p_apply.add_argument("--plan")
+    p_apply.add_argument("--dry-run", action="store_true")
 
     p_add = sub.add_parser("add", help="scaffold one new area")
     p_add.add_argument("--parent", required=True)
@@ -1085,6 +1128,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return run_upgrade(args.to, args.dry_run)
     if args.command == "bootstrap":
         return run_bootstrap(args.plan, args.dry_run, args.force, args.overwrite_authored)
+    if args.command == "apply":
+        return reconcile(args.plan, args.dry_run, "apply")
     if args.command == "add":
         return run_add(args.parent, args.name, args.role, args.dry_run)
     if args.command == "render":

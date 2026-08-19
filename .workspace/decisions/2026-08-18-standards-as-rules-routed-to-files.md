@@ -6,7 +6,14 @@ date: 2026-08-18
 scope: none
 ---
 
-# 0001 - Standards as rules routed to the files they govern
+# Standards as rules routed to the files they govern
+
+**Amended 2026-08-19.** The routing itself stands and is how every standard
+reaches an agent today. Two mechanisms named below are gone: `./hq validate` was
+removed, and the registry row in `Workspace/Standards/README.md` went with it, so
+the three-artifact invariant is now two. See
+[Standards are enforced by rules, not by a validator](2026-08-19-standards-are-enforced-by-rules-not-by-a-validator.md).
+Read the rest of this record as what was decided on 2026-08-18.
 
 ## Context
 

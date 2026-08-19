@@ -4,10 +4,14 @@ status: active
 created: 2026-08-19
 date: 2026-08-19
 scope: none
-supersedes: "[[0003-cap-the-always-resident-context-budget]]"
+supersedes: "[[2026-08-18-cap-the-always-resident-context-budget]]"
 ---
 
-# 0004 - Standards are enforced by rules, not by a validator
+# Standards are enforced by rules, not by a validator
+
+**Amended 2026-08-19.** One budget carried forward below did not survive as
+guidance after all: the 14,000 B cap on all skill descriptions combined is
+retired outright. Everything else here stands.
 
 ## Context
 
@@ -49,14 +53,18 @@ The engine keeps the jobs only a script can do: `bootstrap`, `add`, `render`,
 `obsidian-setup`, `doctor`, `upgrade`. Generating structure is mechanical.
 Judging prose is not.
 
-**This supersedes 0003 in mechanism, not in measurement.** The byte budgets that
+**This supersedes
+[Cap the always-resident context budget](2026-08-18-cap-the-always-resident-context-budget.md)
+in mechanism, not in measurement.** The byte budgets that
 record established are sound and the numbers survive as guidance in
 `Workspace/Standards/claude-md-contract.md` and `harness-standards § Context budget`,
 routed by `.claude/rules/harness/context-budget.md`. What is withdrawn is the
 claim that they should be hard failures. A cap that the template itself breaks
 21 times is evidence that the number wants judgment, not a gate.
 
-**It also amends 0001.** The three-artifact invariant becomes two: a statement in
+**It also amends
+[Standards as rules routed to the files they govern](2026-08-18-standards-as-rules-routed-to-files.md).**
+The three-artifact invariant becomes two: a statement in
 `Workspace/Standards/`, and a rule that routes it. The registry row was the third artifact
 and existed only so a check could parse it.
 

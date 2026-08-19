@@ -118,7 +118,7 @@ Link a record wherever its conclusion is being relied on, so a reader who
 disagrees finds the reasoning rather than arguing with the result:
 
 ```markdown
-Rationale: [0004 Price by outcome not hours](decisions/0004-price-by-outcome-not-hours.md).
+Rationale: [Price by outcome not hours](decisions/2026-08-19-price-by-outcome-not-hours.md).
 ```
 
 Cross-reference related records inline. They are a web, not a list.
@@ -134,7 +134,7 @@ Cross-reference related records inline. They are a web, not a list.
   nobody reads it.
 - **Editing a superseded record** so it agrees with current practice. That
   destroys the history the register exists to hold.
-- **A slug that names a topic rather than a claim.** `0004-pricing.md` tells a
+- **A slug that names a topic rather than a claim.** `2026-08-19-pricing.md` tells a
   future reader nothing; they have to open it to know whether it is relevant.
 - **Deferring the record until the work is done.** Raise it when the decision is
   made, while the alternatives are still in someone's head. Waiting for the yes

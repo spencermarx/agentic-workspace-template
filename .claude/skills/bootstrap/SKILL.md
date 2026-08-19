@@ -1,11 +1,11 @@
 ---
 name: bootstrap
 description: >-
-  Turn a fresh template clone into this person's workspace. Talks first, then goes and reads
-  what they pointed at, then plays back everything gathered for sign-off before writing a
-  byte. Runs the deterministic engine and the authoring pass. User-invoked only, and only
-  once per workspace. Do NOT use to add one client or venture to an existing workspace (use
-  `new-area`) or to re-render managed blocks (run `./hq render`).
+  Turns a fresh template clone into this business's workspace: collects the identity the
+  engine substitutes, sequences the skills that decide what to read, read it, and shape the
+  vault, then runs the authoring pass and Obsidian setup. User-invoked, once per fork. Do
+  NOT use to change the shape of a workspace that already exists (use `extend-architecture`)
+  or to add one instance under an existing router (use `new-area`).
 disable-model-invocation: true
 argument-hint: '[what this workspace is for]'
 ---
@@ -14,139 +14,126 @@ argument-hint: '[what this workspace is for]'
 
 # bootstrap
 
-Three phases, in this order, and the order is the whole design:
+The first-run orchestrator, and nothing else. It owns the three things that
+happen exactly once in a workspace's life -- the fresh-fork check, the identity
+the engine substitutes everywhere, and the flip to `bootstrapped: true` -- and
+it delegates everything else.
 
-1. **Conversation.** Understand their world in their words. Read nothing.
-2. **Exploration.** Go and read what they pointed at. Write nothing.
-3. **Playback.** Show everything gathered, get sign-off. Then write.
+The substance lives in three skills, in this order:
 
-Each phase feeds the next. Exploring first means probing blind, because only the
-conversation knows where to look. Proposing a tree before exploring means
-proposing over a vault whose contents you have not seen.
+1. [`investigation-brief`](../investigation-brief/SKILL.md) -- the conversation
+   that decides what is worth reading
+2. [`explore-context`](../explore-context/SKILL.md) -- the reading, and the
+   playback that gets it confirmed
+3. [`extend-architecture`](../extend-architecture/SKILL.md) -- the structural
+   change itself
 
-You drive the conversation; deterministic scripts do every mutation. **Never
-hand-edit what a script owns**: the tree, the folder map, or any managed block.
+The order is the design. Reading before talking means probing blind, because
+only the operator knows where the material is. Shaping before reading means
+proposing a tree over a vault whose contents you have not seen.
 
-## Pre-flight
+Nothing here is special to day one except identity and the flag. The three
+domains added during bootstrap and the fourth added three years later go through
+the same skill, the same plan, and the same engine.
 
-Read `.workspace/workspace.json`. If `bootstrapped` is true, stop and ask which
-steps to re-run; the engine needs `--force` and you should confirm before using
-it. This is the one read that precedes Phase 1, because it decides whether to
-run at all.
+## Step 1: confirm this is a fresh fork
 
-## Phase 1: conversation
+Read `.workspace/workspace.json`. If `bootstrapped` is true, stop. Say so, and
+point at [`extend-architecture`](../extend-architecture/SKILL.md) for a shape
+change or [`new-area`](../new-area/SKILL.md) for one instance. Do not offer to
+re-run this skill.
 
-Full method: [references/conversation.md](references/conversation.md).
+**Done when:** you have read the file and `bootstrapped` is false.
 
-**Read nothing in this phase.** Reading makes you propose, and a proposal here
-anchors the person to your vocabulary before they have shown you theirs.
+## Step 2: collect identity, once
 
-Open with one question, not a numbered round:
+The engine substitutes identity into every file on the mutate surface at the
+moment the plan is applied. Collect it before that happens, or the tokens go out
+unreplaced and someone finds `{{WORKSPACE_NAME}}` in a note a year later.
 
-> Before I look at anything: what is this workspace for, and what do you
-> actually spend your time on?
+Ask for, and write into `.workspace/workspace.json`:
 
-Then follow up like a person, one thread at a time.
+- `workspaceName`, `slug`, `domain`, `primaryEmail`, `oneLiner`
+- `people[]`, one entry per human: `key` (kebab), `display`, `emails[]`, and
+  `default: true` on exactly one
 
-**Do not** propose a tree, name a folder, or ask about naming, lifecycle stages,
-sub-shapes, or which skills to keep. Those are yours to decide and defend in
-Phase 3. Asking them now spends the person's attention on your half of the job.
+`people[].emails` is what every path-coupled skill resolves the session email
+against, so an operator with no email listed is invisible to the harness.
 
-**Exit when** you can say back what they do in one sentence in their words, and
-you hold at least one place to go and look.
+**Done when:** no `{{TOKEN}}` and no `__REPLACE_ME__` remains in
+`.workspace/workspace.json`, and `people[]` has at least one entry carrying an
+email and exactly one carrying `default: true`.
 
-## Phase 2: exploration
+## Step 3: decide what to read
 
-Full method: [references/exploration.md](references/exploration.md).
+Invoke [`investigation-brief`](../investigation-brief/SKILL.md).
 
-Say what you are about to read and roughly how long. Then go. **Write nothing in
-this phase.** Dispatch parallel `researcher` subagents, one per pointer; they are
-read-only by construction, which is what makes it safe to run this wide.
+**Done when:** it returns a written brief and the operator has agreed to it.
 
-- **If the vault already has content, record the shape that exists.** Do not
-  propose one over the top of it.
-- **Every finding carries its source path.** A finding without one is an
-  assumption, and Phase 3 labels it as such.
-- **A contradiction is a finding, not an error.** If they said "clients" and the
-  disk is organised by product, both go into the playback with a recommendation.
-  Never resolve it silently.
+## Step 4: read it
 
-**Exit when** every pointer is read or recorded as unreachable, and every
-recommendation you intend to make has evidence or a stated assumption behind it.
+Invoke [`explore-context`](../explore-context/SKILL.md) with that brief.
 
-## Phase 3: playback and sign-off
+**Done when:** it returns a digest the operator has confirmed in words. Not
+"looks good" from you.
 
-Full method, including the recommendation catalogue:
-[references/playback.md](references/playback.md).
+## Step 5: shape the vault
 
-One document, formatted the way [`grilling`](../grilling/SKILL.md) formats a
-round: numbered, each item carrying a recommendation acceptable in one word.
-Six sections, in order: what I understand you do; your vocabulary; what I found
-and where; what I could not determine; what I propose and why; what I am
-assuming.
+Invoke [`extend-architecture`](../extend-architecture/SKILL.md) with the digest.
+On a fresh fork this is where `Business/` stops being empty and `Operators/`
+gets one zone per person in `people[]`.
 
-Label every line **confirmed** (they said it), **found** (evidence, with a
-path), or **assumed** (neither). Three registers, no fourth.
-
-Render the tree rather than describing it. Reviewing a concrete tree is ten
-times cheaper than specifying one.
-
-Close with a single question: approve, edit, or start over on the shape. If any
-of it does not land, tell them `/clarify` will re-pitch it.
-
-**Write nothing until that returns.**
-
-## Phase 4: write the plan, then dry run
-
-Write `.workspace/plan.json` from what was signed off. The schema is
-`.workspace/schema/plan.schema.json`; `.workspace/fixtures/plan.example.json` is
-a worked example of the grammar.
-
-Always dry-run first and apply with the identical command:
+One thing is first-run and belongs here rather than in that skill: because the
+workspace is not bootstrapped yet, the command that applies the plan is
 
 ```bash
 ./hq bootstrap --plan .workspace/plan.json --dry-run
 ./hq bootstrap --plan .workspace/plan.json
 ```
 
-Show the dry run and get a yes before applying. If the engine prunes rules, say
-which and why: it means those standards have no folder to govern here.
+That run is what sets `bootstrapped: true`. Every application of the plan after
+it, including every one in year three, is `./hq apply`.
 
-## Phase 5: the authoring pass
+**Done when:** `.workspace/workspace.json` has `bootstrapped: true` and every
+folder the dry run listed exists on disk.
+
+## Step 6: the authoring pass
 
 The engine leaves `__REPLACE_ME__` sentinels and `<!-- AGENT: ... -->` comments
-in every generated file. Walk them and replace each with real prose from Phases
-1 to 3, **deleting every comment as you go**.
+across the generated tree. Walk every one and replace it with real prose from
+the brief and the digest, deleting each comment as you go.
 
 This is where the workspace stops being a skeleton. Write for an agent that has
-never seen it: if a sentence would be obvious from the artifacts, cut it.
+never seen it: if a sentence would be obvious from the artifacts, cut it. Do not
+invent. Where nothing in Steps 3 and 4 answered something, the honest output is
+an entry under Open questions naming what is unknown and what would resolve it.
 
-Do not invent. Where nothing in the first three phases answered something, the
-honest output is an entry under Open questions naming what is unknown and what
-would resolve it.
+**Done when:** a search of the tree for `__REPLACE_ME__`, `{{`, and
+`<!-- AGENT:` returns only files the engine excludes by design (`.workspace/`,
+`Workspace/Templates/`, `.credentials/`).
 
-## Phase 6: Obsidian
+## Step 7: Obsidian
 
 ```bash
 ./hq obsidian-setup
 ```
 
-Quit Obsidian first; it rewrites plugin config from memory on quit, so an edit
-made while it is running is discarded.
+Quit Obsidian first. It rewrites plugin config from memory on quit, so an edit
+made while it is running is silently discarded.
 
 Then tell the person, in this order: open the repo root as a vault, **trust the
 plugins when prompted**, and install the store plugins the command listed. A
 fresh clone with plugins disabled looks broken, and people conclude the template
 is broken.
 
-## Phase 7: hand off
+**Done when:** the command has run and you have relayed the plugin list it
+printed, if any.
 
-Sweep the tree for a surviving `__REPLACE_ME__`, an unreplaced `{{TOKEN}}`, or
-an unresolved `<!-- AGENT: -->` comment, and resolve every one before handing
-off.
+## Step 8: hand off
 
-Then print `git status --short`, summarise what changed, and **do not commit**.
-Print the command instead:
+Run `./hq doctor`, then print `git status --short` and summarise what changed.
+
+**Do not commit.** Print the command instead:
 
 ```
 git add -A && git commit -m "chore: bootstrap this workspace"
@@ -154,9 +141,13 @@ git add -A && git commit -m "chore: bootstrap this workspace"
 
 The first commit of someone's workspace is theirs to make.
 
+**Done when:** `doctor` reports clean and the operator has the commit command,
+uncommitted.
+
 ## Guardrails
 
-- **Never hand-roll a `{{TOKEN}}`.** The engine owns them.
+- **Never hand-roll a `{{TOKEN}}` or hand-edit what the engine owns**: the tree,
+  the folder map, or any managed block. Change `plan.json` and re-apply.
 - **Confirm before anything outward-facing or irreversible**, including a repo
   rename.
 - If a secret is needed, have the person paste it and pipe it straight to the
