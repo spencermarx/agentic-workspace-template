@@ -16,17 +16,15 @@ if (choice === "__new__") {
 }
 const title = await tp.system.prompt("Decision title, stated as a claim");
 const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-// Highest number already used, not a file count: a register holds a README and
-// may have had a record moved out of it, and both make a count skip a number.
-const used = app.vault.getFiles()
-  .filter(f => f.parent && f.parent.path === dir && /^\d{4}-/.test(f.name))
-  .map(f => parseInt(f.name.slice(0, 4), 10));
-const num = String((used.length ? Math.max(...used) : 0) + 1).padStart(4, "0");
+// Dated rather than numbered. A sequence has to be allocated, and two operators
+// counting the same folder both get the same answer -- producing two records
+// with the same identity under different slugs, which git merges silently. The
+// clock needs no allocation, so there is nothing to race on.
 // Strips the register segment whether or not a scope precedes it, so a
 // workspace-level record gets `none` rather than `decisions`.
 const scopeSlug = dir.replace(/(^|\/)decisions$/i, "").toLowerCase() || "none";
 const d = tp.date.now("YYYY-MM-DD");
-await tp.file.move(`${dir}/${num}-${slug}`);
+await tp.file.move(`${dir}/${d}-${slug}`);
 -%>
 ---
 type: decision
@@ -36,7 +34,7 @@ date: <% d %>
 scope: <% scopeSlug %>
 ---
 
-# <% num %> - <% title %>
+# <% title %>
 
 ## Context
 

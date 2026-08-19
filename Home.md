@@ -20,7 +20,6 @@ __REPLACE_ME__
 
 ## Shared
 
-- [Meetings](<Meetings/README.md>)
 - [People](<People/README.md>)
 
 ## How the vault works

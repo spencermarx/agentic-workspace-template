@@ -12,7 +12,7 @@ Anything surfaced mid-work that is out of scope right now and must not be lost.
 This is one of three registers and they do not overlap. A committed near-term
 action belongs in this area's `CLAUDE.md` under "What's pending". A load-bearing
 strategic unknown belongs under "Open questions". See
-[document-patterns § The three registers]({{REL_TO_ROOT}}/Standards/document-patterns.md#the-three-registers).
+[document-patterns § The three registers]({{REL_TO_ROOT}}/Workspace/Standards/document-patterns.md#the-three-registers).
 
 Nothing is ever deleted. A triaged row moves to Archive marked `promoted`,
 `dropped`, or `resolved`.

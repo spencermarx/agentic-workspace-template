@@ -26,7 +26,7 @@ __REPLACE_ME__
 
 Two buckets. `Documents/<Family>/` for durable artifacts,
 `Activities/<YYYY-MM-DD> <activity name>/` for dated, time-stamped work. See
-[document-patterns § Two buckets per area]({{REL_TO_ROOT}}/Standards/document-patterns.md#two-buckets-per-area).
+[document-patterns § Two buckets per area]({{REL_TO_ROOT}}/Workspace/Standards/document-patterns.md#two-buckets-per-area).
 
 <!-- workspace:context-table:start -->
 | File | When to load |
@@ -39,7 +39,7 @@ These extend the workspace root and `{{PARENT_TITLE}}/CLAUDE.md` conventions.
 Where they conflict, these win.
 
 <!-- AGENT: only the DELTAS from the workspace defaults. If there are none,
-     write "No local overrides." Do not restate anything in Standards/. Delete
+     write "No local overrides." Do not restate anything in Workspace/Standards/. Delete
      this comment. -->
 
 ### Ubiquitous language
@@ -74,7 +74,7 @@ dated note under `Activities/` that the entry links to.
 
 Committed near-term actions only. Deferred items go to the Parking Lot,
 strategic unknowns to Open questions above. See
-[document-patterns § The three registers]({{REL_TO_ROOT}}/Standards/document-patterns.md#the-three-registers).
+[document-patterns § The three registers]({{REL_TO_ROOT}}/Workspace/Standards/document-patterns.md#the-three-registers).
 
 -
 

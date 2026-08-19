@@ -22,6 +22,20 @@
             "type": "string",
             "description": "Display name. Fills {{NODE_TITLE}} and the folder map row."
           },
+          "holds": {
+            "type": "string",
+            "description": "One phrase for the folder map's 'What it holds' column. Without it the row repeats the title, which spends a column saying nothing."
+          },
+          "instanceScaffold": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Router only. Sub-folders every instance added under this router gets. Defaults to Activities/Documents, which is a domain's shape and wrong for an operator."
+          },
+          "instanceChildren": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Router only. Child folders every instance gets, such as decisions/ for a business domain."
+          },
           "children": {
             "type": "array",
             "items": { "type": "string" },

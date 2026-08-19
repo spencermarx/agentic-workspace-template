@@ -11,7 +11,7 @@ surface.
 | `leaf.md` | a `CLAUDE.md` for an area that carries full context |
 | `parking-lot.md` | `<Area> - Parking Lot.md` |
 | `links.md` | an area's external-link manifest |
-| `decision-record.md` | `<scope>/decisions/NNNN-<slug>.md` |
+| `decision-record.md` | `<scope>/decisions/YYYY-MM-DD-<slug>.md` |
 
 ## Slots
 

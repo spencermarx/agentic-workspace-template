@@ -12,7 +12,7 @@ keys: if you do not have the value, you do not have the note yet.
 type: meeting/external
 status: done
 created: 2026-08-18
-scope: areas/example-area
+scope: operators/spencer
 ---
 ```
 
@@ -26,7 +26,23 @@ Conditional properties, added only when the note actually has the data:
 | `date` | date | events: meetings, calls, decisions. Distinct from `created` |
 | `people` | list of slugs | notes about or attended by people |
 | `orgs` | list of slugs | notes about organizations |
+| `relationship` | `internal` or `external` | person and org notes: which side of the house |
+| `links` | map of label to URL | person and org notes: CRM record, profile, site |
 | `supersedes` | wikilink | this note replaces another |
+
+`relationship` is a property rather than a folder because people cross the line:
+a contractor becomes an employee, an employee becomes an advisor. As folders
+that is a rename, a broken wikilink, and a merge conflict; as a property it is a
+one-line edit, and a saved view still presents the two groups separately.
+
+`links` is deliberately a map rather than one property per vendor, so adding a
+second CRM never reopens this table:
+
+```yaml
+links:
+  crm: https://app.example.com/contacts/1234
+  site: https://acme.example
+```
 
 Anything not on these two lists is not a property. To add one, edit this section
 in the same commit that introduces it.
@@ -72,27 +88,49 @@ through them, and `scope` is derived from them. Treat them as reserved.
 
 | Folder | Holds | Created by |
 |---|---|---|
-| `Workspace/Standards/` | Conventions, stated once | ships |
-| `Obsidian/` | Vault mechanics: guides, templates, views | ships |
-| `Decisions/` | Workspace-level decision records | ships |
-| `Meetings/` | Meeting notes | ships |
+| `Workspace/` | How the workspace works: standards, guide, templates, views | ships |
+| `Business/` | This business's own functional domains | ships empty |
 | `People/` | Person and organization notes | ships |
+| `Decisions/` | Workspace-level decision records | ships |
+| `Operators/` | One private working area per person | ships |
 | `Attachments/` | Binaries. No notes, so no frontmatter | ships |
-| `Areas/` | The router over whatever this business does many of | bootstrap |
-| `Operators/` | One working area per person | bootstrap |
-| `Activities/`, `Documents/` | An area's working notes and artifacts | `./hq add` |
+| `Meetings/` | Meeting notes, inside an operator's area | `./hq add` |
 | `Daily Notes/` | An operator's dailies | `./hq add` |
-| `decisions/` | An area's own decision records | `./hq add` |
+| `Activities/`, `Documents/` | A domain's working notes and artifacts | `./hq add` |
+| `decisions/` | A domain's own decision records | `./hq add` |
 
-`Areas/` and `Operators/` are the two a business renames: a firm may call them
-`Clients/` and `Partners/`, a fund `Portfolio/` and `Principals/`. Renaming one
-is a supported choice, made once at bootstrap, and it obligates the glob rewrite
-that [harness-standards § Rule authoring contract](harness-standards.md#rule-authoring-contract)
-describes.
+### Why exactly these ship
 
-The vocabulary is not yours to extend mid-flight. A new top-level folder is a
-bootstrap-time or `./hq add` decision, never something a note-writing
-session invents.
+A folder ships if and only if this workspace defines the shape of what goes
+inside it. Three things satisfy that, and nothing else does:
+
+**Record types.** The note has a schema stated above: a value in the closed
+`type` vocabulary plus its required frontmatter. `People/` and `Decisions/`
+are these. A meeting note is a meeting note at any company, which is why the
+template can carry a rule for it and a business never has to invent one.
+
+**Ownership zones.** `Operators/` exists so single-writer isolation is
+structural rather than a matter of etiquette. Its contents have no schema; its
+path is the point. One person writes under `Operators/<key>/`, so nothing there
+can ever produce a merge conflict.
+
+**Structural slots.** `Workspace/` and `Business/` are fixed names whose
+children are defined elsewhere -- by the template and by the business
+respectively. `Business/` ships empty on purpose: the fixed name gives the rules
+layer a stable glob target, so bootstrap fills it with `Sales/`, `Legal/`, or
+whatever this business actually has **without ever rewriting a rule**.
+
+Everything else is a **domain** -- the business's own partition of its own
+activity -- and the template never guesses at one. There is no `type: client`,
+so no `Clients/` folder ships.
+
+The test, when it is ever unclear: *can the template write a `.claude/rules/`
+pointer for this folder?* If the answer is no, the template knows nothing true
+about what lives there, and it has no business shipping it.
+
+A top-level folder added outside `Business/` matches no existing glob, so it
+gets no routing until one is written. Registering that glob is part of creating
+the folder, never a later cleanup.
 
 ## Scope
 
@@ -101,9 +139,9 @@ to the vault root, with no file extension.
 
 | Folder | `scope` |
 |---|---|
-| `Areas/example-area/` | `areas/example-area` |
+| `Business/sales/` | `business/sales` |
 | `Operators/operator/` | `operators/operator` |
-| `Meetings/` | `meetings` |
+| `People/` | `people` |
 | workspace-level | `none` |
 
 Because it is derived from the path it cannot drift into a second spelling.

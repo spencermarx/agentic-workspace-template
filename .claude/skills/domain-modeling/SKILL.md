@@ -2,7 +2,7 @@
 name: domain-modeling
 description: Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record a significant architectural decision, or when another skill needs to maintain the domain model.
 ---
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/domain-modeling/SKILL.md @ ce32987bb267); adapted for this repo (decision handoff re-pointed at the decision-record skill, and its prose re-grounded on that skill's actual contract: scope-local NNNN records under <scope>/decisions/, no generator and no ULID; file-structure examples re-keyed from an engineering repo to this vault; the glossary challenge extended to the agent's own coined terms via the conveying-clearly skill). Upstream lineage: https://github.com/mattpocock/skills (skills/engineering/domain-modeling/SKILL.md). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/domain-modeling/SKILL.md @ ce32987bb267); adapted for this repo (decision handoff re-pointed at the decision-record skill, and its prose re-grounded on that skill's actual contract: scope-local dated records under <scope>/decisions/, no generator and no ULID; file-structure examples re-keyed from an engineering repo to this vault; the glossary challenge extended to the agent's own coined terms via the conveying-clearly skill). Upstream lineage: https://github.com/mattpocock/skills (skills/engineering/domain-modeling/SKILL.md). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # Domain Modeling
 
@@ -17,11 +17,11 @@ beside the thing they are about:
 /
 ├── CONTEXT.md                     ← the workspace glossary
 ├── Decisions/                     ← workspace-level, via the `decision-record` skill
-│   ├── 0001-standards-as-rules-routed-to-files.md
+│   ├── 2026-08-19-standards-as-rules-routed-to-files.md
 │   └── 0002-vendor-third-party-skills-as-plain-files.md
 └── <Area>/
-    └── decisions/                 ← area-level, same skill, its own NNNN sequence
-        └── 0001-<kebab-slug>.md
+    └── decisions/                 ← area-level, same skill, its own dated records
+        └── YYYY-MM-DD-<kebab-slug>.md
 ```
 
 If a `CONTEXT-MAP.md` exists at the root, the workspace has several contexts and
@@ -32,7 +32,7 @@ area lives in that area's own `decisions/` folder and gets its own numbering;
 only workspace-level decisions go in the root `Decisions/`. Glossaries may split
 per context in the same way.
 
-Create files lazily - only when you have something to write. If no `CONTEXT.md` exists, scaffold it with the [`context` skill](../context/SKILL.md) when the first term is resolved. **Decision records are never created by hand here, and never without a yes** - when one is warranted, say so and hand off to the [`decision-record` skill](../decision-record/SKILL.md), which owns the per-scope `NNNN-<kebab-slug>` numbering, the location, and the index row in the register's `README.md`. The significance test and the confirmation rule live in [decision-standards](../../../Workspace/Standards/decision-standards.md).
+Create files lazily - only when you have something to write. If no `CONTEXT.md` exists, scaffold it with the [`context` skill](../context/SKILL.md) when the first term is resolved. **Decision records are never created by hand here, and never without a yes** - when one is warranted, say so and hand off to the [`decision-record` skill](../decision-record/SKILL.md), which owns the per-scope `YYYY-MM-DD-<kebab-slug>` naming, the location, and the index row in the register's `README.md`. The significance test and the confirmation rule live in [decision-standards](../../../Workspace/Standards/decision-standards.md).
 
 ## During the session
 
@@ -66,4 +66,4 @@ When a **significant** design decision settles during the session - a boundary, 
 
 **Ask; do not write.** A decision record is created only after the operator says yes, and that holds here as everywhere else: [decision-standards § Capture is human-confirmed](../../../Workspace/Standards/decision-standards.md#capture-is-human-confirmed). Collecting two or three candidates and putting them up at a natural pause beats interrupting the modelling each time one surfaces.
 
-Don't author decision records by hand or invent a format. The `decision-record` skill owns the per-scope `NNNN-<kebab-slug>` numbering, the location, the register index, the supersession protocol, and the Context/Decision/Alternatives/Consequences shape; [decision-standards](../../../Workspace/Standards/decision-standards.md) owns when one is warranted and who may create it.
+Don't author decision records by hand or invent a format. The `decision-record` skill owns the per-scope `YYYY-MM-DD-<kebab-slug>` naming, the location, the register index, the supersession protocol, and the Context/Decision/Alternatives/Consequences shape; [decision-standards](../../../Workspace/Standards/decision-standards.md) owns when one is warranted and who may create it.

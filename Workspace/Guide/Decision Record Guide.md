@@ -44,7 +44,7 @@ described the only path available.
 
 ## Naming
 
-`decisions/NNNN-<slug>.md`, and the slug reads as a claim:
+`decisions/YYYY-MM-DD-<slug>.md`, and the slug reads as a claim:
 `0004-price-by-outcome-not-hours.md`, never `0004-pricing.md`. A topic name
 forces a future reader to open the file to find out whether it is relevant.
 

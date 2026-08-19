@@ -18,8 +18,8 @@ afterwards. Absence of an answer is not an answer.
 
 - `README.md`: the register, written for a person. Add the row when a record
   lands.
-- `NNNN-<kebab-slug>.md`: one record. Four digits, zero-padded, numbered within
-  this folder only.
+- `YYYY-MM-DD-<kebab-slug>.md`: one record. The prefix is the date it was
+  made, taken from the clock rather than allocated by counting.
 
 Decisions about **the template itself** do not belong here. Those live in
 `.workspace/decisions/`, which is template-owned and carried by

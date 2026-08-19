@@ -109,10 +109,19 @@ Three tiers of cost, and only the third is cheap.
 
 | Artifact | Cap |
 |---|---|
-| All skill descriptions combined | 14,000 B |
 | One description | 500 chars |
 | `SKILL.md` body | 8,000 B, target 5,000 |
 | One rule | 1,200 B |
+
+**There is no cap on the combined size of all descriptions.** There was one, at
+14,000 B, and it was retired deliberately: it measured cost rather than quality,
+nothing degrades at 14,001, and a library grows because its coverage is worth
+having. A number nobody intends to honour is worse than no number, because every
+session reads it as a constraint and proposes cuts against it.
+
+The per-description cap stays, and it is the one that matters. A bloated
+description dilutes its own triggers, so the skill fires less often -- which is
+a real failure, not an estimated one.
 
 `CLAUDE.md` sizes live in
 [claude-md-contract § The three tiers](claude-md-contract.md#the-three-tiers),

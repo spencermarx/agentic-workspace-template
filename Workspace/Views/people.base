@@ -14,8 +14,21 @@ views:
     name: Reconnect queue
     order:
       - file.name
+      - relationship
       - orgs
       - file.mtime
     sort:
       - property: file.mtime
         direction: ASC
+  # Internal and external are a property rather than two folders, because people
+  # cross the line and a re-file is a rename that breaks every link to them.
+  # This view is what a folder split would have bought, without the cost.
+  - type: table
+    name: Team and counterparts
+    groupBy:
+      property: relationship
+      direction: ASC
+    order:
+      - file.name
+      - orgs
+      - status

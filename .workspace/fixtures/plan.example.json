@@ -1,20 +1,21 @@
 {
   "$schema": "../schema/plan.schema.json",
   "nodes": [
-    { "path": "Areas", "role": "router", "title": "Areas",
-      "instanceRole": "leaf", "instanceTemplate": true },
-    { "path": "Areas/example-area", "role": "leaf", "title": "Example Area",
-      "slots": { "purpose": "One example instance, so the router has something to point at." },
+    { "path": "Business", "role": "router", "title": "Business",
+      "holds": "This business's functional domains. Ships empty; bootstrap fills it.",
+      "instanceRole": "leaf", "instanceTemplate": true,
+      "instanceScaffold": ["Activities", "Documents"], "instanceChildren": ["decisions"] },
+    { "path": "Business/operations", "role": "leaf", "title": "Operations",
+      "slots": { "purpose": "One example domain, so the router has something to point at." },
       "scaffold": ["Activities", "Documents"], "children": ["decisions"],
-      "files": [{ "name": "Example Area - Parking Lot.md", "template": "parking-lot" }] },
+      "files": [{ "name": "Operations - Parking Lot.md", "template": "parking-lot" }] },
     { "path": "Operators", "role": "router", "title": "Operators",
-      "instanceRole": "leaf", "instanceTemplate": true },
+      "holds": "One private working area per person. The only single-writer zone.",
+      "instanceRole": "leaf", "instanceTemplate": true,
+      "instanceScaffold": ["Meetings", "Daily Notes"] },
     { "path": "Operators/operator", "role": "leaf", "title": "Operator",
-      "slots": { "purpose": "One person's own working area. Skills resolve the session user to a folder here." },
-      "scaffold": ["Daily Notes"],
-      "files": [{ "name": "Operator - Parking Lot.md", "template": "parking-lot" }] },
-    { "path": "Meetings", "role": "plain", "title": "Meetings", "gitkeep": true },
-    { "path": "People", "role": "plain", "title": "People", "gitkeep": true },
-    { "path": "Attachments", "role": "plain", "title": "Attachments", "gitkeep": true }
+      "slots": { "purpose": "One person's own working area, and the only single-writer zone in the vault." },
+      "scaffold": ["Meetings", "Daily Notes"],
+      "files": [{ "name": "Operator - Parking Lot.md", "template": "parking-lot" }] }
   ]
 }
