@@ -1,52 +1,72 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "plan.json",
-  "description": "The desired folder structure as a flat, ordered node list. Flat because a diff must be readable and because `add` is a single append: that is what makes bootstrap and new-area the same code.",
+  "description": "Reference, not enforcement: nothing loads this file, `load_plan` is a bare `json.loads`. It documents the desired folder structure as a flat, ordered node list. Flat because a diff must be readable and because `add` is a single append: that is what makes bootstrap and new-area the same code.",
   "type": "object",
-  "required": ["planVersion", "nodes"],
-  "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },
-    "planVersion": { "type": "integer", "const": 1 },
-    "shape": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "primaryMultiplicity": {
-          "type": "string",
-          "description": "What the workspace has many of, where each accumulates its own context. This one answer determines the shape of the tree; it is why the template ships no domain profiles."
-        },
-        "kind": { "type": "string" }
-      }
-    },
     "nodes": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["path", "role", "title"],
-        "additionalProperties": false,
         "properties": {
-          "path": { "type": "string" },
+          "path": {
+            "type": "string",
+            "description": "Slash-separated, relative to the repo root. The folder is created at this path."
+          },
           "role": {
-            "enum": ["router", "leaf", "plain"],
+            "type": "string",
             "description": "router: has children with their own CLAUDE.md, points down only. leaf: fat context, full section skeleton. plain: ambient folder, no CLAUDE.md."
           },
-          "title": { "type": "string" },
-          "template": { "type": "string" },
-          "instanceTemplate": {
+          "title": {
             "type": "string",
-            "description": "The template each child instance gets. Its presence is how `add` infers a parent from a name without asking."
+            "description": "Display name. Fills {{NODE_TITLE}} and the folder map row."
           },
-          "instanceRole": { "enum": ["router", "leaf", "note"] },
-          "instanceNaming": { "enum": ["kebab", "title", "date"] },
-          "folderNote": { "type": ["string", "boolean"] },
-          "scaffold": { "type": "array", "items": { "type": "string" } },
-          "children": { "type": "array", "items": { "type": "string" } },
-          "files": { "type": "array", "items": { "type": "object" } },
-          "templateOwned": { "type": "boolean" },
-          "gitkeep": { "type": "boolean" },
-          "person": { "type": "string" },
-          "slots": { "type": "object" }
+          "children": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Sub-folder names scaffolded under this node, each with a .gitkeep."
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "template": {
+                  "type": "string",
+                  "description": "Basename of a file in .workspace/templates/, without the .md."
+                }
+              }
+            },
+            "description": "Files rendered into the node's folder at scaffold time."
+          },
+          "gitkeep": {
+            "type": "boolean",
+            "description": "Put a .gitkeep in the node's own folder, so an empty ambient folder survives a clone."
+          },
+          "instanceRole": {
+            "type": "string",
+            "description": "The role each child instance gets when `add` appends one under this node."
+          },
+          "instanceTemplate": {
+            "type": "boolean",
+            "description": "Marks this node as a parent instances are added under. Only its presence is read; `new-area` uses it to infer the parent from a name without asking."
+          },
+          "scaffold": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "The two-bucket sub-shape, conventionally [\"Activities\", \"Documents\"]."
+          },
+          "slots": {
+            "type": "object",
+            "properties": {
+              "purpose": {
+                "type": "string",
+                "description": "One line saying what the node is for. Fills {{NODE_PURPOSE}} and the README of a plain folder."
+              }
+            }
+          }
         }
       }
     }

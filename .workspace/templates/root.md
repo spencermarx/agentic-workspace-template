@@ -51,30 +51,18 @@ read.
    `## Standards` section in any `CLAUDE.md` is a defect.
 2. **Never decide for the operator.** Present options, give a recommendation,
    leave the decision where it belongs.
-3. **The canonical source wins on divergence.** A mirror that disagrees with its
-   source is wrong by definition.
-4. **Nothing is deleted, things are moved.** `git mv` to an archive location.
-   The thinking stays useful even when the conclusion does not.
-5. **Credentials never enter a note**, and client material never leaves the
-   vault without a human deciding to send it.
-6. **Never fix the harness here.** `.workspace/`, `.claude/skills/`, and
+3. **Credentials never enter a note.**
+4. **Never fix the harness here.** `.workspace/`, `.claude/skills/`, and
    `Obsidian/Templates/` are owned by the template this workspace came from. Fix
    them upstream and run `./workspace upgrade`. `./workspace doctor` reports
    drift.
 
 ## Person resolution
 
-Some skills need to know which person is running the session, to find the right
-personal workspace.
-
-Resolve the session email against `people[].emails` in
-`.workspace/workspace.json`. If it does not match, fall back to
-`git config user.email`. If that does not match either and exactly one person is
-configured, use that one.
-
-Path-coupled skills build their paths from the resolved key. **Never hardcode a
-person's name or path in a skill, a template, or a view.** That single line is
-what lets a second person be added later without a migration.
+Skills that need to know who is running the session resolve the session email
+against `people[].emails` in `.workspace/workspace.json`. Path-coupled skills
+build their paths from the resolved key; never hardcode a person's name or path
+in a skill, a template, or a view.
 
 ## What's pending
 

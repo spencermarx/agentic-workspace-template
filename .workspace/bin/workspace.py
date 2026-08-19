@@ -503,7 +503,6 @@ def identity_tokens(config: Dict[str, object], today: str) -> Dict[str, str]:
         "SUPPORT_EMAIL": str(config.get("primaryEmail") or ""),
         "PRIMARY_OPERATOR": str(primary.get("display") or ""),
         "PRIMARY_OPERATOR_KEY": str(primary.get("key") or ""),
-        "DAILY_NOTES_FOLDER": "Operators/%s/Daily Notes" % primary.get("key", "operator"),
         "TEMPLATE_VERSION": TEMPLATE_VERSION,
         "TODAY": today,
     }
@@ -806,15 +805,15 @@ def launch_conversation() -> int:
         os.execvp("claude", ["claude", "/bootstrap"])
     except OSError:
         print("`claude` is not on PATH.", file=sys.stderr)
-        print("Install Claude Code, or write .workspace/plan.json by hand from one of",
+        print("Install Claude Code, or write .workspace/plan.json by hand from",
               file=sys.stderr)
-        print("the fixtures in .workspace/fixtures/ and run:", file=sys.stderr)
+        print(".workspace/fixtures/plan.example.json and run:", file=sys.stderr)
         print("  ./workspace bootstrap --plan .workspace/plan.json", file=sys.stderr)
         return 1
     return 0
 
 
-def run_add(parent: str, name: str, role: str, template: Optional[str], dry_run: bool) -> int:
+def run_add(parent: str, name: str, role: str, dry_run: bool) -> int:
     config = load_config()
     if not config.get("bootstrapped"):
         print("Bootstrap this workspace first; there is no plan to append to.", file=sys.stderr)
@@ -834,12 +833,10 @@ def run_add(parent: str, name: str, role: str, template: Optional[str], dry_run:
         return 1
 
     role = parent_node.get("instanceRole") or role
-    template = template or parent_node.get("instanceTemplate") or ("leaf" if role == "leaf" else "router")
-    node = {"path": path, "role": role, "title": name, "template": template}
+    node = {"path": path, "role": role, "title": name}
     if role == "leaf":
         node["scaffold"] = ["Activities", "Documents"]
         node["files"] = [{"name": "%s - Parking Lot.md" % name, "template": "parking-lot"}]
-        node["folderNote"] = "%s.md" % name
 
     today = subprocess.run(["date", "+%Y-%m-%d"], capture_output=True, text=True).stdout.strip()
     actions: List[Tuple[str, str, str]] = []
@@ -986,29 +983,6 @@ def run_obsidian_setup(dry_run: bool = False) -> int:
             print("  wrote        %s" % rel(target))
         wrote.append(rel(target))
 
-    # Create any destination a plugin config points at, so first sync does not
-    # fail on a missing directory. The plugin nests its config, so the key is
-    # settings.icloudBasePath; reading the top level found nothing and skipped
-    # the mkdir without saying so, which is invisible here and shows up later as
-    # the failure this step exists to prevent, a sync that reports success and
-    # moves nothing. A missing key is now said out loud rather than assumed away.
-    icloud = plugins_dir / "icloud-sync" / "data.json"
-    if icloud.exists() and not dry_run:
-        try:
-            data = json.loads(read_text(icloud))
-        except json.JSONDecodeError:
-            data = {}
-        settings = data.get("settings")
-        base = (settings if isinstance(settings, dict) else {}).get("icloudBasePath")
-        if not base:
-            print("  warning      %s has no settings.icloudBasePath, so no sync "
-                  "destination was created" % rel(icloud), file=sys.stderr)
-        elif not Path(base).exists():
-            Path(base).mkdir(parents=True, exist_ok=True)
-            print("  created      %s" % base)
-        else:
-            print("  kept         %s (destination exists)" % base)
-
     for path in skipped:
         print("  kept         %s (already configured)" % path)
 
@@ -1031,7 +1005,7 @@ def run_obsidian_setup(dry_run: bool = False) -> int:
             for t in themes:
                 print("  %-26s %s  (theme)" % (t["name"], t["repo"]))
             print("")
-            print("They are not committed because four of them are GPL or AGPL, and")
+            print("They are not committed because they are GPL or AGPL, and")
             print("redistributing copyleft binaries inside an MIT template is a license")
             print("violation. The enable-list already travels, so they switch on as soon")
             print("as they are installed.")
@@ -1064,7 +1038,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     p_add.add_argument("--parent", required=True)
     p_add.add_argument("--name", required=True)
     p_add.add_argument("--role", default="leaf", choices=["leaf", "router", "note"])
-    p_add.add_argument("--template")
     p_add.add_argument("--dry-run", action="store_true")
 
     p_render = sub.add_parser("render", help="re-render managed blocks from plan.json")
@@ -1090,7 +1063,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if args.command == "bootstrap":
         return run_bootstrap(args.plan, args.dry_run, args.force, args.overwrite_authored)
     if args.command == "add":
-        return run_add(args.parent, args.name, args.role, args.template, args.dry_run)
+        return run_add(args.parent, args.name, args.role, args.dry_run)
     if args.command == "render":
         return run_render(args.only, args.dry_run)
     if args.command == "obsidian-setup":

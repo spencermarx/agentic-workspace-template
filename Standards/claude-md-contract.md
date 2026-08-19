@@ -6,11 +6,15 @@ the depth. This document defines the tiers and what belongs in each.
 
 ## The three tiers
 
-| Tier | Target | Cap | Job |
+| Tier | Target | Getting heavy | Job |
 |---|---|---|---|
 | Root | 4 KB | 8 KB | Identity, folder map, always-on invariants, person resolution |
 | Router | 0.5 to 2.5 KB | 3.5 KB | What is here, which child to read next. Inventory only |
 | Leaf | 8 to 14 KB | 20 KB | Everything needed to work in this area cold |
+
+Nothing enforces those sizes. They are the point at which a file has stopped
+paying for the tokens it costs on every request into its subtree, and the cue to
+move depth behind the context router table below.
 
 Folders that carry neither, such as `Meetings/`, `People/`, and `Attachments/`,
 get a five-line `README.md` if they need any explanation at all.
@@ -31,23 +35,9 @@ tree is wrong.
 
 ## Promotion and demotion
 
-A section inside a leaf that grows past roughly 4 KB gets promoted into its own
-subfolder with its own leaf. A router whose children all stay under 2 KB gets
+A section inside a leaf that outgrows the rest of the file gets promoted into
+its own subfolder with its own leaf. A router whose children are all thin gets
 demoted, collapsing them back into one leaf.
-
-A leaf that is over budget is not a leaf that needs a bigger budget. It is a
-signal that its `| File | When to load |` table is not doing enough work.
-
-## Why standards do not live here
-
-Both workspaces this template came from reached a single 35 KB `CLAUDE.md`,
-roughly 8,750 tokens paid on every request made anywhere in that subtree. The
-cause was not nesting. It was standards and reference material accumulating
-inside a file with no cheaper alternative.
-
-The rules layer is that alternative. Given a correct place to put a convention,
-a 750-byte pointer that loads only when a governed file is read, nobody puts it
-in `CLAUDE.md`.
 
 ## The always-on paragraph
 
@@ -68,9 +58,6 @@ Every leaf carries this under its Working norms heading, verbatim:
 
 > These extend the workspace root and `<Parent>/CLAUDE.md` conventions. Where
 > they conflict, these win.
-
-One wording, so it is greppable as a compliance check. A second phrasing for the
-same idea is drift, and reconciling it is part of the change that introduced it.
 
 ## The upward pointer
 

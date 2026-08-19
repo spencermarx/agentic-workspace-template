@@ -3,10 +3,6 @@ type: moc
 status: active
 created: {{TODAY}}
 scope: {{SCOPE}}
-tags:
-  - type/moc
-  - status/active
-  - scope/{{SCOPE}}
 ---
 
 # {{NODE_TITLE}} - external links

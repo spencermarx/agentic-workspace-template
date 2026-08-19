@@ -5,10 +5,6 @@ created: {{TODAY}}
 date: {{TODAY}}
 scope: {{SCOPE}}
 authors: []
-tags:
-  - type/decision
-  - status/draft
-  - scope/{{SCOPE}}
 ---
 
 # {{NUMBER}} - {{TITLE}}

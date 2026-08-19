@@ -7,14 +7,6 @@
   "domain": "{{WORKSPACE_DOMAIN}}",
   "primaryEmail": "{{PRIMARY_EMAIL}}",
   "people": [],
-  "conventions": {
-    "folderCase": "kebab",
-    "noteCase": "title",
-    "dateFormat": "YYYY-MM-DD",
-    "emDashes": false,
-    "emojis": false,
-    "folderNotes": true
-  },
   "sync": {
     "provider": "none",
     "marker": "Home.md",

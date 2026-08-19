@@ -32,7 +32,6 @@
         }
       }
     },
-    "conventions": { "type": "object" },
     "sync": { "type": "object" },
     "tracking": { "type": "object" },
     "template": { "type": "object" }
