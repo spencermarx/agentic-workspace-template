@@ -12,6 +12,12 @@ const orgSlug = org
   ? org.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
   : "";
 const orgsBlock = orgSlug ? `\norgs:\n  - ${orgSlug}` : "";
+// Same conditional-block trick: the key disappears entirely when there is no
+// URL, rather than shipping `links:` with an empty `crm:` under it. A property
+// with no value is exactly what the frontmatter contract forbids, and an empty
+// column is what a saved view renders forever.
+const crm = await tp.system.prompt("CRM record URL (blank if none)", "");
+const linksBlock = crm ? `\nlinks:\n  crm: ${crm}` : "";
 // The filename is the person's name and nothing else. It used to carry the
 // organization too, to make a person sort next to their employer -- but people
 // change jobs, and that rename broke every wikilink pointing at them. `orgs`
@@ -23,9 +29,7 @@ type: person
 status: active
 created: <% tp.date.now("YYYY-MM-DD") %>
 scope: none
-relationship: <% internal %><% orgsBlock %>
-links:
-  crm:
+relationship: <% internal %><% orgsBlock %><% linksBlock %>
 ---
 
 # <% name %>
