@@ -180,10 +180,32 @@ courtesy.
 ## Settings split
 
 `.claude/settings.json` is committed and holds what every clone should have:
-a read-only permission allowlist, hooks, marketplace declarations, and env.
+hooks, marketplace declarations, and env.
 
 `.claude/settings.local.json` is git-ignored and holds what varies by machine or
-operator: model preference, MCP servers, network allowlist, and any permission
-naming a local path.
+operator: model preference, MCP servers, and network allowlist.
 
 A committed settings file must never contain a machine-specific path.
+
+## The template ships no permission rules
+
+No `allow`, no `ask`, no `deny`, in either settings file. Permission policy is
+the operator's, set once for their machine in `~/.claude/settings.json` or
+through `/permissions`, and it should not arrive prefabricated in a template
+they forked for something else.
+
+Two things went wrong while the template did ship them, and both are the reason
+this is now a rule rather than a preference:
+
+**A `deny` rule is absolute.** It beats bypass-permissions mode and cannot be
+relaxed from `settings.local.json`, because deny lists union across sources and
+deny always wins. A consumer who hits one has no local override; their only
+route is editing a committed file the template owns.
+
+**An `ask` rule stops an agent that has nobody to ask.** A background or
+subagent run has no human at the prompt, so it waits until it is killed. The
+failure looks like a hang, not a permission error, which is the expensive kind
+of failure to diagnose.
+
+A skill that needs a dangerous operation gated states the gate in its own body,
+where the agent reads it, rather than relying on a settings file to refuse.
