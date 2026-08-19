@@ -9,10 +9,6 @@ type: parking-lot
 status: active
 created: <% tp.date.now("YYYY-MM-DD") %>
 scope: <% slug %>
-tags:
-  - type/parking-lot
-  - status/active
-  - scope/<% slug %>
 ---
 
 # <% title %> - Parking Lot

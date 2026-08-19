@@ -1,0 +1,41 @@
+# The drift-prevention view, and the most important of the five.
+#
+# The frontmatter contract is only real if violations are visible. This puts
+# every note that breaks it in front of the human, in the GUI, without anyone
+# running a linter.
+#
+# The exemptions are the things that are not notes. CLAUDE.md files are
+# agent-instruction documents. The templates are Templater source, whose <%* %>
+# block precedes the YAML, so nothing in them parses as frontmatter and never
+# will. Standards/ is the convention layer, the same kind of document as a
+# CLAUDE.md. README.md and THIRD-PARTY-NOTICES.md face GitHub rather than the
+# vault, and frontmatter renders there as a stray table.
+#
+# Everything else is a note and is expected to carry the contract, folder
+# READMEs included: `moc` covers them. This view is meant to reach empty, and
+# does. A view that cries wolf is a view nobody opens, which is the failure mode
+# this one exists to avoid.
+filters:
+  and:
+    - 'file.basename != "CLAUDE"'
+    - '!file.inFolder("Obsidian/Templates")'
+    - '!file.inFolder("Standards")'
+    - 'file.path != "README.md"'
+    - 'file.path != "THIRD-PARTY-NOTICES.md"'
+    - or:
+        - '!file.hasProperty("type")'
+        - '!file.hasProperty("scope")'
+        - 'status == "draft"'
+        - 'status == "blocked"'
+views:
+  - type: table
+    name: Needs attention
+    order:
+      - file.name
+      - type
+      - status
+      - scope
+      - created
+    sort:
+      - property: created
+        direction: DESC

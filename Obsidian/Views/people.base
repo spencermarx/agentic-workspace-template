@@ -3,6 +3,9 @@
 # A person directory sorted by name is a list. Sorted by how long since you last
 # touched the note, it is a reconnect queue: the top row is who you have gone
 # longest without speaking to.
+#
+# Staleness is file.mtime, not a hand-written `updated` property. The property
+# version sorted by creation date, because nothing ever refreshed it.
 filters:
   and:
     - 'type == "person"'
@@ -12,7 +15,7 @@ views:
     order:
       - file.name
       - orgs
-      - updated
+      - file.mtime
     sort:
-      - property: updated
+      - property: file.mtime
         direction: ASC

@@ -3,7 +3,6 @@ type: moc
 status: active
 created: 2026-08-18
 scope: none
-tags: [type/moc, status/active, scope/none]
 ---
 
 # Daily notes
@@ -37,4 +36,5 @@ is a filing failure, not a good daily note.
 ## End of day
 
 Three lines: what landed, what carried, what is worth remembering. The third one
-is where next week's weekly review comes from.
+is the only place a week's worth of small realisations ever accumulates, so it
+is worth the thirty seconds.

@@ -1,28 +1,22 @@
 <%*
 const name = await tp.system.prompt("Person's name");
 const org = await tp.system.prompt("Organization (blank if none)", "");
-const rel = await tp.system.suggester(
-  ["Client", "Prospect", "Partner", "Vendor", "Advisor", "Contact"],
-  ["client", "prospect", "partner", "vendor", "advisor", "contact"],
-  false, "Relationship?");
-const slug = name.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
-  .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const fname = org ? `${name} - ${org}` : name;
+// Block sequence rather than an inline flow array, because Obsidian's property
+// editor rewrites the inline form on first touch and that shows up as a content
+// diff nobody made. The leading newline lives inside the string so the key
+// disappears entirely when there is no org, rather than shipping an empty list.
+const orgSlug = org
+  ? org.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+  : "";
+const orgsBlock = orgSlug ? `\norgs:\n  - ${orgSlug}` : "";
 await tp.file.move(`People/${fname}`);
 -%>
 ---
 type: person
 status: active
 created: <% tp.date.now("YYYY-MM-DD") %>
-updated: <% tp.date.now("YYYY-MM-DD") %>
-scope: none
-orgs: [<% org ? org.toLowerCase().replace(/[^a-z0-9]+/g, "-") : "" %>]
-tags:
-  - type/person
-  - status/active
-  - scope/none
-  - person/<% slug %>
-  - relation/<% rel %>
+scope: none<% orgsBlock %>
 ---
 
 # <% fname %>

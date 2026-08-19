@@ -3,7 +3,6 @@ type: moc
 status: active
 created: 2026-08-18
 scope: none
-tags: [type/moc, status/active, scope/none]
 ---
 
 # People and organizations
@@ -23,16 +22,14 @@ decide, what they respond to, what loses them.
 
 ## What not to write
 
-Working context only. No home addresses, identification numbers, financial or
-health details, nothing about their family, unless there is a concrete working
-reason and they know you have it.
-
 The test is simple: if they read the note, would it be a normal thing for a
-colleague to have written? Full rule:
-[confidentiality-standards](../../Standards/confidentiality-standards.md#pii-minimisation).
+colleague to have written?
 
 ## Organizations are not customers
 
-The template is `Org Note`, not `Customer Note`, because a prospect, a partner,
-a vendor, and a competitor all need one and none of them is a customer. The
-`relation/` tag carries which.
+The template is `Org Note`, not `Customer Note`, and it asks for nothing but the
+name. What the relationship is belongs under **How we relate**, in a sentence,
+because the interesting part is what each side wants and no dropdown holds that.
+
+A fixed list of relationship labels is the first place a generic template starts
+describing somebody else's business.

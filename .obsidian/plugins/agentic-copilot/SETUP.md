@@ -22,13 +22,18 @@ CLI you have already authenticated**, so it inherits your existing login. If
 |---|---|---|
 | `selectedAgent` | `claude-code` | Which CLI to spawn |
 | `workingDirectory` | `vault` | The vault root becomes the agent's cwd, so `CLAUDE.md` and `.claude/skills` apply |
-| `editApprovalMode` | `auto-accept` | Whether edits land without a prompt |
+| `editApprovalMode` | `approve` | Whether edits land without a prompt |
 | `autoApplyEdits` | `false` | Whether they are written without you seeing the diff |
 
-The last two are the pair worth thinking about. `auto-accept` with
-`autoApplyEdits: false` means edits are approved automatically but still shown as
-a diff before writing. That is the intended combination: fast, but nothing
-changes in your vault without you having seen it.
+The last two are the pair worth thinking about, and the example ships the
+cautious end of both: every edit is shown and waits for you. Switching
+`editApprovalMode` to `auto-accept` while leaving `autoApplyEdits: false` is the
+fast combination, where edits are approved automatically but still rendered as a
+diff before they are written.
+
+That is a choice each machine makes rather than one that arrives from a clone,
+which is the whole reason `data.json` is git-ignored and this file exists. The
+in-panel shield toggle flips the same setting.
 
 ## Updating
 

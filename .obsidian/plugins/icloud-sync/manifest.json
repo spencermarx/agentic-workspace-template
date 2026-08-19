@@ -1,9 +1,0 @@
-{
-	"id": "icloud-sync",
-	"name": "iCloud Selective Sync",
-	"version": "1.0.0",
-	"minAppVersion": "1.4.0",
-	"description": "Selectively sync folders to iCloud for Obsidian mobile access. Mark folders with icloud-sync: true in folder note frontmatter.",
-	"author": "PAI",
-	"isDesktopOnly": true
-}

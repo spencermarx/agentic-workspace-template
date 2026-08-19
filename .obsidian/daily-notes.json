@@ -1,6 +1,0 @@
-{
-  "folder": "{{DAILY_NOTES_FOLDER}}",
-  "format": "YYYY/MM/YYYY-MM-DD",
-  "template": "Obsidian/Templates/Daily Note.md",
-  "autorun": false
-}
