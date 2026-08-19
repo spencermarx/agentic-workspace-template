@@ -38,9 +38,10 @@ because it fires on every markdown read. **If house voice needs more surface it
 splits into narrower globs. It never grows.** This is the one place where the
 mechanism built to solve the always-on budget problem could recreate it.
 
-Supported glob syntax is `**`, `*`, `?`, and `[abc]`. No braces, no negation, no
-extended globs. The restriction is what lets the matcher be small enough to be
-provably correct.
+Keep glob syntax to `**`, `*`, `?`, and `[abc]`. No braces, no negation, no
+extended globs. Claude Code does this matching, not anything in this repo, so a
+pattern that reaches too far just matches nothing, which is indistinguishable
+from a healthy system.
 
 Globs use the reserved folder vocabulary and are written as
 `**/<Folder>/**/*.md`, so they match wherever the folder is nested. Renaming a
@@ -107,13 +108,17 @@ Three tiers of cost, and only the third is cheap.
 
 | Artifact | Cap |
 |---|---|
-| Root `CLAUDE.md` | 8,000 B, target 5,000 |
-| Router `CLAUDE.md` | 3,500 B |
-| Leaf `CLAUDE.md` | 20,000 B, target 14,000 |
 | All skill descriptions combined | 14,000 B |
 | One description | 500 chars |
 | `SKILL.md` body | 8,000 B, target 5,000 |
 | One rule | 1,200 B |
+
+`CLAUDE.md` sizes live in
+[claude-md-contract § The three tiers](./claude-md-contract.md#the-three-tiers),
+which owns the tiers and therefore owns their budgets.
+
+Nothing enforces any of these. They mark where an artifact has stopped paying
+for the tokens it costs, and cue you to move depth behind a pointer.
 
 A `## Standards` section is prohibited in every `CLAUDE.md` at every tier.
 Standards arrive by glob; a Standards heading means paying the always-on price
