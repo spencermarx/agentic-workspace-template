@@ -19,3 +19,4 @@ When a choice earns a record, and the four sections every record carries: the
 | [0002 Vendor third-party skills as plain files](./0002-vendor-third-party-skills-as-plain-files.md) | active |
 | [0003 Cap the always-resident context budget](./0003-cap-the-always-resident-context-budget.md) | superseded by 0004 |
 | [0004 Standards are enforced by rules, not by a validator](./0004-standards-are-enforced-by-rules-not-by-a-validator.md) | active |
+| [0005 Setup talks before it looks, and looks before it proposes](./0005-setup-talks-before-it-looks-and-looks-before-it-proposes.md) | active |
