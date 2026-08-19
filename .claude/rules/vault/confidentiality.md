@@ -1,7 +1,7 @@
 ---
 description: Vault material and commercial terms do not leave the vault unchecked
 paths:
-  - '**/Areas/**'
+  - '**/Business/**'
   - '**/Operators/**'
   - '**/Meetings/**'
   - '**/People/**'

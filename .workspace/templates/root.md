@@ -33,8 +33,10 @@ skills in `.claude/`.
 | Folder | What it holds | Start here |
 |---|---|---|
 | `Workspace/` | How the workspace works: standards, guide, templates, views. Not content. | `Workspace/CLAUDE.md` |
+| `Business/` | This business's functional domains. Ships empty; bootstrap fills it. | `Business/README.md` |
+| `People/` | Everyone this business deals with, and the organizations they belong to. | `People/README.md` |
+| `Operators/` | One private working area per person. The only single-writer zone. | `Operators/README.md` |
 | `Decisions/` | Workspace-level decision records. | `Decisions/CLAUDE.md` |
-| `Meetings/`, `People/` | Shared operational notes. | `Meetings/README.md` |
 | `.claude/` | The agentic harness: rules, skills, agents, commands. | `.claude/CLAUDE.md` |
 <!-- workspace:map:end -->
 

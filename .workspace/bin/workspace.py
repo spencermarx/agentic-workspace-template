@@ -243,6 +243,12 @@ def rule_files() -> List[Path]:
 TEMPLATE_OWNED_PREFIXES = (".workspace", ".claude", "Workspace/Templates", ".obsidian")
 
 
+# Generated per workspace, not shipped, but living under a template-owned
+# prefix. Without this every bootstrapped workspace's `doctor` reported
+# plan.json as drift forever, which trains people to ignore the drift report.
+TEMPLATE_OWNED_GENERATED = {".workspace/plan.json", ".workspace/manifest.lock.json"}
+
+
 def template_owned_files() -> List[Path]:
     out = []
     for prefix in TEMPLATE_OWNED_PREFIXES:
@@ -251,6 +257,8 @@ def template_owned_files() -> List[Path]:
             continue
         for f in sorted(root.rglob("*")):
             if f.is_file() and ".git" not in f.parts and f.name != ".DS_Store":
+                if rel(f) in TEMPLATE_OWNED_GENERATED:
+                    continue
                 out.append(f)
     return out
 
@@ -619,19 +627,27 @@ def render_inventory(plan: Dict[str, object], node: Dict[str, object]) -> str:
 
 def render_root_map(plan: Dict[str, object]) -> str:
     top = [n for n in plan.get("nodes", []) if "/" not in n.get("path", "")]
-    # Workspace/ and Decisions/ are fixed scaffold rather than plan nodes, so
-    # they are emitted here. Decisions/ was previously omitted, which silently
-    # dropped the row from the map block on the first render.
+    # The record-type folders and the substrate ship with the template and exist
+    # in every workspace, so they are emitted here rather than carried as plan
+    # nodes. The plan holds only what a business chooses: the domains under
+    # Business/, the people under Operators/, and any router a consumer adds at
+    # the root. Listing a folder in both places is what silently duplicated or
+    # dropped rows before.
     lines = ["| Folder | What it holds | Start here |", "|---|---|---|",
              "| `Workspace/` | How the workspace works: standards, guide, templates, views. Not content. | [`Workspace/CLAUDE.md`](Workspace/CLAUDE.md) |",
+             "| `People/` | Everyone this business deals with, and the organizations they belong to. | [`People/README.md`](People/README.md) |",
              "| `Decisions/` | Workspace-level decision records. | [`Decisions/CLAUDE.md`](Decisions/CLAUDE.md) |"]
     for n in top:
-        path, title = n["path"], n.get("title", n["path"])
+        path = n["path"]
+        # `holds` is what the row is for. Falling back to the title produced
+        # rows reading "| `Business/` | Business |", which costs a column and
+        # tells the reader nothing.
+        holds = n.get("holds") or n.get("title", path)
         if n.get("role") in ("router", "leaf"):
             start = "[`%s/CLAUDE.md`](%s/CLAUDE.md)" % (path, path)
         else:
             start = "[`%s/README.md`](%s/README.md)" % (path, path)
-        lines.append("| `%s/` | %s | %s |" % (path, title, start))
+        lines.append("| `%s/` | %s | %s |" % (path, holds, start))
     lines.append("| `.claude/` | The agentic harness: rules, skills, agents, commands. | [`.claude/CLAUDE.md`](.claude/CLAUDE.md) |")
     return "\n".join(lines)
 
@@ -647,11 +663,12 @@ def render_home_nav(plan: Dict[str, object]) -> str:
         out += ["## Areas", ""]
         out += ["- [%s](<%s/CLAUDE.md>)" % (n.get("title", n["path"]), n["path"]) for n in areas]
         out += [""]
-    plain = [n for n in top if n.get("role") == "plain"]
-    if plain:
-        out += ["## Shared", ""]
-        out += ["- [%s](<%s/README.md>)" % (n.get("title", n["path"]), n["path"]) for n in plain]
-        out += [""]
+    # People/ ships in every workspace, so it is listed unconditionally; any
+    # plain node a consumer added to the plan joins it.
+    out += ["## Shared", "", "- [People](<People/README.md>)"]
+    out += ["- [%s](<%s/README.md>)" % (n.get("title", n["path"]), n["path"])
+            for n in top if n.get("role") == "plain"]
+    out += [""]
     out += ["## How the vault works", "",
             "- [Obsidian guide](<Workspace/Guide/00-obsidian-guide-index.md>)"]
     return "\n".join(out)
@@ -701,16 +718,12 @@ def write_manifest_lock(dry_run: bool) -> None:
     file from a locally-modified one and replace only the former."""
     if dry_run:
         return
-    owned = []
-    for prefix in (".workspace", ".claude", "Workspace/Templates", ".obsidian"):
-        root = REPO_ROOT / prefix
-        if not root.is_dir():
-            continue
-        for f in sorted(root.rglob("*")):
-            if f.is_file() and ".git" not in f.parts:
-                owned.append(f)
+    # Must be the same set `doctor` compares against. This walked a second,
+    # hardcoded copy of the prefix list, so anything excluded from
+    # template_owned_files() was still written here -- and then reported as a
+    # deleted file on the next doctor run, because only one side knew.
     manifest = {}
-    for f in owned:
+    for f in template_owned_files():
         try:
             manifest[rel(f)] = hashlib.sha256(f.read_bytes()).hexdigest()
         except OSError:
@@ -843,7 +856,14 @@ def run_add(parent: str, name: str, role: str, dry_run: bool) -> int:
     role = parent_node.get("instanceRole") or role
     node = {"path": path, "role": role, "title": name}
     if role == "leaf":
-        node["scaffold"] = ["Activities", "Documents"]
+        # The router says what its instances are made of. Hardcoding
+        # Activities/Documents gave every operator a domain's shape: adding a
+        # person built them Activities/ and Documents/ instead of Meetings/ and
+        # Daily Notes/, and nothing reported it.
+        node["scaffold"] = parent_node.get("instanceScaffold") or ["Activities", "Documents"]
+        children = parent_node.get("instanceChildren")
+        if children:
+            node["children"] = list(children)
         node["files"] = [{"name": "%s - Parking Lot.md" % name, "template": "parking-lot"}]
 
     today = subprocess.run(["date", "+%Y-%m-%d"], capture_output=True, text=True).stdout.strip()

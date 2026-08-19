@@ -52,9 +52,12 @@ and which of [the reserved folder names](../../../../Workspace/Standards/vault-s
 are already taken. A bootstrap that renames someone's existing folders is a
 migration they did not ask for.
 
-If the shape you record renames `Areas/` or `Operators/`, the rule globs that
-route by those names must be rewritten to match in the same change. A glob that
-matches nothing stops routing without saying so.
+A domain recorded under `Business/` needs nothing further: every rule that
+governs business notes globs `**/Business/**`, so it is routed the moment it
+exists. A domain recorded at the **root** instead matches no existing glob and
+gets no routing at all, silently. If the shape that exists puts domains at the
+root, the globs that should cover them are rewritten in the same change, never
+left as a cleanup.
 
 ## Three rules
 

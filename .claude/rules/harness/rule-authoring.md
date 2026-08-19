@@ -2,7 +2,7 @@
 description: The two-key rule contract and the two-artifact invariant
 paths:
   - '.claude/rules/**/*.md'
-  - 'Standards/**/*.md'
+  - 'Workspace/Standards/**/*.md'
 ---
 
 # Rule authoring contract

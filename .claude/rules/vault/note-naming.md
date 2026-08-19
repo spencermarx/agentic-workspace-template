@@ -1,7 +1,7 @@
 ---
 description: File and folder naming, including the hyphen separator
 paths:
-  - '**/Areas/**/*.md'
+  - '**/Business/**/*.md'
   - '**/Operators/**/*.md'
   - '**/Meetings/**/*.md'
   - '**/People/**/*.md'

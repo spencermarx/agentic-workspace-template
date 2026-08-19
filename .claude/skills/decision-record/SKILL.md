@@ -9,7 +9,7 @@ description: >-
   or for work not yet decided (use `wayfinder`).
 ---
 
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/adr/SKILL.md @ ce32987bb267); adapted for this repo (rewritten around a plain file write: the generator, ULID identity, and derived ledger are gone, replaced by per-scope NNNN numbering and the Decisions README index; the significance test, the section discipline, the supersession protocol, and the anti-patterns are carried over). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/adr/SKILL.md @ ce32987bb267); adapted for this repo (rewritten around a plain file write: the generator, ULID identity, and derived ledger are gone, replaced by scope-local date-prefixed filenames and the Decisions README index; the significance test, the section discipline, the supersession protocol, and the anti-patterns are carried over). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # Decision record
 
@@ -49,28 +49,33 @@ record. It is not a trigger that writes one.
 
 ## Where it goes
 
-`<scope>/decisions/NNNN-<kebab-slug>.md`
+`<scope>/decisions/YYYY-MM-DD-<kebab-slug>.md`
 
 - **Scope-local.** A decision about one area lives in that area's `decisions/`
   folder. A workspace-wide decision lives in `Decisions/` at the root.
 - **Not for template decisions.** A choice about how the template itself is
   built belongs in `.workspace/decisions/`, which a consumer never adds to.
-- **Numbered per scope**, four digits, zero-padded. Two areas never collide, and
-  numbering per scope keeps the sequence meaningful within the thing it governs.
+- **Dated, not numbered.** Take the date from the clock, never by hand.
 - **Slug is kebab-case** and reads as a claim, not a topic:
-  `0004-price-by-outcome-not-hours.md`, never `0004-pricing.md`.
+  `2026-08-19-price-by-outcome-not-hours.md`, never `2026-08-19-pricing.md`.
 
-Find the next number by counting what is already there:
+Build the path from the system date:
 
 ```bash
-scope="Areas/example-area"          # or "." for workspace-wide
+scope="Business/operations"         # or "." for workspace-wide
 mkdir -p "$scope/decisions"
-n=$(printf "%04d" $(( $(ls "$scope/decisions" 2>/dev/null | grep -c '^[0-9]') + 1 )))
-echo "$scope/decisions/$n-<slug>.md"
+echo "$scope/decisions/$(date +%F)-<slug>.md"
 ```
 
+Never count existing files to allocate a number. Two operators counting the same
+folder both get the same answer, and because their slugs differ the two records
+land as different filenames that git merges without complaint -- a duplicate
+identity with nothing to signal it. The clock needs no allocation, so there is
+nothing to race on. Why this matters is in
+[decision-standards § Why dated rather than numbered](../../../Workspace/Standards/decision-standards.md#why-dated-rather-than-numbered).
+
 There is no generator and no minted identity. The filename is the identity, it
-sorts correctly in Obsidian's file list, and a human can read it.
+sorts chronologically in Obsidian's file list, and a human can read it.
 
 ## Writing it
 

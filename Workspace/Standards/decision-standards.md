@@ -59,15 +59,30 @@ Do not write one for a preference nobody will relitigate.
 
 ## Where records go
 
-`<scope>/decisions/NNNN-<kebab-slug>.md`
+`<scope>/decisions/YYYY-MM-DD-<kebab-slug>.md`
 
 - **Scope-local.** A decision about one area lives in that area's `decisions/`
   folder. A workspace-wide decision lives in `Decisions/` at the root.
-- **Numbered per scope**, four digits, zero-padded. Two areas never collide, and
-  numbering per scope keeps the sequence meaningful within the thing it governs.
+- **Dated, not numbered.** The prefix is the date the decision was made, taken
+  from the system clock rather than typed.
 - **The slug reads as a claim**, not a topic:
-  `0004-price-by-outcome-not-hours.md`, never `0004-pricing.md`. A topic name
-  forces a future reader to open the file to learn whether it is relevant.
+  `2026-08-19-price-by-outcome-not-hours.md`, never `2026-08-19-pricing.md`. A
+  topic name forces a future reader to open the file to learn whether it is
+  relevant.
+
+### Why dated rather than numbered
+
+A sequence has to be allocated, and allocation needs a single writer. Two
+operators each taking `0006` produce two **differently named files**, which git
+merges cleanly and silently -- leaving a register with two 0006 records and no
+warning that anything went wrong. A conflict would have been the better outcome.
+
+A date needs no allocation. Two records on the same day differ by their slug; if
+they do not, the filenames collide, git reports it, and the conflict is correct,
+because two people just recorded the same decision twice.
+
+Dates also sort chronologically in the file explorer without a register to
+consult, and answer "was this still current when X happened" from the filename.
 
 Decisions about **the template itself** are not workspace decisions and do not
 belong in any of these. They live in `.workspace/decisions/`, which is

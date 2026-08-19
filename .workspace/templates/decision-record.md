@@ -6,7 +6,7 @@ date: {{TODAY}}
 scope: {{SCOPE}}
 ---
 
-# {{NUMBER}} - {{TITLE}}
+# {{TITLE}}
 
 ## Context
 

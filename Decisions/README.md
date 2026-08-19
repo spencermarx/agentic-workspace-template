@@ -29,4 +29,4 @@ walks through writing a good one. The rules it follows are in
 |---|---|
 
 _No records yet. The first decision this workspace records goes here as
-`0001-<a-claim-in-kebab-case>.md`._
+`YYYY-MM-DD-<a-claim-in-kebab-case>.md`._
