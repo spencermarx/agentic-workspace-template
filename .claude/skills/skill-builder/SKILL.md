@@ -9,7 +9,7 @@ description: >-
   writing agent-facing prose (use `writing-for-agents`).
 ---
 
-<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/skill-builder/SKILL.md @ 2e62970bb6cd); adapted for this repo (merged with the description-optimisation loop and anti-undertriggering guidance from Anthropic's skill-creator, and with the rules layer added to the primitive decision table; the deep reference now defers to the vendored writing-for-agents rather than restating it). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/skill-builder/SKILL.md @ 2e62970bb6cd); adapted for this repo (merged with the description-optimisation loop and anti-undertriggering guidance from Anthropic's skill-creator, and with the rules layer added to the primitive decision table; the deep reference now defers to the vendored writing-for-agents rather than restating it). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 # skill-builder
 

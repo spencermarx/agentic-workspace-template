@@ -1,15 +1,15 @@
 ---
 name: decision-record
 description: >-
-  Record a settled choice, and its reasoning, so nobody relitigates it. Use whenever a
-  decision is made that is precedent-setting, hard to reverse, or surprising given its
-  trade-off, and on any change to Standards. Trigger on "write this down", "document this
-  decision", "supersede that decision", "why did we choose". Do NOT use for a choice you
-  could undo in an afternoon, to park an open item (use `parking-lot`), or to plan work
-  that is not yet decided (use `wayfinder`).
+  Record a settled choice, and its reasoning, so nobody relitigates it. PROPOSE one whenever
+  a decision is precedent-setting, hard to reverse, or surprising given its trade-off, then
+  stop: a record is only ever created after the operator says yes. Trigger on "write this
+  down", "document this decision", "supersede that decision", "why did we choose". Do NOT
+  use for a choice you could undo in an afternoon, to park an open item (use `parking-lot`),
+  or to plan work that is not yet decided (use `wayfinder`).
 ---
 
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/adr/SKILL.md @ ce32987bb267); adapted for this repo (rewritten around a plain file write: the generator, ULID identity, and derived ledger are gone, replaced by per-scope NNNN numbering and the Decisions README index; the significance test, the section discipline, the supersession protocol, and the anti-patterns are carried over). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/adr/SKILL.md @ ce32987bb267); adapted for this repo (rewritten around a plain file write: the generator, ULID identity, and derived ledger are gone, replaced by per-scope NNNN numbering and the Decisions README index; the significance test, the section discipline, the supersession protocol, and the anti-patterns are carried over). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 # Decision record
 
@@ -20,31 +20,41 @@ The reasoning is the point. A record that states what was decided without saying
 what was rejected and why is a note, not a record, and it will not survive
 contact with the first person who disagrees.
 
-## The significance test
+## Stop: you need a yes first
 
-Write one when the choice is:
+**You may propose a record. You may not create one without an explicit yes from
+the operator in this session.**
 
-- **Precedent-setting.** It sets a pattern others will follow.
-- **Hard to reverse.** Undoing it means unwinding work, or a conversation with
-  someone outside the workspace.
-- **Surprising given its trade-off.** A reader who knows the constraints would
-  guess differently.
+Full rule (SSOT): [decision-standards § Capture is human-confirmed](../../../Standards/decision-standards.md#capture-is-human-confirmed)
 
-Two of three is a clear yes. One is a judgment call.
+Proposing is one line. State the claim the record would make, and stop:
 
-**Any change to `Standards/` always qualifies**, because a standard that changes
-without a recorded reason gets changed back.
+> That's a decision — "vendored skills are plain files, not plugins". Record it?
 
-Do not write one for a preference nobody will relitigate. The register earns its
-keep by staying short enough to read end to end.
+Then wait. Do not draft the file, do not reserve a number, do not write it and
+offer to remove it afterwards. The operator moving on to something else is not a
+yes, and neither is silence.
+
+Everything below this section is what to do **after** you have one.
+
+## Does it qualify?
+
+The significance test — precedent-setting, hard to reverse, or surprising given
+its trade-off, two of three being a clear yes — is stated once in
+[decision-standards § The significance test](../../../Standards/decision-standards.md#the-significance-test).
+Read it there rather than working from memory.
+
+A change to `Standards/` is a strong signal and a good reason to **propose** a
+record. It is not a trigger that writes one.
 
 ## Where it goes
 
 `<scope>/decisions/NNNN-<kebab-slug>.md`
 
-- **Scope-local.** A decision about one client lives in that client's
-  `decisions/` folder. A workspace-wide decision lives in `Decisions/` at the
-  root.
+- **Scope-local.** A decision about one area lives in that area's `decisions/`
+  folder. A workspace-wide decision lives in `Decisions/` at the root.
+- **Not for template decisions.** A choice about how the template itself is
+  built belongs in `.workspace/decisions/`, which a consumer never adds to.
 - **Numbered per scope**, four digits, zero-padded. Two areas never collide, and
   numbering per scope keeps the sequence meaningful within the thing it governs.
 - **Slug is kebab-case** and reads as a claim, not a topic:
@@ -53,7 +63,7 @@ keep by staying short enough to read end to end.
 Find the next number by counting what is already there:
 
 ```bash
-scope="Clients/example-co"          # or "." for workspace-wide
+scope="Areas/example-area"          # or "." for workspace-wide
 mkdir -p "$scope/decisions"
 n=$(printf "%04d" $(( $(ls "$scope/decisions" 2>/dev/null | grep -c '^[0-9]') + 1 )))
 echo "$scope/decisions/$n-<slug>.md"
@@ -110,6 +120,9 @@ Cross-reference related records inline. They are a web, not a list.
 
 ## Anti-patterns
 
+- **Writing one without being asked.** The failure this skill guards hardest
+  against. Creating the file and offering to delete it is the same defect with
+  an extra step, and so is drafting it "so it's ready if you want it".
 - **Recording the outcome without the alternatives.** The most common failure,
   and it makes the record worthless for its one purpose.
 - **Writing a record for a reversible choice.** It dilutes the register until
@@ -118,5 +131,6 @@ Cross-reference related records inline. They are a web, not a list.
   destroys the history the register exists to hold.
 - **A slug that names a topic rather than a claim.** `0004-pricing.md` tells a
   future reader nothing; they have to open it to know whether it is relevant.
-- **Deferring the record until the work is done.** Write it when the decision is
-  made, while the alternatives are still in your head.
+- **Deferring the record until the work is done.** Raise it when the decision is
+  made, while the alternatives are still in someone's head. Waiting for the yes
+  is the rule; waiting a fortnight to ask is not.

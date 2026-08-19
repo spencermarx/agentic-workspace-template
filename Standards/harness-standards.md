@@ -145,9 +145,13 @@ agents directory, no symlinks, no lock manifest. Provenance is an inline HTML
 comment at the top of the vendored `SKILL.md`, in one of exactly two forms:
 
 ```
-<!-- Vendored verbatim from <url> (<path> @ <sha>). See [ADR](...). -->
-<!-- Vendored from <url> (<path>); adapted for this repo (<enumerated deltas>). See [ADR](...). -->
+<!-- Vendored verbatim from <url> (<path> @ <sha>). See [vendoring provenance](...). -->
+<!-- Vendored from <url> (<path>); adapted for this repo (<enumerated deltas>). See [vendoring provenance](...). -->
 ```
+
+The trailing link points back at this section. It used to point at the decision
+record that set the policy, which put a link to the template's own construction
+history into thirty shipped files; the rule a reader needs is here.
 
 The distinction is load-bearing, because the verbatim string is read by code: a
 skill directory whose `SKILL.md` contains it is excluded whole from the mutate

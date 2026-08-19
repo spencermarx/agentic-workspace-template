@@ -3,7 +3,7 @@ name: to-questionnaire
 description: Turn a decision you can't fully answer into a questionnaire for someone else to fill in.
 disable-model-invocation: true
 ---
-<!-- Vendored verbatim from https://github.com/mattpocock/skills (skills/productivity/to-questionnaire/SKILL.md @ 9c9f36ccd399). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored verbatim from https://github.com/mattpocock/skills (skills/productivity/to-questionnaire/SKILL.md @ 9c9f36ccd399). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 
 Turn something the user can't answer alone into a **questionnaire** — a Markdown document they hand to one person to fill in async, or fill out together over a meeting. The recipient holds knowledge the user lacks; the questionnaire pulls it out of them.

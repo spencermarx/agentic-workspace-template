@@ -7,7 +7,7 @@ description: >-
   step. Use whenever a new business idea needs stress-testing before anyone commits time
   to it.
 ---
-<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/startup-idea-engine/SKILL.md @ 496d37273aca); adapted for this repo (de-branded throughout; the incumbent-vendor examples generalised; the task-source dependency removed). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/startup-idea-engine/SKILL.md @ 496d37273aca); adapted for this repo (de-branded throughout; the incumbent-vendor examples generalised; the task-source dependency removed). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Startup Idea Engine

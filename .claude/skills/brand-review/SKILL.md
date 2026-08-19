@@ -7,7 +7,7 @@ description: >-
   fix list. Use before publishing any marketing creative. Do NOT use for copy quality (use
   `seven-copy-critics`) or for the strategic case (use `strategic-brief`).
 ---
-<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/brand-review/SKILL.md @ 2e62970bb6cd); adapted for this repo (no changes beyond this marker). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/brand-review/SKILL.md @ 2e62970bb6cd); adapted for this repo (no changes beyond this marker). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Brand Review

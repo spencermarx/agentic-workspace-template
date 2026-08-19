@@ -2,7 +2,7 @@
 name: grilling
 description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
 ---
-<!-- Vendored verbatim from https://github.com/mattpocock/skills (skills/productivity/grilling/SKILL.md @ 9c9f36ccd399). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored verbatim from https://github.com/mattpocock/skills (skills/productivity/grilling/SKILL.md @ 9c9f36ccd399). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.

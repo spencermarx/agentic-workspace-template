@@ -4,7 +4,7 @@ description: Configure this repo's tracking, triage, and context layers for the 
 disable-model-invocation: true
 ---
 
-<!-- Vendored from https://github.com/spencermarx/bizkit (.claude/skills/setup-tracking-triage-and-context-layers/SKILL.md @ ce32987bb267); adapted for this repo (renamed to match what it does here; tracker and config locations read from .workspace/workspace.json rather than assuming an issue tracker; engineering artifact types re-keyed to vault artifacts). Upstream lineage: https://github.com/mattpocock/skills. See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/bizkit (.claude/skills/setup-tracking-triage-and-context-layers/SKILL.md @ ce32987bb267); adapted for this repo (renamed to match what it does here; tracker and config locations read from .workspace/workspace.json rather than assuming an issue tracker; engineering artifact types re-keyed to vault artifacts). Upstream lineage: https://github.com/mattpocock/skills. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 # Setup: Tracking, Triage, and Context Layers
 

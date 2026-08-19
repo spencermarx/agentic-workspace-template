@@ -9,7 +9,7 @@ description: >-
   for marketing copy (use `seven-copy-critics`).
 ---
 
-<!-- Vendored from https://github.com/mattpocock/skills (skills/productivity/writing-for-agents/SKILL.md @ 9c9f36ccd399); adapted for this repo (the 11 KB upstream body exceeds this workspace's skill-body budget, so it is kept verbatim in references/theory.md and this file is a lean router into it; SKILL-MECHANICS.md kept verbatim as references/skill-mechanics.md; a section added mapping the concepts onto this workspace's own layers). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/mattpocock/skills (skills/productivity/writing-for-agents/SKILL.md @ 9c9f36ccd399); adapted for this repo (the 11 KB upstream body exceeds this workspace's skill-body budget, so it is kept verbatim in references/theory.md and this file is a lean router into it; SKILL-MECHANICS.md kept verbatim as references/skill-mechanics.md; a section added mapping the concepts onto this workspace's own layers). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 # Writing for agents
 
