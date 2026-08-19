@@ -15,13 +15,6 @@
     "emojis": false,
     "folderNotes": true
   },
-  "budgets": {
-    "rootMaxBytes": 8000,
-    "rootWarnBytes": 5000,
-    "routerMaxBytes": 3500,
-    "leafMaxBytes": 20000,
-    "leafWarnBytes": 14000
-  },
   "sync": {
     "provider": "none",
     "marker": "Home.md",

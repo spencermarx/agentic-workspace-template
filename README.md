@@ -28,12 +28,11 @@ Nothing to install. The engine is Python 3 standard library, and `/usr/bin/pytho
 
 `.workspace/`, `.claude/`, `.obsidian/`, `Obsidian/Templates/`, and `.credentials/` are **template-owned** and contain no workspace content. Everything else is **workspace-owned** and contains no template logic. No file is both.
 
-That boundary is what lets `./workspace upgrade` replace harness files without touching your notes, and what lets CI prove no private content ever reaches a public template.
+That boundary is what lets `./workspace upgrade` replace harness files without touching your notes.
 
 ## Commands
 
 ```
-./workspace validate          run the gate
 ./workspace bootstrap         turn this template into a workspace
 ./workspace add               scaffold one new client, venture, or area
 ./workspace obsidian-setup    write per-machine plugin config

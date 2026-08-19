@@ -27,8 +27,8 @@ Installing one puts it in a directory git would otherwise offer to stage, so
 `.gitignore` ignores each store plugin by id, and `.obsidian/themes/` with them.
 Without that, "not vendored" would last exactly until the first `git add -A`.
 The ignore is by id rather than a blanket rule over `plugins/`, because the two
-vendored plugins in the table above have to stay tracked. `./workspace validate`
-asserts both halves.
+vendored plugins in the table above have to stay tracked. Both halves matter:
+check `git check-ignore` before changing either.
 
 `community-plugins.json` still lists every plugin, vendored or not, so the
 **enable list travels with the clone**. That was one of the two reproducibility

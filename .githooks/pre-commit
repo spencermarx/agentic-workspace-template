@@ -1,9 +1,0 @@
-#!/bin/sh
-# Committed to .githooks/ rather than .git/hooks/ so it survives a clone.
-# Activated by: git config core.hooksPath .githooks  (bootstrap does this).
-#
-# No husky, no node, no install step.
-set -eu
-
-repo_root=$(git rev-parse --show-toplevel)
-exec "$repo_root/workspace" validate

@@ -2,7 +2,7 @@
 
 The files the engine renders from. Template-owned: they contain tokens and
 sentinels by design, which is why `.workspace/` is excluded from the mutate
-surface and from the placeholder gate.
+surface.
 
 | File | Rendered as |
 |---|---|
@@ -18,7 +18,7 @@ surface and from the placeholder gate.
 
 ## Slots
 
-Three grammars, all gated once the workspace is bootstrapped.
+Three grammars. All of them must be filled before the workspace is done.
 
 | Grammar | Filled by |
 |---|---|

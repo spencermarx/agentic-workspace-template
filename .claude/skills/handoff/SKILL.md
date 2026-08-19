@@ -48,7 +48,6 @@ git branch --show-current     # the branch to resume on
 git status --short            # uncommitted work: the live edit surface
 git log --oneline -8          # recent commits, for narrative anchor
 git stash list                # anything parked
-./workspace validate          # is the gate green right now, or did you leave it red?
 ```
 
 Then take stock of what git will not show you:
