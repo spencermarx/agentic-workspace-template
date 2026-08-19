@@ -31,7 +31,7 @@ Nothing here is a rule. The rules live in
 Every note uses both, and each has one job.
 
 1. **Frontmatter properties** are typed and queryable. The views filter on them,
-   and there are only nine of them in total.
+   and there are only eight of them in total.
 2. **The body** uses `[[wikilinks]]` for entities: people, organizations,
    meetings, decisions, areas. Linking rather than describing twice is what makes
    the backlink panel a complete record of where something came up.
