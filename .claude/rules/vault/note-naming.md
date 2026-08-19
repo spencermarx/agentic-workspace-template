@@ -1,9 +1,10 @@
 ---
 description: File and folder naming, including the hyphen separator
 paths:
+  - '**/Areas/**/*.md'
+  - '**/Operators/**/*.md'
   - '**/Meetings/**/*.md'
   - '**/People/**/*.md'
-  - '**/Activities/**/*.md'
 ---
 
 # File naming

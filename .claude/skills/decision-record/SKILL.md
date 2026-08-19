@@ -6,7 +6,7 @@ description: >-
   stop: a record is only ever created after the operator says yes. Trigger on "write this
   down", "document this decision", "supersede that decision", "why did we choose". Do NOT
   use for a choice you could undo in an afternoon, to park an open item (use `parking-lot`),
-  or to plan work that is not yet decided (use `wayfinder`).
+  or for work not yet decided (use `wayfinder`).
 ---
 
 <!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/adr/SKILL.md @ ce32987bb267); adapted for this repo (rewritten around a plain file write: the generator, ULID identity, and derived ledger are gone, replaced by per-scope NNNN numbering and the Decisions README index; the significance test, the section discipline, the supersession protocol, and the anti-patterns are carried over). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->

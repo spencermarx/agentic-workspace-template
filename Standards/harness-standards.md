@@ -43,10 +43,11 @@ extended globs. Claude Code does this matching, not anything in this repo, so a
 pattern that reaches too far just matches nothing, which is indistinguishable
 from a healthy system.
 
-Globs use the reserved folder vocabulary and are written as
-`**/<Folder>/**/*.md`, so they match wherever the folder is nested. Renaming a
-reserved folder obligates you to rewrite the affected globs in the same change,
-because a glob that matches nothing stops routing without saying so.
+Globs use [the reserved folder vocabulary](./vault-standards.md#the-reserved-folder-vocabulary)
+and are written as `**/<Folder>/**/*.md`, so they match wherever the folder is
+nested. Renaming a reserved folder obligates you to rewrite the affected globs
+in the same change, because a glob that matches nothing stops routing without
+saying so.
 
 ## Skill authoring contract
 

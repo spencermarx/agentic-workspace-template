@@ -48,8 +48,13 @@ That last one matters most.
 
 Read what is there and derive: what the top-level plural folder already is, how
 instances are named, whether frontmatter is already in use and in what form,
-and which of the reserved folder names are already taken. A bootstrap that
-renames someone's existing folders is a migration they did not ask for.
+and which of [the reserved folder names](../../../../Standards/vault-standards.md#the-reserved-folder-vocabulary)
+are already taken. A bootstrap that renames someone's existing folders is a
+migration they did not ask for.
+
+If the shape you record renames `Areas/` or `Operators/`, the rule globs that
+route by those names must be rewritten to match in the same change. A glob that
+matches nothing stops routing without saying so.
 
 ## Three rules
 

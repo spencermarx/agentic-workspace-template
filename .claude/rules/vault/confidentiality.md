@@ -1,10 +1,10 @@
 ---
-description: Client material and commercial terms do not leave the vault unchecked
+description: Vault material and commercial terms do not leave the vault unchecked
 paths:
-  - '**/Clients/**'
-  - '**/Pipeline/**'
-  - '**/Proposals/**'
-  - '**/Engagements/**'
+  - '**/Areas/**'
+  - '**/Operators/**'
+  - '**/Meetings/**'
+  - '**/People/**'
 ---
 
 # What never leaves the vault

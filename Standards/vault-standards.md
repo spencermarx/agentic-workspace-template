@@ -12,7 +12,7 @@ keys: if you do not have the value, you do not have the note yet.
 type: meeting/external
 status: done
 created: 2026-08-18
-scope: clients/example-co
+scope: areas/example-area
 ---
 ```
 
@@ -65,6 +65,35 @@ Closed. Adding a value means editing this table.
 `completed` is not a value. Use `done`. Two words for one state is how a
 taxonomy starts to rot.
 
+## The reserved folder vocabulary
+
+These folder names carry meaning: rules route by them, skills resolve paths
+through them, and `scope` is derived from them. Treat them as reserved.
+
+| Folder | Holds | Created by |
+|---|---|---|
+| `Standards/` | Conventions, stated once | ships |
+| `Obsidian/` | Vault mechanics: guides, templates, views | ships |
+| `Decisions/` | Workspace-level decision records | ships |
+| `Meetings/` | Meeting notes | ships |
+| `People/` | Person and organization notes | ships |
+| `Attachments/` | Binaries. No notes, so no frontmatter | ships |
+| `Areas/` | The router over whatever this business does many of | bootstrap |
+| `Operators/` | One working area per person | bootstrap |
+| `Activities/`, `Documents/` | An area's working notes and artifacts | `./workspace add` |
+| `Daily Notes/` | An operator's dailies | `./workspace add` |
+| `decisions/` | An area's own decision records | `./workspace add` |
+
+`Areas/` and `Operators/` are the two a business renames: a firm may call them
+`Clients/` and `Partners/`, a fund `Portfolio/` and `Principals/`. Renaming one
+is a supported choice, made once at bootstrap, and it obligates the glob rewrite
+that [harness-standards § Rule authoring contract](./harness-standards.md#rule-authoring-contract)
+describes.
+
+The vocabulary is not yours to extend mid-flight. A new top-level folder is a
+bootstrap-time or `./workspace add` decision, never something a note-writing
+session invents.
+
 ## Scope
 
 `scope` is the lowercase-kebab, slash-joined path of the owning folder, relative
@@ -72,9 +101,9 @@ to the vault root, with no file extension.
 
 | Folder | `scope` |
 |---|---|
-| `Clients/example-co/` | `clients/example-co` |
-| `Products/thing/` | `products/thing` |
-| `Business/` | `business` |
+| `Areas/example-area/` | `areas/example-area` |
+| `Operators/operator/` | `operators/operator` |
+| `Meetings/` | `meetings` |
 | workspace-level | `none` |
 
 Because it is derived from the path it cannot drift into a second spelling.

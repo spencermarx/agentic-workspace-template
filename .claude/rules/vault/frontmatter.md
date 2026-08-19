@@ -1,13 +1,12 @@
 ---
 description: Required frontmatter properties by note type
 paths:
-  - '**/People/**/*.md'
-  - '**/Clients/**/*.md'
+  - '**/Areas/**/*.md'
+  - '**/Operators/**/*.md'
   - '**/Meetings/**/*.md'
+  - '**/People/**/*.md'
   - '**/Decisions/**/*.md'
   - '**/decisions/**/*.md'
-  - '**/Products/**/*.md'
-  - '**/Ventures/**/*.md'
 ---
 
 # Required frontmatter

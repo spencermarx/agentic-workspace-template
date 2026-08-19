@@ -24,7 +24,8 @@ resolution** in the root `CLAUDE.md`: match the session email against
 
 Create the folder on first use, never ahead of it. If this workspace has no
 `Operators/` tree, ask where the topic should live rather than inventing a
-top-level folder; the reserved folder vocabulary is not yours to extend.
+top-level folder; [the reserved folder vocabulary](../../../Standards/vault-standards.md#the-reserved-folder-vocabulary)
+is not yours to extend.
 
 The state of their learning is captured in that directory in several files:
 
