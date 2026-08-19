@@ -47,8 +47,8 @@ Every root carries this, verbatim:
 > extends or overrides what is here (progressive disclosure). Read the one for
 > the area you are working in.
 >
-> Conventions that apply everywhere (voice, frontmatter, tags, document
-> patterns) live in `Standards/`. Read `Standards/README.md` before writing or
+> Conventions that apply everywhere (voice, frontmatter, document patterns)
+> live in `Standards/`. Read `Standards/README.md` before writing or
 > restructuring any note. Do not restate those rules here or in any other
 > `CLAUDE.md`; point at them.
 
