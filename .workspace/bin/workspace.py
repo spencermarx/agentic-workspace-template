@@ -738,8 +738,10 @@ def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored
 
     if plan_path is None and not PLAN_PATH.exists():
         print("No plan yet. `./workspace bootstrap` with no --plan is the conversational")
-        print("entry point: it hands off to Claude Code, which interviews you and writes")
-        print(".workspace/plan.json. Run it from a terminal, or pass --plan directly.")
+        print("entry point: it hands off to Claude Code, which talks it through with you,")
+        print("reads what you point it at, plays back what it found for your sign-off, and")
+        print("only then writes .workspace/plan.json. Run it from a terminal, or pass")
+        print("--plan directly.")
         return launch_conversation()
 
     plan = load_plan(Path(plan_path) if plan_path else None)
