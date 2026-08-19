@@ -11,10 +11,7 @@ surface.
 | `leaf.md` | a `CLAUDE.md` for an area that carries full context |
 | `parking-lot.md` | `<Area> - Parking Lot.md` |
 | `links.md` | an area's external-link manifest |
-| `00-summary.md` | the synthesizer that fronts numbered receipts |
-| `research-bundle-README.md` | the index of a `Documents/Research/` tree |
 | `decision-record.md` | `<scope>/decisions/NNNN-<slug>.md` |
-| `scaffold-doc.md` | a deliberately unfilled document |
 
 ## Slots
 

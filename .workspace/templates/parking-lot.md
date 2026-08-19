@@ -3,10 +3,6 @@ type: parking-lot
 status: active
 created: {{TODAY}}
 scope: {{SCOPE}}
-tags:
-  - type/parking-lot
-  - status/active
-  - scope/{{SCOPE}}
 ---
 
 # {{NODE_TITLE}} - Parking Lot
@@ -24,7 +20,7 @@ Nothing is ever deleted. A triaged row moves to Archive marked `promoted`,
 ## Open items
 
 <!-- Row format:
-| 001 | 2026-08-18 | spencer | pricing | The item, in one sentence. | What would move it forward. |
+| 001 | 2026-08-18 | who raised it | which area | The item, in one sentence. | What would move it forward. |
 -->
 
 | ID | Raised | By | Area | Item | Next step |

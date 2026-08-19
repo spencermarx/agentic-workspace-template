@@ -63,8 +63,8 @@ is ten times cheaper than specifying one.
 ## Step 2: write the plan, then dry run
 
 Write `.workspace/plan.json` from the answers. The schema is
-`.workspace/schema/plan.schema.json`; the three fixtures under
-`.workspace/fixtures/` are worked examples of the three common shapes.
+`.workspace/schema/plan.schema.json`; `.workspace/fixtures/plan.example.json` is
+a worked example of the grammar.
 
 Then, always dry-run first and apply with the identical command:
 
