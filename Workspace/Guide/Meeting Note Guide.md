@@ -7,7 +7,8 @@ scope: none
 
 # Meeting notes
 
-The template does three things for you: moves the file to `Meetings/<year>/`,
+The template does three things for you: moves the file to
+`Operators/<key>/Meetings/<year>/`,
 writes the frontmatter, and links the meeting into the chosen person's daily
 note under its Meetings heading.
 

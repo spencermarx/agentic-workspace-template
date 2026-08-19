@@ -33,6 +33,13 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 CONFIG_PATH = REPO_ROOT / ".workspace" / "workspace.json"
 PLAN_PATH = REPO_ROOT / ".workspace" / "plan.json"
 
+# The vault's Templater directory, distinct from .workspace/templates, which is
+# the engine's own scaffolding templates. Named once here because it moved from
+# Obsidian/ to Workspace/ and a path spelled out as separate segments elsewhere
+# in this file survived the rename silently: a search for "Obsidian/Templates"
+# does not match REPO_ROOT / "Obsidian" / "Templates".
+VAULT_TEMPLATES = REPO_ROOT / "Workspace" / "Templates"
+
 # Identity substitution uses an UPPER-first {{TOKEN}} grammar. That anchor is
 # deliberate and matters more here than in a code repo: Obsidian's own Templates
 # plugin uses lowercase {{title}}, {{date:YYYY-MM-DD}}, {{time}}. Anchoring on an
@@ -756,7 +763,37 @@ def print_actions(actions, plan, dry_run, next_cmd):
         print("  next     %s" % next_cmd)
 
 
-def reconcile(plan_path=None, dry_run=False, verb="apply") -> int:
+def render_operators(config, dry_run, actions) -> None:
+    """Write the operator list Templater reads, from workspace.json.
+
+    Generated rather than hand-kept, which is what keeps every template free of
+    a person's name.
+
+    Pathed from VAULT_TEMPLATES rather than spelled out segment by segment.
+    Written as REPO_ROOT / "Obsidian" / "Templates" / ... this survived the move
+    to Workspace/ untouched, because a path assembled from separate segments
+    does not contain the string a search-and-replace looks for, and the
+    exists() guard below turned the wrong path into silence rather than an
+    error.
+    """
+    ops_target = VAULT_TEMPLATES / "scripts" / "operators.js"
+    if not ops_target.exists():
+        return
+    people = config.get("people") or []
+    entries = ",\n    ".join(
+        '{ key: "%s", display: "%s", default: %s }'
+        % (p.get("key"), p.get("display"), "true" if p.get("default") else "false")
+        for p in people)
+    text = read_text(ops_target)
+    new = re.sub(r"list: \(\) => \[\n.*?\n  \],", "list: () => [\n    %s\n  ]," % entries,
+                 text, flags=re.DOTALL)
+    if new != text:
+        actions.append(("update", rel(ops_target), "operators"))
+        if not dry_run:
+            ops_target.write_text(new, encoding="utf-8")
+
+
+def reconcile(plan_path=None, dry_run=False, verb="apply", baseline=False) -> int:
     """Bring the tree on disk in line with the plan, and report every action.
 
     Idempotent by construction: every write is a mkdir that tolerates an
@@ -801,6 +838,11 @@ def reconcile(plan_path=None, dry_run=False, verb="apply") -> int:
                     target.write_text(new, encoding="utf-8")
 
     pruned = prune_unreachable_rules(plan, dry_run, actions)
+    # Bootstrap is where people are first configured, so it is also where the
+    # operator list has to be written. Leaving this to `render` alone meant a
+    # fork that bootstrapped and never rendered kept placeholder operators, and
+    # every Templater note filed itself under a literal {{PRIMARY_OPERATOR_KEY}}.
+    render_operators(config, dry_run, actions)
     apply_identity_tokens(config, today, dry_run, actions)
 
     if not dry_run:
@@ -815,7 +857,15 @@ def reconcile(plan_path=None, dry_run=False, verb="apply") -> int:
         CONFIG_PATH.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
         if plan_path:
             PLAN_PATH.write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
-        write_manifest_lock(dry_run)
+        # Only on first run. The manifest is the record of what the template
+        # shipped, and `upgrade` replaces a file only when its hash still
+        # matches -- that hash is the entire protection for a local edit.
+        # Re-baselining it on every routine `apply` would launder local changes
+        # into "pristine", and the next upgrade would overwrite them silently.
+        # `.workspace/workspace.json` is in the manifest, so the workspace's own
+        # name, people, and email map were what stood to be replaced.
+        if baseline:
+            write_manifest_lock(dry_run)
 
     header = "[dry-run] " if dry_run else ""
     print("%splan %s -- %d nodes" % (header, plan_path or rel(PLAN_PATH), len(plan.get("nodes", []))))
@@ -827,7 +877,7 @@ def reconcile(plan_path=None, dry_run=False, verb="apply") -> int:
     if pruned:
         print("")
         print("  %d rule(s) pruned: this shape has no folder they govern. The standards" % len(pruned))
-        print("  they routed still stand in Standards/; nothing routes them here.")
+        print("  they routed still stand in Workspace/Standards/; nothing routes them here.")
     if not dry_run:
         print("")
         print("  Next: fill every __REPLACE_ME__ and act on every <!-- AGENT: --> comment")
@@ -857,7 +907,7 @@ def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored
         print("--plan directly.")
         return launch_conversation()
 
-    return reconcile(plan_path, dry_run, "bootstrap")
+    return reconcile(plan_path, dry_run, "bootstrap", baseline=True)
 
 
 def launch_conversation() -> int:
@@ -957,22 +1007,7 @@ def run_render(only: Optional[str], dry_run: bool) -> int:
                 actions.append(("update", rel(target), "[%s block]" % block))
                 if not dry_run:
                     target.write_text(new, encoding="utf-8")
-    # operators.js is generated from workspace.json, which is what keeps every
-    # template free of a person's name.
-    ops_target = REPO_ROOT / "Obsidian" / "Templates" / "scripts" / "operators.js"
-    if ops_target.exists():
-        people = config.get("people") or []
-        entries = ",\n    ".join(
-            '{ key: "%s", display: "%s", default: %s }'
-            % (p.get("key"), p.get("display"), "true" if p.get("default") else "false")
-            for p in people)
-        text = read_text(ops_target)
-        new = re.sub(r"list: \(\) => \[\n.*?\n  \],", "list: () => [\n    %s\n  ]," % entries,
-                     text, flags=re.DOTALL)
-        if new != text:
-            actions.append(("update", rel(ops_target), "operators"))
-            if not dry_run:
-                ops_target.write_text(new, encoding="utf-8")
+    render_operators(config, dry_run, actions)
     print("%srender" % ("[dry-run] " if dry_run else ""))
     print("")
     print_actions(actions, plan, dry_run, "./hq render")

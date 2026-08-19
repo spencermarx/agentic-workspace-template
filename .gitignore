@@ -5,7 +5,7 @@
 # clone reproducible. community-plugins.json is here deliberately: without it a
 # clone gets every plugin's code and Obsidian enables none of it. That was the
 # single biggest reproducibility gap in the workspace this template came from.
-# The saved views are not here: they live in Obsidian/Views/ as ordinary vault
+# The saved views are not here: they live in Workspace/Views/ as ordinary vault
 # files, because a view nobody can reach from the file explorer is not a view.
 **/.obsidian/*
 !**/.obsidian/plugins/
@@ -35,7 +35,7 @@
 !.obsidian/plugins/templater-obsidian/SETUP.md
 
 # Per-machine plugin state. Each machine writes its own from the .example file
-# beside it, via `./workspace obsidian-setup`. See each plugin's SETUP.md.
+# beside it, via `./hq obsidian-setup`. See each plugin's SETUP.md.
 #   agentic-copilot  data.json is a local preference file, and editApprovalMode
 #                    is a security choice that should not arrive from a clone.
 #   templater        data.json is covered by the blanket rule above.

@@ -27,9 +27,21 @@ colleague to have written?
 
 ## Organizations are not customers
 
-The template is `Org Note`, not `Customer Note`, and it asks for nothing but the
-name. What the relationship is belongs under **How we relate**, in a sentence,
-because the interesting part is what each side wants and no dropdown holds that.
+The template is `Org Note`, not `Customer Note`. What the relationship *is*
+belongs under **How we relate**, in a sentence, because the interesting part is
+what each side wants and no dropdown holds that.
 
-A fixed list of relationship labels is the first place a generic template starts
-describing somebody else's business.
+A fixed list of commercial labels -- customer, prospect, partner, churned -- is
+the first place a generic template starts describing somebody else's business.
+This one ships none.
+
+**`relationship` is the one exception, and it is not a commercial label.** It
+holds `internal` or `external`: whether this person or organization is part of
+this business or outside it. That is true at every company, it never becomes a
+pipeline stage, and the workspace depends on it -- an internal person has a
+private area under `Operators/`, and confidentiality reads differently across
+the line. It is a property rather than two folders because people cross it: a
+contractor becomes an employee, an employee becomes an advisor. As folders that
+is a rename that breaks every link to them; as a property it is one line.
+
+Everything richer than that boundary goes in prose.

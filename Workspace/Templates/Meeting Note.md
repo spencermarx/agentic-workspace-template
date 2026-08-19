@@ -1,5 +1,9 @@
 <%*
-const op = await tp.user.operators.pick(tp, "Link into whose daily note?");
+// This picks the owner, not just a backlink target. A meeting note lives in the
+// note-taker's own area, which is the only place in the vault with a single
+// writer, so two people in one meeting keep two accounts and neither can
+// conflict with the other.
+const op = await tp.user.operators.pick(tp, "Whose notes are these?");
 const title = await tp.system.prompt("Meeting title");
 const kind = await tp.system.suggester(
   ["External", "Internal", "One to one"],
@@ -8,13 +12,13 @@ const kind = await tp.system.suggester(
 // The meetings view groups by scope. Hardcoding it collapsed every meeting into
 // a single group called "none", so it is asked for.
 const rawScope = await tp.system.prompt(
-  "Owning area folder, e.g. Clients/example-co, or . for workspace-level", ".");
+  "Owning area folder, e.g. Business/sales, or . for workspace-level", ".");
 const scope = (!rawScope || rawScope === ".")
   ? "none"
   : rawScope.toLowerCase().replace(/^\/+|\/+$/g, "");
 const d = tp.date.now("YYYY-MM-DD");
 const name = `${d} ${title}`;
-await tp.file.move(`Meetings/${tp.date.now("YYYY")}/${name}`);
+await tp.file.move(`${tp.user.operators.home(op)}/Meetings/${tp.date.now("YYYY")}/${name}`);
 -%>
 ---
 type: <% kind %>
