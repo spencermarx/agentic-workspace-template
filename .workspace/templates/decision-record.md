@@ -4,7 +4,6 @@ status: draft
 created: {{TODAY}}
 date: {{TODAY}}
 scope: {{SCOPE}}
-authors: []
 ---
 
 # {{NUMBER}} - {{TITLE}}

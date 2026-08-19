@@ -4,11 +4,6 @@ status: active
 created: 2026-08-18
 date: 2026-08-18
 scope: none
-authors: []
-tags:
-  - type/decision
-  - status/active
-  - scope/none
 ---
 
 # 0002 - Vendor third-party skills as plain files with inline provenance
