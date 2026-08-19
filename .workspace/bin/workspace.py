@@ -339,8 +339,11 @@ def run_doctor(upstream: bool = False, vendored: bool = False) -> int:
                 sha = VENDORED_SHA_RE.search(text)
                 url = m.group(1).rstrip(")").rstrip(",")
                 verbatim = VENDORED_VERBATIM_MARKER in text
-                print("  %-32s %-9s %s" % (d.name, "verbatim" if verbatim else "adapted",
-                                           sha.group(1) if sha else "NO PIN"))
+                # The url is half of what makes the diff below tractable; it was
+                # parsed and then dropped from the output, leaving a pin with
+                # nothing to pin against.
+                print("  %-28s %-9s %-9s %s" % (d.name, "verbatim" if verbatim else "adapted",
+                                                sha.group(1)[:7] if sha else "NO PIN", url))
         print("")
         print("  A pin is what makes the manual diff against upstream tractable.")
     return 0
