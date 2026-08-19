@@ -18,7 +18,7 @@ beside the thing they are about:
 ├── CONTEXT.md                     ← the workspace glossary
 ├── Decisions/                     ← workspace-level, via the `decision-record` skill
 │   ├── 2026-08-19-standards-as-rules-routed-to-files.md
-│   └── 0002-vendor-third-party-skills-as-plain-files.md
+│   └── 2026-08-18-vendor-third-party-skills-as-plain-files.md
 └── <Area>/
     └── decisions/                 ← area-level, same skill, its own dated records
         └── YYYY-MM-DD-<kebab-slug>.md

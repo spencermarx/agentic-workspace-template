@@ -6,7 +6,22 @@ date: 2026-08-19
 scope: none
 ---
 
-# 0005 - Setup talks before it looks, and looks before it proposes
+# Setup talks before it looks, and looks before it proposes
+
+**Amended 2026-08-19.** The phase order stands. What changed is where it lives:
+the three phases are three skills rather than three reference files inside one,
+each invocable on its own after day one.
+[`investigation-brief`](../../.claude/skills/investigation-brief/SKILL.md) is the
+conversation, [`explore-context`](../../.claude/skills/explore-context/SKILL.md) is
+the reading and the playback that gets it confirmed, and
+[`extend-architecture`](../../.claude/skills/extend-architecture/SKILL.md) is the
+shaping that follows.
+[`bootstrap`](../../.claude/skills/bootstrap/SKILL.md) keeps only what happens once
+per workspace -- the fresh-fork check, the identity the engine substitutes, and
+the flip to `bootstrapped: true` -- and sequences those three. That split is what
+makes the order reusable: a workspace three years old reshapes itself through the
+same skills in the same order, rather than through a first-run procedure nobody
+is allowed to run twice.
 
 ## Context
 
@@ -117,7 +132,9 @@ wanted a fast skeleton now gets a conversation first.
 
 **Makes harder:** verification. Nothing checks that Phase 3 actually labelled
 every line, or that Phase 1 truly read nothing. The bar is stated and not
-enforced, which is consistent with 0004 and carries the same exposure.
+enforced, which is consistent with
+[Standards are enforced by rules, not by a validator](2026-08-19-standards-are-enforced-by-rules-not-by-a-validator.md)
+and carries the same exposure.
 
 **Explicitly deferred:** whether a multi-person setup should be able to reach
 `to-questionnaire`, so one person can hand sections of the playback to a

@@ -6,7 +6,7 @@ date: 2026-08-18
 scope: none
 ---
 
-# 0002 - Vendor third-party skills as plain files with inline provenance
+# Vendor third-party skills as plain files with inline provenance
 
 ## Context
 

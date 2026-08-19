@@ -6,7 +6,21 @@ date: 2026-08-18
 scope: none
 ---
 
-# 0003 - Cap the always-resident context budget
+# Cap the always-resident context budget
+
+**Superseded 2026-08-19** by
+[Standards are enforced by rules, not by a validator](2026-08-19-standards-are-enforced-by-rules-not-by-a-validator.md),
+which withdrew the enforcement and kept the numbers as guidance.
+
+**One number did not survive even as guidance.** The 14,000 B cap on all skill
+descriptions combined is retired outright, not merely unenforced. It measured
+cost rather than quality, nothing degrades at 14,001, and a library grows
+because its coverage is worth having. A number nobody intends to honour is worse
+than no number: every session reads it as a constraint and proposes cuts against
+it. The per-description 500-character cap stays, and it is the one that matters,
+because a bloated description dilutes its own triggers and the skill fires less
+often. Current numbers:
+[harness-standards § Context budget](../../Workspace/Standards/harness-standards.md#context-budget).
 
 ## Context
 
