@@ -19,6 +19,27 @@ move depth behind the context router table below.
 Folders that carry neither, such as `Meetings/`, `People/`, and `Attachments/`,
 get a five-line `README.md` if they need any explanation at all.
 
+## CLAUDE.md and README.md are split by audience
+
+A folder may carry either, or both, and they are not two copies of one text.
+
+**`CLAUDE.md` is written for an agent.** What to do here, what not to do, and
+where the governing rule lives. Imperative, specific, and short: it is paid for
+on every request into the subtree.
+
+**`README.md` is written for a person.** What this folder is, how to move around
+it, and the index of what it holds. It is opened deliberately, in Obsidian or on
+GitHub, and costs nothing until it is.
+
+Either is readable by either audience, and that is the point of writing each one
+well rather than writing one and aliasing it. Where both exist, the rule is
+stated in neither: it lives in `Standards/`, and both point at it.
+
+A register folder is the clearest case. `Decisions/README.md` carries the table a
+person browses; `Decisions/CLAUDE.md` carries the confirmation gate an agent must
+clear before writing a record. Neither restates the other, and
+[decision-standards](./decision-standards.md) governs both.
+
 ## Assigning a tier
 
 Apply in order.

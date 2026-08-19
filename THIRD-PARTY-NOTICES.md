@@ -5,7 +5,7 @@ Skills vendored into `.claude/skills/` from other projects, with their licenses.
 Provenance also travels with each file, as an HTML comment at the top of its
 `SKILL.md`, in one of two forms: `Vendored verbatim from ... @ <sha>`, or
 `Vendored from ... ; adapted for this repo (<deltas>)`. See
-[ADR 0002](./Decisions/0002-vendor-third-party-skills-as-plain-files.md).
+[vendoring provenance](./Standards/harness-standards.md#vendoring-provenance).
 
 ---
 

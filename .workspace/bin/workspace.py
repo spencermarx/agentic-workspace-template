@@ -616,8 +616,12 @@ def render_inventory(plan: Dict[str, object], node: Dict[str, object]) -> str:
 
 def render_root_map(plan: Dict[str, object]) -> str:
     top = [n for n in plan.get("nodes", []) if "/" not in n.get("path", "")]
+    # Standards/ and Decisions/ are fixed scaffold rather than plan nodes, so
+    # they are emitted here. Decisions/ was previously omitted, which silently
+    # dropped the row from the map block on the first render.
     lines = ["| Folder | What it holds | Start here |", "|---|---|---|",
-             "| `Standards/` | Every convention, stated once. Business-agnostic. | [`Standards/README.md`](Standards/README.md) |"]
+             "| `Standards/` | Every convention, stated once. Business-agnostic. | [`Standards/README.md`](Standards/README.md) |",
+             "| `Decisions/` | Workspace-level decision records. | [`Decisions/CLAUDE.md`](Decisions/CLAUDE.md) |"]
     for n in top:
         path, title = n["path"], n.get("title", n["path"])
         if n.get("role") in ("router", "leaf"):

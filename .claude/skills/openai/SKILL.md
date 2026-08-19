@@ -7,7 +7,7 @@ description: >
   specifically, load sub-skills/image-generation.md for the full procedure.
   Uses the OpenAI REST API via curl - no SDK required.
 ---
-<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/openai/SKILL.md @ 496d37273aca); adapted for this repo (no changes beyond this marker; the skill carried no brand references). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/openai/SKILL.md @ 496d37273aca); adapted for this repo (no changes beyond this marker; the skill carried no brand references). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # OpenAI API

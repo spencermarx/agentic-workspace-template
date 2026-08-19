@@ -7,16 +7,26 @@ scope: none
 
 # Decisions
 
-Workspace-level decision records. Area-level decisions live in that area's own
-`decisions/` folder.
+Workspace-level decision records: a settled choice **and the reasoning behind
+it**, so the same debate is not reopened in six months by someone who only has
+the conclusion.
 
-When a choice earns a record, and the four sections every record carries: the
-[`decision-record`](../.claude/skills/decision-record/SKILL.md) skill.
+Decisions about one area live in that area's own `decisions/` folder. This
+folder is for choices that govern the whole workspace.
+
+Records are written when you ask for one. An agent working alongside you may
+point out that something looks worth recording, but it will not create a record
+without your say-so, so this register only ever holds decisions you chose to
+keep.
+
+The [Decision Record Guide](../Obsidian/Guide/Decision%20Record%20Guide.md)
+walks through writing a good one. The rules it follows are in
+[decision-standards](../Standards/decision-standards.md).
+
+## The register
 
 | Record | Status |
 |---|---|
-| [0001 Standards as rules routed to files](./0001-standards-as-rules-routed-to-files.md) | active |
-| [0002 Vendor third-party skills as plain files](./0002-vendor-third-party-skills-as-plain-files.md) | active |
-| [0003 Cap the always-resident context budget](./0003-cap-the-always-resident-context-budget.md) | superseded by 0004 |
-| [0004 Standards are enforced by rules, not by a validator](./0004-standards-are-enforced-by-rules-not-by-a-validator.md) | active |
-| [0005 Setup talks before it looks, and looks before it proposes](./0005-setup-talks-before-it-looks-and-looks-before-it-proposes.md) | active |
+
+_No records yet. The first decision this workspace records goes here as
+`0001-<a-claim-in-kebab-case>.md`._

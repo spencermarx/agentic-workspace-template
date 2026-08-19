@@ -7,7 +7,7 @@ description: >-
   tightened rebuild, and a changelog. Use before sending cold email, publishing a page, or
   scheduling a post. Do NOT use to write copy from scratch; this reviews drafts only.
 ---
-<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/seven-copy-critics/SKILL.md @ 2e62970bb6cd); adapted for this repo (placeholder org name removed). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/seven-copy-critics/SKILL.md @ 2e62970bb6cd); adapted for this repo (placeholder org name removed). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Seven Copy Critics

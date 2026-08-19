@@ -5,9 +5,11 @@
      has never seen it before. Delete this comment. -->
 __REPLACE_ME__
 
-This is the root context. Each major folder has its own `CLAUDE.md` that extends
-or overrides what is here (progressive disclosure). Read the one for the area
-you are working in.
+This is the root context. A folder that carries agent-specific context has its
+own `CLAUDE.md`, which extends or overrides what is here (progressive
+disclosure); a folder that only needs orienting has a `README.md` instead. Read
+whichever the folder you are working in has, and both where both exist. They are
+split by audience, never duplicated; see `Standards/claude-md-contract.md`.
 
 Conventions that apply everywhere (voice, frontmatter, document patterns)
 live in `Standards/`. Read `Standards/README.md` before writing or restructuring
@@ -31,9 +33,9 @@ skills in `.claude/`.
 | Folder | What it holds | Start here |
 |---|---|---|
 | `Standards/` | Every convention, stated once. Business-agnostic. | `Standards/README.md` |
-| `Obsidian/` | Vault mechanics: guides and templates. Not content. | `Obsidian/CLAUDE.md` |
-| `Decisions/` | Workspace-level decision records. | `Decisions/README.md` |
+| `Decisions/` | Workspace-level decision records. | `Decisions/CLAUDE.md` |
 | `Meetings/`, `People/` | Shared operational notes. | `Meetings/README.md` |
+| `Obsidian/` | Vault mechanics: guides and templates. Not content. | `Obsidian/CLAUDE.md` |
 | `.claude/` | The agentic harness: rules, skills, agents, commands. | `.claude/CLAUDE.md` |
 <!-- workspace:map:end -->
 

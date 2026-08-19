@@ -7,7 +7,7 @@ description: >-
   creep, and feasibility before a go/no-go. Use before committing more than about two days
   of work. Do NOT use to rank a backlog (use `rice-prioritization`).
 ---
-<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/strategic-brief/SKILL.md @ 2e62970bb6cd); adapted for this repo (issue-tracker references generalised; the two-day-of-agent-work trigger restated without naming a tracker). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/strategic-brief/SKILL.md @ 2e62970bb6cd); adapted for this repo (issue-tracker references generalised; the two-day-of-agent-work trigger restated without naming a tracker). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Strategic Brief

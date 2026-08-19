@@ -17,6 +17,7 @@ lives, and a rule reaches subagents.
 | [confidentiality-standards](./confidentiality-standards.md) | What never leaves the vault, credentials |
 | [claude-md-contract](./claude-md-contract.md) | The three tiers, budgets, the reusable boilerplate |
 | [document-patterns](./document-patterns.md) | Two buckets, dated bundles, the three registers |
+| [decision-standards](./decision-standards.md) | What earns a record, who may create one, numbering, supersession |
 | [harness-standards](./harness-standards.md) | Skills, rules, budgets, vendoring, settings |
 
 ## Intentionally unrouted

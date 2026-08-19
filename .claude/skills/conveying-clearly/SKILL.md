@@ -8,7 +8,7 @@ description: >-
   Also trigger the moment a reply comes back "I don't understand the question / the
   options / where you've got to".
 ---
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/conveying-clearly/SKILL.md @ ce32987bb267); adapted for this repo (engineering artifact examples re-keyed to vault artifacts). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/conveying-clearly/SKILL.md @ ce32987bb267); adapted for this repo (engineering artifact examples re-keyed to vault artifacts). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
 
 
 <!-- Original skill authored for this repo; rationale in Surface questions
