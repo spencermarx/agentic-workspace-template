@@ -547,8 +547,13 @@ def prune_unreachable_rules(plan: Dict[str, object], dry_run: bool, actions) -> 
         for seg in node.get("path", "").split("/"):
             if seg:
                 existing.add(seg)
-        for seg in node.get("scaffold", []) + node.get("children", []):
-            existing.add(seg)
+        # instanceScaffold/instanceChildren name folders that do not exist yet:
+        # they appear the first time an instance is added under this router. A
+        # rule targeting one of them is reachable, not dead, so counting only
+        # what exists today would prune the rule that starts routing tomorrow.
+        for key in ("scaffold", "children", "instanceScaffold", "instanceChildren"):
+            for seg in node.get(key, []):
+                existing.add(seg)
     pruned = []
     for path in rule_files():
         fm, _ = parse_frontmatter(read_text(path))
