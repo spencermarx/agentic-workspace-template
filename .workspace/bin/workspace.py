@@ -1019,11 +1019,6 @@ def run_obsidian_setup(dry_run: bool = False) -> int:
 # CLI
 # --------------------------------------------------------------------------
 
-def not_yet(name: str) -> int:
-    print("`%s` is not implemented yet. See .workspace/docs/ for the design." % name, file=sys.stderr)
-    return 2
-
-
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(prog="workspace", description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(dest="command")
@@ -1071,7 +1066,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if args.command is None:
         parser.print_help()
         return 0
-    return not_yet(args.command)
+    # Unreachable: every registered subcommand is dispatched above, and argparse
+    # rejects anything else before it gets here.
+    raise AssertionError("unhandled subcommand: %s" % args.command)
 
 
 if __name__ == "__main__":
