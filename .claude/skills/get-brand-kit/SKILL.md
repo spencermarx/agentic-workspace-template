@@ -9,7 +9,7 @@ description: >-
   `seven-copy-critics`) or for auditing a finished asset (use `brand-review`).
 ---
 
-<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/get-brand-kit/SKILL.md @ 496d37273aca); adapted for this repo (fully de-branded: tokens renamed from brand-purple* to brand-primary*, which also removes the source's own note apologising that its "purple" reads as blue; a neutral placeholder palette and two generated placeholder wordmarks ship so the image and slide chain runs end to end from a fresh clone; the logo assets now live here rather than in image-overlay, correcting an inverted dependency). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/get-brand-kit/SKILL.md @ 496d37273aca); adapted for this repo (fully de-branded: tokens renamed from brand-purple* to brand-primary*, which also removes the source's own note apologising that its "purple" reads as blue; a neutral placeholder palette and two generated placeholder wordmarks ship so the image and slide chain runs end to end from a fresh clone; the logo assets now live here rather than in image-overlay, correcting an inverted dependency). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # get-brand-kit
 

@@ -9,7 +9,7 @@ description: >-
   writing agent-facing prose (use `writing-for-agents`).
 ---
 
-<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/skill-builder/SKILL.md @ 2e62970bb6cd); adapted for this repo (merged with the description-optimisation loop and anti-undertriggering guidance from Anthropic's skill-creator, and with the rules layer added to the primitive decision table; the deep reference now defers to the vendored writing-for-agents rather than restating it). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/skill-builder/SKILL.md @ 2e62970bb6cd); adapted for this repo (merged with the description-optimisation loop and anti-undertriggering guidance from Anthropic's skill-creator, and with the rules layer added to the primitive decision table; the deep reference now defers to the vendored writing-for-agents rather than restating it). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # skill-builder
 
@@ -36,7 +36,7 @@ The highest-leverage question, and the one most often skipped.
 | Need | Primitive |
 |---|---|
 | A fact agents should know when working in an area | a `CLAUDE.md` note in that folder |
-| A convention that governs a file type | a `Standards/` section plus a `.claude/rules/` pointer |
+| A convention that governs a file type | a `Workspace/Standards/` section plus a `.claude/rules/` pointer |
 | A repeatable multi-step procedure | a skill |
 | A procedure only a person should trigger | a skill with `disable-model-invocation: true` |
 | Context isolation, or a tool surface the main agent must not have | a subagent |
@@ -91,14 +91,14 @@ invisible until needed.
 5. **Push depth out.** Anything long, reference-heavy, or needed in only one
    scenario goes to `references/` or `sub-skills/` with a link.
 6. **Re-read the layout, the budgets, and every skill reference you made**
-   against [harness-standards](../../../Standards/harness-standards.md).
+   against [harness-standards](../../../Workspace/Standards/harness-standards.md).
 7. **Self-review against the five rules**, then against the anti-patterns below.
 
 ## Anti-patterns
 
 - **A description that describes the skill instead of its triggers.** The reader
   is a dispatcher, not a browser.
-- **Restating a standard inside a skill.** Link the `Standards/` section. Two
+- **Restating a standard inside a skill.** Link the `Workspace/Standards/` section. Two
   copies diverge.
 - **A skill that is really a rule**, so it only fires when someone remembers it.
 - **Prohibitions instead of instructions.** Prompt the positive: "write the owner
@@ -113,4 +113,4 @@ invisible until needed.
 [`writing-for-agents`](../writing-for-agents/SKILL.md) holds the theory this
 skill applies: context pointers, the two loads, the information hierarchy,
 completion criteria, and pruning. The budgets are in
-[harness-standards § Context budget](../../../Standards/harness-standards.md#context-budget).
+[harness-standards § Context budget](../../../Workspace/Standards/harness-standards.md#context-budget).

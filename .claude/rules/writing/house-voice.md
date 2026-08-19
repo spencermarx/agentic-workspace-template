@@ -6,4 +6,4 @@ paths:
 
 # House voice
 
-Full rule (SSOT): [writing-standards § House voice](../../../Standards/writing-standards.md#house-voice)
+Full rule (SSOT): [writing-standards § House voice](../../../Workspace/Standards/writing-standards.md#house-voice)

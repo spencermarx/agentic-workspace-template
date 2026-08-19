@@ -17,7 +17,7 @@ redistribute copyleft binaries under an incompatible license.
 
 | Plugin | Why it is expected |
 |---|---|
-| Templater | The template engine. Every file in `Obsidian/Templates/` is Templater syntax. |
+| Templater | The template engine. Every file in `Workspace/Templates/` is Templater syntax. |
 | Excalidraw | The runtime for the `excalidraw` skill in `.claude/skills/`. |
 
 They are two clicks each from Obsidian's plugin browser, so not vendoring them
@@ -34,13 +34,13 @@ would otherwise last exactly until the first `git add -A`.
 in the vault this template came from: a clone got the plugin code and Obsidian
 enabled none of it.
 
-Run `./workspace obsidian-setup` to see what is missing on this machine.
+Run `./hq obsidian-setup` to see what is missing on this machine.
 
 ## Per-machine config
 
 A plugin whose `data.json` holds machine-specific state, or a setting a machine
 should decide rather than inherit, ships a `data.json.example` and a `SETUP.md`.
-`./workspace obsidian-setup` writes the real file from the example and leaves an
+`./hq obsidian-setup` writes the real file from the example and leaves an
 existing one alone.
 
 | Plugin | What the example carries |

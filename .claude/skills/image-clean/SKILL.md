@@ -5,7 +5,7 @@ description: >
   them through Playwright. Produces a clean PNG with no embedded metadata.
   Use for blog images only. Organic social posts use the image-overlay skill instead.
 ---
-<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/image-clean/SKILL.md @ 496d37273aca); adapted for this repo (script colocated under scripts/; de-branded). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/image-clean/SKILL.md @ 496d37273aca); adapted for this repo (script colocated under scripts/; de-branded). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Image Clean Skill

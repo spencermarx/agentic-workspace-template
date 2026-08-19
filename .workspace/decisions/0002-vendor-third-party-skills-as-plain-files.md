@@ -74,7 +74,7 @@ provenance, since it travels with the skill.
 
 **Makes harder:** detecting upstream drift, which has no integrity hash and is
 now a manual diff. The mandatory `@ <sha>` pin is what keeps that tractable, and
-`./workspace doctor --vendored` automates the comparison.
+`./hq doctor --vendored` automates the comparison.
 
 **Explicitly deferred:** any automatic re-vendoring. Pulling an upstream change
 in is a human decision, because adapted skills have local deltas that a

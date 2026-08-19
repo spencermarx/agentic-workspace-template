@@ -7,5 +7,5 @@ paths:
 
 # Decision records
 
-Full rule (SSOT): [decision-standards § Capture is human-confirmed](../../../Standards/decision-standards.md#capture-is-human-confirmed)
-Significance: [decision-standards § The significance test](../../../Standards/decision-standards.md#the-significance-test)
+Full rule (SSOT): [decision-standards § Capture is human-confirmed](../../../Workspace/Standards/decision-standards.md#capture-is-human-confirmed)
+Significance: [decision-standards § The significance test](../../../Workspace/Standards/decision-standards.md#the-significance-test)

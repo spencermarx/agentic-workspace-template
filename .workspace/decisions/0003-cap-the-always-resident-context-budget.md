@@ -27,7 +27,7 @@ Neither repository had a mechanism that reported the total.
 
 ## Decision
 
-Hard byte caps, enforced by `./workspace validate` as failures, with the
+Hard byte caps, enforced by `./hq validate` as failures, with the
 remediation stated in the error message.
 
 | Artifact | Cap | Target |

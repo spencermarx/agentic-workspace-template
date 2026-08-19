@@ -72,7 +72,7 @@ through them, and `scope` is derived from them. Treat them as reserved.
 
 | Folder | Holds | Created by |
 |---|---|---|
-| `Standards/` | Conventions, stated once | ships |
+| `Workspace/Standards/` | Conventions, stated once | ships |
 | `Obsidian/` | Vault mechanics: guides, templates, views | ships |
 | `Decisions/` | Workspace-level decision records | ships |
 | `Meetings/` | Meeting notes | ships |
@@ -80,18 +80,18 @@ through them, and `scope` is derived from them. Treat them as reserved.
 | `Attachments/` | Binaries. No notes, so no frontmatter | ships |
 | `Areas/` | The router over whatever this business does many of | bootstrap |
 | `Operators/` | One working area per person | bootstrap |
-| `Activities/`, `Documents/` | An area's working notes and artifacts | `./workspace add` |
-| `Daily Notes/` | An operator's dailies | `./workspace add` |
-| `decisions/` | An area's own decision records | `./workspace add` |
+| `Activities/`, `Documents/` | An area's working notes and artifacts | `./hq add` |
+| `Daily Notes/` | An operator's dailies | `./hq add` |
+| `decisions/` | An area's own decision records | `./hq add` |
 
 `Areas/` and `Operators/` are the two a business renames: a firm may call them
 `Clients/` and `Partners/`, a fund `Portfolio/` and `Principals/`. Renaming one
 is a supported choice, made once at bootstrap, and it obligates the glob rewrite
-that [harness-standards § Rule authoring contract](./harness-standards.md#rule-authoring-contract)
+that [harness-standards § Rule authoring contract](harness-standards.md#rule-authoring-contract)
 describes.
 
 The vocabulary is not yours to extend mid-flight. A new top-level folder is a
-bootstrap-time or `./workspace add` decision, never something a note-writing
+bootstrap-time or `./hq add` decision, never something a note-writing
 session invents.
 
 ## Scope
@@ -123,4 +123,4 @@ organizations, meetings, decisions, areas.
 
 Markdown links with angle brackets for anything containing spaces and anything
 outside the vault, so the link resolves outside Obsidian too:
-`[the agreement](<../Legal/Master Agreement.pdf>)`.
+`[the agreement](<../../Legal/Master Agreement.pdf>)`.

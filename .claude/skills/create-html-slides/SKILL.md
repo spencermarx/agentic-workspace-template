@@ -7,7 +7,7 @@ description: >
   internal presentations, marketing decks, and pitch materials. Animations
   included by default. Output is 16:9 widescreen, Google Slides compatible.
 ---
-<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/create-html-slides/SKILL.md @ 2e62970bb6cd); adapted for this repo (its two missing dependencies, get-brand-kit and the logo assets, now exist and are linked rather than named, so the gate can catch it if either disappears again; the palette inlined in viewport-base.css was another brand's and is replaced by the placeholder tokens, because a deck that renders in a stale brand looks correct and is wrong). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/create-html-slides/SKILL.md @ 2e62970bb6cd); adapted for this repo (its two missing dependencies, get-brand-kit and the logo assets, now exist and are linked rather than named, so the gate can catch it if either disappears again; the palette inlined in viewport-base.css was another brand's and is replaced by the placeholder tokens, because a deck that renders in a stale brand looks correct and is wrong). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Create HTML Slides

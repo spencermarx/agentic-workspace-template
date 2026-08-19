@@ -7,7 +7,7 @@ description: >-
   before any campaign ships. Do NOT use to review the copy itself (use `seven-copy-
   critics`) or to audit finished creative (use `brand-review`).
 ---
-<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/campaign-brief/SKILL.md @ 496d37273aca); adapted for this repo (de-branded; no other change, the six dimensions are domain-neutral). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/campaign-brief/SKILL.md @ 496d37273aca); adapted for this repo (de-branded; no other change, the six dimensions are domain-neutral). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Campaign Brief

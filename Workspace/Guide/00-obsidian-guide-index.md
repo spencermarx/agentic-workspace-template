@@ -11,7 +11,7 @@ Two interfaces over the same files. **Obsidian is the human GUI**, **Claude Code
 is the agentic GUI**, and both read and write the same Markdown in one git repo.
 
 Nothing here is a rule. The rules live in
-[Standards](../../Standards/README.md); these pages explain how to follow them.
+[Standards](../Standards/README.md); these pages explain how to follow them.
 
 ## Start here
 
@@ -38,7 +38,7 @@ Every note uses both, and each has one job.
 
 ## The views
 
-[`Obsidian/Views/`](../Views) holds five saved views, and `Home.md` links each
+[`Workspace/Views/`](../Views) holds five saved views, and `Home.md` links each
 one. They are ordinary vault files rather than config, so the file explorer
 shows them and you can open one the way you open a note.
 

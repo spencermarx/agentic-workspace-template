@@ -8,7 +8,7 @@ description: >-
   image (use `image-prompt` first) or to strip metadata afterwards (use `image-clean`).
 ---
 
-<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/image-overlay/SKILL.md and tools/scripts/sh/image-overlay/overlay.sh @ 496d37273aca); adapted for this repo (script colocated under scripts/; logo paths and per-variant luminance parameterised, the latter now computed from the SVG fills so replacing the brand cannot silently invert variant selection; the "purple" variant renamed "primary"; logo assets moved to get-brand-kit, which claimed to own them; the venv escape hatch moved out of a fixed temp path; and the --logo-variant contradiction resolved in favour of the code). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/image-overlay/SKILL.md and tools/scripts/sh/image-overlay/overlay.sh @ 496d37273aca); adapted for this repo (script colocated under scripts/; logo paths and per-variant luminance parameterised, the latter now computed from the SVG fills so replacing the brand cannot silently invert variant selection; the "purple" variant renamed "primary"; logo assets moved to get-brand-kit, which claimed to own them; the venv escape hatch moved out of a fixed temp path; and the --logo-variant contradiction resolved in favour of the code). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # image-overlay
 

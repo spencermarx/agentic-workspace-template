@@ -9,7 +9,7 @@
     "violation.",
     "",
     "community-plugins.json still lists them, so the enable-list travels with the",
-    "clone. `./workspace obsidian-setup` reports which are missing.",
+    "clone. `./hq obsidian-setup` reports which are missing.",
     "",
     "Templater is the exception that proves the rule: its directory is ignored,",
     "but data.json.example and SETUP.md inside it are not, because without them",

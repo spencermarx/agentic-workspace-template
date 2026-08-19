@@ -9,4 +9,4 @@ paths:
 
 # File naming
 
-Full rule (SSOT): [vault-standards § File naming](../../../Standards/vault-standards.md#file-naming)
+Full rule (SSOT): [vault-standards § File naming](../../../Workspace/Standards/vault-standards.md#file-naming)

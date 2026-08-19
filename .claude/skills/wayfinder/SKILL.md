@@ -4,7 +4,7 @@ description: Plan a huge chunk of work - more than one agent session can hold - 
 disable-model-invocation: true
 ---
 
-<!-- Vendored from https://github.com/spencermarx/bizkit (.claude/skills/wayfinder/SKILL.md @ ce32987bb267); adapted for this repo (renamed to match what it does here; tracker and config locations read from .workspace/workspace.json rather than assuming an issue tracker; engineering artifact types re-keyed to vault artifacts). Upstream lineage: https://github.com/mattpocock/skills. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/bizkit (.claude/skills/wayfinder/SKILL.md @ ce32987bb267); adapted for this repo (renamed to match what it does here; tracker and config locations read from .workspace/workspace.json rather than assuming an issue tracker; engineering artifact types re-keyed to vault artifacts). Upstream lineage: https://github.com/mattpocock/skills. See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 A loose idea has arrived - too big for one agent session, and wrapped in fog: the way from here to the **destination** isn't visible yet. Wayfinding is about finding that way, not charging at the destination. This skill charts the way as a **shared map** on the repo's issue tracker, then works its **decision tickets** - questions whose resolution is a decision, not slices of a build to execute - one at a time until the route is clear.
 

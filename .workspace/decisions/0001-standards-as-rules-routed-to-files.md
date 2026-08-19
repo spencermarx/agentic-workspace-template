@@ -27,7 +27,7 @@ into its prompt.
 ## Decision
 
 A standard is stated **once**, in a `##` section of a document under
-`Standards/`. That section is the single source of truth.
+`Workspace/Standards/`. That section is the single source of truth.
 
 Standards are then **routed to the files they govern** by atomic
 `.claude/rules/<domain>/<slug>.md` files. Each rule carries exactly two
@@ -35,13 +35,13 @@ frontmatter keys, `description` and `paths`, loads on demand when the main agent
 or a subagent reads a matching file, and is a **pure pointer**: a glob plus a
 deep link to the exact section. It never restates the rule.
 
-Each standard also carries a row in `Standards/README.md`, the registry.
+Each standard also carries a row in `Workspace/Standards/README.md`, the registry.
 
 Nested `CLAUDE.md` files remain, and remain the mechanism for progressive
 disclosure, but they no longer carry standards. A `## Standards` section is
 prohibited at every tier.
 
-`./workspace validate` enforces all of it, including a positive control that
+`./hq validate` enforces all of it, including a positive control that
 every glob matches at least one real file.
 
 ## Alternatives considered

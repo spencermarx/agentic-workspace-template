@@ -48,7 +48,7 @@ That last one matters most.
 
 Read what is there and derive: what the top-level plural folder already is, how
 instances are named, whether frontmatter is already in use and in what form,
-and which of [the reserved folder names](../../../../Standards/vault-standards.md#the-reserved-folder-vocabulary)
+and which of [the reserved folder names](../../../../Workspace/Standards/vault-standards.md#the-reserved-folder-vocabulary)
 are already taken. A bootstrap that renames someone's existing folders is a
 migration they did not ask for.
 

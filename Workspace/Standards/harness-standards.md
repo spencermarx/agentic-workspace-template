@@ -7,7 +7,7 @@ commands, settings, and the context budget that governs all of them.
 
 A standard exists as two synchronized things.
 
-1. **Statement.** One `##` section in a `Standards/*.md` document. This is the
+1. **Statement.** One `##` section in a `Workspace/Standards/*.md` document. This is the
    single source of truth. It is stated here and nowhere else.
 2. **Router.** One `.claude/rules/<domain>/<slug>.md` file: a `paths:` glob plus
    a deep link to the section above. It never restates the rule.
@@ -43,7 +43,7 @@ extended globs. Claude Code does this matching, not anything in this repo, so a
 pattern that reaches too far just matches nothing, which is indistinguishable
 from a healthy system.
 
-Globs use [the reserved folder vocabulary](./vault-standards.md#the-reserved-folder-vocabulary)
+Globs use [the reserved folder vocabulary](vault-standards.md#the-reserved-folder-vocabulary)
 and are written as `**/<Folder>/**/*.md`, so they match wherever the folder is
 nested. Renaming a reserved folder obligates you to rewrite the affected globs
 in the same change, because a glob that matches nothing stops routing without
@@ -87,7 +87,7 @@ there will not be one. Therefore:
 | Need | Primitive |
 |---|---|
 | A fact agents should know when working in an area | a `CLAUDE.md` note in that folder |
-| A convention that governs a file type | a `Standards/` section plus a rule |
+| A convention that governs a file type | a `Workspace/Standards/` section plus a rule |
 | A repeatable multi-step procedure | a skill |
 | A procedure only a human should trigger | a skill with model invocation disabled |
 | Context isolation or a restricted tool surface | a subagent |
@@ -115,7 +115,7 @@ Three tiers of cost, and only the third is cheap.
 | One rule | 1,200 B |
 
 `CLAUDE.md` sizes live in
-[claude-md-contract § The three tiers](./claude-md-contract.md#the-three-tiers),
+[claude-md-contract § The three tiers](claude-md-contract.md#the-three-tiers),
 which owns the tiers and therefore owns their budgets.
 
 Nothing enforces any of these. They mark where an artifact has stopped paying

@@ -19,5 +19,5 @@ Read and write Slack: post to channels, read history, reply in threads, send dir
 Uses the Slack Web API directly over HTTP. No CLI required.
 
 Note the confidentiality boundary: posting to Slack is sending outward. Apply
-`Standards/confidentiality-standards.md` before any message that quotes client
+`Workspace/Standards/confidentiality-standards.md` before any message that quotes client
 material.

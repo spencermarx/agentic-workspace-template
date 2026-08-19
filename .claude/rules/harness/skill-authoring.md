@@ -8,6 +8,6 @@ paths:
 
 # Skill authoring contract
 
-Full rule (SSOT): [harness-standards § Skill authoring contract](../../../Standards/harness-standards.md#skill-authoring-contract)
-Primitive choice: [harness-standards § Picking the primitive](../../../Standards/harness-standards.md#picking-the-primitive)
-Provenance: [harness-standards § Vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance)
+Full rule (SSOT): [harness-standards § Skill authoring contract](../../../Workspace/Standards/harness-standards.md#skill-authoring-contract)
+Primitive choice: [harness-standards § Picking the primitive](../../../Workspace/Standards/harness-standards.md#picking-the-primitive)
+Provenance: [harness-standards § Vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance)

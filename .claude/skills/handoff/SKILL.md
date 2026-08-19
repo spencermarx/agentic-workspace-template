@@ -11,12 +11,12 @@ argument-hint: '[what the next session will focus on]'
 disable-model-invocation: true
 ---
 
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/handoff/SKILL.md @ ce32987bb267); adapted for this repo (artifact types re-keyed from Issues/OpenSpec/nx to vault artifacts: decision records, area CLAUDE.md registers, parking lots, activities, external paths; the document template moved to references/ to fit the skill-body budget; build-gate done-bar replaced with the validation gate). Upstream lineage: https://github.com/mattpocock/skills (skills/productivity/handoff/SKILL.md). Its core ideas are preserved: compact rather than copy, reference artifacts by path, redact secrets, suggest skills, save outside the tracked workspace. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/handoff/SKILL.md @ ce32987bb267); adapted for this repo (artifact types re-keyed from Issues/OpenSpec/nx to vault artifacts: decision records, area CLAUDE.md registers, parking lots, activities, external paths; the document template moved to references/ to fit the skill-body budget; build-gate done-bar replaced with the validation gate). Upstream lineage: https://github.com/mattpocock/skills (skills/productivity/handoff/SKILL.md). Its core ideas are preserved: compact rather than copy, reference artifacts by path, redact secrets, suggest skills, save outside the tracked workspace. See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 A session is about to end and the work is not done. What you were doing, the
 three things you already ruled out, the exact file you stopped in, the gotcha
 that cost you an hour: all of it lives only in this conversation. The next agent
-boots cold. It gets the vault, the `CLAUDE.md` tree, and `Standards/`, and none
+boots cold. It gets the vault, the `CLAUDE.md` tree, and `Workspace/Standards/`, and none
 of your live thread.
 
 The whole job is compaction: squeeze the session down to its resumable core, so
@@ -101,7 +101,7 @@ values, tokens, connection strings, and personal data on the way in. Reference
 where a secret lives rather than its value.
 
 Apply
-[confidentiality-standards](../../../Standards/confidentiality-standards.md#what-never-leaves-the-vault)
+[confidentiality-standards](../../../Workspace/Standards/confidentiality-standards.md#what-never-leaves-the-vault)
 in full. A handoff carrying client commercial terms is exactly the artifact that
 gets pasted somewhere it should not be.
 

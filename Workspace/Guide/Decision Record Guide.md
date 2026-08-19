@@ -14,7 +14,7 @@ only has the conclusion.
 Write one when the choice is **precedent-setting**, **hard to reverse**, or
 **surprising given its trade-off**. Two of three is a clear yes. The full test,
 and everything else this page describes, is governed by
-[decision-standards](../../Standards/decision-standards.md); this page explains
+[decision-standards](../Standards/decision-standards.md); this page explains
 it, that page rules on it.
 
 The register itself is [Decisions](../../Decisions/README.md). The template
@@ -60,7 +60,7 @@ register at all.
 ## Changing a standard is a strong signal
 
 A standard that changes without a recorded reason gets changed back, so a change
-to anything in `Standards/` is usually worth a record.
+to anything in `Workspace/Standards/` is usually worth a record.
 
 Usually, not always. This used to be an automatic trigger, which meant a typo fix
 in a standards file demanded a decision record. Treat it as a prompt to think,

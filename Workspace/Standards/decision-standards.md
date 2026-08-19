@@ -50,7 +50,7 @@ Write one when the choice is:
 Two of three is a clear yes. One is a judgment call, and a judgment call is a
 thing to raise with a person rather than resolve alone.
 
-Changing a document in `Standards/` is a strong signal, because a standard that
+Changing a document in `Workspace/Standards/` is a strong signal, because a standard that
 changes without a recorded reason gets changed back. It is a reason to
 **propose** a record. It is not a trigger that writes one, and it never was a
 good one: the rule fired on every typo fix to a standards file.
@@ -71,7 +71,7 @@ Do not write one for a preference nobody will relitigate.
 
 Decisions about **the template itself** are not workspace decisions and do not
 belong in any of these. They live in `.workspace/decisions/`, which is
-template-owned and carried by `./workspace upgrade`. A consumer never adds to
+template-owned and carried by `./hq upgrade`. A consumer never adds to
 that register.
 
 ## The four sections

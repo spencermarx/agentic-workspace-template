@@ -32,7 +32,7 @@ to read next.
 _Avoid_: index, hub
 
 **Standard**:
-A convention stated once in `Standards/`, and routed to the files it governs by
+A convention stated once in `Workspace/Standards/`, and routed to the files it governs by
 a rule. Both, or it is not a standard.
 _Avoid_: guideline, policy, convention
 

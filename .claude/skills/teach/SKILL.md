@@ -4,7 +4,7 @@ description: Teach the user a new skill or concept, within this workspace.
 disable-model-invocation: true
 argument-hint: "What would you like to learn about?"
 ---
-<!-- Vendored from https://github.com/mattpocock/skills (skills/productivity/teach/SKILL.md @ 9c9f36ccd399); adapted for this repo (the teaching workspace is rooted at Operators/<key>/Learning/<topic>/ via person resolution instead of the current directory, which in a vault would scatter MISSION.md, lessons/, and learning-records/ across the root and collide with the reserved folder vocabulary; the four *-FORMAT.md files moved to references/ to match the skill layout standard, with their links updated and GLOSSARY-FORMAT.md linked from the body, which upstream ships unreferenced). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/mattpocock/skills (skills/productivity/teach/SKILL.md @ 9c9f36ccd399); adapted for this repo (the teaching workspace is rooted at Operators/<key>/Learning/<topic>/ via person resolution instead of the current directory, which in a vault would scatter MISSION.md, lessons/, and learning-records/ across the root and collide with the reserved folder vocabulary; the four *-FORMAT.md files moved to references/ to match the skill layout standard, with their links updated and GLOSSARY-FORMAT.md linked from the body, which upstream ships unreferenced). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 The user has asked you to teach them something. This is a stateful request - they intend to learn the topic over multiple sessions.
 
@@ -24,7 +24,7 @@ resolution** in the root `CLAUDE.md`: match the session email against
 
 Create the folder on first use, never ahead of it. If this workspace has no
 `Operators/` tree, ask where the topic should live rather than inventing a
-top-level folder; [the reserved folder vocabulary](../../../Standards/vault-standards.md#the-reserved-folder-vocabulary)
+top-level folder; [the reserved folder vocabulary](../../../Workspace/Standards/vault-standards.md#the-reserved-folder-vocabulary)
 is not yours to extend.
 
 The state of their learning is captured in that directory in several files:

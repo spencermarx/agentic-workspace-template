@@ -8,7 +8,7 @@ description: >-
   a decision (use `decision-record`).
 argument-hint: '[the context name, e.g. "Ordering"]'
 ---
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/context/SKILL.md @ ce32987bb267); adapted for this repo (the monorepo generator invocation replaced with a plain file write). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/context/SKILL.md @ ce32987bb267); adapted for this repo (the monorepo generator invocation replaced with a plain file write). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Context
@@ -91,8 +91,8 @@ and how they relate:
 
 ## Contexts
 
-- [Ordering](./src/ordering/CONTEXT.md) - receives and tracks customer orders
-- [Billing](./src/billing/CONTEXT.md) - generates invoices and processes payments
+- [Ordering](src/ordering/CONTEXT.md) - receives and tracks customer orders
+- [Billing](src/billing/CONTEXT.md) - generates invoices and processes payments
 
 ## Relationships
 

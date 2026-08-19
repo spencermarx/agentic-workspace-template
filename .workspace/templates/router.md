@@ -20,4 +20,4 @@ __REPLACE_ME__
 
 ---
 
-Parent context lives at the workspace root `CLAUDE.md` ({{REL_TO_ROOT}}/CLAUDE.md) and `Standards/`.
+Parent context lives at the workspace root `CLAUDE.md` ({{REL_TO_ROOT}}/CLAUDE.md) and `Workspace/Standards/`.

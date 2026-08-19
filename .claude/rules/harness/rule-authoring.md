@@ -7,5 +7,5 @@ paths:
 
 # Rule authoring contract
 
-Full rule (SSOT): [harness-standards § Rule authoring contract](../../../Standards/harness-standards.md#rule-authoring-contract)
-Invariant: [harness-standards § The two-artifact invariant](../../../Standards/harness-standards.md#the-two-artifact-invariant)
+Full rule (SSOT): [harness-standards § Rule authoring contract](../../../Workspace/Standards/harness-standards.md#rule-authoring-contract)
+Invariant: [harness-standards § The two-artifact invariant](../../../Workspace/Standards/harness-standards.md#the-two-artifact-invariant)

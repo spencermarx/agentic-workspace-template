@@ -80,4 +80,4 @@ strategic unknowns to Open questions above. See
 
 ---
 
-Parent context lives at the workspace root `CLAUDE.md` ({{REL_TO_ROOT}}/CLAUDE.md), `{{PARENT_TITLE}}` ({{REL_TO_PARENT}}/CLAUDE.md), and `Standards/`. This area inherits those conventions unless explicitly overridden above.
+Parent context lives at the workspace root `CLAUDE.md` ({{REL_TO_ROOT}}/CLAUDE.md), `{{PARENT_TITLE}}` ({{REL_TO_PARENT}}/CLAUDE.md), and `Workspace/Standards/`. This area inherits those conventions unless explicitly overridden above.

@@ -19,9 +19,9 @@ point out that something looks worth recording, but it will not create a record
 without your say-so, so this register only ever holds decisions you chose to
 keep.
 
-The [Decision Record Guide](../Obsidian/Guide/Decision%20Record%20Guide.md)
+The [Decision Record Guide](../Workspace/Guide/Decision%20Record%20Guide.md)
 walks through writing a good one. The rules it follows are in
-[decision-standards](../Standards/decision-standards.md).
+[decision-standards](../Workspace/Standards/decision-standards.md).
 
 ## The register
 

@@ -11,7 +11,7 @@ Three ways, in the order worth trying.
 
 ## 1. The saved views
 
-[`Obsidian/Views/`](../Views) answers the recurring questions without a search,
+[`Workspace/Views/`](../Views) answers the recurring questions without a search,
 and every one is linked from `Home.md`:
 
 | View | Answers |
