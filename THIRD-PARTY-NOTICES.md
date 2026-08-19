@@ -26,6 +26,13 @@ Vendored:
 | `teach` | `skills/productivity/teach/SKILL.md` | adapted |
 | `writing-for-agents` | `skills/productivity/writing-for-agents/SKILL.md` | adapted |
 | `handoff` | `skills/productivity/handoff/SKILL.md` | adapted, via an intermediate expansion |
+| `wizard` | `skills/engineering/wizard/SKILL.md` | verbatim, pinned at `1bb95954ef0d` |
+
+`wizard` was vendored later than the rest and carries its own pin, recorded in
+the row above and in its provenance marker. The block pin is where everything
+else came from; a per-skill pin overrides it. `wizard` also vendors
+`template.sh` unmodified, and like `grill-with-docs` leaves upstream's
+`agents/openai.yaml` behind.
 
 `clarify` is the local name; the upstream path is where it came from and stays
 recorded as such, so a future diff against upstream still resolves.
@@ -86,9 +93,8 @@ brand's hexes.
 ## Skills adapted from the author's own earlier work
 
 `scratchpad`, `handoff`, `conveying-clearly`, `context`, `domain-modeling`,
-`create-report`, `first-principles-investigation`, `wayfinder`, and
-`setup-context-layers` are adapted from private repositories by the same author
-as this template. They carry the same inline provenance convention so their
+`create-report`, `first-principles-investigation`, and `wayfinder` are adapted
+from private repositories by the same author as this template. They carry the same inline provenance convention so their
 lineage stays legible, and several of them are themselves downstream of
 `mattpocock/skills`, which the marker records.
 
