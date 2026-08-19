@@ -9,7 +9,7 @@ Automate LinkedIn through a real browser session, with mandatory human confirmat
 
 ## Wiring
 
-- The `web-browser` stub promoted first: this builds on it.
+- The [`agent-browser`](../agent-browser/SKILL.md) CLI installed: this builds on it.
 - A saved, authenticated browser session. Treat it as a credential.
 
 Its six safety rules are the reason to promote it rather than script LinkedIn
