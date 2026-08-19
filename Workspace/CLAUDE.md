@@ -11,19 +11,19 @@ business.
   `.obsidian/plugins/templater-obsidian/data.json.example`; see the `SETUP.md`
   beside it.
 - `Templates/scripts/`: generated helpers. `operators.js` is written by
-  `./workspace render` from `.workspace/workspace.json`; do not hand-edit it.
+  `./hq render` from `.workspace/workspace.json`; do not hand-edit it.
 - `Views/`: the `.base` files. Ordinary vault files, so the file explorer shows
   them and `Home.md` can link them. They were under `.obsidian/bases/`, where
   nothing could reach them and, across months of use, nothing did.
 
 ## Rule
 
-Guides **explain**, `Standards/` **governs**. A guide links to the standard it
+Guides **explain**, `Workspace/Standards/` **governs**. A guide links to the standard it
 describes and never restates the rule, because two statements of one rule
 diverge and the reader cannot tell which is current.
 
 Templates are bound by the same house voice as everything else. Nothing checks
-this; read [writing-standards](../Standards/writing-standards.md) and hold the
+this; read [writing-standards](Standards/writing-standards.md) and hold the
 line yourself.
 
 ## Two things that look wrong and are not

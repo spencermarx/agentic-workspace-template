@@ -8,7 +8,7 @@ description: >
   quarterly roadmap priorities, significant new bets, or resourcing decisions above
   a meaningful threshold. Based on gstack's /plan-ceo-review.
 ---
-<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/ceo-review/SKILL.md @ 2e62970bb6cd); adapted for this repo (issue-tracker references generalised). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/anthony-and-spencer-business-workspace (.claude/skills/ceo-review/SKILL.md @ 2e62970bb6cd); adapted for this repo (issue-tracker references generalised). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # CEO Review

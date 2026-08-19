@@ -14,7 +14,7 @@ __REPLACE_ME__
 <!-- workspace:nav:start -->
 ## Conventions
 
-- [Standards](<Standards/README.md>) -- every convention, stated once
+- [Standards](<Workspace/Standards/README.md>) -- every convention, stated once
 - [Context](<CONTEXT.md>) -- the ubiquitous language
 - [Decisions](<Decisions/README.md>) -- the decision register
 
@@ -25,21 +25,21 @@ __REPLACE_ME__
 
 ## How the vault works
 
-- [Obsidian guide](<Obsidian/Guide/00-obsidian-guide-index.md>)
+- [Obsidian guide](<Workspace/Guide/00-obsidian-guide-index.md>)
 <!-- workspace:nav:end -->
 
 ## Views
 
 Saved queries that answer the recurring questions without a search.
 
-- [Inbox triage](<Obsidian/Views/inbox-triage.base>) -- what is broken or stale
-- [Active work](<Obsidian/Views/active-work.base>) -- what is live right now
-- [Meetings](<Obsidian/Views/meetings.base>) -- when did we last speak, and about what
-- [People](<Obsidian/Views/people.base>) -- who have I not touched in longest
-- [Decisions](<Obsidian/Views/decisions.base>) -- what did we decide, and is it still current
+- [Inbox triage](<Workspace/Views/inbox-triage.base>) -- what is broken or stale
+- [Active work](<Workspace/Views/active-work.base>) -- what is live right now
+- [Meetings](<Workspace/Views/meetings.base>) -- when did we last speak, and about what
+- [People](<Workspace/Views/people.base>) -- who have I not touched in longest
+- [Decisions](<Workspace/Views/decisions.base>) -- what did we decide, and is it still current
 
 Everything between the nav markers is generated from `.workspace/plan.json` by
-`./workspace render`. Everything outside them, including this section, is
+`./hq render`. Everything outside them, including this section, is
 hand-owned and survives a re-render.
 
 Markdown links with angle brackets are used for paths with spaces, so they

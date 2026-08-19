@@ -33,12 +33,12 @@ GitHub, and costs nothing until it is.
 
 Either is readable by either audience, and that is the point of writing each one
 well rather than writing one and aliasing it. Where both exist, the rule is
-stated in neither: it lives in `Standards/`, and both point at it.
+stated in neither: it lives in `Workspace/Standards/`, and both point at it.
 
 A register folder is the clearest case. `Decisions/README.md` carries the table a
 person browses; `Decisions/CLAUDE.md` carries the confirmation gate an agent must
 clear before writing a record. Neither restates the other, and
-[decision-standards](./decision-standards.md) governs both.
+[decision-standards](decision-standards.md) governs both.
 
 ## Assigning a tier
 
@@ -48,7 +48,7 @@ Apply in order.
    `CLAUDE.md`?** Then it is a **router**. A router's only job is to point down.
 2. Otherwise apply the **engagement test**: can you hand an agent this folder
    path plus a task, and have it complete the task correctly after reading only
-   the root `CLAUDE.md`, `Standards/`, and this file? If yes, it is a **leaf**.
+   the root `CLAUDE.md`, `Workspace/Standards/`, and this file? If yes, it is a **leaf**.
 3. Neither? No `CLAUDE.md`.
 
 Depth limit: three `CLAUDE.md` levels below root. Needing a fourth means the
@@ -69,7 +69,7 @@ Every root carries this, verbatim:
 > the area you are working in.
 >
 > Conventions that apply everywhere (voice, frontmatter, document patterns)
-> live in `Standards/`. Read `Standards/README.md` before writing or
+> live in `Workspace/Standards/`. Read `Workspace/Standards/README.md` before writing or
 > restructuring any note. Do not restate those rules here or in any other
 > `CLAUDE.md`; point at them.
 
@@ -85,7 +85,7 @@ Every leaf carries this under its Working norms heading, verbatim:
 Every leaf ends with a horizontal rule and this paragraph:
 
 > Parent context lives at the workspace root `CLAUDE.md` (N directories up),
-> `<Parent>/CLAUDE.md` (one up), and `Standards/`. This workspace inherits those
+> `<Parent>/CLAUDE.md` (one up), and `Workspace/Standards/`. This workspace inherits those
 > conventions unless explicitly overridden above.
 
 Relative depth is computed by the engine, never written by hand. A leaf four

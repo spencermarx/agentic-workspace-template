@@ -18,7 +18,7 @@
 filters:
   and:
     - 'file.basename != "CLAUDE"'
-    - '!file.inFolder("Obsidian/Templates")'
+    - '!file.inFolder("Workspace/Templates")'
     - '!file.inFolder("Standards")'
     - 'file.path != "README.md"'
     - 'file.path != "THIRD-PARTY-NOTICES.md"'

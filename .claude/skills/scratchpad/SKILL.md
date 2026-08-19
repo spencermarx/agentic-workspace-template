@@ -10,7 +10,7 @@ description: >-
 argument-hint: '[new|list|clean|root] <domain> [slug]'
 ---
 
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/scratchpad/SKILL.md @ ce32987bb267); adapted for this repo (worktree rationale compressed, since a knowledge vault rarely uses linked worktrees; examples re-keyed to vault domains; the script itself is byte-identical because it is already repo-agnostic). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/scratchpad/SKILL.md @ ce32987bb267); adapted for this repo (worktree rationale compressed, since a knowledge vault rarely uses linked worktrees; examples re-keyed to vault domains; the script itself is byte-identical because it is already repo-agnostic). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # scratchpad
 

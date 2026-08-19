@@ -3,7 +3,7 @@
 Templater is AGPL-3.0, so it is store-installed rather than vendored and its
 directory is git-ignored. Two files are the exception: this one and
 `data.json.example`, because without them Templater arrives unconfigured and
-every template in `Obsidian/Templates/` fails.
+every template in `Workspace/Templates/` fails.
 
 ## What breaks without this
 
@@ -12,15 +12,15 @@ defaults it opens an empty template picker, and `tp.user.operators` is
 undefined, which throws on the first line of the Daily Note and Meeting Note
 templates. Both settings are what `data.json.example` supplies.
 
-`user_scripts_folder` points at `Obsidian/Templates/scripts`, which is where
-`./workspace render` writes `operators.js`. That file is the reason no template
+`user_scripts_folder` points at `Workspace/Templates/scripts`, which is where
+`./hq render` writes `operators.js`. That file is the reason no template
 contains a person's name.
 
 ## Install
 
 1. Obsidian, Settings, Community plugins, Browse, install and enable
    **Templater**.
-2. Run `./workspace obsidian-setup` from the repo root. It writes `data.json`
+2. Run `./hq obsidian-setup` from the repo root. It writes `data.json`
    from `data.json.example` beside it. A `data.json` that already exists is left
    alone.
 3. Reload Obsidian. Command palette, "Templater: Open insert template modal",

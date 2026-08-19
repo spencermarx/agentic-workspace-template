@@ -9,10 +9,10 @@ This is the root context. A folder that carries agent-specific context has its
 own `CLAUDE.md`, which extends or overrides what is here (progressive
 disclosure); a folder that only needs orienting has a `README.md` instead. Read
 whichever the folder you are working in has, and both where both exist. They are
-split by audience, never duplicated; see `Standards/claude-md-contract.md`.
+split by audience, never duplicated; see `Workspace/Standards/claude-md-contract.md`.
 
 Conventions that apply everywhere (voice, frontmatter, document patterns)
-live in `Standards/`. Read `Standards/README.md` before writing or restructuring
+live in `Workspace/Standards/`. Read `Workspace/Standards/README.md` before writing or restructuring
 any note. Do not restate those rules here or in any other `CLAUDE.md`; point at
 them.
 
@@ -32,31 +32,30 @@ skills in `.claude/`.
 <!-- workspace:map:start -->
 | Folder | What it holds | Start here |
 |---|---|---|
-| `Standards/` | Every convention, stated once. Business-agnostic. | `Standards/README.md` |
+| `Workspace/` | How the workspace works: standards, guide, templates, views. Not content. | `Workspace/CLAUDE.md` |
 | `Decisions/` | Workspace-level decision records. | `Decisions/CLAUDE.md` |
 | `Meetings/`, `People/` | Shared operational notes. | `Meetings/README.md` |
-| `Obsidian/` | Vault mechanics: guides and templates. Not content. | `Obsidian/CLAUDE.md` |
 | `.claude/` | The agentic harness: rules, skills, agents, commands. | `.claude/CLAUDE.md` |
 <!-- workspace:map:end -->
 
 This table is generated from `.workspace/plan.json`. Do not edit it by hand; run
-`./workspace render` instead. That is why it cannot drift.
+`./hq render` instead. That is why it cannot drift.
 
 ## Always-on invariants
 
-Only rules with no useful glob belong here. Everything else is a `Standards/`
+Only rules with no useful glob belong here. Everything else is a `Workspace/Standards/`
 section routed by a `.claude/rules/` pointer that loads when a governed file is
 read.
 
 1. **Standards are stated once.** If you find yourself writing a convention into
-   a `CLAUDE.md`, it belongs in `Standards/` with a rule routing it. A
+   a `CLAUDE.md`, it belongs in `Workspace/Standards/` with a rule routing it. A
    `## Standards` section in any `CLAUDE.md` is a defect.
 2. **Never decide for the operator.** Present options, give a recommendation,
    leave the decision where it belongs.
 3. **Credentials never enter a note.**
 4. **Never fix the harness here.** `.workspace/`, `.claude/skills/`, and
-   `Obsidian/Templates/` are owned by the template this workspace came from. Fix
-   them upstream and run `./workspace upgrade`. `./workspace doctor` reports
+   `Workspace/Templates/` are owned by the template this workspace came from. Fix
+   them upstream and run `./hq upgrade`. `./hq doctor` reports
    drift.
 
 ## Person resolution

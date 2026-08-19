@@ -16,7 +16,7 @@ the agent running it, so a genuinely read-only reviewer has to be a subagent.
 
 1. **Read the target**, in full. Never review from a summary.
 2. **Read the standards that govern it.** Find them through
-   `Standards/README.md`, which indexes them, and through the `.claude/rules/`
+   `Workspace/Standards/README.md`, which indexes them, and through the `.claude/rules/`
    pointer whose globs match the file. Review against what is written there, not
    against your own taste.
 3. **Check the mechanical things first**, because they are objective: required
@@ -27,7 +27,7 @@ the agent running it, so a genuinely read-only reviewer has to be a subagent.
    labelled as judgment: claims without citations, conclusions the evidence does
    not carry, terms not in `CONTEXT.md`, anything that reads as machine-written.
 5. **For outbound artifacts**, apply
-   `Standards/confidentiality-standards.md` explicitly. Publishing is a human
+   `Workspace/Standards/confidentiality-standards.md` explicitly. Publishing is a human
    act; say what you would strip, and leave the sending to a person.
 
 ## Output

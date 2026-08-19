@@ -34,7 +34,7 @@ Pass `--plain` to also emit a standalone `.excalidraw` (for excalidraw.com or th
 ## Workflow
 
 1. **Pick the diagram type** and read its section in [`references/diagram-types.md`](references/diagram-types.md) for the shape conventions and layout guidance.
-2. **Start from a template.** Copy the matching spec from [`references/examples/`](references/examples/) and adapt it. Author real content inline - labels, edge text, attributes are your job, not the script's.
+2. **Start from a template.** Copy the matching spec from [`references/examples/`](references/examples) and adapt it. Author real content inline - labels, edge text, attributes are your job, not the script's.
 3. **Lay it out with explicit coordinates.** You set `x`/`y`/`w`/`h`. The compiler does not auto-layout (that was the old skill's finicky part). The templates use sane grids and spacings; follow them. See [`references/spec-format.md`](references/spec-format.md) for every field.
 4. **Compile:**
    ```bash
@@ -106,7 +106,7 @@ If a diagram is large or dense, it is usually clearer to split it into two diagr
 
 - [`references/spec-format.md`](references/spec-format.md) - every spec field, with defaults.
 - [`references/diagram-types.md`](references/diagram-types.md) - per-type conventions, shape semantics, and a review checklist for each of: flowchart, sequence, swimlane, ERD, class, architecture, data-flow, mindmap.
-- [`references/examples/`](references/examples/) - a ready-to-adapt starter spec for each type. These double as a smoke test: `for f in references/examples/*.json; do node scripts/build.mjs --spec "$f" --out "/tmp/$(basename $f .json).excalidraw.md"; done`
+- [`references/examples/`](references/examples) - a ready-to-adapt starter spec for each type. These double as a smoke test: `for f in references/examples/*.json; do node scripts/build.mjs --spec "$f" --out "/tmp/$(basename $f .json).excalidraw.md"; done`
 
 ## Provenance
 

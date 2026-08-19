@@ -8,7 +8,7 @@ own `decisions/` folder, never here.
 **You may propose a record. You may not create one without an explicit yes from
 the operator in this session.**
 
-Full rule (SSOT): [decision-standards § Capture is human-confirmed](../Standards/decision-standards.md#capture-is-human-confirmed)
+Full rule (SSOT): [decision-standards § Capture is human-confirmed](../Workspace/Standards/decision-standards.md#capture-is-human-confirmed)
 
 Proposing is one line: state the claim the record would make, then stop. Do not
 draft the file, do not reserve a number, do not create it and offer to delete it
@@ -23,7 +23,7 @@ afterwards. Absence of an answer is not an answer.
 
 Decisions about **the template itself** do not belong here. Those live in
 `.workspace/decisions/`, which is template-owned and carried by
-`./workspace upgrade`.
+`./hq upgrade`.
 
 ## Rule
 

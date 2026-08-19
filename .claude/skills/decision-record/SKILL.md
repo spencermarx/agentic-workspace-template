@@ -9,7 +9,7 @@ description: >-
   or for work not yet decided (use `wayfinder`).
 ---
 
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/adr/SKILL.md @ ce32987bb267); adapted for this repo (rewritten around a plain file write: the generator, ULID identity, and derived ledger are gone, replaced by per-scope NNNN numbering and the Decisions README index; the significance test, the section discipline, the supersession protocol, and the anti-patterns are carried over). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/adr/SKILL.md @ ce32987bb267); adapted for this repo (rewritten around a plain file write: the generator, ULID identity, and derived ledger are gone, replaced by per-scope NNNN numbering and the Decisions README index; the significance test, the section discipline, the supersession protocol, and the anti-patterns are carried over). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # Decision record
 
@@ -25,7 +25,7 @@ contact with the first person who disagrees.
 **You may propose a record. You may not create one without an explicit yes from
 the operator in this session.**
 
-Full rule (SSOT): [decision-standards § Capture is human-confirmed](../../../Standards/decision-standards.md#capture-is-human-confirmed)
+Full rule (SSOT): [decision-standards § Capture is human-confirmed](../../../Workspace/Standards/decision-standards.md#capture-is-human-confirmed)
 
 Proposing is one line. State the claim the record would make, and stop:
 
@@ -41,10 +41,10 @@ Everything below this section is what to do **after** you have one.
 
 The significance test — precedent-setting, hard to reverse, or surprising given
 its trade-off, two of three being a clear yes — is stated once in
-[decision-standards § The significance test](../../../Standards/decision-standards.md#the-significance-test).
+[decision-standards § The significance test](../../../Workspace/Standards/decision-standards.md#the-significance-test).
 Read it there rather than working from memory.
 
-A change to `Standards/` is a strong signal and a good reason to **propose** a
+A change to `Workspace/Standards/` is a strong signal and a good reason to **propose** a
 record. It is not a trigger that writes one.
 
 ## Where it goes

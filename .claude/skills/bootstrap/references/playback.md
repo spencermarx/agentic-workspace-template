@@ -60,16 +60,16 @@ Each is a default you propose, not a question you ask. Skip any that Phase 1 or
 | Workspace name | The repo name, title-cased | Already correct, already theirs | They name it differently in Phase 1 |
 | Second thing they have many of | A flat catalog of one note each, no folder, no `CLAUDE.md` | A catalog that grows into an area can be promoted with `new-area`; an area that should have been a catalog is a migration | Evidence that each one already accumulates its own documents |
 | People | The plural container with one occupant: `Operators/<key>/`, even for one person | Renaming `Operator/` to `Operators/<key>/` later breaks every wikilink and pointer into it. Paying zero now avoids a migration | Nothing. Take this one even for a solo operator |
-| House voice | Keep the two mechanical rules, no em dashes and no emojis, and ask what else | Two rules that can be checked beat ten that cannot | Anything they add, which goes into `Standards/writing-standards.md` |
+| House voice | Keep the two mechanical rules, no em dashes and no emojis, and ask what else | Two rules that can be checked beat ten that cannot | Anything they add, which goes into `Workspace/Standards/writing-standards.md` |
 | Lifecycle stages | Two homes: a note per prospect, promoted to a folder on signature | Folders are expensive to create and cheap to grow; notes are the reverse | A stage that already has its own documents on disk |
 | Naming | kebab-case folders, Title Case in the leaf's H1 | kebab survives shells, git, and link syntax; the human name lives where humans read it | An existing convention found in Phase 2. Match it |
-| Inside one instance | The two buckets: `Activities/<date> <name>/` for dated work, `Documents/<Family>/` for durable artifacts, plus a parking lot | See `Standards/document-patterns.md` | An existing sub-shape found in Phase 2 |
+| Inside one instance | The two buckets: `Activities/<date> <name>/` for dated work, `Documents/<Family>/` for durable artifacts, plus a parking lot | See `Workspace/Standards/document-patterns.md` | An existing sub-shape found in Phase 2 |
 | When to create those | Lazily, on first use, never pre-created empty | An empty folder teaches an agent the folder is unused | Nothing |
 | Cross-cutting folders | `People/` and `Meetings/` flat, no `CLAUDE.md` until either passes roughly fifty notes | A router over ten notes costs more than it routes | A count found in Phase 2 that is already past it |
 | Business versus operator | Separate them only if the test says so: *would this content change if you replaced yourself with someone else doing the same job?* Yes means business, no means operator | The test is answerable per-item, so the split stops being a matter of taste | Their answer, which is theirs to give |
 | Skills | Keep all of them. Everything unwired is already a flat file under `_stubs/` costing nothing | The real question is only whether an active skill is irrelevant here | They name one to drop |
 | Sync | git is the substrate. Only raise iCloud if the Phase 2 probe found an iCloud Obsidian directory | Two sync mechanisms over one vault is a conflict generator | The probe found one |
-| Tracking | The three in-vault registers, per `Standards/document-patterns.md` | An external tracker earns its place only against a need that already exists | A tracker already in use, found in Phase 2 |
+| Tracking | The three in-vault registers, per `Workspace/Standards/document-patterns.md` | An external tracker earns its place only against a need that already exists | A tracker already in use, found in Phase 2 |
 | First real instances | The ones Phase 2 found, named | Naming them is the difference between a useful workspace in ten minutes and an empty one | Phase 2 found none, in which case ask for two or three |
 
 ## The bar

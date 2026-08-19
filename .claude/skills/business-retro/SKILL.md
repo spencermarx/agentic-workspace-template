@@ -8,7 +8,7 @@ description: >
   the workspace/the operator Personal Workspace/Weekly Reviews/. Run every Friday. Based on
   gstack's /retro, adapted from git-history to task history.
 ---
-<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/business-retro/SKILL.md @ 496d37273aca); adapted for this repo (the four hardcoded task-source REST endpoints replaced by a pluggable task source read from .workspace/workspace.json). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/business-retro/SKILL.md @ 496d37273aca); adapted for this repo (the four hardcoded task-source REST endpoints replaced by a pluggable task source read from .workspace/workspace.json). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Business Retro

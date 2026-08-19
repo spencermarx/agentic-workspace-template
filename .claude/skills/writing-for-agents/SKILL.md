@@ -9,7 +9,7 @@ description: >-
   for marketing copy (use `seven-copy-critics`).
 ---
 
-<!-- Vendored from https://github.com/mattpocock/skills (skills/productivity/writing-for-agents/SKILL.md @ 9c9f36ccd399); adapted for this repo (the 11 KB upstream body exceeds this workspace's skill-body budget, so it is kept verbatim in references/theory.md and this file is a lean router into it; SKILL-MECHANICS.md kept verbatim as references/skill-mechanics.md; a section added mapping the concepts onto this workspace's own layers). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/mattpocock/skills (skills/productivity/writing-for-agents/SKILL.md @ 9c9f36ccd399); adapted for this repo (the 11 KB upstream body exceeds this workspace's skill-body budget, so it is kept verbatim in references/theory.md and this file is a lean router into it; SKILL-MECHANICS.md kept verbatim as references/skill-mechanics.md; a section added mapping the concepts onto this workspace's own layers). MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # Writing for agents
 
@@ -25,7 +25,7 @@ little on routers.
 
 - Writing or editing any `SKILL.md`, especially its `description`.
 - Writing or editing a `CLAUDE.md` at any tier.
-- Adding a `Standards/` section or a `.claude/rules/` pointer.
+- Adding a `Workspace/Standards/` section or a `.claude/rules/` pointer.
 - Deciding whether something belongs inline or behind a link.
 
 ## The material
@@ -45,14 +45,14 @@ The upstream is tool-agnostic. Here the concepts land on specific layers:
 |---|---|
 | Context pointer | a skill `description`, a rule's `paths:` glob, a `\| File \| When to load \|` row |
 | Context load | the always-resident budget: descriptions, plus every `CLAUDE.md` on the path |
-| Cognitive load | the `Standards/README.md` registry, which a human has to know exists |
+| Cognitive load | the `Workspace/Standards/README.md` registry, which a human has to know exists |
 | Progressive disclosure | `sub-skills/`, `references/`, and rules that load on demand |
 | Co-location | scripts colocated in the skill that owns them |
 | Sediment | a `CLAUDE.md` section nobody has pruned; see the "What's pending" rule |
 | No-ops | instructions the model already follows by default. Delete the sentence |
 
 The budgets that make this concrete are in
-[harness-standards § Context budget](../../../Standards/harness-standards.md#context-budget).
+[harness-standards § Context budget](../../../Workspace/Standards/harness-standards.md#context-budget).
 
 ## The one rule to carry away
 

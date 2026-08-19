@@ -26,5 +26,5 @@ deliverable-handoff primitive: the vault holds the source of truth, and a client
 gets a Doc they can comment on.
 
 Treat every upload as sending outward. Apply
-`Standards/confidentiality-standards.md` before uploading anything that names a
+`Workspace/Standards/confidentiality-standards.md` before uploading anything that names a
 client.

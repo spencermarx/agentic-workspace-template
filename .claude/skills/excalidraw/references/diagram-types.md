@@ -1,6 +1,6 @@
 # Diagram types
 
-Conventions, shape semantics, layout, and a review checklist for each common type. All of these are expressed with the same four primitives (`nodes`, `edges`, `texts`, `regions`) - only the conventions differ. Each type has a ready starter in [`examples/`](examples/).
+Conventions, shape semantics, layout, and a review checklist for each common type. All of these are expressed with the same four primitives (`nodes`, `edges`, `texts`, `regions`) - only the conventions differ. Each type has a ready starter in [`examples/`](examples).
 
 Shape semantics are shared across types: **rectangle** = step / entity / component; **diamond** = decision; **ellipse** = start/end terminal or data store. Honor these - a diamond that isn't a decision, or an ellipse that isn't a terminal/store, misleads the reader.
 

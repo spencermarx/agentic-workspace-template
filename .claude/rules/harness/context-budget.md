@@ -8,5 +8,5 @@ paths:
 
 # Context budget
 
-Full rule (SSOT): [harness-standards § Context budget](../../../Standards/harness-standards.md#context-budget)
-Tiers: [claude-md-contract § The three tiers](../../../Standards/claude-md-contract.md#the-three-tiers)
+Full rule (SSOT): [harness-standards § Context budget](../../../Workspace/Standards/harness-standards.md#context-budget)
+Tiers: [claude-md-contract § The three tiers](../../../Workspace/Standards/claude-md-contract.md#the-three-tiers)

@@ -42,8 +42,8 @@ Ask only when it is genuinely ambiguous:
 ## Step 2: preview, then apply
 
 ```bash
-./workspace add --parent Clients --name "Acme Corp" --dry-run
-./workspace add --parent Clients --name "Acme Corp"
+./hq add --parent Clients --name "Acme Corp" --dry-run
+./hq add --parent Clients --name "Acme Corp"
 ```
 
 The engine appends a node to the plan, creates the folder with the parent's

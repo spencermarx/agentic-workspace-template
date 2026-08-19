@@ -65,7 +65,7 @@ assumptions it had to make, so the reader can overturn them.
 
 Read [`references/report-format.md`](references/report-format.md) for the page's shape, its
 patterns and its tone, and [`references/components.md`](references/components.md) for the markup of
-every standard component. [`assets/sample/`](assets/sample/) is a worked report - read it to see
+every standard component. [`assets/sample/`](assets/sample) is a worked report - read it to see
 the standard end to end, or when a pattern reads better as an example than as a rule.
 
 Write `content.html` at the destination: page content only, the elements that live inside `<body>`.
@@ -112,4 +112,4 @@ change.
 | [`references/components.md`](references/components.md)                         | writing markup - the catalogue of standard components and their accessibility      |
 | [`references/integrating-a-consumer.md`](references/integrating-a-consumer.md) | wiring a new consumer skill to call this one, or giving it components of its own   |
 | [`assets/report-base.css`](assets/report-base.css)                             | a component needs a token, or a consumer's own CSS has to match the foundation     |
-| [`assets/sample/`](assets/sample/)                                             | the standard is easier to see than to describe - a record and its page, end to end |
+| [`assets/sample/`](assets/sample)                                             | the standard is easier to see than to describe - a record and its page, end to end |

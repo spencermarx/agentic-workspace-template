@@ -30,7 +30,7 @@ wrong produces a link that reads as correct and resolves nowhere.
 ## Managed blocks
 
 `<!-- workspace:NAME:start -->` and `<!-- workspace:NAME:end -->` fence content
-the engine owns. `./workspace render` replaces what is between the fences and
+the engine owns. `./hq render` replaces what is between the fences and
 preserves everything outside them byte for byte. That is what makes a re-run a
 merge rather than a clobber, and it is why the folder map cannot drift: no human
 and no agent ever writes it.

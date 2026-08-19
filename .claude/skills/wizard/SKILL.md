@@ -3,7 +3,7 @@ name: wizard
 description: Generate an interactive bash wizard that walks a human through steps only they can perform. Use when provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover. Don't invoke this for steps the agent can perform itself.
 ---
 
-<!-- Vendored verbatim from https://github.com/mattpocock/skills (skills/engineering/wizard/SKILL.md @ 1bb95954ef0d). `template.sh` is vendored alongside it, also unmodified; the companion `agents/openai.yaml` is upstream registry display metadata with no consumer here and was not vendored. MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored verbatim from https://github.com/mattpocock/skills (skills/engineering/wizard/SKILL.md @ 1bb95954ef0d). `template.sh` is vendored alongside it, also unmodified; the companion `agents/openai.yaml` is upstream registry display metadata with no consumer here and was not vendored. MIT, Copyright (c) 2026 Matt Pocock; see THIRD-PARTY-NOTICES.md. See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 # Wizard
 

@@ -11,13 +11,13 @@ The agentic side of this workspace. Loads when working in `.claude/`.
 | `agents/` | when dispatched | isolation, or a tool surface the main agent cannot have |
 | `commands/` | when a person types `/name` | a deterministic action, especially one taking arguments |
 
-Full contract: [harness-standards](../Standards/harness-standards.md). Do not
+Full contract: [harness-standards](../Workspace/Standards/harness-standards.md). Do not
 restate it here.
 
 ## The two hard rules
 
 **A rule is a pointer.** It carries exactly two frontmatter keys and links to
-the `Standards/` section that owns the wording. A rule that states the rule has
+the `Workspace/Standards/` section that owns the wording. A rule that states the rule has
 become a second source of truth, and the two will diverge.
 
 **A description is the dispatch mechanism.** There is no router skill. A skill

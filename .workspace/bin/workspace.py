@@ -73,7 +73,7 @@ MUTATE_IGNORE_PATHS = {
     # A template is an inert artifact copied into every FUTURE note. Substituting
     # identity into it bakes a stale name into notes created years from now.
     # Templates reference identity by link, never by baked string.
-    "Obsidian/Templates",
+    "Workspace/Templates",
     # Binaries and pasted images.
     "Attachments",
     # The scaffold's whole point is that README.md and *.example carry the
@@ -240,7 +240,7 @@ def rule_files() -> List[Path]:
 # doctor and upgrade
 # --------------------------------------------------------------------------
 
-TEMPLATE_OWNED_PREFIXES = (".workspace", ".claude", "Obsidian/Templates", ".obsidian")
+TEMPLATE_OWNED_PREFIXES = (".workspace", ".claude", "Workspace/Templates", ".obsidian")
 
 
 def template_owned_files() -> List[Path]:
@@ -321,7 +321,7 @@ def run_doctor(upstream: bool = False, vendored: bool = False) -> int:
             for line in proc.stdout.strip().split("\n"):
                 print("  %s" % line)
             print("")
-            print("  ./workspace upgrade --to <ref> --dry-run")
+            print("  ./hq upgrade --to <ref> --dry-run")
         else:
             print("upstream  could not list releases (is `gh` authenticated?)")
         print("")
@@ -417,7 +417,7 @@ def run_upgrade(to_ref: str, dry_run: bool) -> int:
           % (len(replace), len(added), len(conflict), len(gone)))
 
     if dry_run:
-        print("  next     ./workspace upgrade --to %s" % to_ref)
+        print("  next     ./hq upgrade --to %s" % to_ref)
         return 0
 
     for r in replace + added:
@@ -457,7 +457,7 @@ def replace_managed_block(text: str, name: str, body: str) -> str:
 def load_plan(path: Optional[Path] = None) -> Dict[str, object]:
     target = path or PLAN_PATH
     if not target.exists():
-        raise SystemExit("No plan at %s. Run `./workspace bootstrap` to create one." % target)
+        raise SystemExit("No plan at %s. Run `./hq bootstrap` to create one." % target)
     return json.loads(read_text(target))
 
 
@@ -604,7 +604,7 @@ def render_inventory(plan: Dict[str, object], node: Dict[str, object]) -> str:
     if not children:
         instance = node.get("instanceTemplate") or node.get("instanceRole")
         if instance:
-            return "- Nothing here yet. Add one with `./workspace add --parent %s --name \"<name>\"`." % node["path"]
+            return "- Nothing here yet. Add one with `./hq add --parent %s --name \"<name>\"`." % node["path"]
         return "- Nothing here yet."
     lines = []
     for child in children:
@@ -619,11 +619,11 @@ def render_inventory(plan: Dict[str, object], node: Dict[str, object]) -> str:
 
 def render_root_map(plan: Dict[str, object]) -> str:
     top = [n for n in plan.get("nodes", []) if "/" not in n.get("path", "")]
-    # Standards/ and Decisions/ are fixed scaffold rather than plan nodes, so
+    # Workspace/ and Decisions/ are fixed scaffold rather than plan nodes, so
     # they are emitted here. Decisions/ was previously omitted, which silently
     # dropped the row from the map block on the first render.
     lines = ["| Folder | What it holds | Start here |", "|---|---|---|",
-             "| `Standards/` | Every convention, stated once. Business-agnostic. | [`Standards/README.md`](Standards/README.md) |",
+             "| `Workspace/` | How the workspace works: standards, guide, templates, views. Not content. | [`Workspace/CLAUDE.md`](Workspace/CLAUDE.md) |",
              "| `Decisions/` | Workspace-level decision records. | [`Decisions/CLAUDE.md`](Decisions/CLAUDE.md) |"]
     for n in top:
         path, title = n["path"], n.get("title", n["path"])
@@ -632,7 +632,6 @@ def render_root_map(plan: Dict[str, object]) -> str:
         else:
             start = "[`%s/README.md`](%s/README.md)" % (path, path)
         lines.append("| `%s/` | %s | %s |" % (path, title, start))
-    lines.append("| `Obsidian/` | Vault mechanics: guides and templates. Not content. | [`Obsidian/CLAUDE.md`](Obsidian/CLAUDE.md) |")
     lines.append("| `.claude/` | The agentic harness: rules, skills, agents, commands. | [`.claude/CLAUDE.md`](.claude/CLAUDE.md) |")
     return "\n".join(lines)
 
@@ -640,7 +639,7 @@ def render_root_map(plan: Dict[str, object]) -> str:
 def render_home_nav(plan: Dict[str, object]) -> str:
     top = [n for n in plan.get("nodes", []) if "/" not in n.get("path", "")]
     out = ["## Conventions", "",
-           "- [Standards](<Standards/README.md>) -- every convention, stated once",
+           "- [Standards](<Workspace/Standards/README.md>) -- every convention, stated once",
            "- [Context](<CONTEXT.md>) -- the ubiquitous language",
            "- [Decisions](<Decisions/README.md>) -- the decision register", ""]
     areas = [n for n in top if n.get("role") in ("router", "leaf")]
@@ -654,7 +653,7 @@ def render_home_nav(plan: Dict[str, object]) -> str:
         out += ["- [%s](<%s/README.md>)" % (n.get("title", n["path"]), n["path"]) for n in plain]
         out += [""]
     out += ["## How the vault works", "",
-            "- [Obsidian guide](<Obsidian/Guide/00-obsidian-guide-index.md>)"]
+            "- [Obsidian guide](<Workspace/Guide/00-obsidian-guide-index.md>)"]
     return "\n".join(out)
 
 
@@ -703,7 +702,7 @@ def write_manifest_lock(dry_run: bool) -> None:
     if dry_run:
         return
     owned = []
-    for prefix in (".workspace", ".claude", "Obsidian/Templates", ".obsidian"):
+    for prefix in (".workspace", ".claude", "Workspace/Templates", ".obsidian"):
         root = REPO_ROOT / prefix
         if not root.is_dir():
             continue
@@ -739,12 +738,12 @@ def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored
     config = load_config()
     if config.get("bootstrapped") and not force:
         print("This workspace is already bootstrapped.", file=sys.stderr)
-        print("Re-run with --force to reconcile, or use `./workspace add` for one area.",
+        print("Re-run with --force to reconcile, or use `./hq add` for one area.",
               file=sys.stderr)
         return 1
 
     if plan_path is None and not PLAN_PATH.exists():
-        print("No plan yet. `./workspace bootstrap` with no --plan is the conversational")
+        print("No plan yet. `./hq bootstrap` with no --plan is the conversational")
         print("entry point: it hands off to Claude Code, which talks it through with you,")
         print("reads what you point it at, plays back what it found for your sign-off, and")
         print("only then writes .workspace/plan.json. Run it from a terminal, or pass")
@@ -795,7 +794,7 @@ def run_bootstrap(plan_path=None, dry_run=False, force=False, overwrite_authored
     header = "[dry-run] " if dry_run else ""
     print("%splan %s -- %d nodes" % (header, plan_path or rel(PLAN_PATH), len(plan.get("nodes", []))))
     print("")
-    cmd = "./workspace bootstrap --plan %s" % (plan_path or rel(PLAN_PATH))
+    cmd = "./hq bootstrap --plan %s" % (plan_path or rel(PLAN_PATH))
     print_actions(actions, plan, dry_run, cmd)
     if pruned:
         print("")
@@ -817,7 +816,7 @@ def launch_conversation() -> int:
         print("Install Claude Code, or write .workspace/plan.json by hand from",
               file=sys.stderr)
         print(".workspace/fixtures/plan.example.json and run:", file=sys.stderr)
-        print("  ./workspace bootstrap --plan .workspace/plan.json", file=sys.stderr)
+        print("  ./hq bootstrap --plan .workspace/plan.json", file=sys.stderr)
         return 1
     return 0
 
@@ -876,7 +875,7 @@ def run_add(parent: str, name: str, role: str, dry_run: bool) -> int:
     print("%sadd %s under %s" % ("[dry-run] " if dry_run else "", name, parent))
     print("")
     print_actions(actions, plan, dry_run,
-                  './workspace add --parent %s --name "%s"' % (parent, name))
+                  './hq add --parent %s --name "%s"' % (parent, name))
     return 0
 
 
@@ -916,7 +915,7 @@ def run_render(only: Optional[str], dry_run: bool) -> int:
                 ops_target.write_text(new, encoding="utf-8")
     print("%srender" % ("[dry-run] " if dry_run else ""))
     print("")
-    print_actions(actions, plan, dry_run, "./workspace render")
+    print_actions(actions, plan, dry_run, "./hq render")
     return 0
 
 # --------------------------------------------------------------------------

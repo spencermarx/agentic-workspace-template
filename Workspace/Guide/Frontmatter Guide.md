@@ -27,7 +27,7 @@ instead and get it right for free.
 
 The normative tables, including every allowed value of `type` and `status`, are
 in
-[vault-standards](../../Standards/vault-standards.md#required-frontmatter-by-note-type).
+[vault-standards](../Standards/vault-standards.md#required-frontmatter-by-note-type).
 This page is the explanation, not the rule.
 
 ## The two that trip people up

@@ -7,7 +7,7 @@ description: >-
   composite text or a logo onto a finished image (use `image-overlay`) or to strip
   metadata (use `image-clean`).
 ---
-<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/image-prompt/SKILL.md @ 496d37273aca); adapted for this repo (brand references routed through get-brand-kit rather than inlined; scripts colocated). See [vendoring provenance](../../../Standards/harness-standards.md#vendoring-provenance). -->
+<!-- Vendored from https://github.com/spencermarx/wrkbelt-agent-team (.claude/skills/image-prompt/SKILL.md @ 496d37273aca); adapted for this repo (brand references routed through get-brand-kit rather than inlined; scripts colocated). See [vendoring provenance](../../../Workspace/Standards/harness-standards.md#vendoring-provenance). -->
 
 
 # Image Prompt Build + Review Skill

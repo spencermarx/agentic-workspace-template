@@ -20,14 +20,14 @@
       "Bash(git show:*)",
       "Bash(git ls-files:*)",
       "Bash(git check-ignore:*)",
-      "Bash(./workspace doctor:*)",
+      "Bash(./hq doctor:*)",
       "WebFetch",
       "WebSearch"
     ],
     "ask": [
       "Bash(git commit:*)",
-      "Bash(./workspace bootstrap:*)",
-      "Bash(./workspace add:*)"
+      "Bash(./hq bootstrap:*)",
+      "Bash(./hq add:*)"
     ],
     "deny": [
       "Read(./.credentials/**)",

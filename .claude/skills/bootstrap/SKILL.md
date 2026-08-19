@@ -5,7 +5,7 @@ description: >-
   what they pointed at, then plays back everything gathered for sign-off before writing a
   byte. Runs the deterministic engine and the authoring pass. User-invoked only, and only
   once per workspace. Do NOT use to add one client or venture to an existing workspace (use
-  `new-area`) or to re-render managed blocks (run `./workspace render`).
+  `new-area`) or to re-render managed blocks (run `./hq render`).
 disable-model-invocation: true
 argument-hint: '[what this workspace is for]'
 ---
@@ -105,8 +105,8 @@ a worked example of the grammar.
 Always dry-run first and apply with the identical command:
 
 ```bash
-./workspace bootstrap --plan .workspace/plan.json --dry-run
-./workspace bootstrap --plan .workspace/plan.json
+./hq bootstrap --plan .workspace/plan.json --dry-run
+./hq bootstrap --plan .workspace/plan.json
 ```
 
 Show the dry run and get a yes before applying. If the engine prunes rules, say
@@ -128,7 +128,7 @@ would resolve it.
 ## Phase 6: Obsidian
 
 ```bash
-./workspace obsidian-setup
+./hq obsidian-setup
 ```
 
 Quit Obsidian first; it rewrites plugin config from memory on quit, so an edit

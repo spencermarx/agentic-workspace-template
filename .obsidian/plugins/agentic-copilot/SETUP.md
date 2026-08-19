@@ -38,5 +38,5 @@ in-panel shield toggle flips the same setting.
 ## Updating
 
 Replace `main.js`, `manifest.json`, and `styles.css` from a newer release of the
-upstream repository, then restart Obsidian. `./workspace doctor` reports the
+upstream repository, then restart Obsidian. `./hq doctor` reports the
 vendored version against upstream.

@@ -23,7 +23,7 @@ personal account.
 **The credential goes in the file and nowhere else** -- not a note, not a
 `CLAUDE.md`, not `settings.json`, not a commit message, and never echoed back
 into the transcript. What a note may record instead, and why, is
-[confidentiality-standards § Credentials never enter a note](../../../Standards/confidentiality-standards.md#credentials-never-enter-a-note).
+[confidentiality-standards § Credentials never enter a note](../../../Workspace/Standards/confidentiality-standards.md#credentials-never-enter-a-note).
 
 `.credentials/` is git-ignored. Confirm that before writing, because the failure
 is silent and permanent: a token committed once is in history forever.
