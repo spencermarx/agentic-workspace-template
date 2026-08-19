@@ -20,10 +20,22 @@ Vendored:
 |---|---|---|
 | `grilling` | `skills/productivity/grilling/SKILL.md` | verbatim |
 | `grill-me` | `skills/productivity/grill-me/SKILL.md` | verbatim |
-| `wait-what` | `skills/productivity/wait-what/SKILL.md` | verbatim |
+| `grill-with-docs` | `skills/engineering/grill-with-docs/SKILL.md` | verbatim |
+| `clarify` | `skills/productivity/wait-what/SKILL.md` | adapted, renamed from `wait-what` |
 | `to-questionnaire` | `skills/productivity/to-questionnaire/SKILL.md` | verbatim |
+| `teach` | `skills/productivity/teach/SKILL.md` | adapted |
 | `writing-for-agents` | `skills/productivity/writing-for-agents/SKILL.md` | adapted |
 | `handoff` | `skills/productivity/handoff/SKILL.md` | adapted, via an intermediate expansion |
+
+`clarify` is the local name; the upstream path is where it came from and stays
+recorded as such, so a future diff against upstream still resolves.
+
+`grill-with-docs` upstream also carries `agents/openai.yaml`, which is interface
+metadata for a different runtime and has no meaning in this harness or home in
+the skill layout. It is deliberately not vendored. The `SKILL.md` is verbatim.
+
+`teach` upstream keeps its four `*-FORMAT.md` files beside `SKILL.md`; here they
+are under `references/`, per the skill layout standard.
 
 ```
 MIT License

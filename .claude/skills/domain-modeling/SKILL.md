@@ -2,10 +2,7 @@
 name: domain-modeling
 description: Build and sharpen a project's domain model. Use when the user wants to pin down domain terminology or a ubiquitous language, record a significant architectural decision, or when another skill needs to maintain the domain model.
 ---
-<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/domain-modeling/SKILL.md @ ce32987bb267); adapted for this repo (ADR handoff re-pointed at the decision-record skill). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
-
-
-<!-- Vendored from https://github.com/mattpocock/skills (skills/engineering/domain-modeling/SKILL.md); adapted for this repo (ADR/CONTEXT handling rewired to the `adr` and `context` skills; the glossary challenge extended to the agent's own coined terms via the conveying-clearly skill). See [ADR: Vendor third-party skills as plain files under .claude with inline provenance and no lock manifest](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
+<!-- Vendored from https://github.com/spencermarx/example-co (.claude/skills/domain-modeling/SKILL.md @ ce32987bb267); adapted for this repo (decision handoff re-pointed at the decision-record skill, and its prose re-grounded on that skill's actual contract: scope-local NNNN records under <scope>/decisions/, no generator and no ULID; file-structure examples re-keyed from an engineering repo to this vault; the glossary challenge extended to the agent's own coined terms via the conveying-clearly skill). Upstream lineage: https://github.com/mattpocock/skills (skills/engineering/domain-modeling/SKILL.md). See [ADR 0002](../../../Decisions/0002-vendor-third-party-skills-as-plain-files.md). -->
 
 # Domain Modeling
 
@@ -13,38 +10,29 @@ Actively build and sharpen the project's domain model as you design. This is the
 
 ## File structure
 
-Most repos have a single context:
+This workspace has one glossary at the root, and decision records that live
+beside the thing they are about:
 
 ```
 /
-├── CONTEXT.md
-├── docs/
-│   └── engineering/
-│       └── adr/                       ← created via the `adr` skill
-│           ├── 0001-event-sourced-orders.md
-│           └── 0002-postgres-for-write-model.md
-└── src/
+├── CONTEXT.md                     ← the workspace glossary
+├── Decisions/                     ← workspace-level, via the `decision-record` skill
+│   ├── 0001-standards-as-rules-routed-to-files.md
+│   └── 0002-vendor-third-party-skills-as-plain-files.md
+└── <Area>/
+    └── decisions/                 ← area-level, same skill, its own NNNN sequence
+        └── 0001-<kebab-slug>.md
 ```
 
-If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
+If a `CONTEXT-MAP.md` exists at the root, the workspace has several contexts and
+the map points to where each glossary lives.
 
-```
-/
-├── CONTEXT-MAP.md
-├── docs/
-│   └── engineering/adr/              ← all ADRs live here (via the `adr` skill)
-├── src/
-│   ├── ordering/
-│   │   └── CONTEXT.md
-│   └── billing/
-│       └── CONTEXT.md
-```
+**Decision records are scope-local, never centralized.** A decision about one
+area lives in that area's own `decisions/` folder and gets its own numbering;
+only workspace-level decisions go in the root `Decisions/`. Glossaries may split
+per context in the same way.
 
-This repo centralizes ADRs in `docs/engineering/adr/` regardless of how many
-contexts exist - only the `CONTEXT.md` glossaries split per context, never the
-ADR directory.
-
-Create files lazily - only when you have something to write. If no `CONTEXT.md` exists, scaffold it with the [`context` skill](../context/SKILL.md) when the first term is resolved. **ADRs are never created by hand here** - when one is warranted, hand off to this repo's [`adr` skill](../decision-record/SKILL.md), which owns the generator, ULID identity, and location (`docs/engineering/adr/`).
+Create files lazily - only when you have something to write. If no `CONTEXT.md` exists, scaffold it with the [`context` skill](../context/SKILL.md) when the first term is resolved. **Decision records are never created by hand here** - when one is warranted, hand off to the [`decision-record` skill](../decision-record/SKILL.md), which owns the significance test, the per-scope `NNNN-<kebab-slug>` numbering, the location, and the index row in the register's `README.md`.
 
 ## During the session
 
@@ -74,6 +62,6 @@ When a term is resolved, update `CONTEXT.md` right there. Don't batch these up -
 
 ### Record decisions as they crystallize
 
-When a **significant** design decision settles during the session - a boundary, a system- or code-level pattern, a key standard, a chosen approach and the alternative you rejected - record it via this repo's [`adr` skill](../decision-record/SKILL.md). Use the repo's gauge, not a separate bar: record what sets a precedent, is hard to reverse, or is surprising with a real trade-off; leave one-off or obvious choices unrecorded (root `CLAUDE.md`, Sharpen ADR determination with reversibility, surprise, and trade-off signals).
+When a **significant** design decision settles during the session - a boundary, a pattern, a key standard, a chosen approach and the alternative you rejected - record it via the [`decision-record` skill](../decision-record/SKILL.md). Use that skill's gauge, not a separate bar: record what sets a precedent, is hard to reverse, or is surprising given its trade-off. Two of the three is a clear yes; one is a judgment call. Any change to `Standards/` always qualifies. Leave one-off or obvious choices unrecorded.
 
-Don't author ADR files by hand or invent a format. The `adr` skill owns the generator, ULID identity, location (`docs/engineering/adr/`), and the Context/Decision/Consequences shape - including the significance gauge it uses to recognize a decision and decide what to emphasize.
+Don't author decision records by hand or invent a format. The `decision-record` skill owns the significance test, the per-scope `NNNN-<kebab-slug>` numbering, the location, the register index, the supersession protocol, and the Context/Decision/Alternatives/Consequences shape.

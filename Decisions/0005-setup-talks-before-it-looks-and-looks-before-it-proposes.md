@@ -75,7 +75,8 @@ and `playback.md`, one per phase, so `SKILL.md` carries the spine and each
 phase's depth loads when that phase starts.
 
 **No `disable-model-invocation` flag changes.** `to-questionnaire` and
-`wait-what` stay user-invoked only, and `bootstrap` does not call them. Those
+`clarify` (renamed from `wait-what`) stay user-invoked only, and `bootstrap`
+does not call them. Those
 flags keep user-only triggers out of the always-on description budget, which
 `harness-standards § Context budget` names as the budget deciding whether any
 skill fires at all. Flipping two of them permanently, to serve a procedure that
