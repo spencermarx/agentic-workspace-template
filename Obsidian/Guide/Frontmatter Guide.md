@@ -17,9 +17,13 @@ created: 2026-08-18
 scope: clients/example-co
 ```
 
-Five more are conditional, added only when the note has the data: `updated`,
-`date`, `people`, `orgs`, `supersedes`. Anything not on one of those two lists is
-not a property at all.
+Four more are conditional, added only when the note has the data: `date`,
+`people`, `orgs`, `supersedes`. Anything not on one of those two lists is not a
+property at all.
+
+There is deliberately no `updated`. A hand-written date stamp goes stale the
+first time someone edits without touching it, so the views read `file.mtime`
+instead and get it right for free.
 
 The normative tables, including every allowed value of `type` and `status`, are
 in
