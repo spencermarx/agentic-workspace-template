@@ -19,8 +19,8 @@ description: >-
    none.
 2. **Composable.** If logic already lives in another skill, call it rather than
    reimplementing it. Declare the dependency as a markdown link to that skill's
-   `SKILL.md`, which is what lets the gate catch a reference to a skill that does
-   not exist.
+   `SKILL.md`, so a reference to a skill that does not exist reads as a dead
+   link rather than as prose.
 3. **Auto-invocable.** The description is the whole dispatch mechanism. There is
    no router skill. See below.
 4. **Progressively disclosed.** `SKILL.md` stays lean. Depth goes in
@@ -59,7 +59,7 @@ than one that fires slightly too often, because its absence is silent.
 - **Negative routing is mandatory** where a sibling could plausibly capture the
   same trigger: "Do NOT use for X, use `sibling` instead." This is what makes a
   library of thirty skills dispatch correctly without a router.
-- Backtick every skill name you mention, so the gate can resolve it.
+- Backtick every skill name you mention, so a reader can resolve it.
 
 If a skill is not firing, the description is nearly always the cause, not the
 body. Rewrite the triggers before touching anything else.
@@ -90,8 +90,8 @@ invisible until needed.
    claim with no inline citation" can.
 5. **Push depth out.** Anything long, reference-heavy, or needed in only one
    scenario goes to `references/` or `sub-skills/` with a link.
-6. **Run `./workspace validate`.** It checks the layout, the budgets, and every
-   skill reference you made.
+6. **Re-read the layout, the budgets, and every skill reference you made**
+   against [harness-standards](../../../Standards/harness-standards.md).
 7. **Self-review against the five rules**, then against the anti-patterns below.
 
 ## Anti-patterns

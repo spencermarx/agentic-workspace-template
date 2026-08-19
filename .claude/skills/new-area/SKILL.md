@@ -20,7 +20,7 @@ wrong relative depth in its upward pointer, and no row in the parent's inventory
 It looks right and it is subtly wrong, and the next one is wrong differently.
 
 This is `bootstrap` restricted to one node: same plan, same templates, same
-renderer, same gate.
+renderer.
 
 ## Step 1: read, do not ask
 
@@ -65,13 +65,10 @@ Where you do not know something, write it as an Open question naming what is
 unknown and what would resolve it. A leaf full of confident invention is worse
 than a thin one that is honest.
 
-## Step 4: gate, then hand off
+## Step 4: hand off
 
-```bash
-./workspace validate
-```
-
-Then summarise and stop. **Do not commit.**
+Confirm the new leaf carries no surviving `__REPLACE_ME__` and no unresolved
+`<!-- AGENT: -->` comment, then summarise and stop. **Do not commit.**
 
 ## Promoting rather than creating
 

@@ -102,14 +102,11 @@ plugins when prompted**, and install the store plugins the command listed. A
 fresh clone with plugins disabled looks broken, and people conclude the template
 is broken.
 
-## Step 5: validate and hand off
+## Step 5: hand off
 
-```bash
-./workspace validate
-```
-
-Now strict, because `bootstrapped` is true. Any surviving sentinel, token, or
-AGENT comment fails.
+Sweep the tree for a surviving `__REPLACE_ME__`, an unreplaced `{{TOKEN}}`, or
+an unresolved `<!-- AGENT: -->` comment, and resolve every one before handing
+off.
 
 Then print `git status --short`, summarise what changed, and **do not commit**.
 Print the command instead:

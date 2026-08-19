@@ -21,8 +21,6 @@ middle of a task rather than at the start.
    `.claude/skills/<name>/SKILL.md`.
 3. Delete the stub banner at the top.
 4. Replace every `__REPLACE_ME__` with a real value.
-5. Run `./workspace validate`. It will tell you if the description is over
-   budget, if a referenced skill does not exist, or if identity leaked in.
 
 ## Demoting one
 

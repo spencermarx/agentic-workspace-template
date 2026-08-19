@@ -52,7 +52,7 @@ does not exist yet.
 
 They are flat `.md` files, so they cannot register and cost nothing. Promoting
 one means supplying the wiring its banner lists, moving it to
-`skills/<name>/SKILL.md`, deleting the banner, and running `./workspace validate`.
+`skills/<name>/SKILL.md`, and deleting the banner.
 
 ## Credentials
 

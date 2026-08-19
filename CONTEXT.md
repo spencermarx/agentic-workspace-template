@@ -25,8 +25,8 @@ to read next.
 _Avoid_: index, hub
 
 **Standard**:
-A convention stated once in `Standards/`, routed to the files it governs by a
-rule, and listed in the registry. All three, or it is not a standard.
+A convention stated once in `Standards/`, and routed to the files it governs by
+a rule. Both, or it is not a standard.
 _Avoid_: guideline, policy, convention
 
 **Rule**:
@@ -41,7 +41,7 @@ _Avoid_: copy, snapshot, sync
 
 ## Relationships
 
-- A **standard** has exactly one **rule** routing it, and one registry row.
+- A **standard** has exactly one **rule** routing it.
 - An **area** is either a **leaf** or a **router**, never both.
 - A **mirror** always names a canonical source outside itself.
 

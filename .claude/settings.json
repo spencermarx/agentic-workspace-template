@@ -20,7 +20,6 @@
       "Bash(git show:*)",
       "Bash(git ls-files:*)",
       "Bash(git check-ignore:*)",
-      "Bash(./workspace validate:*)",
       "Bash(./workspace doctor:*)",
       "WebFetch",
       "WebSearch"
@@ -48,19 +47,6 @@
     }
   },
   "enabledPlugins": {},
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.workspace/bin/hooks/claude-md-budget.sh"
-          }
-        ]
-      }
-    ]
-  },
   "env": {
     "CLAUDE_VAULT_ROOT": "$CLAUDE_PROJECT_DIR"
   }

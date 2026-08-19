@@ -37,8 +37,8 @@ be coarser. This is the spine of the handoff. Spend the most care here.>
 
 - **Branch:** <name>
 - **Uncommitted:** <what the parked edits are trying to do, not just a file list>
-- **Gate state:** <was `./workspace validate` green when you stopped? If not,
-  which findings are yours and which were already there?>
+- **Known-broken:** <anything you left in a state you know is wrong, and whether
+  it was yours or already there>
 - **Background processes:** <command and what it watches, or "none">
 - **State outside the vault:** <anything sent, shared, or changed elsewhere, or
   "clean">
@@ -85,8 +85,6 @@ writing down".>
 
 ## Done-bar
 
-<How the next agent will know the work is actually complete. Usually
-`./workspace validate` green, plus whatever is specific to this work: a document
-sent, a decision recorded, an area scaffolded and its parent's inventory
-re-rendered.>
+<How the next agent will know the work is actually complete: a document sent, a
+decision recorded, an area scaffolded and its parent's inventory re-rendered.>
 ```

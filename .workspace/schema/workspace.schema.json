@@ -9,7 +9,7 @@
     "$schema": { "type": "string" },
     "bootstrapped": {
       "type": "boolean",
-      "description": "The strictness switch. False keeps the template committable with sentinels in place; true makes the gate strict, makes bootstrap refuse to re-run without --force, and lets new-area run."
+      "description": "False keeps the template committable with sentinels in place; true makes bootstrap refuse to re-run without --force, and lets new-area run."
     },
     "workspaceName": { "type": "string" },
     "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
@@ -33,7 +33,6 @@
       }
     },
     "conventions": { "type": "object" },
-    "budgets": { "type": "object" },
     "sync": { "type": "object" },
     "tracking": { "type": "object" },
     "template": { "type": "object" }

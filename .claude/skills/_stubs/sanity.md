@@ -1,7 +1,7 @@
 > **STUB, not an active skill.** This file is a flat `.md` under `_stubs/`, so it
 > is not registered and costs no context. To activate: supply the wiring below,
-> move it to `.claude/skills/sanity/SKILL.md`, delete this banner, and run
-> `./workspace validate`. See [README](README.md).
+> move it to `.claude/skills/sanity/SKILL.md`, and delete this banner. See
+> [README](README.md).
 
 # sanity
 

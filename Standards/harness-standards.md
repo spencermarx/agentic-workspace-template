@@ -5,25 +5,24 @@ commands, settings, and the context budget that governs all of them.
 
 ## The three-artifact invariant
 
-A standard exists as exactly three synchronized things.
+A standard exists as two synchronized things.
 
 1. **Statement.** One `##` section in a `Standards/*.md` document. This is the
    single source of truth. It is stated here and nowhere else.
 2. **Router.** One `.claude/rules/<domain>/<slug>.md` file: a `paths:` glob plus
    a deep link to the section above. It never restates the rule.
-3. **Registry row.** One row in `Standards/README.md`.
 
 A doc section that no rule routes is dead. A rule whose link does not resolve is
-broken. A registry row without a rule, or a rule without a row, is drift.
+broken.
 
 The reason this is not a `CLAUDE.md` section: a `CLAUDE.md` governs a directory
 subtree, not a file type, and it does not reliably reach subagents. A rule
 governs a file type wherever it lives, and loads for subagents too.
 
-The reason it is machine-checked rather than trusted: drift here is silent.
-Nothing reports at read time that a rule failed to load, so a renamed heading or
-a glob that matches nothing simply stops routing, and the system reads as
-healthy.
+Drift here is silent. Nothing reports at read time that a rule failed to load,
+so a renamed heading or a glob that matches nothing simply stops routing, and
+the system reads as healthy. Whoever renames a heading rewrites the pointers
+that aim at it, in the same change.
 
 ## Rule authoring contract
 
@@ -45,9 +44,8 @@ provably correct.
 
 Globs use the reserved folder vocabulary and are written as
 `**/<Folder>/**/*.md`, so they match wherever the folder is nested. Renaming a
-reserved folder obligates you to rewrite the affected globs; the validator's
-positive control, which requires every glob to match at least one real file, is
-what proves you did.
+reserved folder obligates you to rewrite the affected globs in the same change,
+because a glob that matches nothing stops routing without saying so.
 
 ## Skill authoring contract
 
@@ -79,8 +77,8 @@ there will not be one. Therefore:
   capture the same trigger: "Do NOT use for X, use `sibling` instead."
 - Every skill name mentioned anywhere is backticked and, where it is a real
   dependency, written as a markdown link to that skill's `SKILL.md`. Declaring
-  dependencies as links is what makes dependency checking free: it becomes link
-  checking, which catches a skill depending on a skill that never existed.
+  dependencies as links is what makes a dependency on a skill that never
+  existed visible as a dead link rather than as silence.
 
 ## Picking the primitive
 
@@ -169,5 +167,4 @@ a read-only permission allowlist, hooks, marketplace declarations, and env.
 operator: model preference, MCP servers, network allowlist, and any permission
 naming a local path.
 
-A committed settings file must never contain a machine-specific path. The
-identity gate catches the class.
+A committed settings file must never contain a machine-specific path.

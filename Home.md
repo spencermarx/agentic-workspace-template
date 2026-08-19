@@ -12,7 +12,7 @@ __REPLACE_ME__
 <!-- workspace:nav:start -->
 ## Conventions
 
-- [Standards](<Standards/README.md>) -- every convention, and the registry
+- [Standards](<Standards/README.md>) -- every convention, stated once
 - [Context](<CONTEXT.md>) -- the ubiquitous language
 - [Decisions](<Decisions/README.md>) -- the decision register
 
