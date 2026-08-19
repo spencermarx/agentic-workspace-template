@@ -36,9 +36,10 @@
       "Read(./**/*.pem)",
       "Read(./**/*.key)",
       "Read(./.obsidian/workspace.json)",
-      "Bash(git push:*)",
-      "Bash(git reset --hard:*)",
-      "Bash(rm -rf:*)"
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(rm -rf ~:*)",
+      "Bash(rm -rf $HOME:*)"
     ]
   },
   "extraKnownMarketplaces": {
