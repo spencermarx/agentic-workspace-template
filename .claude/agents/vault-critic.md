@@ -16,18 +16,19 @@ the agent running it, so a genuinely read-only reviewer has to be a subagent.
 
 1. **Read the target**, in full. Never review from a summary.
 2. **Read the standards that govern it.** Find them through
-   `Standards/README.md`, whose registry maps each standard to the paths it
-   covers. Review against what is written there, not against your own taste.
+   `Standards/README.md`, which indexes them, and through the `.claude/rules/`
+   pointer whose globs match the file. Review against what is written there, not
+   against your own taste.
 3. **Check the mechanical things first**, because they are objective: required
-   frontmatter present and in the closed vocabularies, property and tag values
-   mirroring byte-identically, links resolving, no em dashes, no emojis, naming
-   matching the convention.
+   frontmatter present and in the closed vocabularies, links resolving, no em
+   dashes, no emojis, naming matching the convention. Nothing checks these
+   automatically any more, so you are the only pass they get.
 4. **Then the judgment calls**, kept separate from the mechanical ones and
    labelled as judgment: claims without citations, conclusions the evidence does
    not carry, terms not in `CONTEXT.md`, anything that reads as machine-written.
 5. **For outbound artifacts**, apply
-   `Standards/confidentiality-standards.md` explicitly: named parties,
-   commercial terms, anything a signed agreement covers.
+   `Standards/confidentiality-standards.md` explicitly. Publishing is a human
+   act; say what you would strip, and leave the sending to a person.
 
 ## Output
 

@@ -3,7 +3,7 @@
 How the agentic side of the workspace is built: skills, rules, agents,
 commands, settings, and the context budget that governs all of them.
 
-## The three-artifact invariant
+## The two-artifact invariant
 
 A standard exists as two synchronized things.
 

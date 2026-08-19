@@ -1,3 +1,10 @@
+---
+type: moc
+status: active
+created: 2026-08-19
+scope: none
+---
+
 # Context
 
 The ubiquitous language of this workspace: the terms that mean something
@@ -34,16 +41,10 @@ A file in `.claude/rules/` that routes a standard to a set of paths. A pointer,
 never a statement.
 _Avoid_: lint, check
 
-**Mirror**:
-A note that copies content the vault does not own, declaring its source in
-frontmatter.
-_Avoid_: copy, snapshot, sync
-
 ## Relationships
 
 - A **standard** has exactly one **rule** routing it.
 - An **area** is either a **leaf** or a **router**, never both.
-- A **mirror** always names a canonical source outside itself.
 
 ## Flagged ambiguities
 

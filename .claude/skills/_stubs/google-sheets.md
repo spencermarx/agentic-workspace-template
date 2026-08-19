@@ -25,5 +25,4 @@ Full read and write over Sheets. Useful for trackers and models that a
 non-technical counterpart needs to edit.
 
 A spreadsheet is a mirror, not a source of truth. If the vault and the sheet
-disagree, follow `Standards/canonical-and-mirrors.md`: name which one is
-canonical in the note that references it.
+disagree, say which one wins in the note that references it.

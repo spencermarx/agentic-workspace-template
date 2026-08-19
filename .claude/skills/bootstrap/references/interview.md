@@ -34,8 +34,9 @@ even for one person. The container costs nothing today, and renaming
 `Operator/` to `Operators/<key>/` later breaks every wikilink and every pointer
 into it. This is the one place where paying zero now avoids a migration.
 
-**Q6, voice.** Confirm the house voice defaults. They already exist in
-`Standards/writing-standards.md`; ask only whether anything should be added.
+**Q6, voice.** `Standards/writing-standards.md` carries only the two mechanical
+rules, no em dashes and no emojis. Ask what else the house voice should say, and
+write the answer into that file.
 
 ## Round 2: unblocked by the shape
 
