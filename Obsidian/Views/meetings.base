@@ -20,7 +20,9 @@ views:
         direction: DESC
   - type: table
     name: By area
-    groupBy: scope
+    groupBy:
+      property: scope
+      direction: ASC
     order:
       - date
       - file.name

@@ -3,53 +3,55 @@
 Two kinds live here, and the split is a licensing decision rather than a
 preference.
 
-## Vendored (committed, work on clone)
+## Vendored (committed, works on clone)
 
-| Plugin | Why vendored |
-|---|---|
-| `agentic-copilot` | Not in the community store. MIT. It is the reason Claude Code is reachable from inside Obsidian. |
-| `icloud-sync` | Not in the community store. Custom. |
-
-Neither can be installed any other way, so a clone that did not carry them would
-simply be missing them.
+`agentic-copilot` is MIT, is not in the community store, and is the reason Claude
+Code is reachable from inside Obsidian. A clone that did not carry it would
+simply be missing it, because there is no other way to install it.
 
 ## Store-installed (declared, not committed)
 
-Listed in `store-plugins.json` with their licenses. Four of the five are
-**GPL-3.0 or AGPL-3.0**: committing their built `main.js` into a public,
-MIT-licensed template would redistribute copyleft binaries under an incompatible
-license.
+Listed in `store-plugins.json` with their licenses. Both are **AGPL-3.0**:
+committing their built `main.js` into a public, MIT-licensed template would
+redistribute copyleft binaries under an incompatible license.
+
+| Plugin | Why it is expected |
+|---|---|
+| Templater | The template engine. Every file in `Obsidian/Templates/` is Templater syntax. |
+| Excalidraw | The runtime for the `excalidraw` skill in `.claude/skills/`. |
 
 They are two clicks each from Obsidian's plugin browser, so not vendoring them
 costs a few minutes once. Vendoring them would cost a license violation.
 
 Installing one puts it in a directory git would otherwise offer to stage, so
-`.gitignore` ignores each store plugin by id, and `.obsidian/themes/` with them.
-Without that, "not vendored" would last exactly until the first `git add -A`.
-The ignore is by id rather than a blanket rule over `plugins/`, because the two
-vendored plugins in the table above have to stay tracked. Both halves matter:
-check `git check-ignore` before changing either.
+`.gitignore` ignores **every** subdirectory of `plugins/` and names back only
+what has to travel. A blanket rule rather than a list of ids, because a list
+only protects the plugins someone remembered to add to it, and "not vendored"
+would otherwise last exactly until the first `git add -A`.
 
 `community-plugins.json` still lists every plugin, vendored or not, so the
-**enable list travels with the clone**. That was one of the two reproducibility
-gaps in the vault this template came from: a clone got the plugin code and
-Obsidian enabled none of it. The other gap was `appearance.json`, so the theme
-selection is committed too.
+**enable list travels with the clone**. That was one of the reproducibility gaps
+in the vault this template came from: a clone got the plugin code and Obsidian
+enabled none of it.
 
 Run `./workspace obsidian-setup` to see what is missing on this machine.
 
 ## Per-machine config
 
-A plugin whose `data.json` holds an absolute path or accumulating personal state
-ships a `data.json.example` and a `SETUP.md`, and its `data.json` is
-git-ignored. `./workspace obsidian-setup` writes the real file from the example.
+A plugin whose `data.json` holds machine-specific state, or a setting a machine
+should decide rather than inherit, ships a `data.json.example` and a `SETUP.md`.
+`./workspace obsidian-setup` writes the real file from the example and leaves an
+existing one alone.
 
-This applies to `icloud-sync`, whose `data.json` holds an absolute path, and to
-`agentic-copilot`, whose `editApprovalMode` decides whether an agent's edits land
-without a prompt. That is a choice each machine should make rather than inherit
-from a clone.
+| Plugin | What the example carries |
+|---|---|
+| `agentic-copilot` | `editApprovalMode` decides whether an agent's edits land without a prompt, which is a security choice each machine makes. |
+| `templater-obsidian` | The template folder and the user-scripts folder. Without them Templater opens an empty picker and `tp.user.operators` is undefined. |
 
-Excalidraw would belong here too, its `data.json` being more than half personal
-stencil library and rewritten every session, a single-line 171 KB blob that git
-cannot merge and a human cannot resolve. It needs no entry only because the whole
-plugin is store-installed and therefore already ignored.
+Templater is the one store-installed plugin with files inside its ignored
+directory, which is why `.gitignore` names those two paths individually. Its
+built `main.js` stays ignored, so the AGPL obligation is intact.
+
+Excalidraw needs no entry. Its `data.json` would qualify twice over, being more
+than half personal stencil library and rewritten every session as a single-line
+171 KB blob git cannot merge, but the whole plugin directory is already ignored.

@@ -3,21 +3,20 @@ const op = await tp.user.operators.pick(tp, "Whose daily note?");
 const d = tp.date.now("YYYY-MM-DD");
 const y = tp.date.now("YYYY");
 const m = tp.date.now("MM");
-await tp.file.move(`${tp.user.operators.home(op)}/Daily Notes/${y}/${m}/${d}`);
+// scope is derived from the folder the file actually lands in, so the two
+// cannot drift apart the way a hardcoded string did.
+const home = tp.user.operators.home(op);
+const scope = home.toLowerCase();
+await tp.file.move(`${home}/Daily Notes/${y}/${m}/${d}`);
 -%>
 ---
 type: daily
 status: active
-created: <% tp.date.now("YYYY-MM-DD") %>
-date: <% tp.date.now("YYYY-MM-DD") %>
-scope: operator/<% op.key %>
+created: <% d %>
+date: <% d %>
+scope: <% scope %>
 people:
   - <% op.key %>
-tags:
-  - type/daily
-  - status/active
-  - scope/operator/<% op.key %>
-  - person/<% op.key %>
 ---
 
 # <% tp.date.now("dddd, MMMM D, YYYY") %>

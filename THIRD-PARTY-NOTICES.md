@@ -102,7 +102,6 @@ Two are vendored, because they cannot be installed any other way:
 | Plugin | License | Source |
 |---|---|---|
 | `agentic-copilot` | MIT | <https://github.com/spencermarx/obsidian-ai> |
-| `icloud-sync` | custom, bundled with permission | vendored from the author's own vault |
 
 Five more are **declared but deliberately not vendored**, in
 `.obsidian/plugins/store-plugins.json`:

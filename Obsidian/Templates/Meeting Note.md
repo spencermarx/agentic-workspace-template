@@ -5,6 +5,13 @@ const kind = await tp.system.suggester(
   ["External", "Internal", "One to one"],
   ["meeting/external", "meeting/internal", "meeting/1-1"],
   false, "What kind of meeting?");
+// The meetings view groups by scope. Hardcoding it collapsed every meeting into
+// a single group called "none", so it is asked for.
+const rawScope = await tp.system.prompt(
+  "Owning area folder, e.g. Clients/example-co, or . for workspace-level", ".");
+const scope = (!rawScope || rawScope === ".")
+  ? "none"
+  : rawScope.toLowerCase().replace(/^\/+|\/+$/g, "");
 const d = tp.date.now("YYYY-MM-DD");
 const name = `${d} ${title}`;
 await tp.file.move(`Meetings/${tp.date.now("YYYY")}/${name}`);
@@ -14,15 +21,9 @@ type: <% kind %>
 status: prep
 created: <% d %>
 date: <% d %>
-scope: none
+scope: <% scope %>
 people:
   - <% op.key %>
-orgs: []
-tags:
-  - type/<% kind %>
-  - status/prep
-  - scope/none
-  - person/<% op.key %>
 ---
 
 # <% name %>

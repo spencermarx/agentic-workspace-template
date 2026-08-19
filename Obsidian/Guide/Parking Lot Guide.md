@@ -3,7 +3,6 @@ type: moc
 status: active
 created: 2026-08-18
 scope: none
-tags: [type/moc, status/active, scope/none]
 ---
 
 # Parking lots

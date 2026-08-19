@@ -3,7 +3,6 @@ type: moc
 status: active
 created: 2026-08-18
 scope: none
-tags: [type/moc, status/active, scope/none]
 ---
 
 # Decision records
@@ -11,8 +10,9 @@ tags: [type/moc, status/active, scope/none]
 Write one when the choice is **precedent-setting**, **hard to reverse**, or
 **surprising given its trade-off**. Two of three is a clear yes.
 
-The threshold and the format:
-[decision-standards](../../Standards/decision-standards.md).
+The register itself is [Decisions](../../Decisions/README.md). The template
+picks the register that owns the decision, numbers the record, and derives its
+scope from the folder, so the only thing left to you is the thinking.
 
 ## The section people skip
 

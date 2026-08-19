@@ -3,7 +3,6 @@ type: moc
 status: active
 created: 2026-08-18
 scope: none
-tags: [type/moc, status/active, scope/none]
 ---
 
 # Meeting notes
@@ -12,8 +11,25 @@ The template does three things for you: moves the file to `Meetings/<year>/`,
 writes the frontmatter, and links the meeting into the chosen person's daily
 note under its Meetings heading.
 
-Format and the action-item contract:
-[meeting-standards](../../Standards/meeting-standards.md).
+It asks which area owns the meeting, because that answer is what the meetings
+view groups by. `.` means workspace-level and becomes `scope: none`.
+
+This page is the shape of a meeting note. There is no separate standard to check
+against: the template emits it and this explains it, and those are the only two
+places it exists.
+
+## The sections, and why they are in that order
+
+**Context** and **Agenda** are written before. **Notes**, **Decisions**, and
+**Action items** during. **Follow-up** and **References** after.
+
+The order is chronological on purpose. A note whose first heading is "Notes" is
+a note written after the fact, and it will read as a transcript rather than as a
+record of a meeting that went somewhere.
+
+Anything that turns out to be durable leaves: a decision becomes a decision
+record, an unknown becomes an area's Open question, a deferred item becomes a
+parking-lot row. What stays behind is the account of the conversation.
 
 ## Before, not after
 

@@ -1,0 +1,22 @@
+# What is actually live, across every area.
+#
+# Recency comes from file.mtime rather than an `updated` property, because a
+# hand-maintained date is only as good as the last person who remembered to
+# change it, and this view exists to be trusted without that.
+filters:
+  and:
+    - 'status == "active" || status == "blocked"'
+views:
+  - type: table
+    name: In flight
+    groupBy:
+      property: scope
+      direction: ASC
+    order:
+      - file.name
+      - type
+      - status
+      - file.mtime
+    sort:
+      - property: file.mtime
+        direction: DESC

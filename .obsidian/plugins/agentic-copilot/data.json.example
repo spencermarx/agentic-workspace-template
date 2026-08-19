@@ -6,6 +6,6 @@
   "includeActiveFile": true,
   "includeSelection": true,
   "maxSessions": 5,
-  "editApprovalMode": "auto-accept",
+  "editApprovalMode": "approve",
   "autoApplyEdits": false
 }

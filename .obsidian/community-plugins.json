@@ -1,9 +1,5 @@
 [
   "agentic-copilot",
-  "icloud-sync",
   "templater-obsidian",
-  "notebook-navigator",
-  "table-editor-obsidian",
-  "obsidian-excalidraw-plugin",
-  "tag-wrangler"
+  "obsidian-excalidraw-plugin"
 ]
