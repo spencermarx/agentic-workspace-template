@@ -16,7 +16,7 @@ Nothing enforces those sizes. They are the point at which a file has stopped
 paying for the tokens it costs on every request into its subtree, and the cue to
 move depth behind the context router table below.
 
-Folders that carry neither, such as `Meetings/`, `People/`, and `Attachments/`,
+Folders that carry neither, such as `People/` and `Attachments/`,
 get a five-line `README.md` if they need any explanation at all.
 
 ## CLAUDE.md and README.md are split by audience

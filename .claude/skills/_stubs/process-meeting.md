@@ -25,4 +25,5 @@ Word-level merge of diarization and transcription, which is what makes speaker
 attribution accurate rather than approximate. Produces vault-shaped output with a
 human confirmation step for speaker names.
 
-Its output lands in `Meetings/` and follows `Workspace/Templates/Meeting Note.md`.
+Its output lands in the note-taker's `Operators/<key>/Meetings/` and follows
+`Workspace/Templates/Meeting Note.md`.

@@ -37,7 +37,7 @@ gh auth status 2>&1 | head -3                            # is the GitHub step po
 ls -d /Applications/Obsidian.app 2>/dev/null             # is Obsidian installed
 ls -d ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents 2>/dev/null
 find . -name '*.md' -not -path './.claude/*' -not -path './.workspace/*' \
-       -not -path './Standards/*' -not -path './Obsidian/*' | head -50
+       -not -path './Workspace/*' | head -50
 ```
 
 That last one matters most.

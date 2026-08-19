@@ -1,11 +1,17 @@
-# Obsidian
+# Workspace
 
-This folder holds the mechanics of the vault, not content. Guides for humans,
-templates for note creation, saved views. Nothing here is knowledge about the
-business.
+How this workspace works, as opposed to what the business knows. Conventions,
+guides for humans, templates for note creation, saved views. Nothing here is
+knowledge about the business, and all of it survives a fork into a different one
+verbatim.
+
+That is the line this folder draws. Everything outside it -- `Business/`,
+`People/`, `Operators/`, `Decisions/` -- is content that a fork empties.
 
 ## Layout
 
+- `Standards/`: every convention, stated once. The source of truth that
+  `.claude/rules/` pointers route to.
 - `Guide/`: one page per note type, plus the index. Written for a person.
 - `Templates/`: Templater templates. Templater is configured from
   `.obsidian/plugins/templater-obsidian/data.json.example`; see the `SETUP.md`

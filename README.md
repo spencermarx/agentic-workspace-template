@@ -21,7 +21,6 @@ Nothing to install. The engine is Python 3 standard library, and `/usr/bin/pytho
 | `.claude/rules/` | Pointers that route a standard to the files it governs, loaded on demand by path glob. |
 | `.claude/skills/` | The skill library. `_stubs/` holds skills that need wiring before they work. |
 | `.workspace/` | The engine, the templates it renders from, the plan grammar, and one worked example plan. Template-owned. |
-| `Obsidian/` | Vault mechanics: guides and templates. Not content. |
 | `Decisions/` | Architecture decision records. |
 
 ## The one rule that holds it together

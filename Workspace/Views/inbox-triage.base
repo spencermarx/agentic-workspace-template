@@ -19,7 +19,7 @@ filters:
   and:
     - 'file.basename != "CLAUDE"'
     - '!file.inFolder("Workspace/Templates")'
-    - '!file.inFolder("Standards")'
+    - '!file.inFolder("Workspace")'
     - 'file.path != "README.md"'
     - 'file.path != "THIRD-PARTY-NOTICES.md"'
     - or:
