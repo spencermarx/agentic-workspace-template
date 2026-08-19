@@ -4,11 +4,6 @@ status: superseded
 created: 2026-08-18
 date: 2026-08-18
 scope: none
-authors: []
-tags:
-  - type/decision
-  - status/superseded
-  - scope/none
 ---
 
 # 0003 - Cap the always-resident context budget
